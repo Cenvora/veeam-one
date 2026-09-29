@@ -1,4 +1,5 @@
 name: Generate SDK
+# Schema chunks are staged from the supplied v2.3 OpenAPI document.
 
 on:
   push:
