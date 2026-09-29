@@ -26,7 +26,7 @@ dev = [
     "pytest-cov",
     "black",
     "ruff>=0.13,<0.14",
-    "openapi-python-client>=0.26,<0.27",
+    "openapi-python-client>=0.29,<0.30",
 ]
 
 [project.urls]
