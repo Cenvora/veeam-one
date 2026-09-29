@@ -1,0 +1,1000 @@
+        "additionalProperties": false
+      },
+      "HyperVObjectRelationsInfo": {
+        "type": "object",
+        "properties": {
+          "objectId": {
+            "type": "integer",
+            "description": "ID assigned to an object.",
+            "format": "int64"
+          },
+          "objectName": {
+            "type": "string",
+            "description": "Name of an object.",
+            "nullable": true
+          },
+          "objectType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/HyperVObjectType"
+              }
+            ],
+            "description": "Type of an object."
+          },
+          "parentId": {
+            "type": "integer",
+            "description": "ID assigned to a parent object.",
+            "format": "int64",
+            "nullable": true
+          },
+          "parentName": {
+            "type": "string",
+            "description": "Name of a parent object.",
+            "nullable": true
+          },
+          "parentType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/HyperVObjectType"
+              }
+            ],
+            "description": "Type of a parent object.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "HyperVObjectRelationsInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HyperVObjectRelationsInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "HyperVObjectType": {
+        "enum": [
+          "Host",
+          "Vm",
+          "Cluster",
+          "HostGroup",
+          "ScvmmServer",
+          "DatastoreFolder",
+          "PhysicalDisk",
+          "Csv2008",
+          "ClusterResourceFolder",
+          "Csv2008Folder",
+          "Csv",
+          "CsvFolder",
+          "FileShare",
+          "FileServer",
+          "FileShareFolder",
+          "VirtualInfrastructure"
+        ],
+        "type": "string"
+      },
+      "HyperVPhysicalDiskInfo": {
+        "type": "object",
+        "properties": {
+          "physicalDiskId": {
+            "type": "integer",
+            "description": "ID assigned to a physical disk.",
+            "format": "int64"
+          },
+          "capacityBytes": {
+            "type": "integer",
+            "description": "Physical disk capacity, in bytes.",
+            "format": "int64",
+            "nullable": true
+          },
+          "freeSpaceBytes": {
+            "type": "integer",
+            "description": "Amount of free space on physical disk, in bytes.",
+            "format": "int64",
+            "nullable": true
+          },
+          "hostId": {
+            "type": "integer",
+            "description": "ID assigned to a host.",
+            "format": "int64",
+            "nullable": true
+          },
+          "provisionedBytes": {
+            "type": "integer",
+            "description": "Amount of provisioned space on a physical disk, in bytes.",
+            "format": "int64",
+            "nullable": true
+          },
+          "path": {
+            "type": "string",
+            "description": "Paths to logical disks.",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of a physical disk.",
+            "nullable": true
+          },
+          "businessViewGroupIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "description": "Array of IDs assigned to the Business View groups.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "HyperVPhysicalDiskInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HyperVPhysicalDiskInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "HyperVScVmmServerInfo": {
+        "type": "object",
+        "properties": {
+          "scvmmServerId": {
+            "type": "integer",
+            "description": "ID assigned to SCVMM server.",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of a SCVMM server.",
+            "nullable": true
+          },
+          "port": {
+            "type": "integer",
+            "description": "Port that is used to access a SCVMM server.",
+            "format": "int32",
+            "nullable": true
+          },
+          "connectionError": {
+            "type": "string",
+            "description": "Datails on SCVMM server connection failure.",
+            "nullable": true
+          },
+          "connectionState": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/HyperVConnectionState"
+              }
+            ],
+            "description": "Status of SCVMM server connection."
+          },
+          "version": {
+            "type": "string",
+            "description": "Version of a SCVMM server.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "HyperVScVmmServerInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HyperVScVmmServerInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "HyperVVmInfo": {
+        "type": "object",
+        "properties": {
+          "vmId": {
+            "type": "integer",
+            "description": "ID assigned to a VM.",
+            "format": "int64"
+          },
+          "guid": {
+            "type": "string",
+            "description": "Identifier assigned to a VM in Microsoft Hyper-V.",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of a VM.",
+            "nullable": true
+          },
+          "powerState": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/HyperVVmPowerState"
+              }
+            ],
+            "description": "Power status of a VM."
+          },
+          "cpuCount": {
+            "type": "integer",
+            "description": "Number of virtual CPUs on a VM.",
+            "format": "int32",
+            "nullable": true
+          },
+          "totalDatastoreCommittedBytes": {
+            "type": "integer",
+            "description": "Datastore storage space that is used by a VM, in bytes.",
+            "format": "int64",
+            "nullable": true
+          },
+          "totalDatastoreUncommitedBytes": {
+            "type": "integer",
+            "description": "Datastore storage space that can be used by a VM, in bytes.",
+            "format": "int64",
+            "nullable": true
+          },
+          "guestDisks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VmGuestDisk"
+            },
+            "description": "Array of guest disks configured in a VM.",
+            "nullable": true
+          },
+          "ipAddresses": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Array of VM IP addresses.",
+            "nullable": true
+          },
+          "guestOs": {
+            "type": "string",
+            "description": "Guest OS installed on a VM.",
+            "nullable": true
+          },
+          "isReplica": {
+            "type": "boolean",
+            "description": "Indicates whether a VM is a replica.",
+            "nullable": true
+          },
+          "snapshotFolder": {
+            "type": "string",
+            "description": "Path to a folder that contains VM snapshots.",
+            "nullable": true
+          },
+          "creationTime": {
+            "type": "string",
+            "description": "Date and time when a VM was created.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "hostId": {
+            "type": "integer",
+            "description": "ID assigned to a host on which a VM resides.",
+            "format": "int64",
+            "nullable": true
+          },
+          "dnsName": {
+            "type": "string",
+            "description": "DNS name of VM.",
+            "nullable": true
+          },
+          "dynamicMemoryEnabled": {
+            "type": "boolean",
+            "description": "Indicates whether Dynamic Memory is configured for a VM.",
+            "nullable": true
+          },
+          "assignedMemoryMb": {
+            "type": "integer",
+            "description": "Amount of memory currently available to a VM, in MB.",
+            "format": "int64",
+            "nullable": true
+          },
+          "uptimeMs": {
+            "type": "integer",
+            "description": "VM uptime, in milliseconds.",
+            "format": "int64",
+            "nullable": true
+          },
+          "vmAssignedMemoryMb": {
+            "type": "integer",
+            "description": "Amount of memory allocated to a VM.",
+            "format": "int64",
+            "nullable": true
+          },
+          "integrationServices": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HyperVIntegrationService"
+            },
+            "description": "Array of integration services.",
+            "nullable": true
+          },
+          "cpuMhz": {
+            "type": "integer",
+            "description": "CPU resource of a VM, in MHz.",
+            "format": "int64",
+            "nullable": true
+          },
+          "memoryReservationMb": {
+            "type": "integer",
+            "description": "Memory reservation configured for a VM, in MB.",
+            "format": "int64",
+            "nullable": true
+          },
+          "memoryLimitMb": {
+            "type": "integer",
+            "description": "Maximum amount of memory resources that can be allocated to a VM, in MB.",
+            "format": "int64",
+            "nullable": true
+          },
+          "isShielded": {
+            "type": "boolean",
+            "description": "Indicates whether a VM is shielded.",
+            "nullable": true
+          },
+          "lastProtectedDate": {
+            "type": "string",
+            "description": "Date and time when the latest backup was created for a VM.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "businessViewGroupIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "description": "Array of Business View groups.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "HyperVVmInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HyperVVmInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "HyperVVmPowerState": {
+        "enum": [
+          "Unknown",
+          "Enabled",
+          "Disabled",
+          "Paused",
+          "Suspended",
+          "Starting",
+          "Snapshotting",
+          "Saving",
+          "Stopping",
+          "Pausing",
+          "Resuming"
+        ],
+        "type": "string"
+      },
+      "InfrequentAccess": {
+        "enum": [
+          "Disabled",
+          "ColdTier",
+          "S3StandardIA",
+          "S3OneZoneIA"
+        ],
+        "type": "string"
+      },
+      "InstallVeeamOneLicenseRequest": {
+        "required": [
+          "license"
+        ],
+        "type": "object",
+        "properties": {
+          "license": {
+            "type": "string",
+            "description": "License file in the Base64 format.",
+            "format": "byte"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Job": {
+        "type": "object",
+        "properties": {
+          "jobUid": {
+            "type": "string",
+            "description": "UID assigned to a job.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "jobName": {
+            "type": "string",
+            "description": "Name of a job.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "JobSessionDetailsInfo": {
+        "type": "object",
+        "properties": {
+          "sessionRecordId": {
+            "type": "integer",
+            "description": "ID assigned to a log record that was generated for an operation.",
+            "format": "int32",
+            "example": 0
+          },
+          "details": {
+            "type": "string",
+            "description": "Operation details.",
+            "nullable": true,
+            "example": "Veeam ONE is installed successfully. Root objects are collected."
+          },
+          "logDateTime": {
+            "type": "string",
+            "description": "Date and time when the log record was generated for an operation.",
+            "format": "date-time",
+            "nullable": true,
+            "example": "'2021-01-27T11:54:31.84Z'"
+          }
+        },
+        "additionalProperties": false
+      },
+      "JobSessionDetailsInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JobSessionDetailsInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "JobSessionInfo": {
+        "type": "object",
+        "properties": {
+          "jobSessionId": {
+            "type": "integer",
+            "description": "ID assigned to a task session.",
+            "format": "int32",
+            "example": 1034
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of a task.",
+            "nullable": true,
+            "example": "Object properties data collection"
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SessionsTaskTypes"
+              }
+            ],
+            "description": "Type of a task.",
+            "example": "AggregateProperties"
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ScheduleSessionStatus"
+              }
+            ],
+            "description": "Status of a task session.",
+            "example": "Success"
+          },
+          "statusPriority": {
+            "type": "integer",
+            "description": "Number that indicates the list position of all job sessions with the same status.",
+            "format": "int32"
+          },
+          "start": {
+            "type": "string",
+            "description": "Date and time of a task session start.",
+            "format": "date-time",
+            "nullable": true,
+            "example": "'2021-01-29T11:43:35.69Z'"
+          },
+          "end": {
+            "type": "string",
+            "description": "Date and time of a task session end.",
+            "format": "date-time",
+            "nullable": true,
+            "example": "'2021-01-29T11:43:36.69Z'"
+          }
+        },
+        "additionalProperties": false
+      },
+      "JobSessionInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JobSessionInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LicenseUsageReportStatus": {
+        "enum": [
+          "Draft",
+          "Approved"
+        ],
+        "type": "string"
+      },
+      "MemorySharesLevel": {
+        "enum": [
+          "Unknown",
+          "Low",
+          "Normal",
+          "High",
+          "Custom"
+        ],
+        "type": "string"
+      },
+      "Month": {
+        "enum": [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December"
+        ],
+        "type": "string"
+      },
+      "ObjectStorageBackupJobInfo": {
+        "type": "object",
+        "properties": {
+          "objectStoraBackupJobUid": {
+            "type": "string",
+            "description": "UID assigned to an object storage job.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "backupServerId": {
+            "type": "integer",
+            "description": "ID assigned to a Veeam Backup & Replication server.",
+            "format": "int64"
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BackupJobStatus"
+              }
+            ],
+            "description": "Job status."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Additional details.",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of a job.",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "Job description.",
+            "nullable": true
+          },
+          "lastRun": {
+            "type": "string",
+            "description": "Date and time of the latest job session.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastRunDurationSec": {
+            "type": "integer",
+            "description": "Duration of the latest job session, in seconds.",
+            "format": "int32",
+            "nullable": true
+          },
+          "avgDurationSec": {
+            "type": "integer",
+            "description": "Average job session duration, in seconds.",
+            "format": "int32",
+            "nullable": true
+          },
+          "lastTransferredDataBytes": {
+            "type": "integer",
+            "description": "Amount of data transferred during the latest job session, in bytes.",
+            "format": "int64",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ObjectStorageBackupJobInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ObjectStorageBackupJobInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ObjectStorageBackupJobType": {
+        "enum": [
+          "Unknown",
+          "ObjectStorageBackup",
+          "ObjectStorageToTape",
+          "BackupCopy"
+        ],
+        "type": "string"
+      },
+      "ObjectStorageInfo": {
+        "type": "object",
+        "properties": {
+          "objectStorageId": {
+            "type": "integer",
+            "description": "ID assigned to an object storage repository.",
+            "format": "int64",
+            "nullable": true
+          },
+          "objectStorageUidInVbr": {
+            "type": "string",
+            "description": "UID assigned to an object storage repository in Veeam Backup & Replication.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "backupServerId": {
+            "type": "integer",
+            "description": "ID assigned to a Veeam Backup & Replication.",
+            "format": "int64",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of an object storage repository.",
+            "nullable": true
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ObjectStorageType"
+              }
+            ],
+            "description": "Type of an object storage repository."
+          },
+          "runningTasks": {
+            "type": "integer",
+            "description": "Number of tasks that are currently running on a backup repository.",
+            "format": "int32",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of an object storage repository.",
+            "nullable": true
+          },
+          "region": {
+            "type": "string",
+            "description": "Region at which an object storage repository is located",
+            "nullable": true
+          },
+          "bucket": {
+            "type": "string",
+            "description": "Name of bucket or container.",
+            "nullable": true
+          },
+          "capacityBytes": {
+            "type": "integer",
+            "description": "Object storage capacity, in bytes.",
+            "format": "int64",
+            "nullable": true
+          },
+          "usedSpaceBytes": {
+            "type": "integer",
+            "description": "Amount of used storage space, in bytes.",
+            "format": "int64",
+            "nullable": true
+          },
+          "consumptionLimitGb": {
+            "type": "integer",
+            "description": "Soft limit for object storage consumption, in GB.",
+            "format": "int32",
+            "nullable": true
+          },
+          "isImmutable": {
+            "type": "boolean",
+            "description": "Indicates whether immutability is enabled for an object storage repository.",
+            "nullable": true
+          },
+          "immutabilityIntervalDays": {
+            "type": "integer",
+            "description": "Immutability period, in days.",
+            "format": "int32",
+            "nullable": true
+          },
+          "concurrentJobsMax": {
+            "type": "integer",
+            "description": "Maximum number of concurrent jobs.",
+            "format": "int32",
+            "nullable": true
+          },
+          "concurrentJobsNow": {
+            "type": "integer",
+            "description": "Number of currently running concurrent jobs.",
+            "format": "int32",
+            "nullable": true
+          },
+          "infrequentAccessStorage": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InfrequentAccess"
+              }
+            ],
+            "description": "Type of infrequent access storage."
+          }
+        },
+        "additionalProperties": false
+      },
+      "ObjectStorageInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ObjectStorageInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ObjectStorageType": {
+        "enum": [
+          "Unknown",
+          "AmazonS3",
+          "MicrosoftAzureBlobStorage",
+          "S3Compatible",
+          "S3Integrated",
+          "IBMCloudObjectStorage",
+          "GoogleCloudStorage",
+          "AmazonS3Glacier",
+          "MicrosoftAzureArchiveStorage",
+          "WasabiCloudStorage",
+          "VeeamDataCloudVault",
+          "CloudObjectStorage_11_11"
+        ],
+        "type": "string"
+      },
+      "ObjectToTapeJobInfo": {
+        "type": "object",
+        "properties": {
+          "objectToTapeJobUid": {
+            "type": "string",
+            "description": "UID assigned to a job in Veeam Backup & Replication.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "backupServerId": {
+            "type": "integer",
+            "description": "ID assigned to a Veeam Backup & Replication server.",
+            "format": "int64"
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BackupJobStatus"
+              }
+            ],
+            "description": "Job status."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Job details.",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of a job.",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "Job description.",
+            "nullable": true
+          },
+          "lastRun": {
+            "type": "string",
+            "description": "Date and time of the latest job session.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastRunDurationSec": {
+            "type": "integer",
+            "description": "Duration of the latest job session, in seconds.",
+            "format": "int32",
+            "nullable": true
+          },
+          "avgDurationSec": {
+            "type": "integer",
+            "description": "Average job session duration, in seconds.",
+            "format": "int32",
+            "nullable": true
+          },
+          "lastTransferredDataBytes": {
+            "type": "integer",
+            "description": "Amount of data transferred during the latest job session, in bytes.",
+            "format": "int64",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ObjectToTapeJobInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ObjectToTapeJobInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "OrganizationInfo": {
+        "type": "object",
+        "properties": {
+          "organizationId": {
+            "type": "integer",
+            "description": "ID assigned to an organization.",
+            "format": "int64"
+          },
+          "href": {
+            "type": "string",
+            "description": "Unique organization identifier in the URL format. Identical to the `href` property in VMware Cloud Director API.",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of an organization.",
+            "nullable": true
+          },
+          "isEnabled": {
+            "type": "boolean",
+            "description": "Indicates whether an organization is enabled.",
+            "nullable": true
+          },
+          "numberOfCatalogs": {
+            "type": "integer",
+            "description": "Number of organization catalogs.",
+            "format": "int32",
+            "nullable": true
+          },
+          "cloudDirectorId": {
+            "type": "integer",
+            "description": "ID assigned to a VMware Cloud Director server.",
+            "format": "int64",
+            "nullable": true
+          },
+          "organizationVdcIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "description": "Array of IDs assigned to organization VDCs.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "OrganizationInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrganizationInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "OrganizationVdcAllocationModel": {
