@@ -1,0 +1,1000 @@
+            "format": "uuid"
+          },
+          "teamUid": {
+            "type": "string",
+            "description": "UID assigned to a team.",
+            "format": "uuid"
+          },
+          "teamName": {
+            "type": "string",
+            "description": "Name of a team.",
+            "nullable": true
+          },
+          "organizationUid": {
+            "type": "string",
+            "description": "UID assigned to a Microsoft organization.",
+            "format": "uuid"
+          },
+          "organizationName": {
+            "type": "string",
+            "description": "Name of a Microsoft organization.",
+            "nullable": true
+          },
+          "vb365ServerId": {
+            "type": "integer",
+            "description": "ID assigned to a Veeam Backup for Microsoft 365 server.",
+            "format": "int64"
+          },
+          "vb365ServerName": {
+            "type": "string",
+            "description": "Name of a Veeam Backup for Microsoft 365 server.",
+            "nullable": true
+          },
+          "repositoryUid": {
+            "type": "string",
+            "description": "UID assigned to a backup repository.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "repositoryName": {
+            "type": "string",
+            "description": "Name of backup repository.",
+            "nullable": true
+          },
+          "jobUid": {
+            "type": "string",
+            "description": "UID assigned to a backup job.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "jobName": {
+            "type": "string",
+            "description": "Name of a backup job.",
+            "nullable": true
+          },
+          "jobType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Vb365JobType"
+              }
+            ],
+            "description": "Type of a backup job."
+          },
+          "protectionDate": {
+            "type": "string",
+            "description": "Date and time when the restore point was created.",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Vb365ProtectedTeamRestorePointInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Vb365ProtectedTeamRestorePointInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Vb365ProtectedUserInfo": {
+        "type": "object",
+        "properties": {
+          "userUid": {
+            "type": "string",
+            "description": "UID assigned to a protected user.",
+            "format": "uuid"
+          },
+          "userUidInVb365": {
+            "type": "string",
+            "description": "UID assigned to a user in Veeam Backup for Microsoft 365.",
+            "nullable": true
+          },
+          "userName": {
+            "type": "string",
+            "description": "User name.",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "description": "User email address.",
+            "nullable": true
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Vb365UserType"
+              }
+            ],
+            "description": "Type of a user."
+          },
+          "organizationUid": {
+            "type": "string",
+            "description": "UID assigned to a Microsoft organization.",
+            "format": "uuid"
+          },
+          "organizationName": {
+            "type": "string",
+            "description": "Name of a Microsoft organization.",
+            "nullable": true
+          },
+          "vb365ServerId": {
+            "type": "integer",
+            "description": "ID assigned to a Veeam Backup for Microsoft 365 server.",
+            "format": "int64"
+          },
+          "vb365ServerName": {
+            "type": "string",
+            "description": "Name of a Veeam Backup for Microsoft 365 server.",
+            "nullable": true
+          },
+          "lastProtectedDate": {
+            "type": "string",
+            "description": "Date and time when the latest restore point was created.",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Vb365ProtectedUserInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Vb365ProtectedUserInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Vb365ProtectedUserRestorePointInfo": {
+        "type": "object",
+        "properties": {
+          "uid": {
+            "type": "string",
+            "description": "UID assigned to a restore point.",
+            "format": "uuid"
+          },
+          "userUid": {
+            "type": "string",
+            "description": "UID assigned to a user.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "userUidInVb365": {
+            "type": "string",
+            "description": "UID assigned to a user in Veeam Backup for Microsoft 365.",
+            "nullable": true
+          },
+          "userName": {
+            "type": "string",
+            "description": "User name.",
+            "nullable": true
+          },
+          "isMailboxBackedup": {
+            "type": "boolean",
+            "description": "Indicates whether a restore point includes the user mailbox backup."
+          },
+          "isOneDriveBackedup": {
+            "type": "boolean",
+            "description": "Indicates whether a restore point includes user OneDrive files backup."
+          },
+          "isArchiveBackedup": {
+            "type": "boolean",
+            "description": "Indicates whether a restore point includes archive mailbox backup."
+          },
+          "isSiteBackedup": {
+            "type": "boolean",
+            "description": "Indicates whether a restore point includes user site backup."
+          },
+          "organizationUid": {
+            "type": "string",
+            "description": "UID assigned to a Microsoft organization.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "organizationName": {
+            "type": "string",
+            "description": "Name of a Microsoft organization.",
+            "nullable": true
+          },
+          "vb365ServerId": {
+            "type": "integer",
+            "description": "ID assigned to a Veeam Backup for Microsoft 365 server.",
+            "format": "int64"
+          },
+          "vb365ServerName": {
+            "type": "string",
+            "description": "Name of a Veeam Backup for Microsoft 365 server.",
+            "nullable": true
+          },
+          "repositoryUid": {
+            "type": "string",
+            "description": "UID assigned to a backup repository.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "repositoryName": {
+            "type": "string",
+            "description": "Name of a backup repository.",
+            "nullable": true
+          },
+          "jobUid": {
+            "type": "string",
+            "description": "UID assigned to a backup job.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "jobName": {
+            "type": "string",
+            "description": "Name of a backup job.",
+            "nullable": true
+          },
+          "jobType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Vb365JobType"
+              }
+            ],
+            "description": "Type of a backup job."
+          },
+          "protectionDate": {
+            "type": "string",
+            "description": "Date and time when the restore point was created.",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Vb365ProtectedUserRestorePointInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Vb365ProtectedUserRestorePointInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Vb365ProxyStatus": {
+        "enum": [
+          "Online",
+          "Offline",
+          "Unknown"
+        ],
+        "type": "string"
+      },
+      "Vb365ProxyType": {
+        "enum": [
+          "Local",
+          "Domain",
+          "Workgroup",
+          "Unknown"
+        ],
+        "type": "string"
+      },
+      "Vb365ServerConnectionState": {
+        "enum": [
+          "Unknown",
+          "Connected",
+          "NotResponding"
+        ],
+        "type": "string"
+      },
+      "Vb365ServerInfo": {
+        "type": "object",
+        "properties": {
+          "vb365ServerId": {
+            "type": "integer",
+            "description": "ID assigned to a Veeam Backup for Microsoft 365 server.",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of a Veeam Backup for Microsoft 365 server.",
+            "nullable": true
+          },
+          "version": {
+            "type": "string",
+            "description": "Version of Veeam Backup for Microsoft 365 installed on a server.",
+            "nullable": true
+          },
+          "port": {
+            "type": "integer",
+            "description": "Port used by Veeam Backup for Microsoft 365.",
+            "format": "int32",
+            "nullable": true
+          },
+          "connectionError": {
+            "type": "string",
+            "description": "Datails on Veeam Backup for Microsoft 365 server connection failure.",
+            "nullable": true
+          },
+          "connectionState": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Vb365ServerConnectionState"
+              }
+            ],
+            "description": "Veeam Backup for Microsoft 365 server connection status."
+          }
+        },
+        "additionalProperties": false
+      },
+      "Vb365ServerInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Vb365ServerInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Vb365SiteInfo": {
+        "type": "object",
+        "properties": {
+          "siteUid": {
+            "type": "string",
+            "description": "UID assigned to a SharePoint site.",
+            "format": "uuid"
+          },
+          "siteUidInVb365": {
+            "type": "string",
+            "description": "UID assigned to a SharePoint site in Veeam Backup for Microsoft 365.",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of a Microsoft SharePoint site.",
+            "nullable": true
+          },
+          "url": {
+            "type": "string",
+            "description": "URL of a Microsoft SharePoint site.",
+            "nullable": true
+          },
+          "vb365ServerId": {
+            "type": "integer",
+            "description": "ID assigned to a Veeam Backup for Microsoft 365 server.",
+            "format": "int64"
+          },
+          "organizationUid": {
+            "type": "string",
+            "description": "UID assigned to a Microsoft 365 organization.",
+            "format": "uuid"
+          },
+          "organizationName": {
+            "type": "string",
+            "description": "Name of a Microsoft 365 organization.",
+            "nullable": true
+          },
+          "isCloud": {
+            "type": "boolean",
+            "description": "Indicates whether a Microsoft SharePoint site is cloud-based."
+          },
+          "isPersonal": {
+            "type": "boolean",
+            "description": "Indicates whether a Microsoft SharePoint site is personal."
+          },
+          "isAvailable": {
+            "type": "boolean",
+            "description": "Indicates whether a Microsoft SharePoint site is available."
+          }
+        },
+        "additionalProperties": false
+      },
+      "Vb365SiteInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Vb365SiteInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Vb365TeamInfo": {
+        "type": "object",
+        "properties": {
+          "teamUid": {
+            "type": "string",
+            "description": "UID assigned to a team.",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of a team.",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of a team.",
+            "nullable": true
+          },
+          "mail": {
+            "type": "string",
+            "description": "Email address of a team.",
+            "nullable": true
+          },
+          "vb365ServerId": {
+            "type": "integer",
+            "description": "ID assigned to a Veeam Backup for Microsoft 365 server.",
+            "format": "int64"
+          },
+          "organizationUid": {
+            "type": "string",
+            "description": "UID assigned to a Microsoft 365 organization.",
+            "format": "uuid"
+          },
+          "organizationName": {
+            "type": "string",
+            "description": "Name of a Microsoft 365 organization.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Vb365TeamInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Vb365TeamInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Vb365UserInfo": {
+        "type": "object",
+        "properties": {
+          "userUid": {
+            "type": "string",
+            "description": "UID assigned to a user.",
+            "format": "uuid"
+          },
+          "userUidInVb365": {
+            "type": "string",
+            "description": "UID assigned to a user in Veeam Backup for Microsoft 365.",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "User name.",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "description": "User email address.",
+            "nullable": true
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Vb365UserType"
+              }
+            ],
+            "description": "Type of a user."
+          },
+          "vb365ServerId": {
+            "type": "integer",
+            "description": "ID assigned to a Veeam Backup for Microsoft 365 server.",
+            "format": "int64"
+          },
+          "organizationUid": {
+            "type": "string",
+            "description": "UID assigned to a Microsoft 365 organization to which a user belongs.",
+            "format": "uuid"
+          },
+          "organizationName": {
+            "type": "string",
+            "description": "Name of a Microsoft 365 organization to which a user belongs.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Vb365UserInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Vb365UserInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Vb365UserType": {
+        "enum": [
+          "O365User",
+          "Shared",
+          "Public",
+          "Unknown"
+        ],
+        "type": "string"
+      },
+      "VbrObjectRelationsInfo": {
+        "type": "object",
+        "properties": {
+          "objectId": {
+            "type": "integer",
+            "description": "ID assigned to an object.",
+            "format": "int64"
+          },
+          "objectName": {
+            "type": "string",
+            "description": "Name of an object.",
+            "nullable": true
+          },
+          "objectType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/VbrObjectType"
+              }
+            ],
+            "description": "Type of an object."
+          },
+          "parentId": {
+            "type": "integer",
+            "description": "ID assigned to a parent object.",
+            "format": "int64",
+            "nullable": true
+          },
+          "parentName": {
+            "type": "string",
+            "description": "Name of a parent object.",
+            "nullable": true
+          },
+          "parentType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/VbrObjectType"
+              }
+            ],
+            "description": "Type of a parent object.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VbrObjectRelationsInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VbrObjectRelationsInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VbrObjectType": {
+        "enum": [
+          "EnterpriseManager",
+          "BackupServer",
+          "BackupRepository",
+          "BackupRepositoryFolder",
+          "BackupProxy",
+          "BackupProxyFolder",
+          "Job",
+          "Backup",
+          "WanAccelerator",
+          "WanAcceleratorFolder",
+          "TapeServer",
+          "TapeServerFolder",
+          "CloudRepository",
+          "CloudGateway",
+          "TenantBackupRepositoryFolder",
+          "CloudGatewayFolder",
+          "ArchiveRepository",
+          "ExternalRepository",
+          "CloudGatewayPool",
+          "VmProxyFolder",
+          "FileProxyFolder",
+          "CdpProxyFolder",
+          "VbrInfrastructure"
+        ],
+        "type": "string"
+      },
+      "VeeamOneLicenseInfo": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/VeeamOneLicenseType"
+              }
+            ],
+            "description": "Type of a license.",
+            "example": "Rental"
+          },
+          "expirationDate": {
+            "type": "string",
+            "description": "Data and time of license expiration.",
+            "format": "date-time",
+            "nullable": true,
+            "example": "'2021-09-30T00:00:00Z'"
+          },
+          "supportExpirationDate": {
+            "type": "string",
+            "description": "Date and time of support service expiration.",
+            "format": "date-time",
+            "nullable": true,
+            "example": "'2021-09-30T00:00:00Z'"
+          },
+          "instances": {
+            "type": "integer",
+            "description": "Number of licensed instances.",
+            "format": "int32",
+            "nullable": true,
+            "example": 10000
+          },
+          "sockets": {
+            "type": "integer",
+            "description": "Number of licensed sockets.",
+            "format": "int32",
+            "nullable": true,
+            "example": null
+          },
+          "package": {
+            "type": "string",
+            "description": "Type of a license package.",
+            "nullable": true,
+            "example": "Suite"
+          },
+          "company": {
+            "type": "string",
+            "description": "Name of the user or company to which the license was issued.",
+            "nullable": true,
+            "example": "Alpha Company"
+          },
+          "email": {
+            "type": "string",
+            "description": "Contact e-mail address of the user or company to which the license was issued.",
+            "nullable": true,
+            "example": "a.smith@alpha.com"
+          },
+          "supportId": {
+            "type": "string",
+            "description": "License support ID.",
+            "nullable": true,
+            "example": "12345678"
+          },
+          "licenseId": {
+            "type": "string",
+            "description": "UID assigned to a license.",
+            "format": "uuid",
+            "nullable": true,
+            "example": "c44b3242-ce34-40c7-afcd-e8773deb7fd2"
+          }
+        },
+        "additionalProperties": false
+      },
+      "VeeamOneLicenseSettings": {
+        "type": "object",
+        "properties": {
+          "autoUpdateEnabled": {
+            "type": "boolean",
+            "description": "Indicates whether auto-update is enabled for a license.",
+            "example": true
+          },
+          "managedMode": {
+            "type": "boolean",
+            "description": "Indicates whether some other service provides statistics instead of Veeam ONE.",
+            "example": false
+          }
+        },
+        "additionalProperties": false
+      },
+      "VeeamOneLicenseType": {
+        "enum": [
+          "Unknown",
+          "Free",
+          "Trial",
+          "Rental",
+          "Perpetual",
+          "Subscription",
+          "Nfr",
+          "Evaluation"
+        ],
+        "type": "string"
+      },
+      "VeeamOneLicenseUsageCommonWorkload": {
+        "type": "object",
+        "properties": {
+          "workloadType": {
+            "type": "string",
+            "description": "Type of licensed objects.",
+            "nullable": true,
+            "example": "Virtual Machines"
+          },
+          "usedObjects": {
+            "type": "integer",
+            "description": "Number of licensed objects.",
+            "format": "int32",
+            "example": 376
+          },
+          "newObjects": {
+            "type": "integer",
+            "description": "Number of new objects.",
+            "format": "int32",
+            "nullable": true,
+            "example": 2
+          },
+          "usedUnits": {
+            "type": "number",
+            "description": "Number of consumed license units.",
+            "format": "float",
+            "example": 376
+          },
+          "newUnits": {
+            "type": "number",
+            "description": "Number of license units that new objects will consume.",
+            "format": "float",
+            "nullable": true,
+            "example": 2
+          },
+          "multiplier": {
+            "type": "integer",
+            "description": "License unit multiplier.",
+            "format": "int32",
+            "example": 1
+          }
+        },
+        "additionalProperties": false
+      },
+      "VeeamOneLicenseUsageCurrent": {
+        "type": "object",
+        "properties": {
+          "unitsType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/VeeamOneLicenseUsageUnitType"
+              }
+            ],
+            "description": "Type of license units.",
+            "example": "Instances"
+          },
+          "workloads": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VeeamOneLicenseUsageCommonWorkload"
+            },
+            "description": "Array of licensed objects.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VeeamOneLicenseUsageReport": {
+        "type": "object",
+        "properties": {
+          "reportId": {
+            "type": "integer",
+            "description": "ID assigned to a license usage report.",
+            "format": "int32"
+          },
+          "removalReason": {
+            "type": "string",
+            "description": "Reason for licensed object removal",
+            "nullable": true
+          },
+          "workloads": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VeeamOneLicenseUsageReportWorkload"
+            },
+            "description": "Array of licensed objects.",
+            "nullable": true
+          },
+          "date": {
+            "type": "string",
+            "description": "Date and time of license usage report generation.",
+            "format": "date-time",
+            "example": "'2021-01-01T00:00:00Z'"
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LicenseUsageReportStatus"
+              }
+            ],
+            "description": "Status of a license usage report.",
+            "example": "Approved"
+          },
+          "approvalDate": {
+            "type": "string",
+            "description": "Date and time of license usage report approval.",
+            "format": "date-time",
+            "nullable": true,
+            "example": "'2021-01-01T12:21:47Z'"
+          },
+          "totalWorkloads": {
+            "type": "integer",
+            "description": "Total number of licensed objects.",
+            "format": "int32",
+            "example": 164
+          }
+        },
+        "additionalProperties": false
+      },
+      "VeeamOneLicenseUsageReportApprove": {
+        "type": "object",
+        "properties": {
+          "reportId": {
+            "type": "integer",
+            "description": "ID assigned to a license usage report.",
+            "format": "int32"
+          },
+          "removalReason": {
+            "type": "string",
+            "description": "Reason for the removal of a licensed object.",
+            "nullable": true
+          },
+          "workloads": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VeeamOneLicenseUsageReportApproveWorkload"
+            },
+            "description": "Array of managed workloads.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VeeamOneLicenseUsageReportApproveWorkload": {
+        "type": "object",
+        "properties": {
+          "workloadType": {
+            "type": "string",
+            "description": "Type of managed workloads.",
+            "nullable": true
+          },
+          "usedObjects": {
+            "type": "integer",
+            "description": "Number of managed workloads.",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "VeeamOneLicenseUsageReportWorkload": {
+        "type": "object",
+        "properties": {
+          "workloadType": {
+            "type": "string",
+            "description": "Type of licensed objects.",
+            "nullable": true,
+            "example": "Virtual Machines"
+          },
+          "usedObjects": {
+            "type": "integer",
+            "description": "Number of licensed objects.",
+            "format": "int32",
+            "example": 376
+          },
+          "newObjects": {
+            "type": "integer",
+            "description": "Number of new objects.",
+            "format": "int32",
+            "nullable": true,
+            "example": 2
+          },
+          "usedUnits": {
+            "type": "number",
+            "description": "Number of consumed license units.",
+            "format": "float",
+            "example": 376
+          },
+          "newUnits": {
+            "type": "number",
+            "description": "Number of license units that new objects will consume.",
+            "format": "float",
+            "nullable": true,
+            "example": 2
+          },
+          "multiplier": {
+            "type": "integer",
+            "description": "License unit multiplier.",
+            "format": "int32",
+            "example": 1
+          },
+          "removedObjects": {
+            "type": "integer",
+            "description": "Number of removed objects.",
+            "format": "int32"
+          },
+          "removedUnits": {
+            "type": "integer",
+            "description": "Number of license units consumed by removed objects.",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VeeamOneLicenseUsageTotal": {
+        "type": "object",
+        "properties": {
+          "units": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VeeamOneLicenseUsageTotalUnit"
+            },
+            "description": "Array of license units.",
+            "nullable": true
+          }
