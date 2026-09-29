@@ -1,0 +1,1000 @@
+                        {
+                          "name": "/storage/dblog",
+                          "capacityBytes": 15777865728,
+                          "freeSpaceBytes": 14847115264
+                        },
+                        {
+                          "name": "/storage/imagebuilder",
+                          "capacityBytes": 10493382656,
+                          "freeSpaceBytes": 9902370816
+                        },
+                        {
+                          "name": "/storage/db",
+                          "capacityBytes": 10493382656,
+                          "freeSpaceBytes": 9728335872
+                        },
+                        {
+                          "name": "/storage/core",
+                          "capacityBytes": 26279645184,
+                          "freeSpaceBytes": 24874934272
+                        },
+                        {
+                          "name": "/storage/lvm_snapshot",
+                          "capacityBytes": 157451501568,
+                          "freeSpaceBytes": 149319139328
+                        },
+                        {
+                          "name": "/storage/autodeploy",
+                          "capacityBytes": 10493382656,
+                          "freeSpaceBytes": 9902366720
+                        },
+                        {
+                          "name": "/storage/log",
+                          "capacityBytes": 10493382656,
+                          "freeSpaceBytes": 7817392128
+                        },
+                        {
+                          "name": "/storage/netdump",
+                          "capacityBytes": 1031823360,
+                          "freeSpaceBytes": 959176704
+                        },
+                        {
+                          "name": "/storage/archive",
+                          "capacityBytes": 52567703552,
+                          "freeSpaceBytes": 47620829184
+                        },
+                        {
+                          "name": "/storage/lifecycle",
+                          "capacityBytes": 105143787520,
+                          "freeSpaceBytes": 95452921856
+                        },
+                        {
+                          "name": "/storage/updatemgr",
+                          "capacityBytes": 105143787520,
+                          "freeSpaceBytes": 99423322112
+                        },
+                        {
+                          "name": "/storage/seat",
+                          "capacityBytes": 10493382656,
+                          "freeSpaceBytes": 9818677248
+                        },
+                        {
+                          "name": "/storage/vtsdblog",
+                          "capacityBytes": 5208932352,
+                          "freeSpaceBytes": 4886421504
+                        },
+                        {
+                          "name": "/storage/vtsdb",
+                          "capacityBytes": 10493382656,
+                          "freeSpaceBytes": 9870012416
+                        }
+                      ],
+                      "guestIpAddresses": [
+                        "172.25.49.65"
+                      ],
+                      "guestOs": "VMware Photon OS (64-bit)",
+                      "isReplica": false,
+                      "virtualDiskCount": 17,
+                      "virtualDisks": [
+                        {
+                          "name": "Hard disk 1",
+                          "capacityBytes": 52143587328
+                        },
+                        {
+                          "name": "Hard disk 2",
+                          "capacityBytes": 6020923392
+                        },
+                        {
+                          "name": "Hard disk 3",
+                          "capacityBytes": 26843545600
+                        },
+                        {
+                          "name": "Hard disk 4",
+                          "capacityBytes": 26843545600
+                        },
+                        {
+                          "name": "Hard disk 5",
+                          "capacityBytes": 10737418240
+                        },
+                        {
+                          "name": "Hard disk 6",
+                          "capacityBytes": 10737418240
+                        },
+                        {
+                          "name": "Hard disk 7",
+                          "capacityBytes": 16106127360
+                        },
+                        {
+                          "name": "Hard disk 8",
+                          "capacityBytes": 10737418240
+                        },
+                        {
+                          "name": "Hard disk 9",
+                          "capacityBytes": 1073741824
+                        },
+                        {
+                          "name": "Hard disk 10",
+                          "capacityBytes": 10737418240
+                        },
+                        {
+                          "name": "Hard disk 11",
+                          "capacityBytes": 10737418240
+                        },
+                        {
+                          "name": "Hard disk 12",
+                          "capacityBytes": 107374182400
+                        },
+                        {
+                          "name": "Hard disk 13",
+                          "capacityBytes": 53687091200
+                        },
+                        {
+                          "name": "Hard disk 14",
+                          "capacityBytes": 10737418240
+                        },
+                        {
+                          "name": "Hard disk 15",
+                          "capacityBytes": 5368709120
+                        },
+                        {
+                          "name": "Hard disk 16",
+                          "capacityBytes": 107374182400
+                        },
+                        {
+                          "name": "Hard disk 17",
+                          "capacityBytes": 161061273600
+                        }
+                      ],
+                      "connectionState": "Connected",
+                      "notes": "VMware vCenter Server Appliance",
+                      "totalDiskCapacityBytes": 628321419264,
+                      "datastoreUsage": [
+                        {
+                          "datastoreMoRef": "datastore-41",
+                          "commitedBytes": 641292953039,
+                          "uncommitedBytes": 8679,
+                          "unsharedBytes": 628321419264
+                        }
+                      ],
+                      "isCdpReplica": false,
+                      "virtualHardwareVersion": "vmx-10",
+                      "lastProtectedDate": null,
+                      "vmProtectionJobUids": [],
+                      "businessViewGroupIds": [
+                        65,
+                        69,
+                        1764
+                      ]
+                    },
+                    {
+                      "vmId": 1250,
+                      "moRef": "vm-48344",
+                      "parentId": 877,
+                      "parentType": "ResourcePool",
+                      "name": "lrsvc1",
+                      "powerState": "PoweredOn",
+                      "cpuCount": 2,
+                      "guestDnsName": "lrsvc1.tech.local",
+                      "memorySizeMb": 12288,
+                      "guestDisks": [
+                        {
+                          "name": "/",
+                          "capacityBytes": 50458152960,
+                          "freeSpaceBytes": 39409545216
+                        },
+                        {
+                          "name": "/storage/vtsdblog",
+                          "capacityBytes": 5208932352,
+                          "freeSpaceBytes": 4869644288
+                        },
+                        {
+                          "name": "/storage/autodeploy",
+                          "capacityBytes": 10493382656,
+                          "freeSpaceBytes": 9902370816
+                        },
+                        {
+                          "name": "/storage/lifecycle",
+                          "capacityBytes": 105143787520,
+                          "freeSpaceBytes": 96470106112
+                        },
+                        {
+                          "name": "/storage/imagebuilder",
+                          "capacityBytes": 10493382656,
+                          "freeSpaceBytes": 9902370816
+                        },
+                        {
+                          "name": "/storage/netdump",
+                          "capacityBytes": 1031823360,
+                          "freeSpaceBytes": 959176704
+                        },
+                        {
+                          "name": "/boot",
+                          "capacityBytes": 511647744,
+                          "freeSpaceBytes": 433147904
+                        },
+                        {
+                          "name": "/boot/efi",
+                          "capacityBytes": 10446848,
+                          "freeSpaceBytes": 8202240
+                        },
+                        {
+                          "name": "/storage/core",
+                          "capacityBytes": 26279645184,
+                          "freeSpaceBytes": 24874934272
+                        },
+                        {
+                          "name": "/storage/vtsdb",
+                          "capacityBytes": 10493382656,
+                          "freeSpaceBytes": 9868972032
+                        },
+                        {
+                          "name": "/storage/seat",
+                          "capacityBytes": 10493382656,
+                          "freeSpaceBytes": 9741684736
+                        },
+                        {
+                          "name": "/storage/updatemgr",
+                          "capacityBytes": 105143787520,
+                          "freeSpaceBytes": 99455107072
+                        },
+                        {
+                          "name": "/storage/log",
+                          "capacityBytes": 10493382656,
+                          "freeSpaceBytes": 366526464
+                        },
+                        {
+                          "name": "/storage/dblog",
+                          "capacityBytes": 15777865728,
+                          "freeSpaceBytes": 14847115264
+                        },
+                        {
+                          "name": "/storage/db",
+                          "capacityBytes": 10493382656,
+                          "freeSpaceBytes": 9079779328
+                        },
+                        {
+                          "name": "/storage/archive",
+                          "capacityBytes": 52567703552,
+                          "freeSpaceBytes": 38940913664
+                        }
+                      ],
+                      "guestIpAddresses": [
+                        "172.25.48.238"
+                      ],
+                      "guestOs": "VMware Photon OS (64-bit)",
+                      "isReplica": false,
+                      "virtualDiskCount": 16,
+                      "virtualDisks": [
+                        {
+                          "name": "Hard disk 1",
+                          "capacityBytes": 52143587328
+                        },
+                        {
+                          "name": "Hard disk 2",
+                          "capacityBytes": 5347737600
+                        },
+                        {
+                          "name": "Hard disk 3",
+                          "capacityBytes": 26843545600
+                        },
+                        {
+                          "name": "Hard disk 4",
+                          "capacityBytes": 26843545600
+                        },
+                        {
+                          "name": "Hard disk 5",
+                          "capacityBytes": 10737418240
+                        },
+                        {
+                          "name": "Hard disk 6",
+                          "capacityBytes": 10737418240
+                        },
+                        {
+                          "name": "Hard disk 7",
+                          "capacityBytes": 16106127360
+                        },
+                        {
+                          "name": "Hard disk 8",
+                          "capacityBytes": 10737418240
+                        },
+                        {
+                          "name": "Hard disk 9",
+                          "capacityBytes": 1073741824
+                        },
+                        {
+                          "name": "Hard disk 10",
+                          "capacityBytes": 10737418240
+                        },
+                        {
+                          "name": "Hard disk 11",
+                          "capacityBytes": 10737418240
+                        },
+                        {
+                          "name": "Hard disk 12",
+                          "capacityBytes": 107374182400
+                        },
+                        {
+                          "name": "Hard disk 13",
+                          "capacityBytes": 53687091200
+                        },
+                        {
+                          "name": "Hard disk 14",
+                          "capacityBytes": 10737418240
+                        },
+                        {
+                          "name": "Hard disk 15",
+                          "capacityBytes": 5368709120
+                        },
+                        {
+                          "name": "Hard disk 16",
+                          "capacityBytes": 107374182400
+                        }
+                      ],
+                      "connectionState": "Connected",
+                      "notes": "VMware vCenter Server Appliance",
+                      "totalDiskCapacityBytes": 466586959872,
+                      "datastoreUsage": [
+                        {
+                          "datastoreMoRef": "datastore-3488",
+                          "commitedBytes": 522825984100,
+                          "uncommitedBytes": 423320630001,
+                          "unsharedBytes": 509853302784
+                        }
+                      ],
+                      "isCdpReplica": false,
+                      "virtualHardwareVersion": "vmx-10",
+                      "lastProtectedDate": null,
+                      "vmProtectionJobUids": [],
+                      "businessViewGroupIds": [
+                        65,
+                        1774,
+                        1776
+                      ]
+                    }
+                  ],
+                  "totalCount": 2
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vSphere/vms/{vmId}": {
+      "get": {
+        "tags": [
+          "VMware vSphere Infrastructure"
+        ],
+        "summary": "Get VMware vSphere VM",
+        "description": "Returns a resource representation of a VMware vSphere VM with the specified ID.",
+        "operationId": "VSphere_GetVSphereVm",
+        "parameters": [
+          {
+            "name": "vmId",
+            "in": "path",
+            "description": "VM ID.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VSphereVmInfo"
+                },
+                "example": {
+                  "vmId": 1250,
+                  "moRef": "vm-48344",
+                  "parentId": 877,
+                  "parentType": "ResourcePool",
+                  "name": "lrsvc1",
+                  "powerState": "PoweredOn",
+                  "cpuCount": 2,
+                  "guestDnsName": "lrsvc1.tech.local",
+                  "memorySizeMb": 12288,
+                  "guestDisks": [
+                    {
+                      "name": "/",
+                      "capacityBytes": 50458152960,
+                      "freeSpaceBytes": 39409545216
+                    },
+                    {
+                      "name": "/storage/vtsdblog",
+                      "capacityBytes": 5208932352,
+                      "freeSpaceBytes": 4869644288
+                    },
+                    {
+                      "name": "/storage/autodeploy",
+                      "capacityBytes": 10493382656,
+                      "freeSpaceBytes": 9902370816
+                    },
+                    {
+                      "name": "/storage/lifecycle",
+                      "capacityBytes": 105143787520,
+                      "freeSpaceBytes": 96470106112
+                    },
+                    {
+                      "name": "/storage/imagebuilder",
+                      "capacityBytes": 10493382656,
+                      "freeSpaceBytes": 9902370816
+                    },
+                    {
+                      "name": "/storage/netdump",
+                      "capacityBytes": 1031823360,
+                      "freeSpaceBytes": 959176704
+                    },
+                    {
+                      "name": "/boot",
+                      "capacityBytes": 511647744,
+                      "freeSpaceBytes": 433147904
+                    },
+                    {
+                      "name": "/boot/efi",
+                      "capacityBytes": 10446848,
+                      "freeSpaceBytes": 8202240
+                    },
+                    {
+                      "name": "/storage/core",
+                      "capacityBytes": 26279645184,
+                      "freeSpaceBytes": 24874934272
+                    },
+                    {
+                      "name": "/storage/vtsdb",
+                      "capacityBytes": 10493382656,
+                      "freeSpaceBytes": 9868972032
+                    },
+                    {
+                      "name": "/storage/seat",
+                      "capacityBytes": 10493382656,
+                      "freeSpaceBytes": 9741684736
+                    },
+                    {
+                      "name": "/storage/updatemgr",
+                      "capacityBytes": 105143787520,
+                      "freeSpaceBytes": 99455107072
+                    },
+                    {
+                      "name": "/storage/log",
+                      "capacityBytes": 10493382656,
+                      "freeSpaceBytes": 366526464
+                    },
+                    {
+                      "name": "/storage/dblog",
+                      "capacityBytes": 15777865728,
+                      "freeSpaceBytes": 14847115264
+                    },
+                    {
+                      "name": "/storage/db",
+                      "capacityBytes": 10493382656,
+                      "freeSpaceBytes": 9079779328
+                    },
+                    {
+                      "name": "/storage/archive",
+                      "capacityBytes": 52567703552,
+                      "freeSpaceBytes": 38940913664
+                    }
+                  ],
+                  "guestIpAddresses": [
+                    "172.25.48.238"
+                  ],
+                  "guestOs": "VMware Photon OS (64-bit)",
+                  "isReplica": false,
+                  "virtualDiskCount": 16,
+                  "virtualDisks": [
+                    {
+                      "name": "Hard disk 1",
+                      "capacityBytes": 52143587328
+                    },
+                    {
+                      "name": "Hard disk 2",
+                      "capacityBytes": 5347737600
+                    },
+                    {
+                      "name": "Hard disk 3",
+                      "capacityBytes": 26843545600
+                    },
+                    {
+                      "name": "Hard disk 4",
+                      "capacityBytes": 26843545600
+                    },
+                    {
+                      "name": "Hard disk 5",
+                      "capacityBytes": 10737418240
+                    },
+                    {
+                      "name": "Hard disk 6",
+                      "capacityBytes": 10737418240
+                    },
+                    {
+                      "name": "Hard disk 7",
+                      "capacityBytes": 16106127360
+                    },
+                    {
+                      "name": "Hard disk 8",
+                      "capacityBytes": 10737418240
+                    },
+                    {
+                      "name": "Hard disk 9",
+                      "capacityBytes": 1073741824
+                    },
+                    {
+                      "name": "Hard disk 10",
+                      "capacityBytes": 10737418240
+                    },
+                    {
+                      "name": "Hard disk 11",
+                      "capacityBytes": 10737418240
+                    },
+                    {
+                      "name": "Hard disk 12",
+                      "capacityBytes": 107374182400
+                    },
+                    {
+                      "name": "Hard disk 13",
+                      "capacityBytes": 53687091200
+                    },
+                    {
+                      "name": "Hard disk 14",
+                      "capacityBytes": 10737418240
+                    },
+                    {
+                      "name": "Hard disk 15",
+                      "capacityBytes": 5368709120
+                    },
+                    {
+                      "name": "Hard disk 16",
+                      "capacityBytes": 107374182400
+                    }
+                  ],
+                  "connectionState": "Connected",
+                  "notes": "VMware vCenter Server Appliance",
+                  "totalDiskCapacityBytes": 466586959872,
+                  "datastoreUsage": [
+                    {
+                      "datastoreMoRef": "datastore-3488",
+                      "commitedBytes": 522825984100,
+                      "uncommitedBytes": 423320630001,
+                      "unsharedBytes": 509853302784
+                    }
+                  ],
+                  "isCdpReplica": false,
+                  "virtualHardwareVersion": "vmx-10",
+                  "lastProtectedDate": null,
+                  "vmProtectionJobUids": [],
+                  "businessViewGroupIds": [
+                    65,
+                    1774,
+                    1776
+                  ]
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vSphere/hostClusters": {
+      "get": {
+        "tags": [
+          "VMware vSphere Infrastructure"
+        ],
+        "summary": "Get All VMware vSphere Host Clusters",
+        "description": "Returns a collection resource representation of all host clusters in the connected VMware vSphere environment.",
+        "operationId": "VSphere_GetVSphereHostClusters",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VSphereHostClusterInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "hostClusterId": 19,
+                      "moRef": "domain-c141",
+                      "parentId": 21,
+                      "parentType": "Datacenter",
+                      "name": "LimScopeCluster",
+                      "isDasEnabled": false,
+                      "isDrsEnabled": true,
+                      "cpuTotalMhz": 4800,
+                      "totalMemoryBytes": 4290170880,
+                      "cpuCoreCount": 2,
+                      "hostCount": 1,
+                      "businessViewGroupIds": []
+                    },
+                    {
+                      "hostClusterId": 20,
+                      "moRef": "domain-c241",
+                      "parentId": 21,
+                      "parentType": "Datacenter",
+                      "name": "AdminCluster",
+                      "isDasEnabled": false,
+                      "isDrsEnabled": true,
+                      "cpuTotalMhz": 4800,
+                      "totalMemoryBytes": 4294365184,
+                      "cpuCoreCount": 2,
+                      "hostCount": 1,
+                      "businessViewGroupIds": []
+                    },
+                    {
+                      "hostClusterId": 105,
+                      "moRef": "domain-c3493",
+                      "parentId": 106,
+                      "parentType": "Datacenter",
+                      "name": "ProductionCluster",
+                      "isDasEnabled": false,
+                      "isDrsEnabled": true,
+                      "cpuTotalMhz": 57576,
+                      "totalMemoryBytes": 410881212416,
+                      "cpuCoreCount": 24,
+                      "hostCount": 1,
+                      "businessViewGroupIds": []
+                    },
+                    {
+                      "hostClusterId": 104,
+                      "moRef": "domain-c26",
+                      "parentId": 106,
+                      "parentType": "Datacenter",
+                      "name": "OceanCluster",
+                      "isDasEnabled": false,
+                      "isDrsEnabled": true,
+                      "cpuTotalMhz": 383856,
+                      "totalMemoryBytes": 2876139507712,
+                      "cpuCoreCount": 168,
+                      "hostCount": 7,
+                      "businessViewGroupIds": []
+                    }
+                  ],
+                  "totalCount": 4
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vSphere/hostClusters/{hostClusterId}": {
+      "get": {
+        "tags": [
+          "VMware vSphere Infrastructure"
+        ],
+        "summary": "Get Host Cluster",
+        "description": "Returns a resource representation of a VMware vSphere host cluster with the specified ID.",
+        "operationId": "VSphere_GetVSphereHostCluster",
+        "parameters": [
+          {
+            "name": "hostClusterId",
+            "in": "path",
+            "description": "Host cluster ID.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VSphereHostClusterInfo"
+                },
+                "example": {
+                  "hostClusterId": 104,
+                  "moRef": "domain-c26",
+                  "parentId": 106,
+                  "parentType": "Datacenter",
+                  "name": "OceanCluster",
+                  "isDasEnabled": false,
+                  "isDrsEnabled": true,
+                  "cpuTotalMhz": 383856,
+                  "totalMemoryBytes": 2876139507712,
+                  "cpuCoreCount": 168,
+                  "hostCount": 7,
+                  "businessViewGroupIds": []
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vSphere/datastores": {
+      "get": {
+        "tags": [
+          "VMware vSphere Infrastructure"
+        ],
+        "summary": "Get All VMware vSphere Datastores",
+        "description": "Returns a collection resource representation of all datastores in the connected VMware vSphere environment.",
+        "operationId": "VSphere_GetVSphereDatastores",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VSphereDatastoreInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "datastoreId": 23,
+                      "moRef": "datastore-244",
+                      "parentId": 24,
+                      "parentType": "DatastoreFolder",
+                      "name": "datastore1",
+                      "type": "Vmfs",
+                      "connectionState": "Connected",
+                      "path": "ds:///vmfs/volumes/5ddd5dce-03835cc0-0934-005056b8b84f/",
+                      "capacityBytes": 77846282240,
+                      "freeSpaceBytes": 76515639296,
+                      "vmCount": 3,
+                      "hostCount": 1,
+                      "businessViewGroupIds": [
+                        54
+                      ]
+                    },
+                    {
+                      "datastoreId": 22,
+                      "moRef": "datastore-11282",
+                      "parentId": 24,
+                      "parentType": "DatastoreFolder",
+                      "name": "datastore2",
+                      "type": "Vmfs",
+                      "connectionState": "Connected",
+                      "path": "ds:///vmfs/volumes/5fabd5a1-817a0c62-b858-005056beb73c/",
+                      "capacityBytes": 77846282240,
+                      "freeSpaceBytes": 76806094848,
+                      "vmCount": 0,
+                      "hostCount": 1,
+                      "businessViewGroupIds": [
+                        54
+                      ]
+                    },
+                    {
+                      "datastoreId": 108,
+                      "moRef": "datastore-3487",
+                      "parentId": 132,
+                      "parentType": "DatastoreFolder",
+                      "name": "lobster-datastore-ssd",
+                      "type": "Vmfs",
+                      "connectionState": "Connected",
+                      "path": "ds:///vmfs/volumes/607f7f63-bb51d2e8-5c83-ac1f6beddd04/",
+                      "capacityBytes": 3839969198080,
+                      "freeSpaceBytes": 1211832991744,
+                      "vmCount": 38,
+                      "hostCount": 1,
+                      "businessViewGroupIds": [
+                        54
+                      ]
+                    },
+                    {
+                      "datastoreId": 107,
+                      "moRef": "datastore-3486",
+                      "parentId": 132,
+                      "parentType": "DatastoreFolder",
+                      "name": "lobster-hdd",
+                      "type": "Vmfs",
+                      "connectionState": "Connected",
+                      "path": "ds:///vmfs/volumes/607f7f2e-6ad81252-2aac-ac1f6beddd04/",
+                      "capacityBytes": 48005923209216,
+                      "freeSpaceBytes": 44655218524160,
+                      "vmCount": 48,
+                      "hostCount": 1,
+                      "businessViewGroupIds": [
+                        54
+                      ]
+                    }
+                  ],
+                  "totalCount": 4
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vSphere/datastores/{datastoreId}": {
+      "get": {
+        "tags": [
+          "VMware vSphere Infrastructure"
+        ],
+        "summary": "Get VMware vSphere Datastore",
+        "description": "Returns a resource representation of a VMware vSphere datastore with the specified ID.",
+        "operationId": "VSphere_GetVSphereDatastore",
+        "parameters": [
+          {
+            "name": "datastoreId",
+            "in": "path",
+            "description": "Datastore ID.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VSphereDatastoreInfo"
+                },
+                "example": {
+                  "datastoreId": 107,
+                  "moRef": "datastore-3486",
+                  "parentId": 132,
+                  "parentType": "DatastoreFolder",
+                  "name": "lobster-hdd",
+                  "type": "Vmfs",
+                  "connectionState": "Connected",
+                  "path": "ds:///vmfs/volumes/607f7f2e-6ad81252-2aac-ac1f6beddd04/",
+                  "capacityBytes": 48005923209216,
+                  "freeSpaceBytes": 44655218524160,
+                  "vmCount": 48,
+                  "hostCount": 1,
+                  "businessViewGroupIds": [
+                    54
+                  ]
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
