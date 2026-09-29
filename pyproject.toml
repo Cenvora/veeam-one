@@ -43,7 +43,6 @@ dev = [
     "pytest-asyncio",
     "pytest-cov",
     "black",
-    "ruff",
     "pre-commit",
     "openapi-python-client>=0.29,<0.30"
 ]
