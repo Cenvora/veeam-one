@@ -1,6 +1,12 @@
-# Veeam ONE REST API Wrapper for Python
-
-<h1 align="center">\n<img src="https://raw.githubusercontent.com/Cenvora/veeam-one/main/media/Veeam_logo_2024_RGB_main_20.png" alt="Veeam Logo" height="100">\n<br>\n<br>\nVeeam ONE Python API Wrapper\n</h1>
+<h1 align="center">
+<br>
+<img src="https://raw.githubusercontent.com/Cenvora/veeam-one/main/media/Veeam_logo_2024_RGB_main_20.png"
+     alt="Veeam Logo"
+     height="100">
+<br>
+<br>
+Veeam ONE Python API Wrapper
+</h1>
 
 <h4 align="center">
 Python package for interacting with the Veeam ONE REST API
