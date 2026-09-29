@@ -1,0 +1,1000 @@
+        "additionalProperties": false
+      },
+      "VAppPowerState": {
+        "enum": [
+          "Unknown",
+          "PoweredOn",
+          "PoweredOff",
+          "Suspended",
+          "PartiallyRunning",
+          "InconsistentState"
+        ],
+        "type": "string"
+      },
+      "VCenterConnectionState": {
+        "enum": [
+          "Unknown",
+          "Connected",
+          "NotResponding"
+        ],
+        "type": "string"
+      },
+      "VCenterServerInfo": {
+        "type": "object",
+        "properties": {
+          "vCenterServerId": {
+            "type": "integer",
+            "description": "ID assigned to a vCenter server.",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of a vCenter server.",
+            "nullable": true
+          },
+          "connectionState": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/VCenterConnectionState"
+              }
+            ],
+            "description": "Connection status of a vCenter server."
+          },
+          "port": {
+            "type": "integer",
+            "description": "Connection port of a vCenter server.",
+            "format": "int32",
+            "nullable": true
+          },
+          "connectionError": {
+            "type": "string",
+            "description": "Datails on vCenter server connection failure.",
+            "nullable": true
+          },
+          "productName": {
+            "type": "string",
+            "description": "Product name.",
+            "nullable": true
+          },
+          "version": {
+            "type": "string",
+            "description": "Version of a vCenter server.",
+            "nullable": true
+          },
+          "osType": {
+            "type": "string",
+            "description": "Type of OS installed on a vCenter server.",
+            "nullable": true
+          },
+          "cloudDirectorId": {
+            "type": "integer",
+            "description": "ID asigned to a VMware Cloud Director.",
+            "format": "int64",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VCenterServerInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VCenterServerInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VSphereDatastoreClusterInfo": {
+        "type": "object",
+        "properties": {
+          "datastoreClusterId": {
+            "type": "integer",
+            "description": "ID assigned to a datastore cluster.",
+            "format": "int64"
+          },
+          "moRef": {
+            "type": "string",
+            "description": "MoRef ID assigned to a datastore cluster in VMware vSphere.",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of a datastore cluster.",
+            "nullable": true
+          },
+          "parentId": {
+            "type": "integer",
+            "description": "ID assigned to a parent object.",
+            "format": "int64",
+            "nullable": true
+          },
+          "parentType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/VSphereObjectType"
+              }
+            ],
+            "description": "Type of a parent object.",
+            "nullable": true
+          },
+          "capacityBytes": {
+            "type": "integer",
+            "description": "Total capacity of a datastore cluster, in bytes.",
+            "format": "int64",
+            "nullable": true
+          },
+          "freeSpaceBytes": {
+            "type": "integer",
+            "description": "Amount of available free space on a datastore cluster, in bytes.",
+            "format": "int64",
+            "nullable": true
+          },
+          "largestDatastoreFreeSpaceBytes": {
+            "type": "integer",
+            "description": "Amount of available free space on the largest datastore in a cluster, in bytes.",
+            "format": "int64",
+            "nullable": true
+          },
+          "datastoresType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/VSphereDatastoreType"
+              }
+            ],
+            "description": "Type of datastores in a cluster."
+          },
+          "ioMetricsEnabled": {
+            "type": "boolean",
+            "description": "Indicates whether the IO Metric function is enabled for a datastore cluster.",
+            "nullable": true
+          },
+          "storageDrsEnabled": {
+            "type": "boolean",
+            "description": "Indicates whether Storage DRS is enabled for a datastore cluster.",
+            "nullable": true
+          },
+          "drsAutomationLevel": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/VSphereDrsAutomationLevel"
+              }
+            ],
+            "description": "Datastore cluster automation level."
+          },
+          "usedSpaceThresholdPercentage": {
+            "type": "integer",
+            "description": "Used space threshold configured for a datastore cluster.",
+            "format": "int32",
+            "nullable": true
+          },
+          "ioLatencyThresholdMs": {
+            "type": "integer",
+            "description": "IO latency threshold configured for a datastore cluster, in milliseconds.",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VSphereDatastoreClusterInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VSphereDatastoreClusterInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VSphereDatastoreInfo": {
+        "type": "object",
+        "properties": {
+          "datastoreId": {
+            "type": "integer",
+            "description": "ID assigned to a datastore.",
+            "format": "int64"
+          },
+          "moRef": {
+            "type": "string",
+            "description": "MoRef ID assigned to a datastore in VMware vSphere.",
+            "nullable": true
+          },
+          "parentId": {
+            "type": "integer",
+            "description": "ID assigned to a parent object.",
+            "format": "int64",
+            "nullable": true
+          },
+          "parentType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/VSphereObjectType"
+              }
+            ],
+            "description": "Type of a parent object.",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of a datastore.",
+            "nullable": true
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/VSphereDatastoreType"
+              }
+            ],
+            "description": "Type of a datastore."
+          },
+          "connectionState": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/DatastoreConnectionState"
+              }
+            ],
+            "description": "Connection status of a datastore."
+          },
+          "path": {
+            "type": "string",
+            "description": "Location of a datastore.",
+            "nullable": true
+          },
+          "capacityBytes": {
+            "type": "integer",
+            "description": "Storage capacity of a datastore, in bytes.",
+            "format": "int64",
+            "nullable": true
+          },
+          "freeSpaceBytes": {
+            "type": "integer",
+            "description": "Amount of available free space on a datastore, in bytes.",
+            "format": "int64",
+            "nullable": true
+          },
+          "vmCount": {
+            "type": "integer",
+            "description": "Number of VMs that reside on a datastore.",
+            "format": "int32",
+            "nullable": true
+          },
+          "hostCount": {
+            "type": "integer",
+            "description": "Number of hosts that are connected to a datastore.",
+            "format": "int32",
+            "nullable": true
+          },
+          "businessViewGroupIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "description": "Array of Business View groups.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VSphereDatastoreInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VSphereDatastoreInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VSphereDatastoreType": {
+        "enum": [
+          "Unknown",
+          "Vmfs",
+          "Nfs",
+          "Nas",
+          "Cifs",
+          "Vsan",
+          "Vvol"
+        ],
+        "type": "string"
+      },
+      "VSphereDrsAutomationLevel": {
+        "enum": [
+          "Unknown",
+          "Automatic",
+          "Manual"
+        ],
+        "type": "string"
+      },
+      "VSphereHostAndClusterFolderInfo": {
+        "type": "object",
+        "properties": {
+          "folderId": {
+            "type": "integer",
+            "description": "ID assigned to a Host and Cluster folder.",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of a Host and Cluster folder.",
+            "nullable": true
+          },
+          "moRef": {
+            "type": "string",
+            "description": "MoRef ID assigned to a Host and Cluster folder.",
+            "nullable": true
+          },
+          "parentId": {
+            "type": "integer",
+            "description": "ID assigned to a parent object.",
+            "format": "int64",
+            "nullable": true
+          },
+          "parentType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/VSphereObjectType"
+              }
+            ],
+            "description": "Type of a parent object.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VSphereHostAndClusterFolderInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VSphereHostAndClusterFolderInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VSphereHostClusterInfo": {
+        "type": "object",
+        "properties": {
+          "hostClusterId": {
+            "type": "integer",
+            "description": "ID assigned to a cluster.",
+            "format": "int64"
+          },
+          "moRef": {
+            "type": "string",
+            "description": "MoRef ID assigned to a cluster in VMware vSphere.",
+            "nullable": true
+          },
+          "parentId": {
+            "type": "integer",
+            "description": "ID assigned to a parent object.",
+            "format": "int64",
+            "nullable": true
+          },
+          "parentType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/VSphereObjectType"
+              }
+            ],
+            "description": "Type of a parent object.",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of a cluster.",
+            "nullable": true
+          },
+          "isDasEnabled": {
+            "type": "boolean",
+            "description": "Indicates whether DAS is used by a cluster.",
+            "nullable": true
+          },
+          "isDrsEnabled": {
+            "type": "boolean",
+            "description": "Indicates whether DRS is enabled for a cluster.",
+            "nullable": true
+          },
+          "cpuTotalMhz": {
+            "type": "integer",
+            "description": "Frequency of all CPU cores in a cluster, in MHz.",
+            "format": "int64",
+            "nullable": true
+          },
+          "totalMemoryBytes": {
+            "type": "integer",
+            "description": "Amount of memory in all cluster objects.",
+            "format": "int64",
+            "nullable": true
+          },
+          "cpuCoreCount": {
+            "type": "integer",
+            "description": "Amount of memory in all cluster objects.",
+            "format": "int32",
+            "nullable": true
+          },
+          "hostCount": {
+            "type": "integer",
+            "description": "Number of hosts in a cluster.",
+            "format": "int32",
+            "nullable": true
+          },
+          "businessViewGroupIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "description": "Array of Business View groups.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VSphereHostClusterInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VSphereHostClusterInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VSphereHostConnectionState": {
+        "enum": [
+          "Unknown",
+          "Connected",
+          "NotResponding",
+          "Disconnected"
+        ],
+        "type": "string"
+      },
+      "VSphereHostInfo": {
+        "type": "object",
+        "properties": {
+          "hostId": {
+            "type": "integer",
+            "description": "ID assigned to a host.",
+            "format": "int64"
+          },
+          "moRef": {
+            "type": "string",
+            "description": "MoRef ID assigned to a host in VMware vSphere.",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of a host.",
+            "nullable": true
+          },
+          "parentId": {
+            "type": "integer",
+            "description": "ID assigned to a parent object.",
+            "format": "int64",
+            "nullable": true
+          },
+          "parentType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/VSphereObjectType"
+              }
+            ],
+            "description": "Type of a parent object.",
+            "nullable": true
+          },
+          "port": {
+            "type": "integer",
+            "description": "Port used to access a host.",
+            "format": "int32",
+            "nullable": true
+          },
+          "connectionState": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/VSphereHostConnectionState"
+              }
+            ],
+            "description": "Connection status of a host."
+          },
+          "powerState": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/VSphereHostPowerState"
+              }
+            ],
+            "description": "Power status of a host."
+          },
+          "vendor": {
+            "type": "string",
+            "description": "Host vendor.",
+            "nullable": true
+          },
+          "model": {
+            "type": "string",
+            "description": "Host model.",
+            "nullable": true
+          },
+          "socketCount": {
+            "type": "integer",
+            "description": "Number of CPU sockets on a host.",
+            "format": "int32",
+            "nullable": true
+          },
+          "cpuPackageCount": {
+            "type": "integer",
+            "description": "Number of CPU packages on a host.",
+            "format": "int32",
+            "nullable": true
+          },
+          "cpuCoreCount": {
+            "type": "integer",
+            "description": "Number of CPU cores on a host.",
+            "format": "int32",
+            "nullable": true
+          },
+          "cpuModel": {
+            "type": "string",
+            "description": "Model of a host CPU.",
+            "nullable": true
+          },
+          "cpuMhz": {
+            "type": "integer",
+            "description": "Host CPU frequency, in MHz.",
+            "format": "int32",
+            "nullable": true
+          },
+          "memorySizeBytes": {
+            "type": "integer",
+            "description": "Amount of memory available on a host, in bytes.",
+            "format": "int64",
+            "nullable": true
+          },
+          "nicCount": {
+            "type": "integer",
+            "description": "Number of network interface controllers connected to a host.",
+            "format": "int32",
+            "nullable": true
+          },
+          "isMaintenanceModeEnabled": {
+            "type": "boolean",
+            "description": "Indicates whether a host is in the maintenance mode.",
+            "nullable": true
+          },
+          "memoryUsageMb": {
+            "type": "integer",
+            "description": "Host memory usage, in MB.",
+            "format": "int32",
+            "nullable": true
+          },
+          "cpuUsageMhz": {
+            "type": "integer",
+            "description": "Host CPU usage, in MHz.",
+            "format": "int32",
+            "nullable": true
+          },
+          "isVmotionEnabled": {
+            "type": "boolean",
+            "description": "Indicates whether VMware vSphere vMotion is enabled for a host.",
+            "nullable": true
+          },
+          "connectionError": {
+            "type": "string",
+            "description": "Error message for failed connection.",
+            "nullable": true
+          },
+          "version": {
+            "type": "string",
+            "description": "Version of a host.",
+            "nullable": true
+          },
+          "businessViewGroupIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "description": "Array of Business View groups.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VSphereHostInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VSphereHostInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VSphereHostPowerState": {
+        "enum": [
+          "Unknown",
+          "PoweredOn",
+          "PoweredOff",
+          "Standby"
+        ],
+        "type": "string"
+      },
+      "VSphereHostSensorInfo": {
+        "type": "object",
+        "properties": {
+          "hostId": {
+            "type": "integer",
+            "description": "ID assigned to a host.",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of a hardware sensor.",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "description": "Type of a hardware sensor.",
+            "nullable": true
+          },
+          "state": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/VSphereHostSensorState"
+              }
+            ],
+            "description": "Status of a sensor."
+          },
+          "reading": {
+            "type": "string",
+            "description": "Current reading of a sensor.",
+            "nullable": true
+          },
+          "details": {
+            "type": "string",
+            "description": "Additional information on a hardware sensor.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VSphereHostSensorInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VSphereHostSensorInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VSphereHostSensorState": {
+        "enum": [
+          "Unknown",
+          "Healthy",
+          "Warning",
+          "Error",
+          "Empty"
+        ],
+        "type": "string"
+      },
+      "VSphereObjectRelationsInfo": {
+        "type": "object",
+        "properties": {
+          "objectId": {
+            "type": "integer",
+            "description": "ID assigned to an object.",
+            "format": "int64"
+          },
+          "objectName": {
+            "type": "string",
+            "description": "Name of an object.",
+            "nullable": true
+          },
+          "objectType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/VSphereObjectType"
+              }
+            ],
+            "description": "Type of an object."
+          },
+          "parentId": {
+            "type": "integer",
+            "description": "ID assigned to a parent object.",
+            "format": "int64",
+            "nullable": true
+          },
+          "parentName": {
+            "type": "string",
+            "description": "Name of a parent object.",
+            "nullable": true
+          },
+          "parentType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/VSphereObjectType"
+              }
+            ],
+            "description": "Type of a parent object.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VSphereObjectRelationsInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VSphereObjectRelationsInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VSphereObjectType": {
+        "enum": [
+          "Unknown",
+          "Host",
+          "ResourcePool",
+          "VCenter",
+          "Vm",
+          "HostCluster",
+          "Datacenter",
+          "HostAndClusterFolder",
+          "Datastore",
+          "DatastoreFolder",
+          "VApp",
+          "Network",
+          "DatastoreCluster",
+          "VirtualInfrastructure"
+        ],
+        "type": "string"
+      },
+      "VSphereResourcePoolInfo": {
+        "type": "object",
+        "properties": {
+          "resourcePoolId": {
+            "type": "integer",
+            "description": "ID assigned to a resource pool.",
+            "format": "int64"
+          },
+          "moRef": {
+            "type": "string",
+            "description": "MoRef ID assigned to a resource pool in VMware vSphere.",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of a resource pool.",
+            "nullable": true
+          },
+          "parentId": {
+            "type": "integer",
+            "description": "ID assigned to a parent object.",
+            "format": "int64",
+            "nullable": true
+          },
+          "parentType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/VSphereObjectType"
+              }
+            ],
+            "description": "Type of a parent object.",
+            "nullable": true
+          },
+          "cpuReservationMhz": {
+            "type": "integer",
+            "description": "CPU reservation configured for a resource pool, in MHz.",
+            "format": "int64",
+            "nullable": true
+          },
+          "isCpuExpandable": {
+            "type": "boolean",
+            "description": "Indicates whether a resource pool CPU reservation is expandable.",
+            "nullable": true
+          },
+          "cpuLimitMhz": {
+            "type": "integer",
+            "description": "Maximum amount of CPU resources that can be allocated to a resource pool, in MHz.",
+            "format": "int64",
+            "nullable": true
+          },
+          "cpuShares": {
+            "type": "integer",
+            "description": "CPU share value.",
+            "format": "int64",
+            "nullable": true
+          },
+          "cpuUsageMhz": {
+            "type": "integer",
+            "description": "Number of actively used CPU resources, in MHz.",
+            "format": "int64",
+            "nullable": true
+          },
+          "memoryReservationMb": {
+            "type": "integer",
+            "description": "Memory reservation configured for a resource pool, in MB.",
+            "format": "int64",
+            "nullable": true
+          },
+          "memorySharesLevel": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MemorySharesLevel"
+              }
+            ],
+            "description": "Memory share level."
+          },
+          "isMemoryExpandable": {
+            "type": "boolean",
+            "description": "Indicates whether a resource pool memory reservation is expandable.",
+            "nullable": true
+          },
+          "memoryLimitMb": {
+            "type": "integer",
+            "description": "Maximum amount of memory resources that can be allocated to a resource pool, in MB.",
+            "format": "int64",
+            "nullable": true
+          },
+          "memoryShares": {
+            "type": "integer",
+            "description": "Memory share value.",
+            "format": "int64",
+            "nullable": true
+          },
+          "memoryUsageBytes": {
+            "type": "integer",
+            "description": "Amount of actively used memory resources, in bytes.",
+            "format": "int64",
+            "nullable": true
+          },
+          "cpuUnreservedMhz": {
+            "type": "integer",
+            "description": "Amount of unreserved CPU resources, in MHz.",
+            "format": "int64",
+            "nullable": true
+          },
+          "memoryUnreservedBytes": {
+            "type": "integer",
+            "description": "Amoount of unreserved memory resources, in bytes.",
+            "format": "int64",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VSphereResourcePoolInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VSphereResourcePoolInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VSphereVAppInfo": {
+        "type": "object",
+        "properties": {
+          "vAppId": {
+            "type": "integer",
+            "description": "ID assigned to a vApp.",
+            "format": "int64"
+          },
+          "moRef": {
+            "type": "string",
+            "description": "MoRef ID assigned to a vApp in VMware vSphere.",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of a vApp.",
+            "nullable": true
+          },
+          "parentId": {
+            "type": "integer",
+            "description": "ID assigned to a parent object.",
+            "format": "int64",
+            "nullable": true
+          },
+          "parentType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/VSphereObjectType"
+              }
+            ],
+            "description": "Type of a parent object.",
+            "nullable": true
+          },
+          "productName": {
+            "type": "string",
+            "description": "Name of a product associated with a vApp.",
+            "nullable": true
+          },
+          "productVersion": {
+            "type": "string",
+            "description": "Version of a product associated with a vApp.",
