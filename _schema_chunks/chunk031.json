@@ -1,0 +1,1000 @@
+          "clusterName": {
+            "type": "string",
+            "description": "Name of a High Availability cluster that includes a Veeam Backup & Replication server..",
+            "nullable": true
+          },
+          "connectionError": {
+            "type": "string",
+            "description": "Details on Veeam Backup & Replication server connection failure.",
+            "nullable": true
+          },
+          "connectionState": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BackupServerConnectionState"
+              }
+            ],
+            "description": "Veeam Backup & Replication server connection status."
+          },
+          "isConfigurationBackupEnabled": {
+            "type": "boolean",
+            "description": "Indicates whether configuration backup is enabled.",
+            "nullable": true
+          },
+          "platform": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BackupPlatformType"
+              }
+            ],
+            "description": "Platform type of a Veeam Backup & Replication server."
+          },
+          "isCloudConnect": {
+            "type": "boolean",
+            "description": "Indicates whether a Veeam Backup & Replication server acts as a Veeam Cloud Connect server.",
+            "nullable": true
+          },
+          "intelligentDiagnosticsEnabled": {
+            "type": "boolean",
+            "description": "Indicates whether Veeam Intelligent Diagnostics is enabled for a Veeam Backup & Replication server.",
+            "nullable": true
+          },
+          "remediationActionsEnabled": {
+            "type": "boolean",
+            "description": "Indicates whether remediation actions for alarms are enabled for a Veeam Backup & Replication server.",
+            "nullable": true
+          },
+          "lastBestPracticeCheckDate": {
+            "type": "string",
+            "description": "Date and time of the latest best practices check.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "bestPracticeCheckStatus": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BestPracticeCheckStatus"
+              }
+            ],
+            "description": "Status of the best practices check."
+          }
+        },
+        "additionalProperties": false
+      },
+      "BackupServerInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BackupServerInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BackupToTapeJobInfo": {
+        "type": "object",
+        "properties": {
+          "backupToTapeJobUid": {
+            "type": "string",
+            "description": "UID assigned to a job in Veeam Backup & Replication.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "backupServerId": {
+            "type": "integer",
+            "description": "ID assigned to a Veeam Backup & Replication server.",
+            "format": "int64"
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BackupJobStatus"
+              }
+            ],
+            "description": "Job status."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Job details.",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of a job.",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "Job description.",
+            "nullable": true
+          },
+          "lastRun": {
+            "type": "string",
+            "description": "Date and time of the latest job session.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastRunDurationSec": {
+            "type": "integer",
+            "description": "Duration of the latest job session, in seconds.",
+            "format": "int32",
+            "nullable": true
+          },
+          "avgDurationSec": {
+            "type": "integer",
+            "description": "Average job session duration, in seconds.",
+            "format": "int32",
+            "nullable": true
+          },
+          "lastTransferredDataBytes": {
+            "type": "integer",
+            "description": "Amount of data transferred during the latest job session, in bytes.",
+            "format": "int64",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BackupToTapeJobInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BackupToTapeJobInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BestPracticeCheckStatus": {
+        "enum": [
+          "Unknown",
+          "NotApplicable",
+          "Passed",
+          "UnableToDetect",
+          "NotImplemented",
+          "Other"
+        ],
+        "type": "string"
+      },
+      "BestPracticeGroup": {
+        "enum": [
+          "Unknown",
+          "BackupInfrastructureSecurity",
+          "ProductConfiguration"
+        ],
+        "type": "string"
+      },
+      "BestPracticeInfo": {
+        "type": "object",
+        "properties": {
+          "bestPracticeUid": {
+            "type": "string",
+            "description": "ID assigned to a best practice.",
+            "format": "uuid"
+          },
+          "bestPracticeName": {
+            "type": "string",
+            "description": "Name of a best practice.",
+            "nullable": true
+          },
+          "backupServerId": {
+            "type": "integer",
+            "description": "ID assigned to a Veeam Backup & Replication server.",
+            "format": "int64"
+          },
+          "backupServerName": {
+            "type": "string",
+            "description": "Name of a Veeam Backup & Replication server.",
+            "nullable": true
+          },
+          "recommendation": {
+            "type": "string",
+            "description": "Implementation recommendations.",
+            "nullable": true
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BestPracticeStatus"
+              }
+            ],
+            "description": "Status of a best practice."
+          },
+          "group": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BestPracticeGroup"
+              }
+            ],
+            "description": "Best practice group."
+          }
+        },
+        "additionalProperties": false
+      },
+      "BestPracticeInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BestPracticeInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BestPracticeStatus": {
+        "enum": [
+          "Unknown",
+          "NotChecked",
+          "Passed",
+          "NotImplemented",
+          "Suppressed",
+          "UnableToDetect"
+        ],
+        "type": "string"
+      },
+      "BusinessViewCategoryInfo": {
+        "type": "object",
+        "properties": {
+          "categoryId": {
+            "type": "integer",
+            "description": "ID assigned to a Business View category.",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of a Business View category.",
+            "nullable": true
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BusinessViewCategoryType"
+              }
+            ],
+            "description": "Type of a Business View category."
+          },
+          "groupIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "description": "Array of IDs assigned to Business View groups included in the category.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BusinessViewCategoryInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BusinessViewCategoryInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BusinessViewCategoryType": {
+        "enum": [
+          "VSphereVm",
+          "VSphereHost",
+          "VSphereDatastore",
+          "VSphereHostCluster",
+          "HyperVVm",
+          "HyperVHost",
+          "HyperVDatastore",
+          "HyperVHostCluster",
+          "Computers",
+          "EnterpriseApplications"
+        ],
+        "type": "string"
+      },
+      "BusinessViewGroupInfo": {
+        "type": "object",
+        "properties": {
+          "groupId": {
+            "type": "integer",
+            "description": "ID assigned to a Business View group.",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of a Business View group.",
+            "nullable": true
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BusinessViewGroupType"
+              }
+            ],
+            "description": "Type of a Business View group."
+          },
+          "categoryId": {
+            "type": "integer",
+            "description": "ID assigned to a Business View category that includes the group.",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false
+      },
+      "BusinessViewGroupInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BusinessViewGroupInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BusinessViewGroupType": {
+        "enum": [
+          "VSphereVm",
+          "VSphereHost",
+          "VSphereDatastore",
+          "VSphereHostCluster",
+          "HyperVVm",
+          "HyperVHost",
+          "HyperVDatastore",
+          "HyperVHostCluster",
+          "Computers",
+          "EnterpriseApplications"
+        ],
+        "type": "string"
+      },
+      "CapacityTierExtentInfo": {
+        "type": "object",
+        "properties": {
+          "extentUid": {
+            "type": "string",
+            "description": "UID assigned to a capacity extent in Veeam Backup & Replication.",
+            "format": "uuid"
+          },
+          "scaleoutRepositoryId": {
+            "type": "integer",
+            "description": "ID assigned to a parent scale-out backup repository.",
+            "format": "int64",
+            "nullable": true
+          },
+          "underlyingRepositoryId": {
+            "type": "integer",
+            "description": "ID assigned to a capacity extent.",
+            "format": "int64"
+          },
+          "isImmutable": {
+            "type": "boolean",
+            "description": "Indicates whether immutability is enabled for a capacity extent.",
+            "nullable": true
+          },
+          "immutabilityIntervalDays": {
+            "type": "integer",
+            "description": "Immutability period, in days.",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CapacityTierExtentInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CapacityTierExtentInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CdpPolicyInfo": {
+        "type": "object",
+        "properties": {
+          "cdpPolicyUid": {
+            "type": "string",
+            "description": "UID assigned to a job in Veeam Backup & Replication.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "backupServerId": {
+            "type": "integer",
+            "description": "ID assigned to a Veeam Backup & Replication server.",
+            "format": "int64"
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CdpPolicyStatus"
+              }
+            ],
+            "description": "Job status."
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of a job.",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "Job description.",
+            "nullable": true
+          },
+          "rpoSec": {
+            "type": "integer",
+            "description": "Recovery point objective, in seconds.",
+            "format": "int32"
+          },
+          "shortTermRetentionSec": {
+            "type": "integer",
+            "description": "Short-term retention, in seconds.",
+            "format": "int32"
+          },
+          "longTermRetentionSec": {
+            "type": "integer",
+            "description": "Long-term retention, in seconds.",
+            "format": "int32"
+          },
+          "keepRestorePointsInDays": {
+            "type": "integer",
+            "description": "Period for which the long-term restore points must be retained, in days.",
+            "format": "int32"
+          },
+          "clusterReference": {
+            "type": "string",
+            "description": "Cluster where replicas must be stored.",
+            "nullable": true
+          },
+          "hostReference": {
+            "type": "string",
+            "description": "Host where replicas must be stored.",
+            "nullable": true
+          },
+          "replicaNameSuffix": {
+            "type": "string",
+            "description": "Suffix that is added to names of replicas.",
+            "nullable": true
+          },
+          "sourceProxyAutoDetect": {
+            "type": "boolean",
+            "description": "Indicates whether Veeam Backup & Replication selects source VMware CDP proxy automatically."
+          },
+          "targetProxyAutoDetect": {
+            "type": "boolean",
+            "description": "Indicates whether Veeam Backup & Replication selects target VMware CDP proxy automatically."
+          },
+          "isApplicationAwareEnabled": {
+            "type": "boolean",
+            "description": "Indicates whether application-aware processing is enabled."
+          }
+        },
+        "additionalProperties": false
+      },
+      "CdpPolicyInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CdpPolicyInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CdpPolicyStatus": {
+        "enum": [
+          "Disabled",
+          "Running"
+        ],
+        "type": "string"
+      },
+      "CertificateAdvancedInfo": {
+        "type": "object",
+        "properties": {
+          "publicKeyAlgorithm": {
+            "type": "string",
+            "description": "Public key algorithm.",
+            "nullable": true
+          },
+          "keyUsage": {
+            "type": "string",
+            "description": "Main purpose of the key.",
+            "nullable": true
+          },
+          "keySizeBits": {
+            "type": "string",
+            "description": "Key size, in bits.",
+            "nullable": true
+          },
+          "curve": {
+            "type": "string",
+            "description": "Curve used by the elliptic curve public key algorithm.",
+            "nullable": true
+          },
+          "extendedKeyUsageOids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Array of object identifiers assigned to the key additional purposes.",
+            "nullable": true
+          },
+          "extendedKeyUsageNames": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Array of the names of the key additional purposes.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CertificateExportType": {
+        "enum": [
+          "Csv",
+          "Json"
+        ],
+        "type": "string"
+      },
+      "CertificateFullInfo": {
+        "type": "object",
+        "properties": {
+          "commonName": {
+            "type": "string",
+            "description": "Common name of the certificate.",
+            "nullable": true
+          },
+          "issuedBy": {
+            "type": "string",
+            "description": "Certificate authority that issued the certificate.",
+            "nullable": true
+          },
+          "subjectAltName": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Identities bound to the subject of the certificate.",
+            "nullable": true
+          },
+          "friendlyName": {
+            "type": "string",
+            "description": "Friendly name.",
+            "nullable": true
+          },
+          "validFrom": {
+            "type": "string",
+            "description": "Start date and time of the certificate validity period.",
+            "format": "date-time"
+          },
+          "expirationDate": {
+            "type": "string",
+            "description": "End date and time of the certificate validity period.",
+            "format": "date-time"
+          },
+          "signatureAlgorithm": {
+            "type": "string",
+            "description": "Identifier of the cryptographic algorithm utilized by a certificate authority to sign the certificate.",
+            "nullable": true
+          },
+          "thumbprint": {
+            "type": "string",
+            "description": "Certificate thumbprint.",
+            "nullable": true
+          },
+          "organization": {
+            "type": "string",
+            "description": "Organization name.",
+            "nullable": true
+          },
+          "organizationalUnit": {
+            "type": "string",
+            "description": "Organizational unit name.",
+            "nullable": true
+          },
+          "locality": {
+            "type": "string",
+            "description": "City, town or municipality where the organization is located.",
+            "nullable": true
+          },
+          "stateOrProvince": {
+            "type": "string",
+            "description": "Major administrative region where the organization is located.",
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "description": "ISO of a country where the organization is located.",
+            "nullable": true
+          },
+          "issuerInfo": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CertificateIssuerInfo"
+              }
+            ],
+            "description": "Certificate issuer details.",
+            "nullable": true
+          },
+          "advancedInfo": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CertificateAdvancedInfo"
+              }
+            ],
+            "description": "Additional certificate information.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CertificateFullInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CertificateFullInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CertificateIssuerInfo": {
+        "type": "object",
+        "properties": {
+          "issuerName": {
+            "type": "string",
+            "description": "Issuer name.",
+            "nullable": true
+          },
+          "organization": {
+            "type": "string",
+            "description": "Name of an issuer organization.",
+            "nullable": true
+          },
+          "organizationalUnit": {
+            "type": "string",
+            "description": "Name of an issuer organizational unit.",
+            "nullable": true
+          },
+          "locality": {
+            "type": "string",
+            "description": "City, town or municipality where the issuer organization is located.",
+            "nullable": true
+          },
+          "stateOrProvince": {
+            "type": "string",
+            "description": "Major administrative region where the issuer organization is located.",
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "description": "ISO of a country where the issuer organization is located.",
+            "nullable": true
+          },
+          "serialNumber": {
+            "type": "string",
+            "description": "Serial number.",
+            "nullable": true
+          },
+          "version": {
+            "type": "integer",
+            "description": "Version number.",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ChildAlarmStatus": {
+        "enum": [
+          "Success",
+          "Resolved",
+          "Information",
+          "Warning",
+          "Error",
+          "Acknowledged",
+          "Remediated",
+          "Unknown"
+        ],
+        "type": "string"
+      },
+      "CloudDatabaseBackupType": {
+        "enum": [
+          "Unknown",
+          "CloudSnapshot",
+          "CloudBackup",
+          "CloudReplica",
+          "CloudArchive"
+        ],
+        "type": "string"
+      },
+      "CloudDatabaseInfo": {
+        "type": "object",
+        "properties": {
+          "resourceId": {
+            "type": "string",
+            "description": "ID assigned to a database on cloud platform.",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of a database.",
+            "nullable": true
+          },
+          "platform": {
+            "description": "Cloud platform on which a database resides.",
+            "nullable": true
+          },
+          "instanceType": {
+            "description": "Type of an instance.",
+            "nullable": true
+          },
+          "engineType": {
+            "type": "string",
+            "description": "Database engine version.",
+            "nullable": true
+          },
+          "backupServerId": {
+            "type": "integer",
+            "description": "ID assigned to a Veeam Backup & Replication server.",
+            "format": "int64"
+          },
+          "backupServerName": {
+            "type": "string",
+            "description": "Name of a Veeam Backup & Replication server.",
+            "nullable": true
+          },
+          "region": {
+            "type": "string",
+            "description": "Region where a database is located.",
+            "nullable": true
+          },
+          "sizeBytes": {
+            "type": "integer",
+            "description": "Database storage capacity, in bytes.",
+            "format": "int64",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CloudDatabaseInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CloudDatabaseInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CloudDatabaseInstanceType": {
+        "enum": [
+          "Unknown",
+          "RDS",
+          "SQLDatabase",
+          "CloudSQL",
+          "DynamoDB",
+          "Redshift",
+          "CosmosDB",
+          "CloudSpanner",
+          "RedshiftServerless"
+        ],
+        "type": "string"
+      },
+      "CloudDatabasePolicyInfo": {
+        "type": "object",
+        "properties": {
+          "policyUid": {
+            "type": "string",
+            "description": "UID assigned to a policy.",
+            "format": "uuid"
+          },
+          "policyName": {
+            "type": "string",
+            "description": "Name of a policy.",
+            "nullable": true
+          },
+          "state": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PolicyState"
+              }
+            ],
+            "description": "Status of a policy."
+          },
+          "instances": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CloudInstance"
+            },
+            "description": "Array of databases included in a policy.",
+            "nullable": true
+          },
+          "instancesCount": {
+            "type": "integer",
+            "description": "Number of databases included in a policy.",
+            "format": "int32"
+          },
+          "platform": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CloudPlatform"
+              }
+            ],
+            "description": "Cloud platform."
+          },
+          "instanceType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CloudDatabaseInstanceType"
+              }
+            ],
+            "description": "Type of cloud instances."
+          },
+          "backupServerId": {
+            "type": "integer",
+            "description": "ID assigned to a Veeam Backup & Replication server.",
+            "format": "int64"
+          },
+          "backupServerName": {
+            "type": "string",
+            "description": "Name of a Veeam Backup & Replication server.",
+            "nullable": true
+          },
+          "lastSnapshotDate": {
+            "type": "string",
+            "description": "Date and time when the latest snapshot was created.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastSnapshotStatus": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BackupJobStatus"
+              }
+            ],
+            "description": "Status of the latest snapshot."
+          },
+          "lastBackupDate": {
+            "type": "string",
+            "description": "Date and time when the latest restore point was created.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastBackupStatus": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BackupJobStatus"
+              }
+            ],
+            "description": "Status of the latest restore point."
+          },
+          "lastReplicationDate": {
+            "type": "string",
+            "description": "Date and time when the latest replica was created.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastReplicationStatus": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BackupJobStatus"
+              }
+            ],
+            "description": "Status of the latest replica."
+          },
+          "lastArchiveDate": {
+            "type": "string",
+            "description": "Date and time when the latest archive restore point was created.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastArchiveStatus": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BackupJobStatus"
+              }
+            ],
+            "description": "Status of the latest archive restore point."
+          }
+        },
+        "additionalProperties": false
+      },
+      "CloudDatabasePolicyInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CloudDatabasePolicyInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
