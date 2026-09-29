@@ -3,10 +3,11 @@ name: Generate SDK
 
 on:
   push:
-    paths-ignore:
-      - "veeam_one/**"
-      - "_schema_chunks/**"
+    paths:
       - "openapi_schemas/**"
+      - "fix_openapi.py"
+      - "openapi-client-config.yaml"
+      - ".github/workflows/generate.yml"
 
 permissions:
   contents: write
