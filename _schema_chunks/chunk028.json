@@ -1,0 +1,1000 @@
+    "/api/v2.3/vSphere/hosts": {
+      "get": {
+        "tags": [
+          "VMware vSphere Infrastructure"
+        ],
+        "summary": "Get All VMware vSphere Hosts",
+        "description": "Returns a collection resource representation of all hosts in the connected VMware vSphere environment.",
+        "operationId": "VSphere_GetVSphereHosts",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VSphereHostInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "hostId": 655,
+                      "moRef": "host-31",
+                      "name": "octopus.tech.local",
+                      "parentId": 104,
+                      "parentType": "HostCluster",
+                      "port": null,
+                      "connectionState": "Connected",
+                      "powerState": "PoweredOn",
+                      "vendor": "Supermicro",
+                      "model": "Super Server",
+                      "socketCount": 2,
+                      "cpuPackageCount": 2,
+                      "cpuCoreCount": 24,
+                      "cpuModel": "Intel(R) Xeon(R) Silver 4214 CPU @ 2.20GHz",
+                      "cpuMhz": 2200,
+                      "memorySizeBytes": 410873970688,
+                      "nicCount": 2,
+                      "isMaintenanceModeEnabled": false,
+                      "memoryUsageMb": 214287,
+                      "cpuUsageMhz": 10911,
+                      "isVmotionEnabled": true,
+                      "connectionError": null,
+                      "version": "6.7.0",
+                      "businessViewGroupIds": []
+                    },
+                    {
+                      "hostId": 656,
+                      "moRef": "host-34",
+                      "name": "shark.tech.local",
+                      "parentId": 104,
+                      "parentType": "HostCluster",
+                      "port": null,
+                      "connectionState": "Connected",
+                      "powerState": "PoweredOn",
+                      "vendor": "Supermicro",
+                      "model": "Super Server",
+                      "socketCount": 2,
+                      "cpuPackageCount": 2,
+                      "cpuCoreCount": 24,
+                      "cpuModel": "Intel(R) Xeon(R) Silver 4214 CPU @ 2.20GHz",
+                      "cpuMhz": 2199,
+                      "memorySizeBytes": 410873970688,
+                      "nicCount": 2,
+                      "isMaintenanceModeEnabled": false,
+                      "memoryUsageMb": 276196,
+                      "cpuUsageMhz": 16967,
+                      "isVmotionEnabled": true,
+                      "connectionError": null,
+                      "version": "6.7.0",
+                      "businessViewGroupIds": []
+                    },
+                    {
+                      "hostId": 661,
+                      "moRef": "host-37",
+                      "name": "seahorse.tech.local",
+                      "parentId": 104,
+                      "parentType": "HostCluster",
+                      "port": null,
+                      "connectionState": "Connected",
+                      "powerState": "PoweredOn",
+                      "vendor": "Supermicro",
+                      "model": "Super Server",
+                      "socketCount": 2,
+                      "cpuPackageCount": 2,
+                      "cpuCoreCount": 24,
+                      "cpuModel": "Intel(R) Xeon(R) Silver 4214 CPU @ 2.20GHz",
+                      "cpuMhz": 2199,
+                      "memorySizeBytes": 410873970688,
+                      "nicCount": 2,
+                      "isMaintenanceModeEnabled": false,
+                      "memoryUsageMb": 313476,
+                      "cpuUsageMhz": 31865,
+                      "isVmotionEnabled": true,
+                      "connectionError": null,
+                      "version": "6.7.0",
+                      "businessViewGroupIds": []
+                    },
+                    {
+                      "hostId": 662,
+                      "moRef": "host-94",
+                      "name": "murena.tech.local",
+                      "parentId": 104,
+                      "parentType": "HostCluster",
+                      "port": null,
+                      "connectionState": "Connected",
+                      "powerState": "PoweredOn",
+                      "vendor": "Supermicro",
+                      "model": "Super Server",
+                      "socketCount": 2,
+                      "cpuPackageCount": 2,
+                      "cpuCoreCount": 24,
+                      "cpuModel": "Intel(R) Xeon(R) Silver 4214 CPU @ 2.20GHz",
+                      "cpuMhz": 2199,
+                      "memorySizeBytes": 410873966592,
+                      "nicCount": 2,
+                      "isMaintenanceModeEnabled": false,
+                      "memoryUsageMb": 375105,
+                      "cpuUsageMhz": 36231,
+                      "isVmotionEnabled": true,
+                      "connectionError": null,
+                      "version": "6.7.0",
+                      "businessViewGroupIds": []
+                    }
+                  ],
+                  "totalCount": 4
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vSphere/hosts/{hostId}": {
+      "get": {
+        "tags": [
+          "VMware vSphere Infrastructure"
+        ],
+        "summary": "Get VMware vSphere Host",
+        "description": "Returns a resource representation of a VMware vSphere host with the specified ID.",
+        "operationId": "VSphere_GetVSphereHost",
+        "parameters": [
+          {
+            "name": "hostId",
+            "in": "path",
+            "description": "Host ID.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VSphereHostInfo"
+                },
+                "example": {
+                  "hostId": 662,
+                  "moRef": "host-94",
+                  "name": "murena.tech.local",
+                  "parentId": 104,
+                  "parentType": "HostCluster",
+                  "port": null,
+                  "connectionState": "Connected",
+                  "powerState": "PoweredOn",
+                  "vendor": "Supermicro",
+                  "model": "Super Server",
+                  "socketCount": 2,
+                  "cpuPackageCount": 2,
+                  "cpuCoreCount": 24,
+                  "cpuModel": "Intel(R) Xeon(R) Silver 4214 CPU @ 2.20GHz",
+                  "cpuMhz": 2199,
+                  "memorySizeBytes": 410873966592,
+                  "nicCount": 2,
+                  "isMaintenanceModeEnabled": false,
+                  "memoryUsageMb": 375105,
+                  "cpuUsageMhz": 36231,
+                  "isVmotionEnabled": true,
+                  "connectionError": null,
+                  "version": "6.7.0",
+                  "businessViewGroupIds": []
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vSphere/hosts/sensors": {
+      "get": {
+        "tags": [
+          "VMware vSphere Infrastructure"
+        ],
+        "summary": "Get All Host Hardware Sensors",
+        "description": "Returns a collection resource representation of all host hardware sensors in the connected VMware vSphere environment.",
+        "operationId": "VSphere_GetAllVSphereHostSensors",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VSphereHostSensorInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "hostId": 458,
+                      "name": "Memory 0",
+                      "type": "Memory",
+                      "state": "Healthy",
+                      "reading": "",
+                      "details": ""
+                    },
+                    {
+                      "hostId": 458,
+                      "name": "Memory 1",
+                      "type": "Memory",
+                      "state": "Healthy",
+                      "reading": "",
+                      "details": ""
+                    },
+                    {
+                      "hostId": 460,
+                      "name": "Memory 10",
+                      "type": "Memory",
+                      "state": "Healthy",
+                      "reading": "",
+                      "details": ""
+                    },
+                    {
+                      "hostId": 460,
+                      "name": "Memory 16",
+                      "type": "Memory",
+                      "state": "Healthy",
+                      "reading": "",
+                      "details": ""
+                    }
+                  ],
+                  "totalCount": 4
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vSphere/hosts/{hostId}/sensors": {
+      "get": {
+        "tags": [
+          "VMware vSphere Infrastructure"
+        ],
+        "summary": "Get Hardware Sensors of Host",
+        "description": "Returns a collection resource representation of all hardware sensors of a VMware vSphere host with the specified ID.",
+        "operationId": "VSphere_GetVSphereHostSensors",
+        "parameters": [
+          {
+            "name": "hostId",
+            "in": "path",
+            "description": "Host ID.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VSphereHostSensorInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "hostId": 458,
+                      "name": "Memory 0",
+                      "type": "Memory",
+                      "state": "Healthy",
+                      "reading": "",
+                      "details": ""
+                    },
+                    {
+                      "hostId": 458,
+                      "name": "Memory 1",
+                      "type": "Memory",
+                      "state": "Healthy",
+                      "reading": "",
+                      "details": ""
+                    },
+                    {
+                      "hostId": 458,
+                      "name": "Memory 10",
+                      "type": "Memory",
+                      "state": "Healthy",
+                      "reading": "",
+                      "details": ""
+                    },
+                    {
+                      "hostId": 458,
+                      "name": "Memory 16",
+                      "type": "Memory",
+                      "state": "Healthy",
+                      "reading": "",
+                      "details": ""
+                    }
+                  ],
+                  "totalCount": 4
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vSphere/resourcePools": {
+      "get": {
+        "tags": [
+          "VMware vSphere Infrastructure"
+        ],
+        "summary": "Get All Resource Pools",
+        "description": "Returns a collection resource representation of all resource pools in the connected VMware vSphere environment.",
+        "operationId": "VSphere_GetVSphereResourcePools",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VSphereResourcePoolInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "resourcePoolId": 805,
+                      "moRef": "resgroup-14351",
+                      "name": "amg2 VDC",
+                      "parentId": 843,
+                      "parentType": "ResourcePool",
+                      "cpuReservationMhz": 4,
+                      "isCpuExpandable": false,
+                      "cpuLimitMhz": 420,
+                      "cpuShares": 4000,
+                      "cpuUsageMhz": 0,
+                      "memoryReservationMb": 20,
+                      "memorySharesLevel": "Normal",
+                      "isMemoryExpandable": false,
+                      "memoryLimitMb": 1957,
+                      "memoryShares": 163840,
+                      "memoryUsageBytes": 0,
+                      "cpuUnreservedMhz": 4,
+                      "memoryUnreservedBytes": 20971520
+                    },
+                    {
+                      "resourcePoolId": 806,
+                      "moRef": "resgroup-14354",
+                      "name": "amgdc2",
+                      "parentId": 843,
+                      "parentType": "ResourcePool",
+                      "cpuReservationMhz": 210,
+                      "isCpuExpandable": false,
+                      "cpuLimitMhz": 420,
+                      "cpuShares": 4000,
+                      "cpuUsageMhz": 0,
+                      "memoryReservationMb": 978,
+                      "memorySharesLevel": "Normal",
+                      "isMemoryExpandable": false,
+                      "memoryLimitMb": 1956,
+                      "memoryShares": 163840,
+                      "memoryUsageBytes": 0,
+                      "cpuUnreservedMhz": 210,
+                      "memoryUnreservedBytes": 1025507328
+                    },
+                    {
+                      "resourcePoolId": 807,
+                      "moRef": "resgroup-14356",
+                      "name": "amg1 VDC 2",
+                      "parentId": 843,
+                      "parentType": "ResourcePool",
+                      "cpuReservationMhz": 3,
+                      "isCpuExpandable": false,
+                      "cpuLimitMhz": 330,
+                      "cpuShares": 4000,
+                      "cpuUsageMhz": 0,
+                      "memoryReservationMb": 16,
+                      "memorySharesLevel": "Normal",
+                      "isMemoryExpandable": false,
+                      "memoryLimitMb": 1565,
+                      "memoryShares": 163840,
+                      "memoryUsageBytes": 0,
+                      "cpuUnreservedMhz": 3,
+                      "memoryUnreservedBytes": 16777216
+                    },
+                    {
+                      "resourcePoolId": 808,
+                      "moRef": "resgroup-14361",
+                      "name": "amg VDC3",
+                      "parentId": 843,
+                      "parentType": "ResourcePool",
+                      "cpuReservationMhz": 3,
+                      "isCpuExpandable": false,
+                      "cpuLimitMhz": 300,
+                      "cpuShares": 4000,
+                      "cpuUsageMhz": 0,
+                      "memoryReservationMb": 14,
+                      "memorySharesLevel": "Normal",
+                      "isMemoryExpandable": false,
+                      "memoryLimitMb": 1408,
+                      "memoryShares": 163840,
+                      "memoryUsageBytes": 0,
+                      "cpuUnreservedMhz": 3,
+                      "memoryUnreservedBytes": 14680064
+                    }
+                  ],
+                  "totalCount": 4
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vSphere/resourcePools/{resourcePoolId}": {
+      "get": {
+        "tags": [
+          "VMware vSphere Infrastructure"
+        ],
+        "summary": "Get Resource Pool",
+        "description": "Returns a resource representation of a VMware vSphere resource pool with the specified ID.",
+        "operationId": "VSphere_GetVSphereResourcePool",
+        "parameters": [
+          {
+            "name": "resourcePoolId",
+            "in": "path",
+            "description": "Resource pool ID.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VSphereResourcePoolInfo"
+                },
+                "example": {
+                  "resourcePoolId": 808,
+                  "moRef": "resgroup-14361",
+                  "name": "amg VDC3",
+                  "parentId": 843,
+                  "parentType": "ResourcePool",
+                  "cpuReservationMhz": 3,
+                  "isCpuExpandable": false,
+                  "cpuLimitMhz": 300,
+                  "cpuShares": 4000,
+                  "cpuUsageMhz": 0,
+                  "memoryReservationMb": 14,
+                  "memorySharesLevel": "Normal",
+                  "isMemoryExpandable": false,
+                  "memoryLimitMb": 1408,
+                  "memoryShares": 163840,
+                  "memoryUsageBytes": 0,
+                  "cpuUnreservedMhz": 3,
+                  "memoryUnreservedBytes": 14680064
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vSphere/datastoreClusters": {
+      "get": {
+        "tags": [
+          "VMware vSphere Infrastructure"
+        ],
+        "summary": "Get All Datastore Clusters",
+        "description": "Returns a collection resource representation of all datastore clusters in the connected VMware vSphere environment.",
+        "operationId": "VSphere_GetVSphereDatastoreClusters",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VSphereDatastoreClusterInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "datastoreClusterId": 637,
+                      "moRef": "group-p1042",
+                      "name": "EStorage1",
+                      "parentId": 258,
+                      "parentType": "DatastoreFolder",
+                      "capacityBytes": 31138512896,
+                      "freeSpaceBytes": 25098715136,
+                      "largestDatastoreFreeSpaceBytes": 6274678784,
+                      "datastoresType": "Vmfs",
+                      "ioMetricsEnabled": true,
+                      "storageDrsEnabled": false,
+                      "drsAutomationLevel": "Automatic",
+                      "usedSpaceThresholdPercentage": 80,
+                      "ioLatencyThresholdMs": 15
+                    },
+                    {
+                      "datastoreClusterId": 647,
+                      "moRef": "group-p1051",
+                      "name": "EStorage2",
+                      "parentId": 259,
+                      "parentType": "DatastoreFolder",
+                      "capacityBytes": 23548223173,
+                      "freeSpaceBytes": 20345289231,
+                      "largestDatastoreFreeSpaceBytes": 5327482356,
+                      "datastoresType": "Vmfs",
+                      "ioMetricsEnabled": true,
+                      "storageDrsEnabled": false,
+                      "drsAutomationLevel": "Automatic",
+                      "usedSpaceThresholdPercentage": 80,
+                      "ioLatencyThresholdMs": 15
+                    }
+                  ],
+                  "totalCount": 2
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vSphere/datastoreClusters/{datastoreClusterId}": {
+      "get": {
+        "tags": [
+          "VMware vSphere Infrastructure"
+        ],
+        "summary": "Get Datastore Cluster",
+        "description": "Returns a resource representation of a VMware vSphere datastore cluster with the specified ID.",
+        "operationId": "VSphere_GetVSphereDatastoreCluster",
+        "parameters": [
+          {
+            "name": "datastoreClusterId",
+            "in": "path",
+            "description": "Datastore cluster ID.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VSphereDatastoreClusterInfo"
+                },
+                "example": {
+                  "datastoreClusterId": 647,
+                  "moRef": "group-p1051",
+                  "name": "EStorage2",
+                  "parentId": 259,
+                  "parentType": "DatastoreFolder",
+                  "capacityBytes": 23548223173,
+                  "freeSpaceBytes": 20345289231,
+                  "largestDatastoreFreeSpaceBytes": 5327482356,
+                  "datastoresType": "Vmfs",
+                  "ioMetricsEnabled": true,
+                  "storageDrsEnabled": false,
+                  "drsAutomationLevel": "Automatic",
+                  "usedSpaceThresholdPercentage": 80,
+                  "ioLatencyThresholdMs": 15
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vSphere/vApps": {
+      "get": {
+        "tags": [
+          "VMware vSphere Infrastructure"
+        ],
+        "summary": "Get All vApps",
+        "description": "Returns a collection resource representation of all vApps in the connected VMware vSphere environment.",
+        "operationId": "VSphere_GetVSphereVApps",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VSphereVAppInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "vAppId": 992,
+                      "moRef": "resgroup-v81062",
+                      "name": "lrstest",
+                      "parentId": 914,
+                      "parentType": "ResourcePool",
+                      "productName": "",
+                      "productVersion": "",
+                      "productVendor": "",
+                      "powerState": "PoweredOff",
+                      "cpuReservationMhz": 0,
+                      "cpuUnreservedMhz": 336880,
+                      "isCpuExpandable": true,
+                      "cpuLimitMhz": -1,
+                      "cpuShares": 4000,
+                      "cpuUsageMhz": 0,
+                      "memoryReservationMb": 0,
+                      "memoryUnreservedBytes": 2261303427072,
+                      "isMemoryExpandable": true,
+                      "memoryLimitMb": -1,
+                      "memoryShares": 163840,
+                      "memoryUsageBytes": 0
+                    },
+                    {
+                      "vAppId": 993,
+                      "moRef": "resgroup-v89157",
+                      "name": "MCHL-vApp",
+                      "parentId": 951,
+                      "parentType": "ResourcePool",
+                      "productName": "",
+                      "productVersion": "",
+                      "productVendor": "",
+                      "powerState": "PoweredOn",
+                      "cpuReservationMhz": 0,
+                      "cpuUnreservedMhz": 336880,
+                      "isCpuExpandable": true,
+                      "cpuLimitMhz": -1,
+                      "cpuShares": 4000,
+                      "cpuUsageMhz": 66,
+                      "memoryReservationMb": 0,
+                      "memoryUnreservedBytes": 2261303427072,
+                      "isMemoryExpandable": true,
+                      "memoryLimitMb": -1,
+                      "memoryShares": 163840,
+                      "memoryUsageBytes": 2198863872
+                    }
+                  ],
+                  "totalCount": 2
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vSphere/vApps/{vAppId}": {
+      "get": {
