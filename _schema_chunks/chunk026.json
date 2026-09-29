@@ -1,0 +1,1000 @@
+                  "backupServerId": 7475,
+                  "status": "Running",
+                  "details": [],
+                  "name": "SAP on Oracle util_file Policy",
+                  "description": "Created by administrator at 04/10/2023 17:20.",
+                  "platform": "SapOnOracle",
+                  "lastRun": "2026-02-16T15:06:43.607Z",
+                  "lastTransferredDataBytes": 0
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vbrJobs/applicationBackupJobs/logJobs": {
+      "get": {
+        "tags": [
+          "Veeam Backup & Replication Jobs"
+        ],
+        "summary": "Get All Application Transaction Log Backup Jobs",
+        "description": "Returns a collection resource representation of all backup jobs protecting application transaction logs.",
+        "operationId": "VbrJobs_GetApplicationTransactionLogBackupJobs",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationTransactionLogBackupJobInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "applicationTransactionLogBackupJobUid": "eb9bfce9-0a59-464c-b735-7296186242d8",
+                      "parentApplicationJobUid": "e61ee069-c946-4c13-8e16-95ca967ddc2b",
+                      "backupServerId": 11702,
+                      "status": "Running",
+                      "details": [],
+                      "name": "ORMAN Policy C Redo Logs Backup",
+                      "description": "Created by administrator at 19/10/2023 18:28.",
+                      "platform": "Oracle",
+                      "lastRun": "2026-01-06T17:45:36.84Z",
+                      "lastTransferredDataBytes": null
+                    },
+                    {
+                      "applicationTransactionLogBackupJobUid": "b4f961d1-df11-4466-a26a-a5fc64b9c4ed",
+                      "parentApplicationJobUid": "cb67db7d-1b97-4273-ac43-0ba84487287b",
+                      "backupServerId": 11702,
+                      "status": "Running",
+                      "details": [],
+                      "name": "SAPHANA Policy K Log Backup",
+                      "description": "Created by administrator at 19/10/2023 19:19.",
+                      "platform": "SapHana",
+                      "lastRun": "2026-01-07T11:00:23.887Z",
+                      "lastTransferredDataBytes": null
+                    },
+                    {
+                      "applicationTransactionLogBackupJobUid": "21a08882-e599-4d04-bae8-ae54415378d8",
+                      "parentApplicationJobUid": "6bd5c287-33d1-48bc-8fdd-2f2df50bbc7a",
+                      "backupServerId": 11702,
+                      "status": "Running",
+                      "details": [],
+                      "name": "ORMAN Policy D Redo Logs Backup",
+                      "description": "Created by administrator at 19/10/2023 18:24.",
+                      "platform": "Oracle",
+                      "lastRun": "2026-01-07T11:01:54.15Z",
+                      "lastTransferredDataBytes": 1933668
+                    }
+                  ],
+                  "totalCount": 3
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vbrJobs/applicationBackupJobs/{applicationJobUid}/logJobs": {
+      "get": {
+        "tags": [
+          "Veeam Backup & Replication Jobs"
+        ],
+        "summary": "Get Application Transaction Log Backup Job",
+        "description": "Returns a resource representation of a transaction log backup job initiated by an application backup job with the specified UID.",
+        "operationId": "VbrJobs_GetApplicationTransactionLogBackupJob",
+        "parameters": [
+          {
+            "name": "applicationJobUid",
+            "in": "path",
+            "description": "Application backup job UID.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationTransactionLogBackupJobInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "applicationTransactionLogBackupJobUid": "21a08882-e599-4d04-bae8-ae54415378d8",
+                      "parentApplicationJobUid": "6bd5c287-33d1-48bc-8fdd-2f2df50bbc7a",
+                      "backupServerId": 11702,
+                      "status": "Running",
+                      "details": [],
+                      "name": "ORMAN Policy D Redo Logs Backup",
+                      "description": "Created by administrator at 19/10/2023 18:24.",
+                      "platform": "Oracle",
+                      "lastRun": "2026-01-07T11:01:54.15Z",
+                      "lastTransferredDataBytes": 1933668
+                    }
+                  ],
+                  "totalCount": 1
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vbrJobs/transactionLogBackupJobs": {
+      "get": {
+        "tags": [
+          "Veeam Backup & Replication Jobs"
+        ],
+        "summary": "Get All Transaction Log Backup Jobs",
+        "description": "Returns a collection resource representation of all transaction log backup jobs.",
+        "operationId": "VbrJobs_GetAllTransactionLogBackupJobs",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionLogBackupJobInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "transactionJobUid": "8a8a5870-f7dd-452a-8aba-98e32f3b0a11",
+                      "name": "Lin Oracle Backup Job Oracle Redo Log Backup",
+                      "type": "OracleSqlLogBackup",
+                      "status": "Success",
+                      "details": [],
+                      "backupServerId": 11782,
+                      "backupServerName": "ms-win22-vbr",
+                      "lastRun": null,
+                      "lastTransferredDataBytes": null,
+                      "parentJob": {
+                        "parentJobUid": "544b2d17-77bb-4763-bb24-25946467f03e",
+                        "parentJobName": "Lin Oracle Backup Job",
+                        "parentJobType": "VmBackup"
+                      }
+                    },
+                    {
+                      "transactionJobUid": "203b554b-6756-47a0-8441-b097ca5d087d",
+                      "name": "SQL VM Backup SQL Server Transaction Log Backup",
+                      "type": "MicrosoftSqlLogBackup",
+                      "status": "Running",
+                      "details": [],
+                      "backupServerId": 11782,
+                      "backupServerName": "ms-win22-vbr",
+                      "lastRun": "2026-03-13T19:02:37.64Z",
+                      "lastTransferredDataBytes": 9291,
+                      "parentJob": {
+                        "parentJobUid": "cd1e7c2d-4d43-4201-b995-5ccb39c5980d",
+                        "parentJobName": "SQL VM Backup",
+                        "parentJobType": "VmBackup"
+                      }
+                    },
+                    {
+                      "transactionJobUid": "2dd343fe-9948-400e-a79d-ed938e39ebb1",
+                      "name": "ii log SQL Server Transaction Log Backup",
+                      "type": "MicrosoftSqlLogBackup",
+                      "status": "Success",
+                      "details": [],
+                      "backupServerId": 11782,
+                      "backupServerName": "ms-win22-vbr",
+                      "lastRun": null,
+                      "lastTransferredDataBytes": null,
+                      "parentJob": {
+                        "parentJobUid": "999d0cc4-c930-430a-a4bd-bad48f176695",
+                        "parentJobName": "ii log",
+                        "parentJobType": "VmBackup"
+                      }
+                    }
+                  ],
+                  "totalCount": 3
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vbrJobs/transactionLogBackupJobs/{transactionJobUid}": {
+      "get": {
+        "tags": [
+          "Veeam Backup & Replication Jobs"
+        ],
+        "summary": "Get Transaction Log Backup Job",
+        "description": "Returns a resource respresentation of a transaction log backup job with the specified UID.",
+        "operationId": "VbrJobs_GetTransactionLogBackupJob",
+        "parameters": [
+          {
+            "name": "transactionJobUid",
+            "in": "path",
+            "description": "Transaction log backup job UID.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionLogBackupJobInfo"
+                },
+                "example": {
+                  "transactionJobUid": "2dd343fe-9948-400e-a79d-ed938e39ebb1",
+                  "name": "ii log SQL Server Transaction Log Backup",
+                  "type": "MicrosoftSqlLogBackup",
+                  "status": "Success",
+                  "details": [],
+                  "backupServerId": 11782,
+                  "backupServerName": "ms-win22-vbr",
+                  "lastRun": null,
+                  "lastTransferredDataBytes": null,
+                  "parentJob": {
+                    "parentJobUid": "999d0cc4-c930-430a-a4bd-bad48f176695",
+                    "parentJobName": "ii log",
+                    "parentJobType": "VmBackup"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vbrJobs/objectStorageBackupJobs": {
+      "get": {
+        "tags": [
+          "Veeam Backup & Replication Jobs"
+        ],
+        "summary": "Get All Object Storage Jobs",
+        "description": "Returns a collection resource representation of all jobs that store backup files in object storage repositories.",
+        "operationId": "VbrJobs_GetAllObjectStorageBackupJobs",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectStorageBackupJobInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "objectStoraBackupJobUid": "a9c4e534-bf09-4dc3-86ed-90de8a031d4a",
+                      "backupServerId": 7430,
+                      "status": "Failed",
+                      "details": [
+                        "Cannot find an export for object: <ObjectStorageHostPath><Delimiter>/</Delimiter><IsObject>False</IsObject><InstanceId>mmf2_AzureCloud</InstanceId></ObjectStorageHostPath>",
+                        "Job finished with error at 24/10/2023 22:32:07"
+                      ],
+                      "name": "OSB Job - Azure Account",
+                      "description": "Created by administrator at 10/09/2023 13:39.",
+                      "lastRun": "2026-02-24T20:31:54.117Z",
+                      "lastRunDurationSec": 13,
+                      "avgDurationSec": 39,
+                      "lastTransferredDataBytes": 0
+                    },
+                    {
+                      "objectStoraBackupJobUid": "41ffdfce-431a-4da7-9722-a14ad721c5a2",
+                      "backupServerId": 5,
+                      "status": "Success",
+                      "details": [],
+                      "name": "Object Storage Backup Job 1",
+                      "description": "Created by administrator at 10/4/2023 11:44 PM.",
+                      "lastRun": "2026-01-11T07:42:01.5Z",
+                      "lastRunDurationSec": 68,
+                      "avgDurationSec": 84,
+                      "lastTransferredDataBytes": 0
+                    },
+                    {
+                      "objectStoraBackupJobUid": "ea9b5e93-b791-4b83-bca6-a66019e04c1f",
+                      "backupServerId": 5,
+                      "status": "Success",
+                      "details": [],
+                      "name": "Object Storage Backup Job 2",
+                      "description": "Created by administrator at 10/4/2023 11:49 PM.",
+                      "lastRun": "2026-01-05T06:49:53.81Z",
+                      "lastRunDurationSec": 50,
+                      "avgDurationSec": 50,
+                      "lastTransferredDataBytes": 0
+                    }
+                  ],
+                  "totalCount": 3
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vbrJobs/objectStorageBackupJobs/{objectStorageJobUid}": {
+      "get": {
+        "tags": [
+          "Veeam Backup & Replication Jobs"
+        ],
+        "summary": "Get Object Storage Job",
+        "description": "Returns a resource representation of an object storage job with the specified UID.",
+        "operationId": "VbrJobs_GetObjectStorageBackupJob",
+        "parameters": [
+          {
+            "name": "objectStorageJobUid",
+            "in": "path",
+            "description": "Object storage job UID.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectStorageBackupJobInfo"
+                },
+                "example": {
+                  "objectStoraBackupJobUid": "ea9b5e93-b791-4b83-bca6-a66019e04c1f",
+                  "backupServerId": 5,
+                  "status": "Success",
+                  "details": [],
+                  "name": "Object Storage Backup Job 2",
+                  "description": "Created by administrator at 10/4/2023 11:49 PM.",
+                  "lastRun": "2026-01-05T06:49:53.81Z",
+                  "lastRunDurationSec": 50,
+                  "avgDurationSec": 50,
+                  "lastTransferredDataBytes": 0
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vSphere/objectRelations": {
+      "get": {
+        "tags": [
+          "VMware vSphere Infrastructure"
+        ],
+        "summary": "Get Infrastructure Object Relations",
+        "description": "Returns a collection resource representation of all objects in VMware vSphere infrastructure and their relations.",
+        "operationId": "VSphere_GetObjectRelations",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VSphereObjectRelationsInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "objectId": 0,
+                      "objectName": "Virtual Infrastructure",
+                      "objectType": "VirtualInfrastructure",
+                      "parentId": null,
+                      "parentName": null,
+                      "parentType": null
+                    },
+                    {
+                      "objectId": 6,
+                      "objectName": "chv2.tech.local",
+                      "objectType": "VCenter",
+                      "parentId": 0,
+                      "parentName": "Virtual Infrastructure",
+                      "parentType": "VirtualInfrastructure"
+                    },
+                    {
+                      "objectId": 19,
+                      "objectName": "LimScopeCluster",
+                      "objectType": "HostCluster",
+                      "parentId": 21,
+                      "parentName": "TestDatacenter",
+                      "parentType": "Datacenter"
+                    },
+                    {
+                      "objectId": 20,
+                      "objectName": "AdminCluster",
+                      "objectType": "HostCluster",
+                      "parentId": 21,
+                      "parentName": "TestDatacenter",
+                      "parentType": "Datacenter"
+                    }
+                  ],
+                  "totalCount": 4
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vSphere/objectRelations/{objectId}": {
+      "get": {
+        "tags": [
+          "VMware vSphere Infrastructure"
+        ],
+        "summary": "Get Relations of Infrastructure Object",
+        "description": "Returns a resource representation of a VMware vSphere infrastructure object with the specified ID and its relations.",
+        "operationId": "VSphere_GetObjectRelation",
+        "parameters": [
+          {
+            "name": "objectId",
+            "in": "path",
+            "description": "Object ID.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VSphereObjectRelationsInfo"
+                },
+                "example": {
+                  "objectId": 6,
+                  "objectName": "chv2.tech.local",
+                  "objectType": "VCenter",
+                  "parentId": 0,
+                  "parentName": "Virtual Infrastructure",
+                  "parentType": "VirtualInfrastructure"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vSphere/vCenterServers": {
+      "get": {
+        "tags": [
+          "VMware vSphere Infrastructure"
+        ],
+        "summary": "Get All vCenter Servers",
+        "description": "Returns a collection resource representation of all connected vCenter servers.",
+        "operationId": "VSphere_GetVSphereVirtualCenters",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VCenterServerInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "vCenterServerId": 6,
+                      "name": "chv2.tech.local",
+                      "connectionState": "Connected",
+                      "port": 443,
+                      "connectionError": null,
+                      "productName": "VMware vCenter Server 6.5.0 build-10964411",
+                      "version": "6.5.0",
+                      "osType": "win32-x64",
+                      "cloudDirectorId": null
+                    },
+                    {
+                      "vCenterServerId": 99,
+                      "name": "oceanvc.tech.local",
+                      "connectionState": "Connected",
+                      "port": 443,
+                      "connectionError": null,
+                      "productName": "VMware vCenter Server 6.7.0 build-18831049",
+                      "version": "6.7.0",
+                      "osType": "linux-x64",
+                      "cloudDirectorId": 100
+                    }
+                  ],
+                  "totalCount": 2
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vSphere/vCenterServers/{vCenterServerId}": {
+      "get": {
+        "tags": [
+          "VMware vSphere Infrastructure"
+        ],
+        "summary": "Get vCenter Server",
+        "description": "Returns a resource representation of a connected vCenter server with the specified ID.",
+        "operationId": "VSphere_GetVSphereVirtualCenter",
+        "parameters": [
+          {
+            "name": "vCenterServerId",
+            "in": "path",
+            "description": "vCenter server ID.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VCenterServerInfo"
+                },
+                "example": {
+                  "vCenterServerId": 99,
+                  "name": "oceanvc.tech.local",
+                  "connectionState": "Connected",
+                  "port": 443,
+                  "connectionError": null,
+                  "productName": "VMware vCenter Server 6.7.0 build-18831049",
+                  "version": "6.7.0",
+                  "osType": "linux-x64",
+                  "cloudDirectorId": 100
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vSphere/vms": {
+      "get": {
+        "tags": [
+          "VMware vSphere Infrastructure"
+        ],
+        "summary": "Get All VMware vSphere VMs",
+        "description": "Returns a collection resource representation of all VMs in the connected VMware vSphere environment.",
+        "operationId": "VSphere_GetVSphereVms",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VSphereVmInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "vmId": 1452,
+                      "moRef": "vm-88071",
+                      "parentId": 939,
+                      "parentType": "ResourcePool",
+                      "name": "MCHL-vCenter_2",
+                      "powerState": "PoweredOn",
+                      "cpuCount": 2,
+                      "guestDnsName": "localhost",
+                      "memorySizeMb": 12288,
+                      "guestDisks": [
+                        {
+                          "name": "/",
+                          "capacityBytes": 50458152960,
+                          "freeSpaceBytes": 37529001984
+                        },
+                        {
+                          "name": "/boot",
+                          "capacityBytes": 511647744,
+                          "freeSpaceBytes": 442720256
+                        },
+                        {
+                          "name": "/boot/efi",
+                          "capacityBytes": 10446848,
+                          "freeSpaceBytes": 8421376
+                        },
