@@ -213,7 +213,3 @@ This project is made possible thanks to the efforts of our core contributors:
 
 - [Jonah May](https://github.com/JonahMMay)  
 - [Maurice Kevenaar](https://github.com/mkevenaar)  
-
-## License
-
-Apache-2.0
