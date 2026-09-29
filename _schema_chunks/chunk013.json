@@ -1,0 +1,1000 @@
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProtectedVmBackupInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "backupUid": "21b1d1dc-8af8-4f1e-a4d9-6401349f5060",
+                      "vmUidInVbr": "71ebbe32-e508-48a3-a22a-06a13de3205d",
+                      "jobUid": "b124ab7b-45a6-4098-8757-e97e96f26c7c",
+                      "jobName": "Backup Job 8",
+                      "type": "VMBackup",
+                      "totalRestorePointSizeBytes": 1658880,
+                      "latestRestorePointSizeBytes": 1658880,
+                      "restorePoints": 1,
+                      "lastProtectedDate": "2026-01-17T07:02:25Z",
+                      "repository": {
+                        "repositoryId": 24,
+                        "repositoryUidInVbr": "2556987c-47cd-49ee-af9b-d6a73c7b8c2c",
+                        "type": "MicrosoftWindows",
+                        "name": "Second Backup Repository"
+                      },
+                      "backupServerId": 5,
+                      "backupServerName": "vbr2.tech.local",
+                      "totalUniqueRestorePointsSizeBytes": 1658880,
+                      "uniqueRestorePoints": 1
+                    },
+                    {
+                      "backupUid": "bd1a74a2-347f-4833-96f9-8cb80dfa7761",
+                      "vmUidInVbr": "276de086-ac36-4331-a4a6-3eedc6beb74b",
+                      "jobUid": "312bf8a7-5b5e-46d3-8f01-8f70fc1be053",
+                      "jobName": "VW VM Backup Job 7",
+                      "type": "VMBackup",
+                      "totalRestorePointSizeBytes": 728276992,
+                      "latestRestorePointSizeBytes": 1671168,
+                      "restorePoints": 10,
+                      "lastProtectedDate": "2026-01-28T06:00:41Z",
+                      "repository": {
+                        "repositoryId": 24,
+                        "repositoryUidInVbr": "2556987c-47cd-49ee-af9b-d6a73c7b8c2c",
+                        "type": "MicrosoftWindows",
+                        "name": "Second Backup Repository"
+                      },
+                      "backupServerId": 5,
+                      "backupServerName": "vbr2.tech.local",
+                      "totalUniqueRestorePointsSizeBytes": 4399104,
+                      "uniqueRestorePoints": 2
+                    }
+                  ],
+                  "totalCount": 2
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/protectedData/virtualMachines/{vmUidInVbr}/backups": {
+      "get": {
+        "tags": [
+          "Veeam Backup & Replication Protected Data"
+        ],
+        "summary": "Get Backups of Protected VM",
+        "description": "Returns a collection resource representation of all backups of a protected VM with the specified UID.",
+        "operationId": "ProtectedDataVbr_GetVirtualMachineBackups",
+        "parameters": [
+          {
+            "name": "vmUidInVbr",
+            "in": "path",
+            "description": "VM UID assigned in Veeam Backup & Replication.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProtectedVmBackupInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "backupUid": "21b1d1dc-8af8-4f1e-a4d9-6401349f5060",
+                      "vmUidInVbr": "71ebbe32-e508-48a3-a22a-06a13de3205d",
+                      "jobUid": "b124ab7b-45a6-4098-8757-e97e96f26c7c",
+                      "jobName": "Backup Job 8",
+                      "type": "VMBackup",
+                      "totalRestorePointSizeBytes": 1658880,
+                      "latestRestorePointSizeBytes": 1658880,
+                      "restorePoints": 1,
+                      "lastProtectedDate": "2026-01-17T07:02:25Z",
+                      "repository": {
+                        "repositoryId": 24,
+                        "repositoryUidInVbr": "2556987c-47cd-49ee-af9b-d6a73c7b8c2c",
+                        "type": "MicrosoftWindows",
+                        "name": "Second Backup Repository"
+                      },
+                      "backupServerId": 5,
+                      "backupServerName": "vbr2.tech.local",
+                      "totalUniqueRestorePointsSizeBytes": 1658880,
+                      "uniqueRestorePoints": 1
+                    },
+                    {
+                      "backupUid": "bd1a74a2-347f-4833-96f9-8cb80dfa7761",
+                      "vmUidInVbr": "71ebbe32-e508-48a3-a22a-06a13de3205d",
+                      "jobUid": "312bf8a7-5b5e-46d3-8f01-8f70fc1be053",
+                      "jobName": "VW VM Backup Job 7",
+                      "type": "VMBackup",
+                      "totalRestorePointSizeBytes": 728276992,
+                      "latestRestorePointSizeBytes": 1671168,
+                      "restorePoints": 10,
+                      "lastProtectedDate": "2026-01-28T06:00:41Z",
+                      "repository": {
+                        "repositoryId": 24,
+                        "repositoryUidInVbr": "2556987c-47cd-49ee-af9b-d6a73c7b8c2c",
+                        "type": "MicrosoftWindows",
+                        "name": "Second Backup Repository"
+                      },
+                      "backupServerId": 5,
+                      "backupServerName": "vbr2.tech.local",
+                      "totalUniqueRestorePointsSizeBytes": 4399104,
+                      "uniqueRestorePoints": 2
+                    }
+                  ],
+                  "totalCount": 2
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/protectedData/virtualMachines/{vmUidInVbr}/backupRestorePoints": {
+      "get": {
+        "tags": [
+          "Veeam Backup & Replication Protected Data"
+        ],
+        "summary": "Get All Backup Restore Points of Protected VM",
+        "description": "Returns a collection resource representation of restore points created for a protected VM with the specified UID.",
+        "operationId": "ProtectedDataVbr_GetVirtualMachineBackupRestorePoints",
+        "parameters": [
+          {
+            "name": "vmUidInVbr",
+            "in": "path",
+            "description": "VM UID assigned in Veeam Backup & Replication.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProtectedVmBackupRestorePointInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "restorePointUid": "4e6e42d0-5ade-4610-97d1-b44488abdd6d",
+                      "backupUid": "2540f8e5-8699-42bd-9a63-d13ef5b2aced",
+                      "vmUidInVbr": "4375c4ef-a36f-4db6-b905-a8bb3f619422",
+                      "jobUid": "4a4f7958-602a-474b-b725-fd8c305b10f4",
+                      "jobName": "Backup Job 1",
+                      "repositoryUid": "88788f9e-d8f5-4eb4-bc4f-9b3f5403bcec",
+                      "sizeBytes": 1662976,
+                      "provisionedSourceSizeBytes": 15632302,
+                      "usedSourceSizeBytes": 10493952,
+                      "fileCreationDate": "2026-01-06T05:40:12.637Z",
+                      "isIncremental": false,
+                      "immutableTill": null
+                    },
+                    {
+                      "restorePointUid": "cf422502-54bb-41ee-8e58-7e4efbe9e268",
+                      "backupUid": "a5223d54-1d83-4951-85fb-a40368796a6f",
+                      "vmUidInVbr": "4375c4ef-a36f-4db6-b905-a8bb3f619422",
+                      "jobUid": "2966b4a1-a3af-4af4-bbae-ebb692b400c1",
+                      "jobName": "Backup Job 2",
+                      "repositoryUid": "3ea36847-df3d-4ade-a140-353bc91ce2b8",
+                      "sizeBytes": 1654784,
+                      "provisionedSourceSizeBytes": 15632302,
+                      "usedSourceSizeBytes": 10493952,
+                      "fileCreationDate": "2026-01-06T07:01:05.543Z",
+                      "isIncremental": false,
+                      "immutableTill": null
+                    }
+                  ],
+                  "totalCount": 2
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/protectedData/virtualMachines/{vmUidInVbr}/replicaRestorePoints": {
+      "get": {
+        "tags": [
+          "Veeam Backup & Replication Protected Data"
+        ],
+        "summary": "Get All Replication Restore Points of Protected VM",
+        "description": "Returns a collection resource representation of replication restore points created for a protected VM with the specified UID.",
+        "operationId": "ProtectedDataVbr_GetVirtualMachineReplicaRestorePoints",
+        "parameters": [
+          {
+            "name": "vmUidInVbr",
+            "in": "path",
+            "description": "VM UID assigned in Veeam Backup & Replication.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProtectedVmReplicaRestorePointInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "replicaRestorePointUid": "1d46334d-f7c4-42a0-9142-13f429d83a57",
+                      "vmUidInVbr": "4375c4ef-a36f-4db6-b905-a8bb3f619422",
+                      "backupUid": "fb52dd88-fa17-4500-9a91-44cc06fa23ec",
+                      "jobUid": "464fccae-5371-47c6-819b-a99583af0ad3",
+                      "jobName": "Replication Job 1",
+                      "hardwarePlan": null,
+                      "creationDate": "2026-01-06T07:02:28Z"
+                    },
+                    {
+                      "replicaRestorePointUid": "45d9fb61-4660-4e2b-95aa-9a18a94110d0",
+                      "vmUidInVbr": "4375c4ef-a36f-4db6-b905-a8bb3f619422",
+                      "backupUid": "fb52dd88-fa17-4500-9a91-44cc06fa23ec",
+                      "jobUid": "464fccae-5371-47c6-819b-a99583af0ad3",
+                      "jobName": "Replication Job 1",
+                      "hardwarePlan": null,
+                      "creationDate": "2026-01-19T15:17:54Z"
+                    }
+                  ],
+                  "totalCount": 2
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/protectedData/computers": {
+      "get": {
+        "tags": [
+          "Veeam Backup & Replication Protected Data"
+        ],
+        "summary": "Get All Protected Computers",
+        "description": "Returns a collection resource representation of all protected computers.",
+        "operationId": "ProtectedDataVbr_GetProtectedComputers",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProtectedComputerInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "computerId": 11748,
+                      "computerUidInVbr": "8d1b5f02-a4a9-4483-8142-d2540ad39c85",
+                      "backupServerId": 11724,
+                      "backupServerName": "ms-win22.tech.local",
+                      "protectionGroups": [
+                        {
+                          "groupUid": "730dc485-84c2-4a9d-86e7-2e35d1d5a0be",
+                          "groupName": "Manually Added"
+                        }
+                      ],
+                      "name": "win16-1.tech.local",
+                      "ipAddresses": [
+                        "172.24.152.116"
+                      ],
+                      "platform": "MicrosoftWindows",
+                      "operationMode": "Server",
+                      "lastProtectedDate": "2026-01-17T14:51:58.977Z"
+                    },
+                    {
+                      "computerId": 11749,
+                      "computerUidInVbr": "a294d089-b4c9-4f04-9662-1e3a36cdc52d",
+                      "backupServerId": 11724,
+                      "backupServerName": "ms-win22.tech.local",
+                      "protectionGroups": [
+                        {
+                          "groupUid": "730dc485-84c2-4a9d-86e7-2e35d1d5a0be",
+                          "groupName": "Manually Added"
+                        }
+                      ],
+                      "name": "mmfubuntu",
+                      "ipAddresses": [
+                        "172.24.184.134"
+                      ],
+                      "platform": "Linux",
+                      "operationMode": "Server",
+                      "lastProtectedDate": "2026-01-17T14:52:01.467Z"
+                    }
+                  ],
+                  "totalCount": 2
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/protectedData/computers/{computerUidInVbr}": {
+      "get": {
+        "tags": [
+          "Veeam Backup & Replication Protected Data"
+        ],
+        "summary": "Get Protected Computer",
+        "description": "Returns a resource representation of a protected computer with the specified UID.",
+        "operationId": "ProtectedDataVbr_GetProtectedComputer",
+        "parameters": [
+          {
+            "name": "computerUidInVbr",
+            "in": "path",
+            "description": "Computer UID assigned in Veeam Backup & Replication.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProtectedComputerInfo"
+                },
+                "example": {
+                  "computerId": 11748,
+                  "computerUidInVbr": "8d1b5f02-a4a9-4483-8142-d2540ad39c85",
+                  "backupServerId": 11724,
+                  "backupServerName": "ms-win22.tech.local",
+                  "protectionGroups": [
+                    {
+                      "groupUid": "730dc485-84c2-4a9d-86e7-2e35d1d5a0be",
+                      "groupName": "Manually Added"
+                    }
+                  ],
+                  "name": "win16-1.tech.local",
+                  "ipAddresses": [
+                    "172.24.152.116"
+                  ],
+                  "platform": "MicrosoftWindows",
+                  "operationMode": "Server",
+                  "lastProtectedDate": "2026-01-17T14:51:58.977Z"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/protectedData/computers/backups": {
+      "get": {
+        "tags": [
+          "Veeam Backup & Replication Protected Data"
+        ],
+        "summary": "Get Backups of All Protected Computers",
+        "description": "Returns a collection resource representation of backups of all protected computers.",
+        "operationId": "ProtectedDataVbr_GetAllProtectedComputerBackups",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProtectedComputerBackupInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "backupUid": "778a1566-4412-43d2-ae2a-2617b12551b3",
+                      "name": "NZAWin3.tech.local",
+                      "computerUidInVbr": "491db1a1-85cd-485a-aa87-edceaca55361",
+                      "jobUid": "637af307-abc6-45b3-acb9-953d864a2ce3",
+                      "jobName": "Backup Copy Job 3 peridoic",
+                      "jobType": "BackupCopy",
+                      "usedSourceSizeBytes": 16404486144,
+                      "provisionedSourceSizeBytes": 32211223040,
+                      "totalRestorePointSizeBytes": 10602827776,
+                      "latestRestorePointSizeBytes": 10602827776,
+                      "restorePoints": 1,
+                      "lastProtectedDate": "2026-04-25T06:00:09.97Z",
+                      "repository": {
+                        "repositoryId": 29,
+                        "repositoryUidInVbr": "8f1fca97-396c-40cf-8ac4-bfec75d4594d",
+                        "type": "SMB",
+                        "name": "SMB Share"
+                      },
+                      "backupServerId": 5,
+                      "backupServerName": "ms-win22.tech.local"
+                    },
+                    {
+                      "backupUid": "6013317a-bb74-46bf-942c-34a6f0a5ab47",
+                      "name": "NZAWin3.tech.local",
+                      "computerUidInVbr": "491db1a1-85cd-485a-aa87-edceaca55361",
+                      "jobUid": "2f2943f5-0285-4f44-b9da-d8d15f960c0b",
+                      "jobName": "Backup Copy Job mirroring",
+                      "jobType": "BackupCopy",
+                      "usedSourceSizeBytes": 16404486144,
+                      "provisionedSourceSizeBytes": 32211223040,
+                      "totalRestorePointSizeBytes": 10602831872,
+                      "latestRestorePointSizeBytes": 10602831872,
+                      "restorePoints": 1,
+                      "lastProtectedDate": "2026-04-27T12:01:50.287Z",
+                      "repository": {
+                        "repositoryId": 30,
+                        "repositoryUidInVbr": "92d1aafa-0a54-4890-a5d1-dd7fdb6e91be",
+                        "type": "Unknown",
+                        "name": "Linux Hardened repository"
+                      },
+                      "backupServerId": 5,
+                      "backupServerName": "ms-win22.tech.local"
+                    },
+                    {
+                      "backupUid": "19036c44-1d4e-452b-a688-4fa8983443e4",
+                      "name": "NZAWin4.tech.local",
+                      "computerUidInVbr": "63278622-c50c-4318-ba84-2200e7e7e3de",
+                      "jobUid": "eae554ee-31ec-4bbd-97dc-a69cdc54f9db",
+                      "jobName": "Agent Backup Policy 1",
+                      "jobType": "AgentPolicy",
+                      "usedSourceSizeBytes": 12832811008,
+                      "provisionedSourceSizeBytes": 32211223040,
+                      "totalRestorePointSizeBytes": 7142031360,
+                      "latestRestorePointSizeBytes": 7142031360,
+                      "restorePoints": 1,
+                      "lastProtectedDate": "2026-04-28T08:22:20Z",
+                      "repository": {
+                        "repositoryId": 30,
+                        "repositoryUidInVbr": "92d1aafa-0a54-4890-a5d1-dd7fdb6e91be",
+                        "type": "Unknown",
+                        "name": "Linux Hardened repository"
+                      },
+                      "backupServerId": 5,
+                      "backupServerName": "ms-win22.tech.local"
+                    }
+                  ],
+                  "totalCount": 3
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/protectedData/computers/{computerUidInVbr}/backups": {
+      "get": {
+        "tags": [
+          "Veeam Backup & Replication Protected Data"
+        ],
+        "summary": "Get All Backups of Protected Computer",
+        "description": "Returns a collection resource representation of all backups of a protected computer with the specified UID.",
+        "operationId": "ProtectedDataVbr_GetProtectedComputerBackups",
+        "parameters": [
+          {
+            "name": "computerUidInVbr",
+            "in": "path",
+            "description": "Computer UID assigned in Veeam Backup & Replication.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProtectedComputerBackupInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "backupUid": "778a1566-4412-43d2-ae2a-2617b12551b3",
+                      "name": "NZAWin3.tech.local",
+                      "computerUidInVbr": "491db1a1-85cd-485a-aa87-edceaca55361",
+                      "jobUid": "637af307-abc6-45b3-acb9-953d864a2ce3",
+                      "jobName": "Backup Copy Job 3 peridoic",
+                      "jobType": "BackupCopy",
+                      "usedSourceSizeBytes": 16404486144,
+                      "provisionedSourceSizeBytes": 32211223040,
+                      "totalRestorePointSizeBytes": 10602827776,
+                      "latestRestorePointSizeBytes": 10602827776,
+                      "restorePoints": 1,
+                      "lastProtectedDate": "2026-04-25T06:00:09.97Z",
+                      "repository": {
+                        "repositoryId": 29,
+                        "repositoryUidInVbr": "8f1fca97-396c-40cf-8ac4-bfec75d4594d",
+                        "type": "SMB",
+                        "name": "SMB Share"
+                      },
+                      "backupServerId": 5,
+                      "backupServerName": "ms-win22.tech.local"
+                    },
+                    {
+                      "backupUid": "6013317a-bb74-46bf-942c-34a6f0a5ab47",
+                      "name": "NZAWin3.tech.local",
+                      "computerUidInVbr": "491db1a1-85cd-485a-aa87-edceaca55361",
+                      "jobUid": "2f2943f5-0285-4f44-b9da-d8d15f960c0b",
+                      "jobName": "Backup Copy Job mirroring",
+                      "jobType": "BackupCopy",
+                      "usedSourceSizeBytes": 16404486144,
+                      "provisionedSourceSizeBytes": 32211223040,
+                      "totalRestorePointSizeBytes": 10602831872,
+                      "latestRestorePointSizeBytes": 10602831872,
+                      "restorePoints": 1,
+                      "lastProtectedDate": "2026-04-27T12:01:50.287Z",
+                      "repository": {
+                        "repositoryId": 30,
+                        "repositoryUidInVbr": "92d1aafa-0a54-4890-a5d1-dd7fdb6e91be",
+                        "type": "Unknown",
+                        "name": "Linux Hardened repository"
+                      },
+                      "backupServerId": 5,
+                      "backupServerName": "ms-win22.tech.local"
+                    }
+                  ],
+                  "totalCount": 2
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/protectedData/computers/{computerUidInVbr}/backupRestorePoints": {
+      "get": {
+        "tags": [
+          "Veeam Backup & Replication Protected Data"
+        ],
+        "summary": "Get All Backup Restore Points of Protected Computer",
+        "description": "Returns a collection resource representation of all backup restore points created for a computer with the specified UID.",
+        "operationId": "ProtectedDataVbr_GetProtectedComputerBackupRestorePoints",
+        "parameters": [
+          {
+            "name": "computerUidInVbr",
+            "in": "path",
+            "description": "Computer UID assigned in Veeam Backup & Replication.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProtectedComputerBackupRestorePointInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "restorePointUid": "7e495cb3-8cc6-429a-8423-39325f41046f",
+                      "computerUidInVbr": "491db1a1-85cd-485a-aa87-edceaca55361",
+                      "backupUid": "456b8b7c-0da9-4bf0-8ee9-c011bcc681ff",
+                      "jobUid": "f507f5a3-2925-4411-bf7c-0bf06b999898",
+                      "jobName": "Backup Job 1",
+                      "repositoryUid": "d38ca877-1da6-46c7-9c28-977c76f75fcc",
+                      "sizeBytes": 10558879924,
+                      "originalSizeBytes": 16404486144,
+                      "sourceSizeBytes": 16404486144,
+                      "backupCreationDate": "2026-02-20T13:59:30.203Z",
+                      "isIncremental": false,
+                      "immutableTill": "2026-04-04T13:34:01.62Z",
+                      "fileCreationTime": "2026-02-20T14:01:41.203Z"
+                    },
+                    {
+                      "restorePointUid": "c89fc54d-9c42-46ce-8061-9e81450f1814",
+                      "computerUidInVbr": "491db1a1-85cd-485a-aa87-edceaca55361",
+                      "backupUid": "6013317a-bb74-46bf-942c-34a6f0a5ab47",
+                      "jobUid": "2f2943f5-0285-4f44-b9da-d8d15f960c0b",
+                      "jobName": "Backup Job 2",
+                      "repositoryUid": "92d1aafa-0a54-4890-a5d1-dd7fdb6e91be",
+                      "sizeBytes": 10602831872,
+                      "originalSizeBytes": 16404486144,
+                      "sourceSizeBytes": 16404486144,
+                      "backupCreationDate": "2026-02-27T12:01:50.287Z",
+                      "isIncremental": false,
+                      "immutableTill": "2026-04-28T08:30:00.337Z",
+                      "fileCreationTime": "2026-02-27T12:02:15.287Z"
+                    }
+                  ],
+                  "totalCount": 2
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
