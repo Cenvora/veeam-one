@@ -1,0 +1,1000 @@
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Task Sessions"
+        ],
+        "summary": "Patch Data Collection Schedule",
+        "description": "Modifies data collection schedule.\nPeriodic scheduling type is configured in hourly intervals.",
+        "operationId": "TaskSessions_PatchSchedule",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/SchedulePlan"
+                  }
+                ]
+              },
+              "example": {
+                "startTime": "2026-01-09T02:00:00Z",
+                "timeZoneId": "",
+                "scheduleType": "Daily",
+                "disabled": false,
+                "periodically": {
+                  "period": 1,
+                  "interval": "Hours"
+                },
+                "daily": {
+                  "daysOfWeek": [
+                    "Monday",
+                    "Tuesday",
+                    "Wednesday",
+                    "Thursday",
+                    "Friday"
+                  ]
+                },
+                "monthlyDays": {
+                  "months": [],
+                  "days": []
+                },
+                "monthlyWeekDays": {
+                  "months": [],
+                  "dayOfWeekAppearance": [],
+                  "daysOfWeek": [
+                    "Monday",
+                    "Tuesday",
+                    "Wednesday",
+                    "Thursday",
+                    "Friday"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/dataCollection/start": {
+      "post": {
+        "tags": [
+          "Task Sessions"
+        ],
+        "summary": "Start Data Collection",
+        "description": "Starts a data collection session.",
+        "operationId": "TaskSessions_StartCollecting",
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/dataCollection/stop": {
+      "post": {
+        "tags": [
+          "Task Sessions"
+        ],
+        "summary": "Stop Data Collection",
+        "description": "Stops data collection session.",
+        "operationId": "TaskSessions_StopCollecting",
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vb365/objectRelations": {
+      "get": {
+        "tags": [
+          "Veeam Backup for Microsoft 365 Infrastructure"
+        ],
+        "summary": "Get Infrastructure Object Relations",
+        "description": "Returns a collection resource representation of all objects in the Veeam Backup for Microsoft 365 infrastructure and their relations.",
+        "operationId": "Vb_GetObjectRelations",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Vb365ObjectRelationsInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "objectId": 1831,
+                      "objectName": "repvbm.tech.local",
+                      "objectType": "Server",
+                      "parentId": 4,
+                      "parentName": "Veeam Backup for Microsoft 365",
+                      "parentType": "VirtualInfrastructure"
+                    },
+                    {
+                      "objectId": 1832,
+                      "objectName": "repVBM",
+                      "objectType": "BackupProxy",
+                      "parentId": 1835,
+                      "parentName": "Backup Proxies",
+                      "parentType": "BackupProxyFolder"
+                    },
+                    {
+                      "objectId": 1833,
+                      "objectName": "Default Backup Repository",
+                      "objectType": "BackupRepository",
+                      "parentId": 1836,
+                      "parentName": "Backup Repositories",
+                      "parentType": "BackupRepositoryFolder"
+                    },
+                    {
+                      "objectId": 1834,
+                      "objectName": "Object Storage",
+                      "objectType": "ObjectStorageRepositoryFolder",
+                      "parentId": 1831,
+                      "parentName": "repvbm.tech.local",
+                      "parentType": "Server"
+                    }
+                  ],
+                  "totalCount": 4
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vb365/objectRelations/{objectId}": {
+      "get": {
+        "tags": [
+          "Veeam Backup for Microsoft 365 Infrastructure"
+        ],
+        "summary": "Get Relations of Infrastructure Object",
+        "description": "Returns a resource representation of a Veeam Backup for Microsoft 365 infrastructure object with the specified ID and its relations.",
+        "operationId": "Vb_GetObjectRelation",
+        "parameters": [
+          {
+            "name": "objectId",
+            "in": "path",
+            "description": "Object ID.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Vb365ObjectRelationsInfo"
+                },
+                "example": {
+                  "objectId": 1831,
+                  "objectName": "repvbm.tech.local",
+                  "objectType": "Server",
+                  "parentId": 4,
+                  "parentName": "Veeam Backup for Microsoft 365",
+                  "parentType": "VirtualInfrastructure"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vb365/servers": {
+      "get": {
+        "tags": [
+          "Veeam Backup for Microsoft 365 Infrastructure"
+        ],
+        "summary": "Get All Veeam Backup for Microsoft 365 Servers",
+        "description": "Returns a collection resource representation of all connected Veeam Backup for Microsoft 365 servers.",
+        "operationId": "Vb_GetVbm365Servers",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Vb365ServerInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "vb365ServerId": 1837,
+                      "name": "repvbm.tech.local",
+                      "version": "7.0.0.2881",
+                      "port": 4443,
+                      "connectionError": null,
+                      "connectionState": "Connected"
+                    },
+                    {
+                      "vb365ServerId": 162,
+                      "name": "vbov7.tech.local",
+                      "version": "7.0.0.2431",
+                      "port": 4443,
+                      "connectionError": null,
+                      "connectionState": "Connected"
+                    }
+                  ],
+                  "totalCount": 2
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vb365/servers/{vb365ServerId}": {
+      "get": {
+        "tags": [
+          "Veeam Backup for Microsoft 365 Infrastructure"
+        ],
+        "summary": "Get Veeam Backup for Microsoft 365 Server",
+        "description": "Returns a resource representation of a Veeam Backup for Microsoft 365 server with the specified ID.",
+        "operationId": "Vb_GetVbm365Server",
+        "parameters": [
+          {
+            "name": "vb365ServerId",
+            "in": "path",
+            "description": "Veeam Backup for Microsoft 365 server ID.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Vb365ServerInfo"
+                },
+                "example": {
+                  "vb365ServerId": 1837,
+                  "name": "repvbm.tech.local",
+                  "version": "7.0.0.2881",
+                  "port": 4443,
+                  "connectionError": null,
+                  "connectionState": "Connected"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vb365/backupProxyPools": {
+      "get": {
+        "tags": [
+          "Veeam Backup for Microsoft 365 Infrastructure"
+        ],
+        "summary": "Get All Veeam Backup for Microsoft 365 Backup Proxy Pools",
+        "description": "Returns a collection resource representation of all Veeam Backup for Microsoft 365 backup proxy pools.",
+        "operationId": "Vb_GetVbm365BackupProxyPools",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Vb365BackupProxyPoolInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "backupProxyPoolId": 176,
+                      "backupProxyPoolUidInVb365": "6fae69a1-007a-4c82-8867-f5d620f0553a",
+                      "name": "365pp1",
+                      "vb365ServerId": 162
+                    },
+                    {
+                      "backupProxyPoolId": 177,
+                      "backupProxyPoolUidInVb365": "0bd049fb-f1db-47fc-8d8e-83f6968f8bb9",
+                      "name": "365pp2",
+                      "vb365ServerId": 162
+                    }
+                  ],
+                  "totalCount": 2
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vb365/backupProxyPools/{backupProxyPoolId}": {
+      "get": {
+        "tags": [
+          "Veeam Backup for Microsoft 365 Infrastructure"
+        ],
+        "summary": "Get Veeam Backup for Microsoft 365 Backup Proxy Pool",
+        "description": "Returns a resource representation of a Veeam Backup for Microsoft 365 backup proxy pool with the specified ID.",
+        "operationId": "Vb_GetVbm365BackupProxyPool",
+        "parameters": [
+          {
+            "name": "backupProxyPoolId",
+            "in": "path",
+            "description": "Veeam Backup for Microsoft 365 backup proxy pool ID.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Vb365BackupProxyPoolInfo"
+                },
+                "example": {
+                  "backupProxyPoolId": 176,
+                  "backupProxyPoolUidInVb365": "6fae69a1-007a-4c82-8867-f5d620f0553a",
+                  "name": "365pp1",
+                  "vb365ServerId": 162
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vb365/backupProxies": {
+      "get": {
+        "tags": [
+          "Veeam Backup for Microsoft 365 Infrastructure"
+        ],
+        "summary": "Get All Veeam Backup for Microsoft 365 Backup Proxy Servers",
+        "description": "Returns a collection resource representation of all Veeam Backup for Microsoft 365 backup proxy servers.",
+        "operationId": "Vb_GetVbm365BackupProxies",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Vb365BackupProxyInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "backupProxyId": 1848,
+                      "backupProxyUidInVb365": "ea5494b3-f0de-4435-a477-65a6cabda245",
+                      "backupProxyPoolUidInVb365": "33f4ae02-c752-4fa4-b2cf-22e908aa8993",
+                      "vb365ServerId": 1847,
+                      "type": "Local",
+                      "useInternetProxy": true,
+                      "internetProxyType": "FromManagementServer",
+                      "hostName": "repVBM",
+                      "description": "Default backup proxy",
+                      "port": 9193,
+                      "threadsNumber": 64,
+                      "enableNetworkThrottling": false,
+                      "status": "Online",
+                      "repositoryIds": [
+                        1849
+                      ]
+                    },
+                    {
+                      "backupProxyId": 1849,
+                      "backupProxyUidInVb365": "b3849fa1-1a09-41f8-8e54-785c25239757",
+                      "backupProxyPoolUidInVb365": "33f4ae02-c752-4fa4-b2cf-22e908aa8993",
+                      "vb365ServerId": 1625,
+                      "type": "Local",
+                      "useInternetProxy": true,
+                      "internetProxyType": "FromManagementServer",
+                      "hostName": "IIVBOV7",
+                      "description": "Default backup proxy",
+                      "port": 9193,
+                      "threadsNumber": 64,
+                      "enableNetworkThrottling": false,
+                      "status": "Online",
+                      "repositoryIds": [
+                        187,
+                        188,
+                        189
+                      ]
+                    }
+                  ],
+                  "totalCount": 2
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vb365/backupProxies/{backupProxyId}": {
+      "get": {
+        "tags": [
+          "Veeam Backup for Microsoft 365 Infrastructure"
+        ],
+        "summary": "Get Veeam Backup for Microsoft 365 Backup Proxy Server",
+        "description": "Returns a resource representation of a Veeam Backup for Microsoft 365 backup proxy server with the specified ID.",
+        "operationId": "Vb_GetVbm365BackupProxy",
+        "parameters": [
+          {
+            "name": "backupProxyId",
+            "in": "path",
+            "description": "Veeam Backup for Microsoft 365 backup proxy server ID.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Vb365BackupProxyInfo"
+                },
+                "example": {
+                  "backupProxyId": 1838,
+                  "backupProxyUidInVb365": "c7cecf30-9939-4244-9be1-e111ade6dfec",
+                  "backupProxyPoolUidInVb365": "33f4ae02-c752-4fa4-b2cf-22e908aa8993",
+                  "vb365ServerId": 1837,
+                  "type": "Local",
+                  "useInternetProxy": true,
+                  "internetProxyType": "FromManagementServer",
+                  "hostName": "repVBM",
+                  "description": "Default backup proxy",
+                  "port": 9193,
+                  "threadsNumber": 64,
+                  "enableNetworkThrottling": false,
+                  "status": "Online",
+                  "repositoryIds": [
+                    1839
+                  ]
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vb365/backupRepositories": {
+      "get": {
+        "tags": [
+          "Veeam Backup for Microsoft 365 Infrastructure"
+        ],
+        "summary": "Get All Veeam Backup for Microsoft 365 Backup Repositories",
+        "description": "Returns a collection resource representation of all Veeam Backup for Microsoft 365 backup repositories.",
+        "operationId": "Vb_GetVbm365BackupRepositories",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Vb365BackupRepositoryInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "backupRepositoryId": 1839,
+                      "backupRepositoryUidInVb365": "ed8f6a13-1fb6-4277-b3cc-cf2c4b7edad2",
+                      "name": "Default Backup Repository",
+                      "vb365ServerId": 1837,
+                      "isOutOfSync": false,
+                      "capacityBytes": 85372956672,
+                      "freeSpaceBytes": 47251349504,
+                      "description": "Created by Veeam Backup for Microsoft 365",
+                      "path": "C:\\VeeamRepository",
+                      "retentionType": "SnapshotBased",
+                      "retentionPeriodType": "Yearly",
+                      "retentionDailyPeriod": null,
+                      "retentionMonthlyPeriod": null,
+                      "retentionYearlyPeriod": "Years3",
+                      "retentionFrequencyType": "Daily",
+                      "retentionDailyType": "Everyday",
+                      "retentionMonthlyDayNumber": "Unknown",
+                      "retentionMonthlyDayOfWeek": "Unknown",
+                      "proxyId": 1838,
+                      "objectStorageId": null,
+                      "objectStorageType": "Unknown",
+                      "objectStorageCachePath": null,
+                      "isLongTerm": null,
+                      "retentionDailyTime": 3600,
+                      "retentionMonthlyTime": null
+                    },
+                    {
+                      "backupRepositoryId": 1872,
+                      "backupRepositoryUidInVb365": "350af927-89ef-46bc-a86d-e57cad541061",
+                      "name": "Default Backup Repository",
+                      "vb365ServerId": 1624,
+                      "isOutOfSync": false,
+                      "capacityBytes": 95990837248,
+                      "freeSpaceBytes": 58333003776,
+                      "description": "Created by Veeam Backup for Microsoft 365",
+                      "path": "C:\\VeeamRepository",
+                      "retentionType": "SnapshotBased",
+                      "retentionPeriodType": "Yearly",
+                      "retentionDailyPeriod": null,
+                      "retentionMonthlyPeriod": null,
+                      "retentionYearlyPeriod": "Years3",
+                      "retentionFrequencyType": "Monthly",
+                      "retentionDailyType": "Unknown",
+                      "retentionMonthlyDayNumber": "First",
+                      "retentionMonthlyDayOfWeek": "Monday",
+                      "proxyId": 1843,
+                      "objectStorageId": 4909,
+                      "objectStorageType": "AzureBlob",
+                      "objectStorageCachePath": null,
+                      "isLongTerm": false,
+                      "retentionDailyTime": 75600,
+                      "retentionMonthlyTime": null
+                    }
+                  ],
+                  "totalCount": 2
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vb365/backupRepositories/{backupRepositoryId}": {
+      "get": {
+        "tags": [
+          "Veeam Backup for Microsoft 365 Infrastructure"
+        ],
+        "summary": "Get Veeam Backup for Microsoft 365 Backup Repository",
+        "description": "Returns a resource representation of a Veeam Backup for Microsoft 365 backup repository with the specified ID.",
+        "operationId": "Vb_GetVbm365BackupRepository",
+        "parameters": [
+          {
+            "name": "backupRepositoryId",
+            "in": "path",
+            "description": "Veeam Backup for Microsoft 365 backup repository ID.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Vb365BackupRepositoryInfo"
+                },
+                "example": {
+                  "backupRepositoryId": 1839,
+                  "backupRepositoryUidInVb365": "ed8f6a13-1fb6-4277-b3cc-cf2c4b7edad2",
+                  "name": "Default Backup Repository",
+                  "vb365ServerId": 1837,
+                  "isOutOfSync": false,
+                  "capacityBytes": 85372956672,
+                  "freeSpaceBytes": 47251349504,
+                  "description": "Created by Veeam Backup for Microsoft 365",
+                  "path": "C:\\VeeamRepository",
+                  "retentionType": "SnapshotBased",
+                  "retentionPeriodType": "Yearly",
+                  "retentionDailyPeriod": null,
+                  "retentionMonthlyPeriod": null,
+                  "retentionYearlyPeriod": "Years3",
+                  "retentionFrequencyType": "Daily",
+                  "retentionDailyType": "Everyday",
+                  "retentionMonthlyDayNumber": "Unknown",
+                  "retentionMonthlyDayOfWeek": "Unknown",
+                  "proxyId": 1838,
+                  "objectStorageId": null,
+                  "objectStorageType": "Unknown",
+                  "objectStorageCachePath": null,
+                  "isLongTerm": null,
+                  "retentionDailyTime": 3600,
+                  "retentionMonthlyTime": null
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vb365/objectStorageRepositories": {
+      "get": {
+        "tags": [
+          "Veeam Backup for Microsoft 365 Infrastructure"
+        ],
+        "summary": "Get All Veeam Backup for Microsoft 365 Object Storage Repositories",
+        "description": "Returns a collection resource representation of all Veeam Backup for Microsoft 365 object storage repositories.",
+        "operationId": "Vb_GetVbm365ObjectStorageRepositories",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
