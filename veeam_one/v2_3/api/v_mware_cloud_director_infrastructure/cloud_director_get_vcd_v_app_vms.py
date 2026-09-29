@@ -1,5 +1,6 @@
 from http import HTTPStatus
-from typing import Any, Optional, Union
+from typing import Any
+from urllib.parse import quote
 
 import httpx
 
@@ -13,12 +14,13 @@ from ...types import UNSET, Response, Unset
 def _get_kwargs(
     v_app_id: int,
     *,
-    offset: Union[Unset, int] = 0,
-    limit: Union[Unset, int] = 100,
-    filter_: Union[Unset, str] = UNSET,
-    sort: Union[Unset, str] = UNSET,
-    select: Union[Unset, str] = UNSET,
+    offset: int | Unset = 0,
+    limit: int | Unset = 100,
+    filter_: str | Unset = UNSET,
+    sort: str | Unset = UNSET,
+    select: str | Unset = UNSET,
 ) -> dict[str, Any]:
+
     params: dict[str, Any] = {}
 
     params["Offset"] = offset
@@ -35,7 +37,9 @@ def _get_kwargs(
 
     _kwargs: dict[str, Any] = {
         "method": "get",
-        "url": f"/api/v2.3/cloudDirector/vApps/{v_app_id}/vms",
+        "url": "/api/v2.3/cloudDirector/vApps/{v_app_id}/vms".format(
+            v_app_id=quote(str(v_app_id), safe=""),
+        ),
         "params": params,
     }
 
@@ -43,8 +47,8 @@ def _get_kwargs(
 
 
 def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[CloudDirectorVmInfoPage, ProblemDetails]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> CloudDirectorVmInfoPage | ProblemDetails | None:
     if response.status_code == 200:
         response_200 = CloudDirectorVmInfoPage.from_dict(response.json())
 
@@ -62,8 +66,8 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[CloudDirectorVmInfoPage, ProblemDetails]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[CloudDirectorVmInfoPage | ProblemDetails]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -75,31 +79,31 @@ def _build_response(
 def sync_detailed(
     v_app_id: int,
     *,
-    client: Union[AuthenticatedClient, Client],
-    offset: Union[Unset, int] = 0,
-    limit: Union[Unset, int] = 100,
-    filter_: Union[Unset, str] = UNSET,
-    sort: Union[Unset, str] = UNSET,
-    select: Union[Unset, str] = UNSET,
-) -> Response[Union[CloudDirectorVmInfoPage, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+    offset: int | Unset = 0,
+    limit: int | Unset = 100,
+    filter_: str | Unset = UNSET,
+    sort: str | Unset = UNSET,
+    select: str | Unset = UNSET,
+) -> Response[CloudDirectorVmInfoPage | ProblemDetails]:
     """Get All VMs in vApp
 
      Returns a collection resource representation of all VMs included in a vApp with the specified ID.
 
     Args:
         v_app_id (int):
-        offset (Union[Unset, int]):  Default: 0.
-        limit (Union[Unset, int]):  Default: 100.
-        filter_ (Union[Unset, str]):
-        sort (Union[Unset, str]):
-        select (Union[Unset, str]):
+        offset (int | Unset):  Default: 0.
+        limit (int | Unset):  Default: 100.
+        filter_ (str | Unset):
+        sort (str | Unset):
+        select (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[CloudDirectorVmInfoPage, ProblemDetails]]
+        Response[CloudDirectorVmInfoPage | ProblemDetails]
     """
 
     kwargs = _get_kwargs(
@@ -121,31 +125,31 @@ def sync_detailed(
 def sync(
     v_app_id: int,
     *,
-    client: Union[AuthenticatedClient, Client],
-    offset: Union[Unset, int] = 0,
-    limit: Union[Unset, int] = 100,
-    filter_: Union[Unset, str] = UNSET,
-    sort: Union[Unset, str] = UNSET,
-    select: Union[Unset, str] = UNSET,
-) -> Optional[Union[CloudDirectorVmInfoPage, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+    offset: int | Unset = 0,
+    limit: int | Unset = 100,
+    filter_: str | Unset = UNSET,
+    sort: str | Unset = UNSET,
+    select: str | Unset = UNSET,
+) -> CloudDirectorVmInfoPage | ProblemDetails | None:
     """Get All VMs in vApp
 
      Returns a collection resource representation of all VMs included in a vApp with the specified ID.
 
     Args:
         v_app_id (int):
-        offset (Union[Unset, int]):  Default: 0.
-        limit (Union[Unset, int]):  Default: 100.
-        filter_ (Union[Unset, str]):
-        sort (Union[Unset, str]):
-        select (Union[Unset, str]):
+        offset (int | Unset):  Default: 0.
+        limit (int | Unset):  Default: 100.
+        filter_ (str | Unset):
+        sort (str | Unset):
+        select (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[CloudDirectorVmInfoPage, ProblemDetails]
+        CloudDirectorVmInfoPage | ProblemDetails
     """
 
     return sync_detailed(
@@ -162,31 +166,31 @@ def sync(
 async def asyncio_detailed(
     v_app_id: int,
     *,
-    client: Union[AuthenticatedClient, Client],
-    offset: Union[Unset, int] = 0,
-    limit: Union[Unset, int] = 100,
-    filter_: Union[Unset, str] = UNSET,
-    sort: Union[Unset, str] = UNSET,
-    select: Union[Unset, str] = UNSET,
-) -> Response[Union[CloudDirectorVmInfoPage, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+    offset: int | Unset = 0,
+    limit: int | Unset = 100,
+    filter_: str | Unset = UNSET,
+    sort: str | Unset = UNSET,
+    select: str | Unset = UNSET,
+) -> Response[CloudDirectorVmInfoPage | ProblemDetails]:
     """Get All VMs in vApp
 
      Returns a collection resource representation of all VMs included in a vApp with the specified ID.
 
     Args:
         v_app_id (int):
-        offset (Union[Unset, int]):  Default: 0.
-        limit (Union[Unset, int]):  Default: 100.
-        filter_ (Union[Unset, str]):
-        sort (Union[Unset, str]):
-        select (Union[Unset, str]):
+        offset (int | Unset):  Default: 0.
+        limit (int | Unset):  Default: 100.
+        filter_ (str | Unset):
+        sort (str | Unset):
+        select (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[CloudDirectorVmInfoPage, ProblemDetails]]
+        Response[CloudDirectorVmInfoPage | ProblemDetails]
     """
 
     kwargs = _get_kwargs(
@@ -206,31 +210,31 @@ async def asyncio_detailed(
 async def asyncio(
     v_app_id: int,
     *,
-    client: Union[AuthenticatedClient, Client],
-    offset: Union[Unset, int] = 0,
-    limit: Union[Unset, int] = 100,
-    filter_: Union[Unset, str] = UNSET,
-    sort: Union[Unset, str] = UNSET,
-    select: Union[Unset, str] = UNSET,
-) -> Optional[Union[CloudDirectorVmInfoPage, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+    offset: int | Unset = 0,
+    limit: int | Unset = 100,
+    filter_: str | Unset = UNSET,
+    sort: str | Unset = UNSET,
+    select: str | Unset = UNSET,
+) -> CloudDirectorVmInfoPage | ProblemDetails | None:
     """Get All VMs in vApp
 
      Returns a collection resource representation of all VMs included in a vApp with the specified ID.
 
     Args:
         v_app_id (int):
-        offset (Union[Unset, int]):  Default: 0.
-        limit (Union[Unset, int]):  Default: 100.
-        filter_ (Union[Unset, str]):
-        sort (Union[Unset, str]):
-        select (Union[Unset, str]):
+        offset (int | Unset):  Default: 0.
+        limit (int | Unset):  Default: 100.
+        filter_ (str | Unset):
+        sort (str | Unset):
+        select (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[CloudDirectorVmInfoPage, ProblemDetails]
+        CloudDirectorVmInfoPage | ProblemDetails
     """
 
     return (

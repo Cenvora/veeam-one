@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class Vb365BackupType(str, Enum):
+class Vb365BackupType(StrEnum):
     ENTIREORGANIZATION = "EntireOrganization"
     SELECTEDITEMS = "SelectedItems"
     UNKNOWN = "Unknown"

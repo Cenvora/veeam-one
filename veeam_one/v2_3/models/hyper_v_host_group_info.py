@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 
@@ -13,21 +15,21 @@ T = TypeVar("T", bound="HyperVHostGroupInfo")
 class HyperVHostGroupInfo:
     """
     Attributes:
-        host_group_id (Union[Unset, int]): ID assigned to a host group.
-        name (Union[None, Unset, str]): Name of a host group.
-        parent_id (Union[Unset, int]): ID assigned to a parent object.
-        parent_type (Union[Unset, HyperVObjectType]):
+        host_group_id (int | Unset): ID assigned to a host group.
+        name (None | str | Unset): Name of a host group.
+        parent_id (int | Unset): ID assigned to a parent object.
+        parent_type (HyperVObjectType | Unset):
     """
 
-    host_group_id: Union[Unset, int] = UNSET
-    name: Union[None, Unset, str] = UNSET
-    parent_id: Union[Unset, int] = UNSET
-    parent_type: Union[Unset, HyperVObjectType] = UNSET
+    host_group_id: int | Unset = UNSET
+    name: None | str | Unset = UNSET
+    parent_id: int | Unset = UNSET
+    parent_type: HyperVObjectType | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
         host_group_id = self.host_group_id
 
-        name: Union[None, Unset, str]
+        name: None | str | Unset
         if isinstance(self.name, Unset):
             name = UNSET
         else:
@@ -35,7 +37,7 @@ class HyperVHostGroupInfo:
 
         parent_id = self.parent_id
 
-        parent_type: Union[Unset, str] = UNSET
+        parent_type: str | Unset = UNSET
         if not isinstance(self.parent_type, Unset):
             parent_type = self.parent_type.value
 
@@ -58,19 +60,19 @@ class HyperVHostGroupInfo:
         d = dict(src_dict)
         host_group_id = d.pop("hostGroupId", UNSET)
 
-        def _parse_name(data: object) -> Union[None, Unset, str]:
+        def _parse_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         name = _parse_name(d.pop("name", UNSET))
 
         parent_id = d.pop("parentId", UNSET)
 
         _parent_type = d.pop("parentType", UNSET)
-        parent_type: Union[Unset, HyperVObjectType]
+        parent_type: HyperVObjectType | Unset
         if isinstance(_parent_type, Unset):
             parent_type = UNSET
         else:

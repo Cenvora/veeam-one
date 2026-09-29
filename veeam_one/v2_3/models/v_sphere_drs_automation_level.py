@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class VSphereDrsAutomationLevel(str, Enum):
+class VSphereDrsAutomationLevel(StrEnum):
     AUTOMATIC = "Automatic"
     MANUAL = "Manual"
     UNKNOWN = "Unknown"

@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class VSphereVmPowerState(str, Enum):
+class VSphereVmPowerState(StrEnum):
     POWEREDOFF = "PoweredOff"
     POWEREDON = "PoweredOn"
     SUSPENDED = "Suspended"

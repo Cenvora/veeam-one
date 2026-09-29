@@ -1,5 +1,6 @@
 from http import HTTPStatus
-from typing import Any, Optional, Union
+from typing import Any
+from urllib.parse import quote
 from uuid import UUID
 
 import httpx
@@ -14,17 +15,20 @@ from ...types import Response
 def _get_kwargs(
     backup_job_uid: UUID,
 ) -> dict[str, Any]:
+
     _kwargs: dict[str, Any] = {
         "method": "get",
-        "url": f"/api/v2.3/vb365Jobs/backupJobs/{backup_job_uid}",
+        "url": "/api/v2.3/vb365Jobs/backupJobs/{backup_job_uid}".format(
+            backup_job_uid=quote(str(backup_job_uid), safe=""),
+        ),
     }
 
     return _kwargs
 
 
 def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[ProblemDetails, Vb365BackupJob]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> ProblemDetails | Vb365BackupJob | None:
     if response.status_code == 200:
         response_200 = Vb365BackupJob.from_dict(response.json())
 
@@ -42,8 +46,8 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[ProblemDetails, Vb365BackupJob]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[ProblemDetails | Vb365BackupJob]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -55,8 +59,8 @@ def _build_response(
 def sync_detailed(
     backup_job_uid: UUID,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[ProblemDetails, Vb365BackupJob]]:
+    client: AuthenticatedClient | Client,
+) -> Response[ProblemDetails | Vb365BackupJob]:
     """Get Veeam Backup for Microsoft 365 Backup Job
 
      Returns a resource representation of a Veeam Backup for Microsoft 365 backup job with the specified
@@ -70,7 +74,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[ProblemDetails, Vb365BackupJob]]
+        Response[ProblemDetails | Vb365BackupJob]
     """
 
     kwargs = _get_kwargs(
@@ -87,8 +91,8 @@ def sync_detailed(
 def sync(
     backup_job_uid: UUID,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[ProblemDetails, Vb365BackupJob]]:
+    client: AuthenticatedClient | Client,
+) -> ProblemDetails | Vb365BackupJob | None:
     """Get Veeam Backup for Microsoft 365 Backup Job
 
      Returns a resource representation of a Veeam Backup for Microsoft 365 backup job with the specified
@@ -102,7 +106,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[ProblemDetails, Vb365BackupJob]
+        ProblemDetails | Vb365BackupJob
     """
 
     return sync_detailed(
@@ -114,8 +118,8 @@ def sync(
 async def asyncio_detailed(
     backup_job_uid: UUID,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[ProblemDetails, Vb365BackupJob]]:
+    client: AuthenticatedClient | Client,
+) -> Response[ProblemDetails | Vb365BackupJob]:
     """Get Veeam Backup for Microsoft 365 Backup Job
 
      Returns a resource representation of a Veeam Backup for Microsoft 365 backup job with the specified
@@ -129,7 +133,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[ProblemDetails, Vb365BackupJob]]
+        Response[ProblemDetails | Vb365BackupJob]
     """
 
     kwargs = _get_kwargs(
@@ -144,8 +148,8 @@ async def asyncio_detailed(
 async def asyncio(
     backup_job_uid: UUID,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[ProblemDetails, Vb365BackupJob]]:
+    client: AuthenticatedClient | Client,
+) -> ProblemDetails | Vb365BackupJob | None:
     """Get Veeam Backup for Microsoft 365 Backup Job
 
      Returns a resource representation of a Veeam Backup for Microsoft 365 backup job with the specified
@@ -159,7 +163,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[ProblemDetails, Vb365BackupJob]
+        ProblemDetails | Vb365BackupJob
     """
 
     return (

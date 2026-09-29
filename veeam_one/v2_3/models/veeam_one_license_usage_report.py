@@ -1,9 +1,10 @@
+from __future__ import annotations
+
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, Union, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
-from dateutil.parser import isoparse
 
 from ..models.license_usage_report_status import LicenseUsageReportStatus
 from ..types import UNSET, Unset
@@ -19,35 +20,35 @@ T = TypeVar("T", bound="VeeamOneLicenseUsageReport")
 class VeeamOneLicenseUsageReport:
     """
     Attributes:
-        report_id (Union[Unset, int]): ID assigned to a license usage report.
-        removal_reason (Union[None, Unset, str]): Reason for licensed object removal
-        workloads (Union[None, Unset, list['VeeamOneLicenseUsageReportWorkload']]): Array of licensed objects.
-        date (Union[Unset, datetime.datetime]): Date and time of license usage report generation. Example:
+        report_id (int | Unset): ID assigned to a license usage report.
+        removal_reason (None | str | Unset): Reason for licensed object removal
+        workloads (list[VeeamOneLicenseUsageReportWorkload] | None | Unset): Array of licensed objects.
+        date (datetime.datetime | Unset): Date and time of license usage report generation. Example:
             '2021-01-01T00:00:00Z'.
-        status (Union[Unset, LicenseUsageReportStatus]):
-        approval_date (Union[None, Unset, datetime.datetime]): Date and time of license usage report approval. Example:
+        status (LicenseUsageReportStatus | Unset):
+        approval_date (datetime.datetime | None | Unset): Date and time of license usage report approval. Example:
             '2021-01-01T12:21:47Z'.
-        total_workloads (Union[Unset, int]): Total number of licensed objects. Example: 164.
+        total_workloads (int | Unset): Total number of licensed objects. Example: 164.
     """
 
-    report_id: Union[Unset, int] = UNSET
-    removal_reason: Union[None, Unset, str] = UNSET
-    workloads: Union[None, Unset, list["VeeamOneLicenseUsageReportWorkload"]] = UNSET
-    date: Union[Unset, datetime.datetime] = UNSET
-    status: Union[Unset, LicenseUsageReportStatus] = UNSET
-    approval_date: Union[None, Unset, datetime.datetime] = UNSET
-    total_workloads: Union[Unset, int] = UNSET
+    report_id: int | Unset = UNSET
+    removal_reason: None | str | Unset = UNSET
+    workloads: list[VeeamOneLicenseUsageReportWorkload] | None | Unset = UNSET
+    date: datetime.datetime | Unset = UNSET
+    status: LicenseUsageReportStatus | Unset = UNSET
+    approval_date: datetime.datetime | None | Unset = UNSET
+    total_workloads: int | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
         report_id = self.report_id
 
-        removal_reason: Union[None, Unset, str]
+        removal_reason: None | str | Unset
         if isinstance(self.removal_reason, Unset):
             removal_reason = UNSET
         else:
             removal_reason = self.removal_reason
 
-        workloads: Union[None, Unset, list[dict[str, Any]]]
+        workloads: list[dict[str, Any]] | None | Unset
         if isinstance(self.workloads, Unset):
             workloads = UNSET
         elif isinstance(self.workloads, list):
@@ -59,15 +60,15 @@ class VeeamOneLicenseUsageReport:
         else:
             workloads = self.workloads
 
-        date: Union[Unset, str] = UNSET
+        date: str | Unset = UNSET
         if not isinstance(self.date, Unset):
             date = self.date.isoformat()
 
-        status: Union[Unset, str] = UNSET
+        status: str | Unset = UNSET
         if not isinstance(self.status, Unset):
             status = self.status.value
 
-        approval_date: Union[None, Unset, str]
+        approval_date: None | str | Unset
         if isinstance(self.approval_date, Unset):
             approval_date = UNSET
         elif isinstance(self.approval_date, datetime.datetime):
@@ -99,21 +100,21 @@ class VeeamOneLicenseUsageReport:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.veeam_one_license_usage_report_workload import VeeamOneLicenseUsageReportWorkload
+        from ..models.veeam_one_license_usage_report_workload import VeeamOneLicenseUsageReportWorkload  # noqa: PLC0415
 
         d = dict(src_dict)
         report_id = d.pop("reportId", UNSET)
 
-        def _parse_removal_reason(data: object) -> Union[None, Unset, str]:
+        def _parse_removal_reason(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         removal_reason = _parse_removal_reason(d.pop("removalReason", UNSET))
 
-        def _parse_workloads(data: object) -> Union[None, Unset, list["VeeamOneLicenseUsageReportWorkload"]]:
+        def _parse_workloads(data: object) -> list[VeeamOneLicenseUsageReportWorkload] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -129,27 +130,27 @@ class VeeamOneLicenseUsageReport:
                     workloads_type_0.append(workloads_type_0_item)
 
                 return workloads_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, list["VeeamOneLicenseUsageReportWorkload"]], data)
+            return cast(list[VeeamOneLicenseUsageReportWorkload] | None | Unset, data)
 
         workloads = _parse_workloads(d.pop("workloads", UNSET))
 
         _date = d.pop("date", UNSET)
-        date: Union[Unset, datetime.datetime]
+        date: datetime.datetime | Unset
         if isinstance(_date, Unset):
             date = UNSET
         else:
-            date = isoparse(_date)
+            date = datetime.datetime.fromisoformat(_date)
 
         _status = d.pop("status", UNSET)
-        status: Union[Unset, LicenseUsageReportStatus]
+        status: LicenseUsageReportStatus | Unset
         if isinstance(_status, Unset):
             status = UNSET
         else:
             status = LicenseUsageReportStatus(_status)
 
-        def _parse_approval_date(data: object) -> Union[None, Unset, datetime.datetime]:
+        def _parse_approval_date(data: object) -> datetime.datetime | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -157,12 +158,12 @@ class VeeamOneLicenseUsageReport:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                approval_date_type_0 = isoparse(data)
+                approval_date_type_0 = datetime.datetime.fromisoformat(data)
 
                 return approval_date_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, datetime.datetime], data)
+            return cast(datetime.datetime | None | Unset, data)
 
         approval_date = _parse_approval_date(d.pop("approvalDate", UNSET))
 

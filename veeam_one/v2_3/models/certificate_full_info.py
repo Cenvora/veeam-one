@@ -1,9 +1,10 @@
+from __future__ import annotations
+
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, Union, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
-from dateutil.parser import isoparse
 
 from ..types import UNSET, Unset
 
@@ -19,57 +20,57 @@ T = TypeVar("T", bound="CertificateFullInfo")
 class CertificateFullInfo:
     """
     Attributes:
-        common_name (Union[None, Unset, str]): Common name of the certificate.
-        issued_by (Union[None, Unset, str]): Certificate authority that issued the certificate.
-        subject_alt_name (Union[None, Unset, list[str]]): Identities bound to the subject of the certificate.
-        friendly_name (Union[None, Unset, str]): Friendly name.
-        valid_from (Union[Unset, datetime.datetime]): Start date and time of the certificate validity period.
-        expiration_date (Union[Unset, datetime.datetime]): End date and time of the certificate validity period.
-        signature_algorithm (Union[None, Unset, str]): Identifier of the cryptographic algorithm utilized by a
-            certificate authority to sign the certificate.
-        thumbprint (Union[None, Unset, str]): Certificate thumbprint.
-        organization (Union[None, Unset, str]): Organization name.
-        organizational_unit (Union[None, Unset, str]): Organizational unit name.
-        locality (Union[None, Unset, str]): City, town or municipality where the organization is located.
-        state_or_province (Union[None, Unset, str]): Major administrative region where the organization is located.
-        country (Union[None, Unset, str]): ISO of a country where the organization is located.
-        issuer_info (Union['CertificateIssuerInfo', None, Unset]): Certificate issuer details.
-        advanced_info (Union['CertificateAdvancedInfo', None, Unset]): Additional certificate information.
+        common_name (None | str | Unset): Common name of the certificate.
+        issued_by (None | str | Unset): Certificate authority that issued the certificate.
+        subject_alt_name (list[str] | None | Unset): Identities bound to the subject of the certificate.
+        friendly_name (None | str | Unset): Friendly name.
+        valid_from (datetime.datetime | Unset): Start date and time of the certificate validity period.
+        expiration_date (datetime.datetime | Unset): End date and time of the certificate validity period.
+        signature_algorithm (None | str | Unset): Identifier of the cryptographic algorithm utilized by a certificate
+            authority to sign the certificate.
+        thumbprint (None | str | Unset): Certificate thumbprint.
+        organization (None | str | Unset): Organization name.
+        organizational_unit (None | str | Unset): Organizational unit name.
+        locality (None | str | Unset): City, town or municipality where the organization is located.
+        state_or_province (None | str | Unset): Major administrative region where the organization is located.
+        country (None | str | Unset): ISO of a country where the organization is located.
+        issuer_info (CertificateIssuerInfo | None | Unset): Certificate issuer details.
+        advanced_info (CertificateAdvancedInfo | None | Unset): Additional certificate information.
     """
 
-    common_name: Union[None, Unset, str] = UNSET
-    issued_by: Union[None, Unset, str] = UNSET
-    subject_alt_name: Union[None, Unset, list[str]] = UNSET
-    friendly_name: Union[None, Unset, str] = UNSET
-    valid_from: Union[Unset, datetime.datetime] = UNSET
-    expiration_date: Union[Unset, datetime.datetime] = UNSET
-    signature_algorithm: Union[None, Unset, str] = UNSET
-    thumbprint: Union[None, Unset, str] = UNSET
-    organization: Union[None, Unset, str] = UNSET
-    organizational_unit: Union[None, Unset, str] = UNSET
-    locality: Union[None, Unset, str] = UNSET
-    state_or_province: Union[None, Unset, str] = UNSET
-    country: Union[None, Unset, str] = UNSET
-    issuer_info: Union["CertificateIssuerInfo", None, Unset] = UNSET
-    advanced_info: Union["CertificateAdvancedInfo", None, Unset] = UNSET
+    common_name: None | str | Unset = UNSET
+    issued_by: None | str | Unset = UNSET
+    subject_alt_name: list[str] | None | Unset = UNSET
+    friendly_name: None | str | Unset = UNSET
+    valid_from: datetime.datetime | Unset = UNSET
+    expiration_date: datetime.datetime | Unset = UNSET
+    signature_algorithm: None | str | Unset = UNSET
+    thumbprint: None | str | Unset = UNSET
+    organization: None | str | Unset = UNSET
+    organizational_unit: None | str | Unset = UNSET
+    locality: None | str | Unset = UNSET
+    state_or_province: None | str | Unset = UNSET
+    country: None | str | Unset = UNSET
+    issuer_info: CertificateIssuerInfo | None | Unset = UNSET
+    advanced_info: CertificateAdvancedInfo | None | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.certificate_advanced_info import CertificateAdvancedInfo
-        from ..models.certificate_issuer_info import CertificateIssuerInfo
+        from ..models.certificate_advanced_info import CertificateAdvancedInfo  # noqa: PLC0415
+        from ..models.certificate_issuer_info import CertificateIssuerInfo  # noqa: PLC0415
 
-        common_name: Union[None, Unset, str]
+        common_name: None | str | Unset
         if isinstance(self.common_name, Unset):
             common_name = UNSET
         else:
             common_name = self.common_name
 
-        issued_by: Union[None, Unset, str]
+        issued_by: None | str | Unset
         if isinstance(self.issued_by, Unset):
             issued_by = UNSET
         else:
             issued_by = self.issued_by
 
-        subject_alt_name: Union[None, Unset, list[str]]
+        subject_alt_name: list[str] | None | Unset
         if isinstance(self.subject_alt_name, Unset):
             subject_alt_name = UNSET
         elif isinstance(self.subject_alt_name, list):
@@ -78,63 +79,63 @@ class CertificateFullInfo:
         else:
             subject_alt_name = self.subject_alt_name
 
-        friendly_name: Union[None, Unset, str]
+        friendly_name: None | str | Unset
         if isinstance(self.friendly_name, Unset):
             friendly_name = UNSET
         else:
             friendly_name = self.friendly_name
 
-        valid_from: Union[Unset, str] = UNSET
+        valid_from: str | Unset = UNSET
         if not isinstance(self.valid_from, Unset):
             valid_from = self.valid_from.isoformat()
 
-        expiration_date: Union[Unset, str] = UNSET
+        expiration_date: str | Unset = UNSET
         if not isinstance(self.expiration_date, Unset):
             expiration_date = self.expiration_date.isoformat()
 
-        signature_algorithm: Union[None, Unset, str]
+        signature_algorithm: None | str | Unset
         if isinstance(self.signature_algorithm, Unset):
             signature_algorithm = UNSET
         else:
             signature_algorithm = self.signature_algorithm
 
-        thumbprint: Union[None, Unset, str]
+        thumbprint: None | str | Unset
         if isinstance(self.thumbprint, Unset):
             thumbprint = UNSET
         else:
             thumbprint = self.thumbprint
 
-        organization: Union[None, Unset, str]
+        organization: None | str | Unset
         if isinstance(self.organization, Unset):
             organization = UNSET
         else:
             organization = self.organization
 
-        organizational_unit: Union[None, Unset, str]
+        organizational_unit: None | str | Unset
         if isinstance(self.organizational_unit, Unset):
             organizational_unit = UNSET
         else:
             organizational_unit = self.organizational_unit
 
-        locality: Union[None, Unset, str]
+        locality: None | str | Unset
         if isinstance(self.locality, Unset):
             locality = UNSET
         else:
             locality = self.locality
 
-        state_or_province: Union[None, Unset, str]
+        state_or_province: None | str | Unset
         if isinstance(self.state_or_province, Unset):
             state_or_province = UNSET
         else:
             state_or_province = self.state_or_province
 
-        country: Union[None, Unset, str]
+        country: None | str | Unset
         if isinstance(self.country, Unset):
             country = UNSET
         else:
             country = self.country
 
-        issuer_info: Union[None, Unset, dict[str, Any]]
+        issuer_info: dict[str, Any] | None | Unset
         if isinstance(self.issuer_info, Unset):
             issuer_info = UNSET
         elif isinstance(self.issuer_info, CertificateIssuerInfo):
@@ -142,7 +143,7 @@ class CertificateFullInfo:
         else:
             issuer_info = self.issuer_info
 
-        advanced_info: Union[None, Unset, dict[str, Any]]
+        advanced_info: dict[str, Any] | None | Unset
         if isinstance(self.advanced_info, Unset):
             advanced_info = UNSET
         elif isinstance(self.advanced_info, CertificateAdvancedInfo):
@@ -188,30 +189,30 @@ class CertificateFullInfo:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.certificate_advanced_info import CertificateAdvancedInfo
-        from ..models.certificate_issuer_info import CertificateIssuerInfo
+        from ..models.certificate_advanced_info import CertificateAdvancedInfo  # noqa: PLC0415
+        from ..models.certificate_issuer_info import CertificateIssuerInfo  # noqa: PLC0415
 
         d = dict(src_dict)
 
-        def _parse_common_name(data: object) -> Union[None, Unset, str]:
+        def _parse_common_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         common_name = _parse_common_name(d.pop("commonName", UNSET))
 
-        def _parse_issued_by(data: object) -> Union[None, Unset, str]:
+        def _parse_issued_by(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         issued_by = _parse_issued_by(d.pop("issuedBy", UNSET))
 
-        def _parse_subject_alt_name(data: object) -> Union[None, Unset, list[str]]:
+        def _parse_subject_alt_name(data: object) -> list[str] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -222,99 +223,99 @@ class CertificateFullInfo:
                 subject_alt_name_type_0 = cast(list[str], data)
 
                 return subject_alt_name_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, list[str]], data)
+            return cast(list[str] | None | Unset, data)
 
         subject_alt_name = _parse_subject_alt_name(d.pop("subjectAltName", UNSET))
 
-        def _parse_friendly_name(data: object) -> Union[None, Unset, str]:
+        def _parse_friendly_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         friendly_name = _parse_friendly_name(d.pop("friendlyName", UNSET))
 
         _valid_from = d.pop("validFrom", UNSET)
-        valid_from: Union[Unset, datetime.datetime]
+        valid_from: datetime.datetime | Unset
         if isinstance(_valid_from, Unset):
             valid_from = UNSET
         else:
-            valid_from = isoparse(_valid_from)
+            valid_from = datetime.datetime.fromisoformat(_valid_from)
 
         _expiration_date = d.pop("expirationDate", UNSET)
-        expiration_date: Union[Unset, datetime.datetime]
+        expiration_date: datetime.datetime | Unset
         if isinstance(_expiration_date, Unset):
             expiration_date = UNSET
         else:
-            expiration_date = isoparse(_expiration_date)
+            expiration_date = datetime.datetime.fromisoformat(_expiration_date)
 
-        def _parse_signature_algorithm(data: object) -> Union[None, Unset, str]:
+        def _parse_signature_algorithm(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         signature_algorithm = _parse_signature_algorithm(d.pop("signatureAlgorithm", UNSET))
 
-        def _parse_thumbprint(data: object) -> Union[None, Unset, str]:
+        def _parse_thumbprint(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         thumbprint = _parse_thumbprint(d.pop("thumbprint", UNSET))
 
-        def _parse_organization(data: object) -> Union[None, Unset, str]:
+        def _parse_organization(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         organization = _parse_organization(d.pop("organization", UNSET))
 
-        def _parse_organizational_unit(data: object) -> Union[None, Unset, str]:
+        def _parse_organizational_unit(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         organizational_unit = _parse_organizational_unit(d.pop("organizationalUnit", UNSET))
 
-        def _parse_locality(data: object) -> Union[None, Unset, str]:
+        def _parse_locality(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         locality = _parse_locality(d.pop("locality", UNSET))
 
-        def _parse_state_or_province(data: object) -> Union[None, Unset, str]:
+        def _parse_state_or_province(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         state_or_province = _parse_state_or_province(d.pop("stateOrProvince", UNSET))
 
-        def _parse_country(data: object) -> Union[None, Unset, str]:
+        def _parse_country(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         country = _parse_country(d.pop("country", UNSET))
 
-        def _parse_issuer_info(data: object) -> Union["CertificateIssuerInfo", None, Unset]:
+        def _parse_issuer_info(data: object) -> CertificateIssuerInfo | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -325,13 +326,13 @@ class CertificateFullInfo:
                 issuer_info_type_1 = CertificateIssuerInfo.from_dict(data)
 
                 return issuer_info_type_1
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union["CertificateIssuerInfo", None, Unset], data)
+            return cast(CertificateIssuerInfo | None | Unset, data)
 
         issuer_info = _parse_issuer_info(d.pop("issuerInfo", UNSET))
 
-        def _parse_advanced_info(data: object) -> Union["CertificateAdvancedInfo", None, Unset]:
+        def _parse_advanced_info(data: object) -> CertificateAdvancedInfo | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -342,9 +343,9 @@ class CertificateFullInfo:
                 advanced_info_type_1 = CertificateAdvancedInfo.from_dict(data)
 
                 return advanced_info_type_1
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union["CertificateAdvancedInfo", None, Unset], data)
+            return cast(CertificateAdvancedInfo | None | Unset, data)
 
         advanced_info = _parse_advanced_info(d.pop("advancedInfo", UNSET))
 

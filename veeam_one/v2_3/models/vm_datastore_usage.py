@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 
@@ -12,20 +14,20 @@ T = TypeVar("T", bound="VmDatastoreUsage")
 class VmDatastoreUsage:
     """
     Attributes:
-        datastore_mo_ref (Union[None, Unset, str]): MoRef ID assigned to a datastore.
-        commited_bytes (Union[Unset, int]): Datastore storage space that is used by a VM, in bytes.
-        uncommited_bytes (Union[Unset, int]): Datastore storage space that can be used by a VM, in bytes.
-        unshared_bytes (Union[Unset, int]): Datastore storage space that is used by a VM and is not shared with other
-            VMs, in bytes.
+        datastore_mo_ref (None | str | Unset): MoRef ID assigned to a datastore.
+        commited_bytes (int | Unset): Datastore storage space that is used by a VM, in bytes.
+        uncommited_bytes (int | Unset): Datastore storage space that can be used by a VM, in bytes.
+        unshared_bytes (int | Unset): Datastore storage space that is used by a VM and is not shared with other VMs, in
+            bytes.
     """
 
-    datastore_mo_ref: Union[None, Unset, str] = UNSET
-    commited_bytes: Union[Unset, int] = UNSET
-    uncommited_bytes: Union[Unset, int] = UNSET
-    unshared_bytes: Union[Unset, int] = UNSET
+    datastore_mo_ref: None | str | Unset = UNSET
+    commited_bytes: int | Unset = UNSET
+    uncommited_bytes: int | Unset = UNSET
+    unshared_bytes: int | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
-        datastore_mo_ref: Union[None, Unset, str]
+        datastore_mo_ref: None | str | Unset
         if isinstance(self.datastore_mo_ref, Unset):
             datastore_mo_ref = UNSET
         else:
@@ -55,12 +57,12 @@ class VmDatastoreUsage:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
 
-        def _parse_datastore_mo_ref(data: object) -> Union[None, Unset, str]:
+        def _parse_datastore_mo_ref(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         datastore_mo_ref = _parse_datastore_mo_ref(d.pop("datastoreMoRef", UNSET))
 

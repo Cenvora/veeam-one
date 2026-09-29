@@ -1,10 +1,11 @@
+from __future__ import annotations
+
 import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
-from dateutil.parser import isoparse
 
 from ..types import UNSET, Unset
 
@@ -15,26 +16,25 @@ T = TypeVar("T", bound="ProtectedCloudDatabaseRestorePointInfo")
 class ProtectedCloudDatabaseRestorePointInfo:
     """
     Attributes:
-        restore_point_uid (Union[None, UUID, Unset]): UID assigned to a restore point.
-        backup_uid (Union[None, UUID, Unset]): UID assigned to a backup chain.
-        cloud_database_uid_in_vbr (Union[None, UUID, Unset]): UID assigned to a cloud database in Veeam Backup &
-            Replication.
-        job_uid (Union[None, UUID, Unset]): UID assigned to a job.
-        job_name (Union[None, Unset, str]): Name of a job.
-        target (Union[None, Unset, str]): Name of a backup repository.
-        creation_time (Union[None, Unset, datetime.datetime]): Date and time when a restore point was created.
+        restore_point_uid (None | Unset | UUID): UID assigned to a restore point.
+        backup_uid (None | Unset | UUID): UID assigned to a backup chain.
+        cloud_database_uid_in_vbr (None | Unset | UUID): UID assigned to a cloud database in Veeam Backup & Replication.
+        job_uid (None | Unset | UUID): UID assigned to a job.
+        job_name (None | str | Unset): Name of a job.
+        target (None | str | Unset): Name of a backup repository.
+        creation_time (datetime.datetime | None | Unset): Date and time when a restore point was created.
     """
 
-    restore_point_uid: Union[None, UUID, Unset] = UNSET
-    backup_uid: Union[None, UUID, Unset] = UNSET
-    cloud_database_uid_in_vbr: Union[None, UUID, Unset] = UNSET
-    job_uid: Union[None, UUID, Unset] = UNSET
-    job_name: Union[None, Unset, str] = UNSET
-    target: Union[None, Unset, str] = UNSET
-    creation_time: Union[None, Unset, datetime.datetime] = UNSET
+    restore_point_uid: None | Unset | UUID = UNSET
+    backup_uid: None | Unset | UUID = UNSET
+    cloud_database_uid_in_vbr: None | Unset | UUID = UNSET
+    job_uid: None | Unset | UUID = UNSET
+    job_name: None | str | Unset = UNSET
+    target: None | str | Unset = UNSET
+    creation_time: datetime.datetime | None | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
-        restore_point_uid: Union[None, Unset, str]
+        restore_point_uid: None | str | Unset
         if isinstance(self.restore_point_uid, Unset):
             restore_point_uid = UNSET
         elif isinstance(self.restore_point_uid, UUID):
@@ -42,7 +42,7 @@ class ProtectedCloudDatabaseRestorePointInfo:
         else:
             restore_point_uid = self.restore_point_uid
 
-        backup_uid: Union[None, Unset, str]
+        backup_uid: None | str | Unset
         if isinstance(self.backup_uid, Unset):
             backup_uid = UNSET
         elif isinstance(self.backup_uid, UUID):
@@ -50,7 +50,7 @@ class ProtectedCloudDatabaseRestorePointInfo:
         else:
             backup_uid = self.backup_uid
 
-        cloud_database_uid_in_vbr: Union[None, Unset, str]
+        cloud_database_uid_in_vbr: None | str | Unset
         if isinstance(self.cloud_database_uid_in_vbr, Unset):
             cloud_database_uid_in_vbr = UNSET
         elif isinstance(self.cloud_database_uid_in_vbr, UUID):
@@ -58,7 +58,7 @@ class ProtectedCloudDatabaseRestorePointInfo:
         else:
             cloud_database_uid_in_vbr = self.cloud_database_uid_in_vbr
 
-        job_uid: Union[None, Unset, str]
+        job_uid: None | str | Unset
         if isinstance(self.job_uid, Unset):
             job_uid = UNSET
         elif isinstance(self.job_uid, UUID):
@@ -66,19 +66,19 @@ class ProtectedCloudDatabaseRestorePointInfo:
         else:
             job_uid = self.job_uid
 
-        job_name: Union[None, Unset, str]
+        job_name: None | str | Unset
         if isinstance(self.job_name, Unset):
             job_name = UNSET
         else:
             job_name = self.job_name
 
-        target: Union[None, Unset, str]
+        target: None | str | Unset
         if isinstance(self.target, Unset):
             target = UNSET
         else:
             target = self.target
 
-        creation_time: Union[None, Unset, str]
+        creation_time: None | str | Unset
         if isinstance(self.creation_time, Unset):
             creation_time = UNSET
         elif isinstance(self.creation_time, datetime.datetime):
@@ -110,7 +110,7 @@ class ProtectedCloudDatabaseRestorePointInfo:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
 
-        def _parse_restore_point_uid(data: object) -> Union[None, UUID, Unset]:
+        def _parse_restore_point_uid(data: object) -> None | Unset | UUID:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -121,13 +121,13 @@ class ProtectedCloudDatabaseRestorePointInfo:
                 restore_point_uid_type_0 = UUID(data)
 
                 return restore_point_uid_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, UUID, Unset], data)
+            return cast(None | Unset | UUID, data)
 
         restore_point_uid = _parse_restore_point_uid(d.pop("restorePointUid", UNSET))
 
-        def _parse_backup_uid(data: object) -> Union[None, UUID, Unset]:
+        def _parse_backup_uid(data: object) -> None | Unset | UUID:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -138,13 +138,13 @@ class ProtectedCloudDatabaseRestorePointInfo:
                 backup_uid_type_0 = UUID(data)
 
                 return backup_uid_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, UUID, Unset], data)
+            return cast(None | Unset | UUID, data)
 
         backup_uid = _parse_backup_uid(d.pop("backupUid", UNSET))
 
-        def _parse_cloud_database_uid_in_vbr(data: object) -> Union[None, UUID, Unset]:
+        def _parse_cloud_database_uid_in_vbr(data: object) -> None | Unset | UUID:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -155,13 +155,13 @@ class ProtectedCloudDatabaseRestorePointInfo:
                 cloud_database_uid_in_vbr_type_0 = UUID(data)
 
                 return cloud_database_uid_in_vbr_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, UUID, Unset], data)
+            return cast(None | Unset | UUID, data)
 
         cloud_database_uid_in_vbr = _parse_cloud_database_uid_in_vbr(d.pop("cloudDatabaseUidInVbr", UNSET))
 
-        def _parse_job_uid(data: object) -> Union[None, UUID, Unset]:
+        def _parse_job_uid(data: object) -> None | Unset | UUID:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -172,31 +172,31 @@ class ProtectedCloudDatabaseRestorePointInfo:
                 job_uid_type_0 = UUID(data)
 
                 return job_uid_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, UUID, Unset], data)
+            return cast(None | Unset | UUID, data)
 
         job_uid = _parse_job_uid(d.pop("jobUid", UNSET))
 
-        def _parse_job_name(data: object) -> Union[None, Unset, str]:
+        def _parse_job_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         job_name = _parse_job_name(d.pop("jobName", UNSET))
 
-        def _parse_target(data: object) -> Union[None, Unset, str]:
+        def _parse_target(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         target = _parse_target(d.pop("target", UNSET))
 
-        def _parse_creation_time(data: object) -> Union[None, Unset, datetime.datetime]:
+        def _parse_creation_time(data: object) -> datetime.datetime | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -204,12 +204,12 @@ class ProtectedCloudDatabaseRestorePointInfo:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                creation_time_type_0 = isoparse(data)
+                creation_time_type_0 = datetime.datetime.fromisoformat(data)
 
                 return creation_time_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, datetime.datetime], data)
+            return cast(datetime.datetime | None | Unset, data)
 
         creation_time = _parse_creation_time(d.pop("creationTime", UNSET))
 

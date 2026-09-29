@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class BestPracticeCheckStatus(str, Enum):
+class BestPracticeCheckStatus(StrEnum):
     NOTAPPLICABLE = "NotApplicable"
     NOTIMPLEMENTED = "NotImplemented"
     OTHER = "Other"

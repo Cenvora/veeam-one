@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, Union, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 
@@ -16,13 +18,13 @@ T = TypeVar("T", bound="Remediations")
 class Remediations:
     """
     Attributes:
-        items (Union[None, Unset, list['Remediation']]):
+        items (list[Remediation] | None | Unset):
     """
 
-    items: Union[None, Unset, list["Remediation"]] = UNSET
+    items: list[Remediation] | None | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
-        items: Union[None, Unset, list[dict[str, Any]]]
+        items: list[dict[str, Any]] | None | Unset
         if isinstance(self.items, Unset):
             items = UNSET
         elif isinstance(self.items, list):
@@ -44,11 +46,11 @@ class Remediations:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.remediation import Remediation
+        from ..models.remediation import Remediation  # noqa: PLC0415
 
         d = dict(src_dict)
 
-        def _parse_items(data: object) -> Union[None, Unset, list["Remediation"]]:
+        def _parse_items(data: object) -> list[Remediation] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -64,9 +66,9 @@ class Remediations:
                     items_type_0.append(items_type_0_item)
 
                 return items_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, list["Remediation"]], data)
+            return cast(list[Remediation] | None | Unset, data)
 
         items = _parse_items(d.pop("items", UNSET))
 

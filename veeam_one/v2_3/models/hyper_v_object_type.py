@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class HyperVObjectType(str, Enum):
+class HyperVObjectType(StrEnum):
     CLUSTER = "Cluster"
     CLUSTERRESOURCEFOLDER = "ClusterResourceFolder"
     CSV = "Csv"

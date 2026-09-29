@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, Union, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 
@@ -16,13 +18,13 @@ T = TypeVar("T", bound="VeeamOneLicenseUsageTotal")
 class VeeamOneLicenseUsageTotal:
     """
     Attributes:
-        units (Union[None, Unset, list['VeeamOneLicenseUsageTotalUnit']]): Array of license units.
+        units (list[VeeamOneLicenseUsageTotalUnit] | None | Unset): Array of license units.
     """
 
-    units: Union[None, Unset, list["VeeamOneLicenseUsageTotalUnit"]] = UNSET
+    units: list[VeeamOneLicenseUsageTotalUnit] | None | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
-        units: Union[None, Unset, list[dict[str, Any]]]
+        units: list[dict[str, Any]] | None | Unset
         if isinstance(self.units, Unset):
             units = UNSET
         elif isinstance(self.units, list):
@@ -44,11 +46,11 @@ class VeeamOneLicenseUsageTotal:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.veeam_one_license_usage_total_unit import VeeamOneLicenseUsageTotalUnit
+        from ..models.veeam_one_license_usage_total_unit import VeeamOneLicenseUsageTotalUnit  # noqa: PLC0415
 
         d = dict(src_dict)
 
-        def _parse_units(data: object) -> Union[None, Unset, list["VeeamOneLicenseUsageTotalUnit"]]:
+        def _parse_units(data: object) -> list[VeeamOneLicenseUsageTotalUnit] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -64,9 +66,9 @@ class VeeamOneLicenseUsageTotal:
                     units_type_0.append(units_type_0_item)
 
                 return units_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, list["VeeamOneLicenseUsageTotalUnit"]], data)
+            return cast(list[VeeamOneLicenseUsageTotalUnit] | None | Unset, data)
 
         units = _parse_units(d.pop("units", UNSET))
 

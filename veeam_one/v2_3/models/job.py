@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
@@ -13,15 +15,15 @@ T = TypeVar("T", bound="Job")
 class Job:
     """
     Attributes:
-        job_uid (Union[None, UUID, Unset]): UID assigned to a job.
-        job_name (Union[None, Unset, str]): Name of a job.
+        job_uid (None | Unset | UUID): UID assigned to a job.
+        job_name (None | str | Unset): Name of a job.
     """
 
-    job_uid: Union[None, UUID, Unset] = UNSET
-    job_name: Union[None, Unset, str] = UNSET
+    job_uid: None | Unset | UUID = UNSET
+    job_name: None | str | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
-        job_uid: Union[None, Unset, str]
+        job_uid: None | str | Unset
         if isinstance(self.job_uid, Unset):
             job_uid = UNSET
         elif isinstance(self.job_uid, UUID):
@@ -29,7 +31,7 @@ class Job:
         else:
             job_uid = self.job_uid
 
-        job_name: Union[None, Unset, str]
+        job_name: None | str | Unset
         if isinstance(self.job_name, Unset):
             job_name = UNSET
         else:
@@ -49,7 +51,7 @@ class Job:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
 
-        def _parse_job_uid(data: object) -> Union[None, UUID, Unset]:
+        def _parse_job_uid(data: object) -> None | Unset | UUID:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -60,18 +62,18 @@ class Job:
                 job_uid_type_0 = UUID(data)
 
                 return job_uid_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, UUID, Unset], data)
+            return cast(None | Unset | UUID, data)
 
         job_uid = _parse_job_uid(d.pop("jobUid", UNSET))
 
-        def _parse_job_name(data: object) -> Union[None, Unset, str]:
+        def _parse_job_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         job_name = _parse_job_name(d.pop("jobName", UNSET))
 

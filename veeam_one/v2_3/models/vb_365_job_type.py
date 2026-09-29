@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class Vb365JobType(str, Enum):
+class Vb365JobType(StrEnum):
     BACKUPCOPYJOB = "BackupCopyJob"
     BACKUPJOB = "BackupJob"
     UNKNOWN = "Unknown"

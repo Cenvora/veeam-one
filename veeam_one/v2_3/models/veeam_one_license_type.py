@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class VeeamOneLicenseType(str, Enum):
+class VeeamOneLicenseType(StrEnum):
     EVALUATION = "Evaluation"
     FREE = "Free"
     NFR = "Nfr"

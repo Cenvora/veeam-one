@@ -1,5 +1,6 @@
 from http import HTTPStatus
-from typing import Any, Optional, Union
+from typing import Any
+from urllib.parse import quote
 
 import httpx
 
@@ -13,17 +14,20 @@ from ...types import Response
 def _get_kwargs(
     object_id: int,
 ) -> dict[str, Any]:
+
     _kwargs: dict[str, Any] = {
         "method": "get",
-        "url": f"/api/v2.3/vbr/objectRelations/{object_id}",
+        "url": "/api/v2.3/vbr/objectRelations/{object_id}".format(
+            object_id=quote(str(object_id), safe=""),
+        ),
     }
 
     return _kwargs
 
 
 def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[ProblemDetails, VbrObjectRelationsInfo]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> ProblemDetails | VbrObjectRelationsInfo | None:
     if response.status_code == 200:
         response_200 = VbrObjectRelationsInfo.from_dict(response.json())
 
@@ -41,8 +45,8 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[ProblemDetails, VbrObjectRelationsInfo]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[ProblemDetails | VbrObjectRelationsInfo]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -54,8 +58,8 @@ def _build_response(
 def sync_detailed(
     object_id: int,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[ProblemDetails, VbrObjectRelationsInfo]]:
+    client: AuthenticatedClient | Client,
+) -> Response[ProblemDetails | VbrObjectRelationsInfo]:
     """Get Relations of Infrastructure Object
 
      Returns a resource representation of a Veeam Backup & Replication infrastructure object with the
@@ -69,7 +73,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[ProblemDetails, VbrObjectRelationsInfo]]
+        Response[ProblemDetails | VbrObjectRelationsInfo]
     """
 
     kwargs = _get_kwargs(
@@ -86,8 +90,8 @@ def sync_detailed(
 def sync(
     object_id: int,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[ProblemDetails, VbrObjectRelationsInfo]]:
+    client: AuthenticatedClient | Client,
+) -> ProblemDetails | VbrObjectRelationsInfo | None:
     """Get Relations of Infrastructure Object
 
      Returns a resource representation of a Veeam Backup & Replication infrastructure object with the
@@ -101,7 +105,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[ProblemDetails, VbrObjectRelationsInfo]
+        ProblemDetails | VbrObjectRelationsInfo
     """
 
     return sync_detailed(
@@ -113,8 +117,8 @@ def sync(
 async def asyncio_detailed(
     object_id: int,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[ProblemDetails, VbrObjectRelationsInfo]]:
+    client: AuthenticatedClient | Client,
+) -> Response[ProblemDetails | VbrObjectRelationsInfo]:
     """Get Relations of Infrastructure Object
 
      Returns a resource representation of a Veeam Backup & Replication infrastructure object with the
@@ -128,7 +132,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[ProblemDetails, VbrObjectRelationsInfo]]
+        Response[ProblemDetails | VbrObjectRelationsInfo]
     """
 
     kwargs = _get_kwargs(
@@ -143,8 +147,8 @@ async def asyncio_detailed(
 async def asyncio(
     object_id: int,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[ProblemDetails, VbrObjectRelationsInfo]]:
+    client: AuthenticatedClient | Client,
+) -> ProblemDetails | VbrObjectRelationsInfo | None:
     """Get Relations of Infrastructure Object
 
      Returns a resource representation of a Veeam Backup & Replication infrastructure object with the
@@ -158,7 +162,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[ProblemDetails, VbrObjectRelationsInfo]
+        ProblemDetails | VbrObjectRelationsInfo
     """
 
     return (

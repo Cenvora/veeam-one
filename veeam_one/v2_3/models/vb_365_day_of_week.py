@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class Vb365DayOfWeek(str, Enum):
+class Vb365DayOfWeek(StrEnum):
     FRIDAY = "Friday"
     MONDAY = "Monday"
     SATURDAY = "Saturday"

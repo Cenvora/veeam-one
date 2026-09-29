@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class CollectingObjectType(str, Enum):
+class CollectingObjectType(StrEnum):
     ENTERPRISEMANAGER = "EnterpriseManager"
     HYPERVFAILOVERCLUSTER = "HyperVFailoverCluster"
     HYPERVHOST = "HyperVHost"

@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class AlarmTemplateType(str, Enum):
+class AlarmTemplateType(StrEnum):
     CLOUDDIRECTORORGANIZATION = "CloudDirectorOrganization"
     CLOUDDIRECTORORGANIZATIONVDC = "CloudDirectorOrganizationVdc"
     CLOUDDIRECTORPROVIDERVDC = "CloudDirectorProviderVdc"

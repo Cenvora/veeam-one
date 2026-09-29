@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class HyperVHostPowerState(str, Enum):
+class HyperVHostPowerState(StrEnum):
     POWEREDOFF = "PoweredOff"
     POWEREDON = "PoweredOn"
     STANDBY = "Standby"

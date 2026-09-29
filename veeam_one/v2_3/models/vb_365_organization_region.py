@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class Vb365OrganizationRegion(str, Enum):
+class Vb365OrganizationRegion(StrEnum):
     CHINA = "China"
     GERMANY = "Germany"
     UNKNOWN = "Unknown"

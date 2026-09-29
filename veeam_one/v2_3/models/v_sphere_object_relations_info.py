@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 
@@ -13,47 +15,47 @@ T = TypeVar("T", bound="VSphereObjectRelationsInfo")
 class VSphereObjectRelationsInfo:
     """
     Attributes:
-        object_id (Union[Unset, int]): ID assigned to an object.
-        object_name (Union[None, Unset, str]): Name of an object.
-        object_type (Union[Unset, VSphereObjectType]):
-        parent_id (Union[None, Unset, int]): ID assigned to a parent object.
-        parent_name (Union[None, Unset, str]): Name of a parent object.
-        parent_type (Union[None, Unset, VSphereObjectType]): Type of a parent object.
+        object_id (int | Unset): ID assigned to an object.
+        object_name (None | str | Unset): Name of an object.
+        object_type (VSphereObjectType | Unset):
+        parent_id (int | None | Unset): ID assigned to a parent object.
+        parent_name (None | str | Unset): Name of a parent object.
+        parent_type (None | Unset | VSphereObjectType): Type of a parent object.
     """
 
-    object_id: Union[Unset, int] = UNSET
-    object_name: Union[None, Unset, str] = UNSET
-    object_type: Union[Unset, VSphereObjectType] = UNSET
-    parent_id: Union[None, Unset, int] = UNSET
-    parent_name: Union[None, Unset, str] = UNSET
-    parent_type: Union[None, Unset, VSphereObjectType] = UNSET
+    object_id: int | Unset = UNSET
+    object_name: None | str | Unset = UNSET
+    object_type: VSphereObjectType | Unset = UNSET
+    parent_id: int | None | Unset = UNSET
+    parent_name: None | str | Unset = UNSET
+    parent_type: None | Unset | VSphereObjectType = UNSET
 
     def to_dict(self) -> dict[str, Any]:
         object_id = self.object_id
 
-        object_name: Union[None, Unset, str]
+        object_name: None | str | Unset
         if isinstance(self.object_name, Unset):
             object_name = UNSET
         else:
             object_name = self.object_name
 
-        object_type: Union[Unset, str] = UNSET
+        object_type: str | Unset = UNSET
         if not isinstance(self.object_type, Unset):
             object_type = self.object_type.value
 
-        parent_id: Union[None, Unset, int]
+        parent_id: int | None | Unset
         if isinstance(self.parent_id, Unset):
             parent_id = UNSET
         else:
             parent_id = self.parent_id
 
-        parent_name: Union[None, Unset, str]
+        parent_name: None | str | Unset
         if isinstance(self.parent_name, Unset):
             parent_name = UNSET
         else:
             parent_name = self.parent_name
 
-        parent_type: Union[None, Unset, str]
+        parent_type: None | str | Unset
         if isinstance(self.parent_type, Unset):
             parent_type = UNSET
         elif isinstance(self.parent_type, VSphereObjectType):
@@ -84,41 +86,41 @@ class VSphereObjectRelationsInfo:
         d = dict(src_dict)
         object_id = d.pop("objectId", UNSET)
 
-        def _parse_object_name(data: object) -> Union[None, Unset, str]:
+        def _parse_object_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         object_name = _parse_object_name(d.pop("objectName", UNSET))
 
         _object_type = d.pop("objectType", UNSET)
-        object_type: Union[Unset, VSphereObjectType]
+        object_type: VSphereObjectType | Unset
         if isinstance(_object_type, Unset):
             object_type = UNSET
         else:
             object_type = VSphereObjectType(_object_type)
 
-        def _parse_parent_id(data: object) -> Union[None, Unset, int]:
+        def _parse_parent_id(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         parent_id = _parse_parent_id(d.pop("parentId", UNSET))
 
-        def _parse_parent_name(data: object) -> Union[None, Unset, str]:
+        def _parse_parent_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         parent_name = _parse_parent_name(d.pop("parentName", UNSET))
 
-        def _parse_parent_type(data: object) -> Union[None, Unset, VSphereObjectType]:
+        def _parse_parent_type(data: object) -> None | Unset | VSphereObjectType:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -129,9 +131,9 @@ class VSphereObjectRelationsInfo:
                 parent_type_type_1 = VSphereObjectType(data)
 
                 return parent_type_type_1
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, VSphereObjectType], data)
+            return cast(None | Unset | VSphereObjectType, data)
 
         parent_type = _parse_parent_type(d.pop("parentType", UNSET))
 

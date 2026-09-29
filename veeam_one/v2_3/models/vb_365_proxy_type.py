@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class Vb365ProxyType(str, Enum):
+class Vb365ProxyType(StrEnum):
     DOMAIN = "Domain"
     LOCAL = "Local"
     UNKNOWN = "Unknown"

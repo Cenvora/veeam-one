@@ -1,10 +1,11 @@
+from __future__ import annotations
+
 import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
-from dateutil.parser import isoparse
 
 from ..types import UNSET, Unset
 
@@ -15,42 +16,42 @@ T = TypeVar("T", bound="ProtectedComputerBackupRestorePointInfo")
 class ProtectedComputerBackupRestorePointInfo:
     """
     Attributes:
-        restore_point_uid (Union[Unset, UUID]): UID assigned to a restore point.
-        computer_uid_in_vbr (Union[None, UUID, Unset]): UID assigned to a protected computer.
-        backup_uid (Union[None, UUID, Unset]): UID assigned to a backup chain.
-        job_uid (Union[None, UUID, Unset]): UID assigned to a backup job.
-        job_name (Union[None, Unset, str]): Name of a backup job.
-        repository_uid (Union[None, UUID, Unset]): UID assigned to a repository on which a restore point resides.
-        size_bytes (Union[None, Unset, int]): Size of a restore point, in bytes.
-        source_size_bytes (Union[None, Unset, int]): Total size of protected computer disks included in a restore point,
-            in bytes.
-        original_size_bytes (Union[None, Unset, int]): Initial size of protected data, in bytes.
-        backup_creation_date (Union[None, Unset, datetime.datetime]): Time and date when backup was created.
-        is_incremental (Union[None, Unset, bool]): Indicates whether a restore point is an increment.
-        immutable_till (Union[None, Unset, datetime.datetime]): Date and time till which a restore point is immutable.
-        file_creation_time (Union[None, Unset, datetime.datetime]): Date and time when a restore point was created.
+        restore_point_uid (UUID | Unset): UID assigned to a restore point.
+        computer_uid_in_vbr (None | Unset | UUID): UID assigned to a protected computer.
+        backup_uid (None | Unset | UUID): UID assigned to a backup chain.
+        job_uid (None | Unset | UUID): UID assigned to a backup job.
+        job_name (None | str | Unset): Name of a backup job.
+        repository_uid (None | Unset | UUID): UID assigned to a repository on which a restore point resides.
+        size_bytes (int | None | Unset): Size of a restore point, in bytes.
+        source_size_bytes (int | None | Unset): Total size of protected computer disks included in a restore point, in
+            bytes.
+        original_size_bytes (int | None | Unset): Initial size of protected data, in bytes.
+        backup_creation_date (datetime.datetime | None | Unset): Time and date when backup was created.
+        is_incremental (bool | None | Unset): Indicates whether a restore point is an increment.
+        immutable_till (datetime.datetime | None | Unset): Date and time till which a restore point is immutable.
+        file_creation_time (datetime.datetime | None | Unset): Date and time when a restore point was created.
     """
 
-    restore_point_uid: Union[Unset, UUID] = UNSET
-    computer_uid_in_vbr: Union[None, UUID, Unset] = UNSET
-    backup_uid: Union[None, UUID, Unset] = UNSET
-    job_uid: Union[None, UUID, Unset] = UNSET
-    job_name: Union[None, Unset, str] = UNSET
-    repository_uid: Union[None, UUID, Unset] = UNSET
-    size_bytes: Union[None, Unset, int] = UNSET
-    source_size_bytes: Union[None, Unset, int] = UNSET
-    original_size_bytes: Union[None, Unset, int] = UNSET
-    backup_creation_date: Union[None, Unset, datetime.datetime] = UNSET
-    is_incremental: Union[None, Unset, bool] = UNSET
-    immutable_till: Union[None, Unset, datetime.datetime] = UNSET
-    file_creation_time: Union[None, Unset, datetime.datetime] = UNSET
+    restore_point_uid: UUID | Unset = UNSET
+    computer_uid_in_vbr: None | Unset | UUID = UNSET
+    backup_uid: None | Unset | UUID = UNSET
+    job_uid: None | Unset | UUID = UNSET
+    job_name: None | str | Unset = UNSET
+    repository_uid: None | Unset | UUID = UNSET
+    size_bytes: int | None | Unset = UNSET
+    source_size_bytes: int | None | Unset = UNSET
+    original_size_bytes: int | None | Unset = UNSET
+    backup_creation_date: datetime.datetime | None | Unset = UNSET
+    is_incremental: bool | None | Unset = UNSET
+    immutable_till: datetime.datetime | None | Unset = UNSET
+    file_creation_time: datetime.datetime | None | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
-        restore_point_uid: Union[Unset, str] = UNSET
+        restore_point_uid: str | Unset = UNSET
         if not isinstance(self.restore_point_uid, Unset):
             restore_point_uid = str(self.restore_point_uid)
 
-        computer_uid_in_vbr: Union[None, Unset, str]
+        computer_uid_in_vbr: None | str | Unset
         if isinstance(self.computer_uid_in_vbr, Unset):
             computer_uid_in_vbr = UNSET
         elif isinstance(self.computer_uid_in_vbr, UUID):
@@ -58,7 +59,7 @@ class ProtectedComputerBackupRestorePointInfo:
         else:
             computer_uid_in_vbr = self.computer_uid_in_vbr
 
-        backup_uid: Union[None, Unset, str]
+        backup_uid: None | str | Unset
         if isinstance(self.backup_uid, Unset):
             backup_uid = UNSET
         elif isinstance(self.backup_uid, UUID):
@@ -66,7 +67,7 @@ class ProtectedComputerBackupRestorePointInfo:
         else:
             backup_uid = self.backup_uid
 
-        job_uid: Union[None, Unset, str]
+        job_uid: None | str | Unset
         if isinstance(self.job_uid, Unset):
             job_uid = UNSET
         elif isinstance(self.job_uid, UUID):
@@ -74,13 +75,13 @@ class ProtectedComputerBackupRestorePointInfo:
         else:
             job_uid = self.job_uid
 
-        job_name: Union[None, Unset, str]
+        job_name: None | str | Unset
         if isinstance(self.job_name, Unset):
             job_name = UNSET
         else:
             job_name = self.job_name
 
-        repository_uid: Union[None, Unset, str]
+        repository_uid: None | str | Unset
         if isinstance(self.repository_uid, Unset):
             repository_uid = UNSET
         elif isinstance(self.repository_uid, UUID):
@@ -88,25 +89,25 @@ class ProtectedComputerBackupRestorePointInfo:
         else:
             repository_uid = self.repository_uid
 
-        size_bytes: Union[None, Unset, int]
+        size_bytes: int | None | Unset
         if isinstance(self.size_bytes, Unset):
             size_bytes = UNSET
         else:
             size_bytes = self.size_bytes
 
-        source_size_bytes: Union[None, Unset, int]
+        source_size_bytes: int | None | Unset
         if isinstance(self.source_size_bytes, Unset):
             source_size_bytes = UNSET
         else:
             source_size_bytes = self.source_size_bytes
 
-        original_size_bytes: Union[None, Unset, int]
+        original_size_bytes: int | None | Unset
         if isinstance(self.original_size_bytes, Unset):
             original_size_bytes = UNSET
         else:
             original_size_bytes = self.original_size_bytes
 
-        backup_creation_date: Union[None, Unset, str]
+        backup_creation_date: None | str | Unset
         if isinstance(self.backup_creation_date, Unset):
             backup_creation_date = UNSET
         elif isinstance(self.backup_creation_date, datetime.datetime):
@@ -114,13 +115,13 @@ class ProtectedComputerBackupRestorePointInfo:
         else:
             backup_creation_date = self.backup_creation_date
 
-        is_incremental: Union[None, Unset, bool]
+        is_incremental: bool | None | Unset
         if isinstance(self.is_incremental, Unset):
             is_incremental = UNSET
         else:
             is_incremental = self.is_incremental
 
-        immutable_till: Union[None, Unset, str]
+        immutable_till: None | str | Unset
         if isinstance(self.immutable_till, Unset):
             immutable_till = UNSET
         elif isinstance(self.immutable_till, datetime.datetime):
@@ -128,7 +129,7 @@ class ProtectedComputerBackupRestorePointInfo:
         else:
             immutable_till = self.immutable_till
 
-        file_creation_time: Union[None, Unset, str]
+        file_creation_time: None | str | Unset
         if isinstance(self.file_creation_time, Unset):
             file_creation_time = UNSET
         elif isinstance(self.file_creation_time, datetime.datetime):
@@ -172,13 +173,13 @@ class ProtectedComputerBackupRestorePointInfo:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
         _restore_point_uid = d.pop("restorePointUid", UNSET)
-        restore_point_uid: Union[Unset, UUID]
+        restore_point_uid: UUID | Unset
         if isinstance(_restore_point_uid, Unset):
             restore_point_uid = UNSET
         else:
             restore_point_uid = UUID(_restore_point_uid)
 
-        def _parse_computer_uid_in_vbr(data: object) -> Union[None, UUID, Unset]:
+        def _parse_computer_uid_in_vbr(data: object) -> None | Unset | UUID:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -189,13 +190,13 @@ class ProtectedComputerBackupRestorePointInfo:
                 computer_uid_in_vbr_type_0 = UUID(data)
 
                 return computer_uid_in_vbr_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, UUID, Unset], data)
+            return cast(None | Unset | UUID, data)
 
         computer_uid_in_vbr = _parse_computer_uid_in_vbr(d.pop("computerUidInVbr", UNSET))
 
-        def _parse_backup_uid(data: object) -> Union[None, UUID, Unset]:
+        def _parse_backup_uid(data: object) -> None | Unset | UUID:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -206,13 +207,13 @@ class ProtectedComputerBackupRestorePointInfo:
                 backup_uid_type_0 = UUID(data)
 
                 return backup_uid_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, UUID, Unset], data)
+            return cast(None | Unset | UUID, data)
 
         backup_uid = _parse_backup_uid(d.pop("backupUid", UNSET))
 
-        def _parse_job_uid(data: object) -> Union[None, UUID, Unset]:
+        def _parse_job_uid(data: object) -> None | Unset | UUID:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -223,22 +224,22 @@ class ProtectedComputerBackupRestorePointInfo:
                 job_uid_type_0 = UUID(data)
 
                 return job_uid_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, UUID, Unset], data)
+            return cast(None | Unset | UUID, data)
 
         job_uid = _parse_job_uid(d.pop("jobUid", UNSET))
 
-        def _parse_job_name(data: object) -> Union[None, Unset, str]:
+        def _parse_job_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         job_name = _parse_job_name(d.pop("jobName", UNSET))
 
-        def _parse_repository_uid(data: object) -> Union[None, UUID, Unset]:
+        def _parse_repository_uid(data: object) -> None | Unset | UUID:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -249,40 +250,40 @@ class ProtectedComputerBackupRestorePointInfo:
                 repository_uid_type_0 = UUID(data)
 
                 return repository_uid_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, UUID, Unset], data)
+            return cast(None | Unset | UUID, data)
 
         repository_uid = _parse_repository_uid(d.pop("repositoryUid", UNSET))
 
-        def _parse_size_bytes(data: object) -> Union[None, Unset, int]:
+        def _parse_size_bytes(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         size_bytes = _parse_size_bytes(d.pop("sizeBytes", UNSET))
 
-        def _parse_source_size_bytes(data: object) -> Union[None, Unset, int]:
+        def _parse_source_size_bytes(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         source_size_bytes = _parse_source_size_bytes(d.pop("sourceSizeBytes", UNSET))
 
-        def _parse_original_size_bytes(data: object) -> Union[None, Unset, int]:
+        def _parse_original_size_bytes(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         original_size_bytes = _parse_original_size_bytes(d.pop("originalSizeBytes", UNSET))
 
-        def _parse_backup_creation_date(data: object) -> Union[None, Unset, datetime.datetime]:
+        def _parse_backup_creation_date(data: object) -> datetime.datetime | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -290,25 +291,25 @@ class ProtectedComputerBackupRestorePointInfo:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                backup_creation_date_type_0 = isoparse(data)
+                backup_creation_date_type_0 = datetime.datetime.fromisoformat(data)
 
                 return backup_creation_date_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, datetime.datetime], data)
+            return cast(datetime.datetime | None | Unset, data)
 
         backup_creation_date = _parse_backup_creation_date(d.pop("backupCreationDate", UNSET))
 
-        def _parse_is_incremental(data: object) -> Union[None, Unset, bool]:
+        def _parse_is_incremental(data: object) -> bool | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, bool], data)
+            return cast(bool | None | Unset, data)
 
         is_incremental = _parse_is_incremental(d.pop("isIncremental", UNSET))
 
-        def _parse_immutable_till(data: object) -> Union[None, Unset, datetime.datetime]:
+        def _parse_immutable_till(data: object) -> datetime.datetime | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -316,16 +317,16 @@ class ProtectedComputerBackupRestorePointInfo:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                immutable_till_type_0 = isoparse(data)
+                immutable_till_type_0 = datetime.datetime.fromisoformat(data)
 
                 return immutable_till_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, datetime.datetime], data)
+            return cast(datetime.datetime | None | Unset, data)
 
         immutable_till = _parse_immutable_till(d.pop("immutableTill", UNSET))
 
-        def _parse_file_creation_time(data: object) -> Union[None, Unset, datetime.datetime]:
+        def _parse_file_creation_time(data: object) -> datetime.datetime | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -333,12 +334,12 @@ class ProtectedComputerBackupRestorePointInfo:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                file_creation_time_type_0 = isoparse(data)
+                file_creation_time_type_0 = datetime.datetime.fromisoformat(data)
 
                 return file_creation_time_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, datetime.datetime], data)
+            return cast(datetime.datetime | None | Unset, data)
 
         file_creation_time = _parse_file_creation_time(d.pop("fileCreationTime", UNSET))
 

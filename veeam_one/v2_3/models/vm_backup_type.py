@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class VmBackupType(str, Enum):
+class VmBackupType(StrEnum):
     BACKUPCOPYIMMEDIATE = "BackupCopyImmediate"
     BACKUPCOPYIMMEDIATEPARENTWORKER = "BackupCopyImmediateParentWorker"
     BACKUPCOPYIMMEDIATEWORKER = "BackupCopyImmediateWorker"

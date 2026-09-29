@@ -1,10 +1,11 @@
+from __future__ import annotations
+
 import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
-from dateutil.parser import isoparse
 
 from ..types import UNSET, Unset
 
@@ -15,56 +16,55 @@ T = TypeVar("T", bound="Vb365ProtectedTeamInfo")
 class Vb365ProtectedTeamInfo:
     """
     Attributes:
-        team_uid (Union[Unset, UUID]): UID assigned to a team.
-        team_name (Union[None, Unset, str]): Name of a team.
-        description (Union[None, Unset, str]): Description of a team.
-        email (Union[None, Unset, str]): Email address of a team.
-        organization_uid (Union[Unset, UUID]): UID assigned to a Microsoft organization.
-        organization_name (Union[None, Unset, str]): Name of a Microsoft organization.
-        vb_365_server_id (Union[Unset, int]): ID assigned to a Veeam Backup for Microsoft 365 server.
-        vb_365_server_name (Union[None, Unset, str]): Name of a Veeam Backup for Microsoft 365 server.
-        last_protected_date (Union[None, Unset, datetime.datetime]): Date and time when the latest restore point was
-            created.
+        team_uid (UUID | Unset): UID assigned to a team.
+        team_name (None | str | Unset): Name of a team.
+        description (None | str | Unset): Description of a team.
+        email (None | str | Unset): Email address of a team.
+        organization_uid (UUID | Unset): UID assigned to a Microsoft organization.
+        organization_name (None | str | Unset): Name of a Microsoft organization.
+        vb_365_server_id (int | Unset): ID assigned to a Veeam Backup for Microsoft 365 server.
+        vb_365_server_name (None | str | Unset): Name of a Veeam Backup for Microsoft 365 server.
+        last_protected_date (datetime.datetime | None | Unset): Date and time when the latest restore point was created.
     """
 
-    team_uid: Union[Unset, UUID] = UNSET
-    team_name: Union[None, Unset, str] = UNSET
-    description: Union[None, Unset, str] = UNSET
-    email: Union[None, Unset, str] = UNSET
-    organization_uid: Union[Unset, UUID] = UNSET
-    organization_name: Union[None, Unset, str] = UNSET
-    vb_365_server_id: Union[Unset, int] = UNSET
-    vb_365_server_name: Union[None, Unset, str] = UNSET
-    last_protected_date: Union[None, Unset, datetime.datetime] = UNSET
+    team_uid: UUID | Unset = UNSET
+    team_name: None | str | Unset = UNSET
+    description: None | str | Unset = UNSET
+    email: None | str | Unset = UNSET
+    organization_uid: UUID | Unset = UNSET
+    organization_name: None | str | Unset = UNSET
+    vb_365_server_id: int | Unset = UNSET
+    vb_365_server_name: None | str | Unset = UNSET
+    last_protected_date: datetime.datetime | None | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
-        team_uid: Union[Unset, str] = UNSET
+        team_uid: str | Unset = UNSET
         if not isinstance(self.team_uid, Unset):
             team_uid = str(self.team_uid)
 
-        team_name: Union[None, Unset, str]
+        team_name: None | str | Unset
         if isinstance(self.team_name, Unset):
             team_name = UNSET
         else:
             team_name = self.team_name
 
-        description: Union[None, Unset, str]
+        description: None | str | Unset
         if isinstance(self.description, Unset):
             description = UNSET
         else:
             description = self.description
 
-        email: Union[None, Unset, str]
+        email: None | str | Unset
         if isinstance(self.email, Unset):
             email = UNSET
         else:
             email = self.email
 
-        organization_uid: Union[Unset, str] = UNSET
+        organization_uid: str | Unset = UNSET
         if not isinstance(self.organization_uid, Unset):
             organization_uid = str(self.organization_uid)
 
-        organization_name: Union[None, Unset, str]
+        organization_name: None | str | Unset
         if isinstance(self.organization_name, Unset):
             organization_name = UNSET
         else:
@@ -72,13 +72,13 @@ class Vb365ProtectedTeamInfo:
 
         vb_365_server_id = self.vb_365_server_id
 
-        vb_365_server_name: Union[None, Unset, str]
+        vb_365_server_name: None | str | Unset
         if isinstance(self.vb_365_server_name, Unset):
             vb_365_server_name = UNSET
         else:
             vb_365_server_name = self.vb_365_server_name
 
-        last_protected_date: Union[None, Unset, str]
+        last_protected_date: None | str | Unset
         if isinstance(self.last_protected_date, Unset):
             last_protected_date = UNSET
         elif isinstance(self.last_protected_date, datetime.datetime):
@@ -114,67 +114,67 @@ class Vb365ProtectedTeamInfo:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
         _team_uid = d.pop("teamUid", UNSET)
-        team_uid: Union[Unset, UUID]
+        team_uid: UUID | Unset
         if isinstance(_team_uid, Unset):
             team_uid = UNSET
         else:
             team_uid = UUID(_team_uid)
 
-        def _parse_team_name(data: object) -> Union[None, Unset, str]:
+        def _parse_team_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         team_name = _parse_team_name(d.pop("teamName", UNSET))
 
-        def _parse_description(data: object) -> Union[None, Unset, str]:
+        def _parse_description(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         description = _parse_description(d.pop("description", UNSET))
 
-        def _parse_email(data: object) -> Union[None, Unset, str]:
+        def _parse_email(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         email = _parse_email(d.pop("email", UNSET))
 
         _organization_uid = d.pop("organizationUid", UNSET)
-        organization_uid: Union[Unset, UUID]
+        organization_uid: UUID | Unset
         if isinstance(_organization_uid, Unset):
             organization_uid = UNSET
         else:
             organization_uid = UUID(_organization_uid)
 
-        def _parse_organization_name(data: object) -> Union[None, Unset, str]:
+        def _parse_organization_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         organization_name = _parse_organization_name(d.pop("organizationName", UNSET))
 
         vb_365_server_id = d.pop("vb365ServerId", UNSET)
 
-        def _parse_vb_365_server_name(data: object) -> Union[None, Unset, str]:
+        def _parse_vb_365_server_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         vb_365_server_name = _parse_vb_365_server_name(d.pop("vb365ServerName", UNSET))
 
-        def _parse_last_protected_date(data: object) -> Union[None, Unset, datetime.datetime]:
+        def _parse_last_protected_date(data: object) -> datetime.datetime | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -182,12 +182,12 @@ class Vb365ProtectedTeamInfo:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                last_protected_date_type_0 = isoparse(data)
+                last_protected_date_type_0 = datetime.datetime.fromisoformat(data)
 
                 return last_protected_date_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, datetime.datetime], data)
+            return cast(datetime.datetime | None | Unset, data)
 
         last_protected_date = _parse_last_protected_date(d.pop("lastProtectedDate", UNSET))
 

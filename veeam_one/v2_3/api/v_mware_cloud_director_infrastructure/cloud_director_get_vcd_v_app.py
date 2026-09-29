@@ -1,5 +1,6 @@
 from http import HTTPStatus
-from typing import Any, Optional, Union
+from typing import Any
+from urllib.parse import quote
 
 import httpx
 
@@ -13,17 +14,20 @@ from ...types import Response
 def _get_kwargs(
     v_app_id: int,
 ) -> dict[str, Any]:
+
     _kwargs: dict[str, Any] = {
         "method": "get",
-        "url": f"/api/v2.3/cloudDirector/vApps/{v_app_id}",
+        "url": "/api/v2.3/cloudDirector/vApps/{v_app_id}".format(
+            v_app_id=quote(str(v_app_id), safe=""),
+        ),
     }
 
     return _kwargs
 
 
 def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[CloudDirectorVAppInfo, ProblemDetails]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> CloudDirectorVAppInfo | ProblemDetails | None:
     if response.status_code == 200:
         response_200 = CloudDirectorVAppInfo.from_dict(response.json())
 
@@ -41,8 +45,8 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[CloudDirectorVAppInfo, ProblemDetails]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[CloudDirectorVAppInfo | ProblemDetails]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -54,8 +58,8 @@ def _build_response(
 def sync_detailed(
     v_app_id: int,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[CloudDirectorVAppInfo, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+) -> Response[CloudDirectorVAppInfo | ProblemDetails]:
     """Get vApp
 
      Returns a resource representation of a vApp with the specified ID.
@@ -68,7 +72,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[CloudDirectorVAppInfo, ProblemDetails]]
+        Response[CloudDirectorVAppInfo | ProblemDetails]
     """
 
     kwargs = _get_kwargs(
@@ -85,8 +89,8 @@ def sync_detailed(
 def sync(
     v_app_id: int,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[CloudDirectorVAppInfo, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+) -> CloudDirectorVAppInfo | ProblemDetails | None:
     """Get vApp
 
      Returns a resource representation of a vApp with the specified ID.
@@ -99,7 +103,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[CloudDirectorVAppInfo, ProblemDetails]
+        CloudDirectorVAppInfo | ProblemDetails
     """
 
     return sync_detailed(
@@ -111,8 +115,8 @@ def sync(
 async def asyncio_detailed(
     v_app_id: int,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[CloudDirectorVAppInfo, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+) -> Response[CloudDirectorVAppInfo | ProblemDetails]:
     """Get vApp
 
      Returns a resource representation of a vApp with the specified ID.
@@ -125,7 +129,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[CloudDirectorVAppInfo, ProblemDetails]]
+        Response[CloudDirectorVAppInfo | ProblemDetails]
     """
 
     kwargs = _get_kwargs(
@@ -140,8 +144,8 @@ async def asyncio_detailed(
 async def asyncio(
     v_app_id: int,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[CloudDirectorVAppInfo, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+) -> CloudDirectorVAppInfo | ProblemDetails | None:
     """Get vApp
 
      Returns a resource representation of a vApp with the specified ID.
@@ -154,7 +158,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[CloudDirectorVAppInfo, ProblemDetails]
+        CloudDirectorVAppInfo | ProblemDetails
     """
 
     return (

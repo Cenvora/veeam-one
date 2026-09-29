@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 
@@ -13,30 +15,29 @@ T = TypeVar("T", bound="CloudVmInfo")
 class CloudVmInfo:
     """
     Attributes:
-        resource_id (Union[None, Unset, str]): ID assigned to a VM on a cloud platform.
-        name (Union[None, Unset, str]): Name of a VM.
-        backup_server_id (Union[Unset, int]): ID assigned to a Veeam Backup & Replication server that manages VM
-            protection.
-        platform (Union[Unset, CloudPlatform]):
-        region (Union[None, Unset, str]): Region where a VM is located.
-        ip_addresses (Union[None, Unset, list[str]]): Array of VM IP addresses.
+        resource_id (None | str | Unset): ID assigned to a VM on a cloud platform.
+        name (None | str | Unset): Name of a VM.
+        backup_server_id (int | Unset): ID assigned to a Veeam Backup & Replication server that manages VM protection.
+        platform (CloudPlatform | Unset):
+        region (None | str | Unset): Region where a VM is located.
+        ip_addresses (list[str] | None | Unset): Array of VM IP addresses.
     """
 
-    resource_id: Union[None, Unset, str] = UNSET
-    name: Union[None, Unset, str] = UNSET
-    backup_server_id: Union[Unset, int] = UNSET
-    platform: Union[Unset, CloudPlatform] = UNSET
-    region: Union[None, Unset, str] = UNSET
-    ip_addresses: Union[None, Unset, list[str]] = UNSET
+    resource_id: None | str | Unset = UNSET
+    name: None | str | Unset = UNSET
+    backup_server_id: int | Unset = UNSET
+    platform: CloudPlatform | Unset = UNSET
+    region: None | str | Unset = UNSET
+    ip_addresses: list[str] | None | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
-        resource_id: Union[None, Unset, str]
+        resource_id: None | str | Unset
         if isinstance(self.resource_id, Unset):
             resource_id = UNSET
         else:
             resource_id = self.resource_id
 
-        name: Union[None, Unset, str]
+        name: None | str | Unset
         if isinstance(self.name, Unset):
             name = UNSET
         else:
@@ -44,17 +45,17 @@ class CloudVmInfo:
 
         backup_server_id = self.backup_server_id
 
-        platform: Union[Unset, str] = UNSET
+        platform: str | Unset = UNSET
         if not isinstance(self.platform, Unset):
             platform = self.platform.value
 
-        region: Union[None, Unset, str]
+        region: None | str | Unset
         if isinstance(self.region, Unset):
             region = UNSET
         else:
             region = self.region
 
-        ip_addresses: Union[None, Unset, list[str]]
+        ip_addresses: list[str] | None | Unset
         if isinstance(self.ip_addresses, Unset):
             ip_addresses = UNSET
         elif isinstance(self.ip_addresses, list):
@@ -85,43 +86,43 @@ class CloudVmInfo:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
 
-        def _parse_resource_id(data: object) -> Union[None, Unset, str]:
+        def _parse_resource_id(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         resource_id = _parse_resource_id(d.pop("resourceId", UNSET))
 
-        def _parse_name(data: object) -> Union[None, Unset, str]:
+        def _parse_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         name = _parse_name(d.pop("name", UNSET))
 
         backup_server_id = d.pop("backupServerId", UNSET)
 
         _platform = d.pop("platform", UNSET)
-        platform: Union[Unset, CloudPlatform]
+        platform: CloudPlatform | Unset
         if isinstance(_platform, Unset):
             platform = UNSET
         else:
             platform = CloudPlatform(_platform)
 
-        def _parse_region(data: object) -> Union[None, Unset, str]:
+        def _parse_region(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         region = _parse_region(d.pop("region", UNSET))
 
-        def _parse_ip_addresses(data: object) -> Union[None, Unset, list[str]]:
+        def _parse_ip_addresses(data: object) -> list[str] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -132,9 +133,9 @@ class CloudVmInfo:
                 ip_addresses_type_0 = cast(list[str], data)
 
                 return ip_addresses_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, list[str]], data)
+            return cast(list[str] | None | Unset, data)
 
         ip_addresses = _parse_ip_addresses(d.pop("ipAddresses", UNSET))
 

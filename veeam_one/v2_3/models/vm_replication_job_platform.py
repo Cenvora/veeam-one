@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class VmReplicationJobPlatform(str, Enum):
+class VmReplicationJobPlatform(StrEnum):
     HYPERV = "HyperV"
     UNKNOWN = "Unknown"
     VSPHERE = "VSphere"

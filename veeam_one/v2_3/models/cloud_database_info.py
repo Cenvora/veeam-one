@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 
@@ -12,35 +14,35 @@ T = TypeVar("T", bound="CloudDatabaseInfo")
 class CloudDatabaseInfo:
     """
     Attributes:
-        resource_id (Union[None, Unset, str]): ID assigned to a database on cloud platform.
-        name (Union[None, Unset, str]): Name of a database.
-        platform (Union[Unset, Any]): Cloud platform on which a database resides.
-        instance_type (Union[Unset, Any]): Type of an instance.
-        engine_type (Union[None, Unset, str]): Database engine version.
-        backup_server_id (Union[Unset, int]): ID assigned to a Veeam Backup & Replication server.
-        backup_server_name (Union[None, Unset, str]): Name of a Veeam Backup & Replication server.
-        region (Union[None, Unset, str]): Region where a database is located.
-        size_bytes (Union[None, Unset, int]): Database storage capacity, in bytes.
+        resource_id (None | str | Unset): ID assigned to a database on cloud platform.
+        name (None | str | Unset): Name of a database.
+        platform (Any | Unset): Cloud platform on which a database resides.
+        instance_type (Any | Unset): Type of an instance.
+        engine_type (None | str | Unset): Database engine version.
+        backup_server_id (int | Unset): ID assigned to a Veeam Backup & Replication server.
+        backup_server_name (None | str | Unset): Name of a Veeam Backup & Replication server.
+        region (None | str | Unset): Region where a database is located.
+        size_bytes (int | None | Unset): Database storage capacity, in bytes.
     """
 
-    resource_id: Union[None, Unset, str] = UNSET
-    name: Union[None, Unset, str] = UNSET
-    platform: Union[Unset, Any] = UNSET
-    instance_type: Union[Unset, Any] = UNSET
-    engine_type: Union[None, Unset, str] = UNSET
-    backup_server_id: Union[Unset, int] = UNSET
-    backup_server_name: Union[None, Unset, str] = UNSET
-    region: Union[None, Unset, str] = UNSET
-    size_bytes: Union[None, Unset, int] = UNSET
+    resource_id: None | str | Unset = UNSET
+    name: None | str | Unset = UNSET
+    platform: Any | Unset = UNSET
+    instance_type: Any | Unset = UNSET
+    engine_type: None | str | Unset = UNSET
+    backup_server_id: int | Unset = UNSET
+    backup_server_name: None | str | Unset = UNSET
+    region: None | str | Unset = UNSET
+    size_bytes: int | None | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
-        resource_id: Union[None, Unset, str]
+        resource_id: None | str | Unset
         if isinstance(self.resource_id, Unset):
             resource_id = UNSET
         else:
             resource_id = self.resource_id
 
-        name: Union[None, Unset, str]
+        name: None | str | Unset
         if isinstance(self.name, Unset):
             name = UNSET
         else:
@@ -50,7 +52,7 @@ class CloudDatabaseInfo:
 
         instance_type = self.instance_type
 
-        engine_type: Union[None, Unset, str]
+        engine_type: None | str | Unset
         if isinstance(self.engine_type, Unset):
             engine_type = UNSET
         else:
@@ -58,19 +60,19 @@ class CloudDatabaseInfo:
 
         backup_server_id = self.backup_server_id
 
-        backup_server_name: Union[None, Unset, str]
+        backup_server_name: None | str | Unset
         if isinstance(self.backup_server_name, Unset):
             backup_server_name = UNSET
         else:
             backup_server_name = self.backup_server_name
 
-        region: Union[None, Unset, str]
+        region: None | str | Unset
         if isinstance(self.region, Unset):
             region = UNSET
         else:
             region = self.region
 
-        size_bytes: Union[None, Unset, int]
+        size_bytes: int | None | Unset
         if isinstance(self.size_bytes, Unset):
             size_bytes = UNSET
         else:
@@ -104,21 +106,21 @@ class CloudDatabaseInfo:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
 
-        def _parse_resource_id(data: object) -> Union[None, Unset, str]:
+        def _parse_resource_id(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         resource_id = _parse_resource_id(d.pop("resourceId", UNSET))
 
-        def _parse_name(data: object) -> Union[None, Unset, str]:
+        def _parse_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         name = _parse_name(d.pop("name", UNSET))
 
@@ -126,41 +128,41 @@ class CloudDatabaseInfo:
 
         instance_type = d.pop("instanceType", UNSET)
 
-        def _parse_engine_type(data: object) -> Union[None, Unset, str]:
+        def _parse_engine_type(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         engine_type = _parse_engine_type(d.pop("engineType", UNSET))
 
         backup_server_id = d.pop("backupServerId", UNSET)
 
-        def _parse_backup_server_name(data: object) -> Union[None, Unset, str]:
+        def _parse_backup_server_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         backup_server_name = _parse_backup_server_name(d.pop("backupServerName", UNSET))
 
-        def _parse_region(data: object) -> Union[None, Unset, str]:
+        def _parse_region(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         region = _parse_region(d.pop("region", UNSET))
 
-        def _parse_size_bytes(data: object) -> Union[None, Unset, int]:
+        def _parse_size_bytes(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         size_bytes = _parse_size_bytes(d.pop("sizeBytes", UNSET))
 

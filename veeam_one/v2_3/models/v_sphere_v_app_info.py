@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 
@@ -14,75 +16,73 @@ T = TypeVar("T", bound="VSphereVAppInfo")
 class VSphereVAppInfo:
     """
     Attributes:
-        v_app_id (Union[Unset, int]): ID assigned to a vApp.
-        mo_ref (Union[None, Unset, str]): MoRef ID assigned to a vApp in VMware vSphere.
-        name (Union[None, Unset, str]): Name of a vApp.
-        parent_id (Union[None, Unset, int]): ID assigned to a parent object.
-        parent_type (Union[None, Unset, VSphereObjectType]): Type of a parent object.
-        product_name (Union[None, Unset, str]): Name of a product associated with a vApp.
-        product_version (Union[None, Unset, str]): Version of a product associated with a vApp.
-        product_vendor (Union[None, Unset, str]): Name of a product vendor.
-        power_state (Union[Unset, VAppPowerState]):
-        cpu_reservation_mhz (Union[None, Unset, int]): CPU reservation configured for a vApp, in MHz.
-        cpu_unreserved_mhz (Union[None, Unset, int]): Amount of unreserved CPU resources, in MHz.
-        is_cpu_expandable (Union[None, Unset, bool]): Indicates whether a vApp CPU reservation is expandable.
-        cpu_limit_mhz (Union[None, Unset, int]): Maximum amount of CPU resources that can be allocated to a vApp, in
-            MHz.
-        cpu_shares (Union[None, Unset, int]): CPU share value.
-        cpu_usage_mhz (Union[None, Unset, int]): Number of actively used CPU resource, in MHz.
-        memory_reservation_mb (Union[None, Unset, int]): Memory reservation configured for a vApp, in MB.
-        memory_unreserved_bytes (Union[None, Unset, int]): Amount of unreserved memory resources, in bytes.
-        is_memory_expandable (Union[None, Unset, bool]): Indicates whether a vApp memory reservation is expandable.
-        memory_limit_mb (Union[None, Unset, int]): Maximum amount of memory resources that can be allocated to a vApp,
-            in MB.
-        memory_shares (Union[None, Unset, int]): Memory share value.
-        memory_usage_bytes (Union[None, Unset, int]): Amount of actively used memory resources, in bytes.
+        v_app_id (int | Unset): ID assigned to a vApp.
+        mo_ref (None | str | Unset): MoRef ID assigned to a vApp in VMware vSphere.
+        name (None | str | Unset): Name of a vApp.
+        parent_id (int | None | Unset): ID assigned to a parent object.
+        parent_type (None | Unset | VSphereObjectType): Type of a parent object.
+        product_name (None | str | Unset): Name of a product associated with a vApp.
+        product_version (None | str | Unset): Version of a product associated with a vApp.
+        product_vendor (None | str | Unset): Name of a product vendor.
+        power_state (VAppPowerState | Unset):
+        cpu_reservation_mhz (int | None | Unset): CPU reservation configured for a vApp, in MHz.
+        cpu_unreserved_mhz (int | None | Unset): Amount of unreserved CPU resources, in MHz.
+        is_cpu_expandable (bool | None | Unset): Indicates whether a vApp CPU reservation is expandable.
+        cpu_limit_mhz (int | None | Unset): Maximum amount of CPU resources that can be allocated to a vApp, in MHz.
+        cpu_shares (int | None | Unset): CPU share value.
+        cpu_usage_mhz (int | None | Unset): Number of actively used CPU resource, in MHz.
+        memory_reservation_mb (int | None | Unset): Memory reservation configured for a vApp, in MB.
+        memory_unreserved_bytes (int | None | Unset): Amount of unreserved memory resources, in bytes.
+        is_memory_expandable (bool | None | Unset): Indicates whether a vApp memory reservation is expandable.
+        memory_limit_mb (int | None | Unset): Maximum amount of memory resources that can be allocated to a vApp, in MB.
+        memory_shares (int | None | Unset): Memory share value.
+        memory_usage_bytes (int | None | Unset): Amount of actively used memory resources, in bytes.
     """
 
-    v_app_id: Union[Unset, int] = UNSET
-    mo_ref: Union[None, Unset, str] = UNSET
-    name: Union[None, Unset, str] = UNSET
-    parent_id: Union[None, Unset, int] = UNSET
-    parent_type: Union[None, Unset, VSphereObjectType] = UNSET
-    product_name: Union[None, Unset, str] = UNSET
-    product_version: Union[None, Unset, str] = UNSET
-    product_vendor: Union[None, Unset, str] = UNSET
-    power_state: Union[Unset, VAppPowerState] = UNSET
-    cpu_reservation_mhz: Union[None, Unset, int] = UNSET
-    cpu_unreserved_mhz: Union[None, Unset, int] = UNSET
-    is_cpu_expandable: Union[None, Unset, bool] = UNSET
-    cpu_limit_mhz: Union[None, Unset, int] = UNSET
-    cpu_shares: Union[None, Unset, int] = UNSET
-    cpu_usage_mhz: Union[None, Unset, int] = UNSET
-    memory_reservation_mb: Union[None, Unset, int] = UNSET
-    memory_unreserved_bytes: Union[None, Unset, int] = UNSET
-    is_memory_expandable: Union[None, Unset, bool] = UNSET
-    memory_limit_mb: Union[None, Unset, int] = UNSET
-    memory_shares: Union[None, Unset, int] = UNSET
-    memory_usage_bytes: Union[None, Unset, int] = UNSET
+    v_app_id: int | Unset = UNSET
+    mo_ref: None | str | Unset = UNSET
+    name: None | str | Unset = UNSET
+    parent_id: int | None | Unset = UNSET
+    parent_type: None | Unset | VSphereObjectType = UNSET
+    product_name: None | str | Unset = UNSET
+    product_version: None | str | Unset = UNSET
+    product_vendor: None | str | Unset = UNSET
+    power_state: VAppPowerState | Unset = UNSET
+    cpu_reservation_mhz: int | None | Unset = UNSET
+    cpu_unreserved_mhz: int | None | Unset = UNSET
+    is_cpu_expandable: bool | None | Unset = UNSET
+    cpu_limit_mhz: int | None | Unset = UNSET
+    cpu_shares: int | None | Unset = UNSET
+    cpu_usage_mhz: int | None | Unset = UNSET
+    memory_reservation_mb: int | None | Unset = UNSET
+    memory_unreserved_bytes: int | None | Unset = UNSET
+    is_memory_expandable: bool | None | Unset = UNSET
+    memory_limit_mb: int | None | Unset = UNSET
+    memory_shares: int | None | Unset = UNSET
+    memory_usage_bytes: int | None | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
         v_app_id = self.v_app_id
 
-        mo_ref: Union[None, Unset, str]
+        mo_ref: None | str | Unset
         if isinstance(self.mo_ref, Unset):
             mo_ref = UNSET
         else:
             mo_ref = self.mo_ref
 
-        name: Union[None, Unset, str]
+        name: None | str | Unset
         if isinstance(self.name, Unset):
             name = UNSET
         else:
             name = self.name
 
-        parent_id: Union[None, Unset, int]
+        parent_id: int | None | Unset
         if isinstance(self.parent_id, Unset):
             parent_id = UNSET
         else:
             parent_id = self.parent_id
 
-        parent_type: Union[None, Unset, str]
+        parent_type: None | str | Unset
         if isinstance(self.parent_type, Unset):
             parent_type = UNSET
         elif isinstance(self.parent_type, VSphereObjectType):
@@ -90,95 +90,95 @@ class VSphereVAppInfo:
         else:
             parent_type = self.parent_type
 
-        product_name: Union[None, Unset, str]
+        product_name: None | str | Unset
         if isinstance(self.product_name, Unset):
             product_name = UNSET
         else:
             product_name = self.product_name
 
-        product_version: Union[None, Unset, str]
+        product_version: None | str | Unset
         if isinstance(self.product_version, Unset):
             product_version = UNSET
         else:
             product_version = self.product_version
 
-        product_vendor: Union[None, Unset, str]
+        product_vendor: None | str | Unset
         if isinstance(self.product_vendor, Unset):
             product_vendor = UNSET
         else:
             product_vendor = self.product_vendor
 
-        power_state: Union[Unset, str] = UNSET
+        power_state: str | Unset = UNSET
         if not isinstance(self.power_state, Unset):
             power_state = self.power_state.value
 
-        cpu_reservation_mhz: Union[None, Unset, int]
+        cpu_reservation_mhz: int | None | Unset
         if isinstance(self.cpu_reservation_mhz, Unset):
             cpu_reservation_mhz = UNSET
         else:
             cpu_reservation_mhz = self.cpu_reservation_mhz
 
-        cpu_unreserved_mhz: Union[None, Unset, int]
+        cpu_unreserved_mhz: int | None | Unset
         if isinstance(self.cpu_unreserved_mhz, Unset):
             cpu_unreserved_mhz = UNSET
         else:
             cpu_unreserved_mhz = self.cpu_unreserved_mhz
 
-        is_cpu_expandable: Union[None, Unset, bool]
+        is_cpu_expandable: bool | None | Unset
         if isinstance(self.is_cpu_expandable, Unset):
             is_cpu_expandable = UNSET
         else:
             is_cpu_expandable = self.is_cpu_expandable
 
-        cpu_limit_mhz: Union[None, Unset, int]
+        cpu_limit_mhz: int | None | Unset
         if isinstance(self.cpu_limit_mhz, Unset):
             cpu_limit_mhz = UNSET
         else:
             cpu_limit_mhz = self.cpu_limit_mhz
 
-        cpu_shares: Union[None, Unset, int]
+        cpu_shares: int | None | Unset
         if isinstance(self.cpu_shares, Unset):
             cpu_shares = UNSET
         else:
             cpu_shares = self.cpu_shares
 
-        cpu_usage_mhz: Union[None, Unset, int]
+        cpu_usage_mhz: int | None | Unset
         if isinstance(self.cpu_usage_mhz, Unset):
             cpu_usage_mhz = UNSET
         else:
             cpu_usage_mhz = self.cpu_usage_mhz
 
-        memory_reservation_mb: Union[None, Unset, int]
+        memory_reservation_mb: int | None | Unset
         if isinstance(self.memory_reservation_mb, Unset):
             memory_reservation_mb = UNSET
         else:
             memory_reservation_mb = self.memory_reservation_mb
 
-        memory_unreserved_bytes: Union[None, Unset, int]
+        memory_unreserved_bytes: int | None | Unset
         if isinstance(self.memory_unreserved_bytes, Unset):
             memory_unreserved_bytes = UNSET
         else:
             memory_unreserved_bytes = self.memory_unreserved_bytes
 
-        is_memory_expandable: Union[None, Unset, bool]
+        is_memory_expandable: bool | None | Unset
         if isinstance(self.is_memory_expandable, Unset):
             is_memory_expandable = UNSET
         else:
             is_memory_expandable = self.is_memory_expandable
 
-        memory_limit_mb: Union[None, Unset, int]
+        memory_limit_mb: int | None | Unset
         if isinstance(self.memory_limit_mb, Unset):
             memory_limit_mb = UNSET
         else:
             memory_limit_mb = self.memory_limit_mb
 
-        memory_shares: Union[None, Unset, int]
+        memory_shares: int | None | Unset
         if isinstance(self.memory_shares, Unset):
             memory_shares = UNSET
         else:
             memory_shares = self.memory_shares
 
-        memory_usage_bytes: Union[None, Unset, int]
+        memory_usage_bytes: int | None | Unset
         if isinstance(self.memory_usage_bytes, Unset):
             memory_usage_bytes = UNSET
         else:
@@ -237,34 +237,34 @@ class VSphereVAppInfo:
         d = dict(src_dict)
         v_app_id = d.pop("vAppId", UNSET)
 
-        def _parse_mo_ref(data: object) -> Union[None, Unset, str]:
+        def _parse_mo_ref(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         mo_ref = _parse_mo_ref(d.pop("moRef", UNSET))
 
-        def _parse_name(data: object) -> Union[None, Unset, str]:
+        def _parse_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         name = _parse_name(d.pop("name", UNSET))
 
-        def _parse_parent_id(data: object) -> Union[None, Unset, int]:
+        def _parse_parent_id(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         parent_id = _parse_parent_id(d.pop("parentId", UNSET))
 
-        def _parse_parent_type(data: object) -> Union[None, Unset, VSphereObjectType]:
+        def _parse_parent_type(data: object) -> None | Unset | VSphereObjectType:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -275,151 +275,151 @@ class VSphereVAppInfo:
                 parent_type_type_1 = VSphereObjectType(data)
 
                 return parent_type_type_1
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, VSphereObjectType], data)
+            return cast(None | Unset | VSphereObjectType, data)
 
         parent_type = _parse_parent_type(d.pop("parentType", UNSET))
 
-        def _parse_product_name(data: object) -> Union[None, Unset, str]:
+        def _parse_product_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         product_name = _parse_product_name(d.pop("productName", UNSET))
 
-        def _parse_product_version(data: object) -> Union[None, Unset, str]:
+        def _parse_product_version(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         product_version = _parse_product_version(d.pop("productVersion", UNSET))
 
-        def _parse_product_vendor(data: object) -> Union[None, Unset, str]:
+        def _parse_product_vendor(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         product_vendor = _parse_product_vendor(d.pop("productVendor", UNSET))
 
         _power_state = d.pop("powerState", UNSET)
-        power_state: Union[Unset, VAppPowerState]
+        power_state: VAppPowerState | Unset
         if isinstance(_power_state, Unset):
             power_state = UNSET
         else:
             power_state = VAppPowerState(_power_state)
 
-        def _parse_cpu_reservation_mhz(data: object) -> Union[None, Unset, int]:
+        def _parse_cpu_reservation_mhz(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         cpu_reservation_mhz = _parse_cpu_reservation_mhz(d.pop("cpuReservationMhz", UNSET))
 
-        def _parse_cpu_unreserved_mhz(data: object) -> Union[None, Unset, int]:
+        def _parse_cpu_unreserved_mhz(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         cpu_unreserved_mhz = _parse_cpu_unreserved_mhz(d.pop("cpuUnreservedMhz", UNSET))
 
-        def _parse_is_cpu_expandable(data: object) -> Union[None, Unset, bool]:
+        def _parse_is_cpu_expandable(data: object) -> bool | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, bool], data)
+            return cast(bool | None | Unset, data)
 
         is_cpu_expandable = _parse_is_cpu_expandable(d.pop("isCpuExpandable", UNSET))
 
-        def _parse_cpu_limit_mhz(data: object) -> Union[None, Unset, int]:
+        def _parse_cpu_limit_mhz(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         cpu_limit_mhz = _parse_cpu_limit_mhz(d.pop("cpuLimitMhz", UNSET))
 
-        def _parse_cpu_shares(data: object) -> Union[None, Unset, int]:
+        def _parse_cpu_shares(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         cpu_shares = _parse_cpu_shares(d.pop("cpuShares", UNSET))
 
-        def _parse_cpu_usage_mhz(data: object) -> Union[None, Unset, int]:
+        def _parse_cpu_usage_mhz(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         cpu_usage_mhz = _parse_cpu_usage_mhz(d.pop("cpuUsageMhz", UNSET))
 
-        def _parse_memory_reservation_mb(data: object) -> Union[None, Unset, int]:
+        def _parse_memory_reservation_mb(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         memory_reservation_mb = _parse_memory_reservation_mb(d.pop("memoryReservationMb", UNSET))
 
-        def _parse_memory_unreserved_bytes(data: object) -> Union[None, Unset, int]:
+        def _parse_memory_unreserved_bytes(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         memory_unreserved_bytes = _parse_memory_unreserved_bytes(d.pop("memoryUnreservedBytes", UNSET))
 
-        def _parse_is_memory_expandable(data: object) -> Union[None, Unset, bool]:
+        def _parse_is_memory_expandable(data: object) -> bool | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, bool], data)
+            return cast(bool | None | Unset, data)
 
         is_memory_expandable = _parse_is_memory_expandable(d.pop("isMemoryExpandable", UNSET))
 
-        def _parse_memory_limit_mb(data: object) -> Union[None, Unset, int]:
+        def _parse_memory_limit_mb(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         memory_limit_mb = _parse_memory_limit_mb(d.pop("memoryLimitMb", UNSET))
 
-        def _parse_memory_shares(data: object) -> Union[None, Unset, int]:
+        def _parse_memory_shares(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         memory_shares = _parse_memory_shares(d.pop("memoryShares", UNSET))
 
-        def _parse_memory_usage_bytes(data: object) -> Union[None, Unset, int]:
+        def _parse_memory_usage_bytes(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         memory_usage_bytes = _parse_memory_usage_bytes(d.pop("memoryUsageBytes", UNSET))
 

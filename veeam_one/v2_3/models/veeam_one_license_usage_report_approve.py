@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, Union, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 
@@ -16,25 +18,25 @@ T = TypeVar("T", bound="VeeamOneLicenseUsageReportApprove")
 class VeeamOneLicenseUsageReportApprove:
     """
     Attributes:
-        report_id (Union[Unset, int]): ID assigned to a license usage report.
-        removal_reason (Union[None, Unset, str]): Reason for the removal of a licensed object.
-        workloads (Union[None, Unset, list['VeeamOneLicenseUsageReportApproveWorkload']]): Array of managed workloads.
+        report_id (int | Unset): ID assigned to a license usage report.
+        removal_reason (None | str | Unset): Reason for the removal of a licensed object.
+        workloads (list[VeeamOneLicenseUsageReportApproveWorkload] | None | Unset): Array of managed workloads.
     """
 
-    report_id: Union[Unset, int] = UNSET
-    removal_reason: Union[None, Unset, str] = UNSET
-    workloads: Union[None, Unset, list["VeeamOneLicenseUsageReportApproveWorkload"]] = UNSET
+    report_id: int | Unset = UNSET
+    removal_reason: None | str | Unset = UNSET
+    workloads: list[VeeamOneLicenseUsageReportApproveWorkload] | None | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
         report_id = self.report_id
 
-        removal_reason: Union[None, Unset, str]
+        removal_reason: None | str | Unset
         if isinstance(self.removal_reason, Unset):
             removal_reason = UNSET
         else:
             removal_reason = self.removal_reason
 
-        workloads: Union[None, Unset, list[dict[str, Any]]]
+        workloads: list[dict[str, Any]] | None | Unset
         if isinstance(self.workloads, Unset):
             workloads = UNSET
         elif isinstance(self.workloads, list):
@@ -60,21 +62,23 @@ class VeeamOneLicenseUsageReportApprove:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.veeam_one_license_usage_report_approve_workload import VeeamOneLicenseUsageReportApproveWorkload
+        from ..models.veeam_one_license_usage_report_approve_workload import (
+            VeeamOneLicenseUsageReportApproveWorkload,  # noqa: PLC0415
+        )
 
         d = dict(src_dict)
         report_id = d.pop("reportId", UNSET)
 
-        def _parse_removal_reason(data: object) -> Union[None, Unset, str]:
+        def _parse_removal_reason(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         removal_reason = _parse_removal_reason(d.pop("removalReason", UNSET))
 
-        def _parse_workloads(data: object) -> Union[None, Unset, list["VeeamOneLicenseUsageReportApproveWorkload"]]:
+        def _parse_workloads(data: object) -> list[VeeamOneLicenseUsageReportApproveWorkload] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -92,9 +96,9 @@ class VeeamOneLicenseUsageReportApprove:
                     workloads_type_0.append(workloads_type_0_item)
 
                 return workloads_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, list["VeeamOneLicenseUsageReportApproveWorkload"]], data)
+            return cast(list[VeeamOneLicenseUsageReportApproveWorkload] | None | Unset, data)
 
         workloads = _parse_workloads(d.pop("workloads", UNSET))
 

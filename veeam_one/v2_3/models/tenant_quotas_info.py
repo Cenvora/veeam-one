@@ -1,10 +1,11 @@
+from __future__ import annotations
+
 import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
-from dateutil.parser import isoparse
 
 from ..types import UNSET, Unset
 
@@ -15,34 +16,34 @@ T = TypeVar("T", bound="TenantQuotasInfo")
 class TenantQuotasInfo:
     """
     Attributes:
-        tenant_quota_id (Union[Unset, int]): ID assigned to a tenant quota.
-        tenant_quota_uid_in_vbr (Union[None, UUID, Unset]): UID assigned to a tenant quota in Veeam Cloud Connect.
-        tenant_id (Union[None, Unset, int]): ID assigned to a tenant.
-        backup_server_id (Union[None, Unset, int]): ID assigned to a Veeam Cloud Connect server.
-        quota_mb (Union[None, Unset, int]): Cloud storage space allocated to a tenant, in MB.
-        used_quota_mb (Union[None, Unset, int]): Cloud storage space consumed by a tenant.
-        protected_vms_count (Union[None, Unset, int]): Number of VMs that are protected by tenant jobs.
-        last_backup_activity_time (Union[None, Unset, datetime.datetime]): Date and time when the latest tenant job
-            session finished.
-        servers_count (Union[None, Unset, int]): Number of servers that are protected by tenant jobs.
-        workstations_count (Union[None, Unset, int]): Number of workstations that are protected by tenant jobs.
+        tenant_quota_id (int | Unset): ID assigned to a tenant quota.
+        tenant_quota_uid_in_vbr (None | Unset | UUID): UID assigned to a tenant quota in Veeam Cloud Connect.
+        tenant_id (int | None | Unset): ID assigned to a tenant.
+        backup_server_id (int | None | Unset): ID assigned to a Veeam Cloud Connect server.
+        quota_mb (int | None | Unset): Cloud storage space allocated to a tenant, in MB.
+        used_quota_mb (int | None | Unset): Cloud storage space consumed by a tenant.
+        protected_vms_count (int | None | Unset): Number of VMs that are protected by tenant jobs.
+        last_backup_activity_time (datetime.datetime | None | Unset): Date and time when the latest tenant job session
+            finished.
+        servers_count (int | None | Unset): Number of servers that are protected by tenant jobs.
+        workstations_count (int | None | Unset): Number of workstations that are protected by tenant jobs.
     """
 
-    tenant_quota_id: Union[Unset, int] = UNSET
-    tenant_quota_uid_in_vbr: Union[None, UUID, Unset] = UNSET
-    tenant_id: Union[None, Unset, int] = UNSET
-    backup_server_id: Union[None, Unset, int] = UNSET
-    quota_mb: Union[None, Unset, int] = UNSET
-    used_quota_mb: Union[None, Unset, int] = UNSET
-    protected_vms_count: Union[None, Unset, int] = UNSET
-    last_backup_activity_time: Union[None, Unset, datetime.datetime] = UNSET
-    servers_count: Union[None, Unset, int] = UNSET
-    workstations_count: Union[None, Unset, int] = UNSET
+    tenant_quota_id: int | Unset = UNSET
+    tenant_quota_uid_in_vbr: None | Unset | UUID = UNSET
+    tenant_id: int | None | Unset = UNSET
+    backup_server_id: int | None | Unset = UNSET
+    quota_mb: int | None | Unset = UNSET
+    used_quota_mb: int | None | Unset = UNSET
+    protected_vms_count: int | None | Unset = UNSET
+    last_backup_activity_time: datetime.datetime | None | Unset = UNSET
+    servers_count: int | None | Unset = UNSET
+    workstations_count: int | None | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
         tenant_quota_id = self.tenant_quota_id
 
-        tenant_quota_uid_in_vbr: Union[None, Unset, str]
+        tenant_quota_uid_in_vbr: None | str | Unset
         if isinstance(self.tenant_quota_uid_in_vbr, Unset):
             tenant_quota_uid_in_vbr = UNSET
         elif isinstance(self.tenant_quota_uid_in_vbr, UUID):
@@ -50,37 +51,37 @@ class TenantQuotasInfo:
         else:
             tenant_quota_uid_in_vbr = self.tenant_quota_uid_in_vbr
 
-        tenant_id: Union[None, Unset, int]
+        tenant_id: int | None | Unset
         if isinstance(self.tenant_id, Unset):
             tenant_id = UNSET
         else:
             tenant_id = self.tenant_id
 
-        backup_server_id: Union[None, Unset, int]
+        backup_server_id: int | None | Unset
         if isinstance(self.backup_server_id, Unset):
             backup_server_id = UNSET
         else:
             backup_server_id = self.backup_server_id
 
-        quota_mb: Union[None, Unset, int]
+        quota_mb: int | None | Unset
         if isinstance(self.quota_mb, Unset):
             quota_mb = UNSET
         else:
             quota_mb = self.quota_mb
 
-        used_quota_mb: Union[None, Unset, int]
+        used_quota_mb: int | None | Unset
         if isinstance(self.used_quota_mb, Unset):
             used_quota_mb = UNSET
         else:
             used_quota_mb = self.used_quota_mb
 
-        protected_vms_count: Union[None, Unset, int]
+        protected_vms_count: int | None | Unset
         if isinstance(self.protected_vms_count, Unset):
             protected_vms_count = UNSET
         else:
             protected_vms_count = self.protected_vms_count
 
-        last_backup_activity_time: Union[None, Unset, str]
+        last_backup_activity_time: None | str | Unset
         if isinstance(self.last_backup_activity_time, Unset):
             last_backup_activity_time = UNSET
         elif isinstance(self.last_backup_activity_time, datetime.datetime):
@@ -88,13 +89,13 @@ class TenantQuotasInfo:
         else:
             last_backup_activity_time = self.last_backup_activity_time
 
-        servers_count: Union[None, Unset, int]
+        servers_count: int | None | Unset
         if isinstance(self.servers_count, Unset):
             servers_count = UNSET
         else:
             servers_count = self.servers_count
 
-        workstations_count: Union[None, Unset, int]
+        workstations_count: int | None | Unset
         if isinstance(self.workstations_count, Unset):
             workstations_count = UNSET
         else:
@@ -131,7 +132,7 @@ class TenantQuotasInfo:
         d = dict(src_dict)
         tenant_quota_id = d.pop("tenantQuotaId", UNSET)
 
-        def _parse_tenant_quota_uid_in_vbr(data: object) -> Union[None, UUID, Unset]:
+        def _parse_tenant_quota_uid_in_vbr(data: object) -> None | Unset | UUID:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -142,58 +143,58 @@ class TenantQuotasInfo:
                 tenant_quota_uid_in_vbr_type_0 = UUID(data)
 
                 return tenant_quota_uid_in_vbr_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, UUID, Unset], data)
+            return cast(None | Unset | UUID, data)
 
         tenant_quota_uid_in_vbr = _parse_tenant_quota_uid_in_vbr(d.pop("tenantQuotaUidInVbr", UNSET))
 
-        def _parse_tenant_id(data: object) -> Union[None, Unset, int]:
+        def _parse_tenant_id(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         tenant_id = _parse_tenant_id(d.pop("tenantId", UNSET))
 
-        def _parse_backup_server_id(data: object) -> Union[None, Unset, int]:
+        def _parse_backup_server_id(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         backup_server_id = _parse_backup_server_id(d.pop("backupServerId", UNSET))
 
-        def _parse_quota_mb(data: object) -> Union[None, Unset, int]:
+        def _parse_quota_mb(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         quota_mb = _parse_quota_mb(d.pop("quotaMb", UNSET))
 
-        def _parse_used_quota_mb(data: object) -> Union[None, Unset, int]:
+        def _parse_used_quota_mb(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         used_quota_mb = _parse_used_quota_mb(d.pop("usedQuotaMb", UNSET))
 
-        def _parse_protected_vms_count(data: object) -> Union[None, Unset, int]:
+        def _parse_protected_vms_count(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         protected_vms_count = _parse_protected_vms_count(d.pop("protectedVmsCount", UNSET))
 
-        def _parse_last_backup_activity_time(data: object) -> Union[None, Unset, datetime.datetime]:
+        def _parse_last_backup_activity_time(data: object) -> datetime.datetime | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -201,30 +202,30 @@ class TenantQuotasInfo:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                last_backup_activity_time_type_0 = isoparse(data)
+                last_backup_activity_time_type_0 = datetime.datetime.fromisoformat(data)
 
                 return last_backup_activity_time_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, datetime.datetime], data)
+            return cast(datetime.datetime | None | Unset, data)
 
         last_backup_activity_time = _parse_last_backup_activity_time(d.pop("lastBackupActivityTime", UNSET))
 
-        def _parse_servers_count(data: object) -> Union[None, Unset, int]:
+        def _parse_servers_count(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         servers_count = _parse_servers_count(d.pop("serversCount", UNSET))
 
-        def _parse_workstations_count(data: object) -> Union[None, Unset, int]:
+        def _parse_workstations_count(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         workstations_count = _parse_workstations_count(d.pop("workstationsCount", UNSET))
 

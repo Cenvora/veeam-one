@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 
@@ -14,13 +16,13 @@ class SchedulePlanDaily:
     """Settings for daily scheduling.
 
     Attributes:
-        days_of_week (Union[None, Unset, list[DayOfWeek]]): Array of week days.
+        days_of_week (list[DayOfWeek] | None | Unset): Array of week days.
     """
 
-    days_of_week: Union[None, Unset, list[DayOfWeek]] = UNSET
+    days_of_week: list[DayOfWeek] | None | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
-        days_of_week: Union[None, Unset, list[str]]
+        days_of_week: list[str] | None | Unset
         if isinstance(self.days_of_week, Unset):
             days_of_week = UNSET
         elif isinstance(self.days_of_week, list):
@@ -44,7 +46,7 @@ class SchedulePlanDaily:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
 
-        def _parse_days_of_week(data: object) -> Union[None, Unset, list[DayOfWeek]]:
+        def _parse_days_of_week(data: object) -> list[DayOfWeek] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -60,9 +62,9 @@ class SchedulePlanDaily:
                     days_of_week_type_0.append(days_of_week_type_0_item)
 
                 return days_of_week_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, list[DayOfWeek]], data)
+            return cast(list[DayOfWeek] | None | Unset, data)
 
         days_of_week = _parse_days_of_week(d.pop("daysOfWeek", UNSET))
 

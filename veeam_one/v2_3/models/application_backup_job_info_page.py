@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, Union, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 
@@ -16,15 +18,15 @@ T = TypeVar("T", bound="ApplicationBackupJobInfoPage")
 class ApplicationBackupJobInfoPage:
     """
     Attributes:
-        items (Union[None, Unset, list['ApplicationBackupJobInfo']]):
-        total_count (Union[Unset, int]):
+        items (list[ApplicationBackupJobInfo] | None | Unset):
+        total_count (int | Unset):
     """
 
-    items: Union[None, Unset, list["ApplicationBackupJobInfo"]] = UNSET
-    total_count: Union[Unset, int] = UNSET
+    items: list[ApplicationBackupJobInfo] | None | Unset = UNSET
+    total_count: int | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
-        items: Union[None, Unset, list[dict[str, Any]]]
+        items: list[dict[str, Any]] | None | Unset
         if isinstance(self.items, Unset):
             items = UNSET
         elif isinstance(self.items, list):
@@ -50,11 +52,11 @@ class ApplicationBackupJobInfoPage:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.application_backup_job_info import ApplicationBackupJobInfo
+        from ..models.application_backup_job_info import ApplicationBackupJobInfo  # noqa: PLC0415
 
         d = dict(src_dict)
 
-        def _parse_items(data: object) -> Union[None, Unset, list["ApplicationBackupJobInfo"]]:
+        def _parse_items(data: object) -> list[ApplicationBackupJobInfo] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -70,9 +72,9 @@ class ApplicationBackupJobInfoPage:
                     items_type_0.append(items_type_0_item)
 
                 return items_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, list["ApplicationBackupJobInfo"]], data)
+            return cast(list[ApplicationBackupJobInfo] | None | Unset, data)
 
         items = _parse_items(d.pop("items", UNSET))
 

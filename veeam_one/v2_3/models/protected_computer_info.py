@@ -1,10 +1,11 @@
+from __future__ import annotations
+
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, Union, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
-from dateutil.parser import isoparse
 
 from ..models.protected_computer_operation_mode import ProtectedComputerOperationMode
 from ..models.protected_computer_platform import ProtectedComputerPlatform
@@ -21,40 +22,39 @@ T = TypeVar("T", bound="ProtectedComputerInfo")
 class ProtectedComputerInfo:
     """
     Attributes:
-        computer_id (Union[None, Unset, int]): ID assigned to a protected computer.
-        computer_uid_in_vbr (Union[None, UUID, Unset]): UID assigned to a protected computer in Veeam Backup &
-            Replication.
-        backup_server_id (Union[None, Unset, int]): UID assigned to a Veeam Backup & Replication server that manages
-            computer protection.
-        backup_server_name (Union[None, Unset, str]): Name of a Veeam Backup & Replication server.
-        protection_groups (Union[None, Unset, list['ProtectionGroup']]): Array of protection groups that include a
-            protected computer.
-        name (Union[None, Unset, str]): Host name of a protected computer.
-        ip_addresses (Union[None, Unset, list[str]]): IP addresses of a protected computer.
-        platform (Union[Unset, ProtectedComputerPlatform]):
-        operation_mode (Union[Unset, ProtectedComputerOperationMode]):
-        last_protected_date (Union[None, Unset, datetime.datetime]): Time and date of the latest restore point creation.
+        computer_id (int | None | Unset): ID assigned to a protected computer.
+        computer_uid_in_vbr (None | Unset | UUID): UID assigned to a protected computer in Veeam Backup & Replication.
+        backup_server_id (int | None | Unset): UID assigned to a Veeam Backup & Replication server that manages computer
+            protection.
+        backup_server_name (None | str | Unset): Name of a Veeam Backup & Replication server.
+        protection_groups (list[ProtectionGroup] | None | Unset): Array of protection groups that include a protected
+            computer.
+        name (None | str | Unset): Host name of a protected computer.
+        ip_addresses (list[str] | None | Unset): IP addresses of a protected computer.
+        platform (ProtectedComputerPlatform | Unset):
+        operation_mode (ProtectedComputerOperationMode | Unset):
+        last_protected_date (datetime.datetime | None | Unset): Time and date of the latest restore point creation.
     """
 
-    computer_id: Union[None, Unset, int] = UNSET
-    computer_uid_in_vbr: Union[None, UUID, Unset] = UNSET
-    backup_server_id: Union[None, Unset, int] = UNSET
-    backup_server_name: Union[None, Unset, str] = UNSET
-    protection_groups: Union[None, Unset, list["ProtectionGroup"]] = UNSET
-    name: Union[None, Unset, str] = UNSET
-    ip_addresses: Union[None, Unset, list[str]] = UNSET
-    platform: Union[Unset, ProtectedComputerPlatform] = UNSET
-    operation_mode: Union[Unset, ProtectedComputerOperationMode] = UNSET
-    last_protected_date: Union[None, Unset, datetime.datetime] = UNSET
+    computer_id: int | None | Unset = UNSET
+    computer_uid_in_vbr: None | Unset | UUID = UNSET
+    backup_server_id: int | None | Unset = UNSET
+    backup_server_name: None | str | Unset = UNSET
+    protection_groups: list[ProtectionGroup] | None | Unset = UNSET
+    name: None | str | Unset = UNSET
+    ip_addresses: list[str] | None | Unset = UNSET
+    platform: ProtectedComputerPlatform | Unset = UNSET
+    operation_mode: ProtectedComputerOperationMode | Unset = UNSET
+    last_protected_date: datetime.datetime | None | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
-        computer_id: Union[None, Unset, int]
+        computer_id: int | None | Unset
         if isinstance(self.computer_id, Unset):
             computer_id = UNSET
         else:
             computer_id = self.computer_id
 
-        computer_uid_in_vbr: Union[None, Unset, str]
+        computer_uid_in_vbr: None | str | Unset
         if isinstance(self.computer_uid_in_vbr, Unset):
             computer_uid_in_vbr = UNSET
         elif isinstance(self.computer_uid_in_vbr, UUID):
@@ -62,19 +62,19 @@ class ProtectedComputerInfo:
         else:
             computer_uid_in_vbr = self.computer_uid_in_vbr
 
-        backup_server_id: Union[None, Unset, int]
+        backup_server_id: int | None | Unset
         if isinstance(self.backup_server_id, Unset):
             backup_server_id = UNSET
         else:
             backup_server_id = self.backup_server_id
 
-        backup_server_name: Union[None, Unset, str]
+        backup_server_name: None | str | Unset
         if isinstance(self.backup_server_name, Unset):
             backup_server_name = UNSET
         else:
             backup_server_name = self.backup_server_name
 
-        protection_groups: Union[None, Unset, list[dict[str, Any]]]
+        protection_groups: list[dict[str, Any]] | None | Unset
         if isinstance(self.protection_groups, Unset):
             protection_groups = UNSET
         elif isinstance(self.protection_groups, list):
@@ -86,13 +86,13 @@ class ProtectedComputerInfo:
         else:
             protection_groups = self.protection_groups
 
-        name: Union[None, Unset, str]
+        name: None | str | Unset
         if isinstance(self.name, Unset):
             name = UNSET
         else:
             name = self.name
 
-        ip_addresses: Union[None, Unset, list[str]]
+        ip_addresses: list[str] | None | Unset
         if isinstance(self.ip_addresses, Unset):
             ip_addresses = UNSET
         elif isinstance(self.ip_addresses, list):
@@ -101,15 +101,15 @@ class ProtectedComputerInfo:
         else:
             ip_addresses = self.ip_addresses
 
-        platform: Union[Unset, str] = UNSET
+        platform: str | Unset = UNSET
         if not isinstance(self.platform, Unset):
             platform = self.platform.value
 
-        operation_mode: Union[Unset, str] = UNSET
+        operation_mode: str | Unset = UNSET
         if not isinstance(self.operation_mode, Unset):
             operation_mode = self.operation_mode.value
 
-        last_protected_date: Union[None, Unset, str]
+        last_protected_date: None | str | Unset
         if isinstance(self.last_protected_date, Unset):
             last_protected_date = UNSET
         elif isinstance(self.last_protected_date, datetime.datetime):
@@ -145,20 +145,20 @@ class ProtectedComputerInfo:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.protection_group import ProtectionGroup
+        from ..models.protection_group import ProtectionGroup  # noqa: PLC0415
 
         d = dict(src_dict)
 
-        def _parse_computer_id(data: object) -> Union[None, Unset, int]:
+        def _parse_computer_id(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         computer_id = _parse_computer_id(d.pop("computerId", UNSET))
 
-        def _parse_computer_uid_in_vbr(data: object) -> Union[None, UUID, Unset]:
+        def _parse_computer_uid_in_vbr(data: object) -> None | Unset | UUID:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -169,31 +169,31 @@ class ProtectedComputerInfo:
                 computer_uid_in_vbr_type_0 = UUID(data)
 
                 return computer_uid_in_vbr_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, UUID, Unset], data)
+            return cast(None | Unset | UUID, data)
 
         computer_uid_in_vbr = _parse_computer_uid_in_vbr(d.pop("computerUidInVbr", UNSET))
 
-        def _parse_backup_server_id(data: object) -> Union[None, Unset, int]:
+        def _parse_backup_server_id(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         backup_server_id = _parse_backup_server_id(d.pop("backupServerId", UNSET))
 
-        def _parse_backup_server_name(data: object) -> Union[None, Unset, str]:
+        def _parse_backup_server_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         backup_server_name = _parse_backup_server_name(d.pop("backupServerName", UNSET))
 
-        def _parse_protection_groups(data: object) -> Union[None, Unset, list["ProtectionGroup"]]:
+        def _parse_protection_groups(data: object) -> list[ProtectionGroup] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -209,22 +209,22 @@ class ProtectedComputerInfo:
                     protection_groups_type_0.append(protection_groups_type_0_item)
 
                 return protection_groups_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, list["ProtectionGroup"]], data)
+            return cast(list[ProtectionGroup] | None | Unset, data)
 
         protection_groups = _parse_protection_groups(d.pop("protectionGroups", UNSET))
 
-        def _parse_name(data: object) -> Union[None, Unset, str]:
+        def _parse_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         name = _parse_name(d.pop("name", UNSET))
 
-        def _parse_ip_addresses(data: object) -> Union[None, Unset, list[str]]:
+        def _parse_ip_addresses(data: object) -> list[str] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -235,27 +235,27 @@ class ProtectedComputerInfo:
                 ip_addresses_type_0 = cast(list[str], data)
 
                 return ip_addresses_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, list[str]], data)
+            return cast(list[str] | None | Unset, data)
 
         ip_addresses = _parse_ip_addresses(d.pop("ipAddresses", UNSET))
 
         _platform = d.pop("platform", UNSET)
-        platform: Union[Unset, ProtectedComputerPlatform]
+        platform: ProtectedComputerPlatform | Unset
         if isinstance(_platform, Unset):
             platform = UNSET
         else:
             platform = ProtectedComputerPlatform(_platform)
 
         _operation_mode = d.pop("operationMode", UNSET)
-        operation_mode: Union[Unset, ProtectedComputerOperationMode]
+        operation_mode: ProtectedComputerOperationMode | Unset
         if isinstance(_operation_mode, Unset):
             operation_mode = UNSET
         else:
             operation_mode = ProtectedComputerOperationMode(_operation_mode)
 
-        def _parse_last_protected_date(data: object) -> Union[None, Unset, datetime.datetime]:
+        def _parse_last_protected_date(data: object) -> datetime.datetime | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -263,12 +263,12 @@ class ProtectedComputerInfo:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                last_protected_date_type_0 = isoparse(data)
+                last_protected_date_type_0 = datetime.datetime.fromisoformat(data)
 
                 return last_protected_date_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, datetime.datetime], data)
+            return cast(datetime.datetime | None | Unset, data)
 
         last_protected_date = _parse_last_protected_date(d.pop("lastProtectedDate", UNSET))
 

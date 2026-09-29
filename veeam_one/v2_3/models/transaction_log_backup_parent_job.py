@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
@@ -14,27 +16,27 @@ T = TypeVar("T", bound="TransactionLogBackupParentJob")
 class TransactionLogBackupParentJob:
     """
     Attributes:
-        parent_job_uid (Union[Unset, UUID]): UID assigned to a parent job.
-        parent_job_name (Union[None, Unset, str]): Name of a parent job.
-        parent_job_type (Union[Unset, TransactionLogBackupParentJobType]):
+        parent_job_uid (UUID | Unset): UID assigned to a parent job.
+        parent_job_name (None | str | Unset): Name of a parent job.
+        parent_job_type (TransactionLogBackupParentJobType | Unset):
     """
 
-    parent_job_uid: Union[Unset, UUID] = UNSET
-    parent_job_name: Union[None, Unset, str] = UNSET
-    parent_job_type: Union[Unset, TransactionLogBackupParentJobType] = UNSET
+    parent_job_uid: UUID | Unset = UNSET
+    parent_job_name: None | str | Unset = UNSET
+    parent_job_type: TransactionLogBackupParentJobType | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
-        parent_job_uid: Union[Unset, str] = UNSET
+        parent_job_uid: str | Unset = UNSET
         if not isinstance(self.parent_job_uid, Unset):
             parent_job_uid = str(self.parent_job_uid)
 
-        parent_job_name: Union[None, Unset, str]
+        parent_job_name: None | str | Unset
         if isinstance(self.parent_job_name, Unset):
             parent_job_name = UNSET
         else:
             parent_job_name = self.parent_job_name
 
-        parent_job_type: Union[Unset, str] = UNSET
+        parent_job_type: str | Unset = UNSET
         if not isinstance(self.parent_job_type, Unset):
             parent_job_type = self.parent_job_type.value
 
@@ -54,23 +56,23 @@ class TransactionLogBackupParentJob:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
         _parent_job_uid = d.pop("parentJobUid", UNSET)
-        parent_job_uid: Union[Unset, UUID]
+        parent_job_uid: UUID | Unset
         if isinstance(_parent_job_uid, Unset):
             parent_job_uid = UNSET
         else:
             parent_job_uid = UUID(_parent_job_uid)
 
-        def _parse_parent_job_name(data: object) -> Union[None, Unset, str]:
+        def _parse_parent_job_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         parent_job_name = _parse_parent_job_name(d.pop("parentJobName", UNSET))
 
         _parent_job_type = d.pop("parentJobType", UNSET)
-        parent_job_type: Union[Unset, TransactionLogBackupParentJobType]
+        parent_job_type: TransactionLogBackupParentJobType | Unset
         if isinstance(_parent_job_type, Unset):
             parent_job_type = UNSET
         else:

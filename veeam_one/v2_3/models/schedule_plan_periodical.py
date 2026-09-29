@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 
@@ -14,17 +16,17 @@ class SchedulePlanPeriodical:
     """Settings for periodic scheduling.
 
     Attributes:
-        period (Union[Unset, int]): Time interval value. Example: 1.
-        interval (Union[Unset, ScheduleIntervalType]): Measurement units configured for interval.
+        period (int | Unset): Time interval value. Example: 1.
+        interval (ScheduleIntervalType | Unset): Measurement units configured for interval.
     """
 
-    period: Union[Unset, int] = UNSET
-    interval: Union[Unset, ScheduleIntervalType] = UNSET
+    period: int | Unset = UNSET
+    interval: ScheduleIntervalType | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
         period = self.period
 
-        interval: Union[Unset, str] = UNSET
+        interval: str | Unset = UNSET
         if not isinstance(self.interval, Unset):
             interval = self.interval.value
 
@@ -44,7 +46,7 @@ class SchedulePlanPeriodical:
         period = d.pop("period", UNSET)
 
         _interval = d.pop("interval", UNSET)
-        interval: Union[Unset, ScheduleIntervalType]
+        interval: ScheduleIntervalType | Unset
         if isinstance(_interval, Unset):
             interval = UNSET
         else:

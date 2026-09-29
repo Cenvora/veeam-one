@@ -1,9 +1,10 @@
+from __future__ import annotations
+
 import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
-from dateutil.parser import isoparse
 
 from ..types import UNSET, Unset
 
@@ -14,27 +15,27 @@ T = TypeVar("T", bound="JobSessionDetailsInfo")
 class JobSessionDetailsInfo:
     """
     Attributes:
-        session_record_id (Union[Unset, int]): ID assigned to a log record that was generated for an operation.
-        details (Union[None, Unset, str]): Operation details. Example: Veeam ONE is installed successfully. Root objects
-            are collected..
-        log_date_time (Union[None, Unset, datetime.datetime]): Date and time when the log record was generated for an
+        session_record_id (int | Unset): ID assigned to a log record that was generated for an operation. Example: 0.
+        details (None | str | Unset): Operation details. Example: Veeam ONE is installed successfully. Root objects are
+            collected..
+        log_date_time (datetime.datetime | None | Unset): Date and time when the log record was generated for an
             operation. Example: '2021-01-27T11:54:31.84Z'.
     """
 
-    session_record_id: Union[Unset, int] = UNSET
-    details: Union[None, Unset, str] = UNSET
-    log_date_time: Union[None, Unset, datetime.datetime] = UNSET
+    session_record_id: int | Unset = UNSET
+    details: None | str | Unset = UNSET
+    log_date_time: datetime.datetime | None | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
         session_record_id = self.session_record_id
 
-        details: Union[None, Unset, str]
+        details: None | str | Unset
         if isinstance(self.details, Unset):
             details = UNSET
         else:
             details = self.details
 
-        log_date_time: Union[None, Unset, str]
+        log_date_time: None | str | Unset
         if isinstance(self.log_date_time, Unset):
             log_date_time = UNSET
         elif isinstance(self.log_date_time, datetime.datetime):
@@ -59,16 +60,16 @@ class JobSessionDetailsInfo:
         d = dict(src_dict)
         session_record_id = d.pop("sessionRecordId", UNSET)
 
-        def _parse_details(data: object) -> Union[None, Unset, str]:
+        def _parse_details(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         details = _parse_details(d.pop("details", UNSET))
 
-        def _parse_log_date_time(data: object) -> Union[None, Unset, datetime.datetime]:
+        def _parse_log_date_time(data: object) -> datetime.datetime | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -76,12 +77,12 @@ class JobSessionDetailsInfo:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                log_date_time_type_0 = isoparse(data)
+                log_date_time_type_0 = datetime.datetime.fromisoformat(data)
 
                 return log_date_time_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, datetime.datetime], data)
+            return cast(datetime.datetime | None | Unset, data)
 
         log_date_time = _parse_log_date_time(d.pop("logDateTime", UNSET))
 

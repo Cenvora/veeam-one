@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class Vb365ProxyStatus(str, Enum):
+class Vb365ProxyStatus(StrEnum):
     OFFLINE = "Offline"
     ONLINE = "Online"
     UNKNOWN = "Unknown"

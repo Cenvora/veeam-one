@@ -1,10 +1,11 @@
+from __future__ import annotations
+
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, Union, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
-from dateutil.parser import isoparse
 
 from ..models.file_share_backup_job_type import FileShareBackupJobType
 from ..types import UNSET, Unset
@@ -20,39 +21,39 @@ T = TypeVar("T", bound="ProtectedFileShareBackupInfo")
 class ProtectedFileShareBackupInfo:
     """
     Attributes:
-        backup_uid (Union[None, UUID, Unset]): UID assigned to a backup chain.
-        file_share_uid_in_vbr (Union[None, UUID, Unset]): UID assigned to a protected file share.
-        job_uid (Union[None, UUID, Unset]): UID assigned to a backup job.
-        job_name (Union[None, Unset, str]): Name of a backup job.
-        job_type (Union[Unset, FileShareBackupJobType]):
-        backup_size (Union[None, Unset, int]): Size of a file backup, in bytes.
-        archive_size (Union[None, Unset, int]): Size of an archived file backup, in bytes.
-        restore_points (Union[Unset, int]): Number of restore points.
-        last_protected_date (Union[None, Unset, datetime.datetime]): Time and date of the latest restore point creation.
-        repository (Union['ProtectedDataRepositoryInfo', None, Unset]): Information on a target backup repository.
-        archive_repository (Union['ProtectedDataRepositoryInfo', None, Unset]): Information on an archive repository.
-        backup_server_id (Union[None, Unset, int]): ID assigned to a Veeam Backup & Replication server.
-        backup_server_name (Union[None, Unset, str]): Name of a Veeam Backup & Replication server.
+        backup_uid (None | Unset | UUID): UID assigned to a backup chain.
+        file_share_uid_in_vbr (None | Unset | UUID): UID assigned to a protected file share.
+        job_uid (None | Unset | UUID): UID assigned to a backup job.
+        job_name (None | str | Unset): Name of a backup job.
+        job_type (FileShareBackupJobType | Unset):
+        backup_size (int | None | Unset): Size of a file backup, in bytes.
+        archive_size (int | None | Unset): Size of an archived file backup, in bytes.
+        restore_points (int | Unset): Number of restore points.
+        last_protected_date (datetime.datetime | None | Unset): Time and date of the latest restore point creation.
+        repository (None | ProtectedDataRepositoryInfo | Unset): Information on a target backup repository.
+        archive_repository (None | ProtectedDataRepositoryInfo | Unset): Information on an archive repository.
+        backup_server_id (int | None | Unset): ID assigned to a Veeam Backup & Replication server.
+        backup_server_name (None | str | Unset): Name of a Veeam Backup & Replication server.
     """
 
-    backup_uid: Union[None, UUID, Unset] = UNSET
-    file_share_uid_in_vbr: Union[None, UUID, Unset] = UNSET
-    job_uid: Union[None, UUID, Unset] = UNSET
-    job_name: Union[None, Unset, str] = UNSET
-    job_type: Union[Unset, FileShareBackupJobType] = UNSET
-    backup_size: Union[None, Unset, int] = UNSET
-    archive_size: Union[None, Unset, int] = UNSET
-    restore_points: Union[Unset, int] = UNSET
-    last_protected_date: Union[None, Unset, datetime.datetime] = UNSET
-    repository: Union["ProtectedDataRepositoryInfo", None, Unset] = UNSET
-    archive_repository: Union["ProtectedDataRepositoryInfo", None, Unset] = UNSET
-    backup_server_id: Union[None, Unset, int] = UNSET
-    backup_server_name: Union[None, Unset, str] = UNSET
+    backup_uid: None | Unset | UUID = UNSET
+    file_share_uid_in_vbr: None | Unset | UUID = UNSET
+    job_uid: None | Unset | UUID = UNSET
+    job_name: None | str | Unset = UNSET
+    job_type: FileShareBackupJobType | Unset = UNSET
+    backup_size: int | None | Unset = UNSET
+    archive_size: int | None | Unset = UNSET
+    restore_points: int | Unset = UNSET
+    last_protected_date: datetime.datetime | None | Unset = UNSET
+    repository: None | ProtectedDataRepositoryInfo | Unset = UNSET
+    archive_repository: None | ProtectedDataRepositoryInfo | Unset = UNSET
+    backup_server_id: int | None | Unset = UNSET
+    backup_server_name: None | str | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.protected_data_repository_info import ProtectedDataRepositoryInfo
+        from ..models.protected_data_repository_info import ProtectedDataRepositoryInfo  # noqa: PLC0415
 
-        backup_uid: Union[None, Unset, str]
+        backup_uid: None | str | Unset
         if isinstance(self.backup_uid, Unset):
             backup_uid = UNSET
         elif isinstance(self.backup_uid, UUID):
@@ -60,7 +61,7 @@ class ProtectedFileShareBackupInfo:
         else:
             backup_uid = self.backup_uid
 
-        file_share_uid_in_vbr: Union[None, Unset, str]
+        file_share_uid_in_vbr: None | str | Unset
         if isinstance(self.file_share_uid_in_vbr, Unset):
             file_share_uid_in_vbr = UNSET
         elif isinstance(self.file_share_uid_in_vbr, UUID):
@@ -68,7 +69,7 @@ class ProtectedFileShareBackupInfo:
         else:
             file_share_uid_in_vbr = self.file_share_uid_in_vbr
 
-        job_uid: Union[None, Unset, str]
+        job_uid: None | str | Unset
         if isinstance(self.job_uid, Unset):
             job_uid = UNSET
         elif isinstance(self.job_uid, UUID):
@@ -76,23 +77,23 @@ class ProtectedFileShareBackupInfo:
         else:
             job_uid = self.job_uid
 
-        job_name: Union[None, Unset, str]
+        job_name: None | str | Unset
         if isinstance(self.job_name, Unset):
             job_name = UNSET
         else:
             job_name = self.job_name
 
-        job_type: Union[Unset, str] = UNSET
+        job_type: str | Unset = UNSET
         if not isinstance(self.job_type, Unset):
             job_type = self.job_type.value
 
-        backup_size: Union[None, Unset, int]
+        backup_size: int | None | Unset
         if isinstance(self.backup_size, Unset):
             backup_size = UNSET
         else:
             backup_size = self.backup_size
 
-        archive_size: Union[None, Unset, int]
+        archive_size: int | None | Unset
         if isinstance(self.archive_size, Unset):
             archive_size = UNSET
         else:
@@ -100,7 +101,7 @@ class ProtectedFileShareBackupInfo:
 
         restore_points = self.restore_points
 
-        last_protected_date: Union[None, Unset, str]
+        last_protected_date: None | str | Unset
         if isinstance(self.last_protected_date, Unset):
             last_protected_date = UNSET
         elif isinstance(self.last_protected_date, datetime.datetime):
@@ -108,7 +109,7 @@ class ProtectedFileShareBackupInfo:
         else:
             last_protected_date = self.last_protected_date
 
-        repository: Union[None, Unset, dict[str, Any]]
+        repository: dict[str, Any] | None | Unset
         if isinstance(self.repository, Unset):
             repository = UNSET
         elif isinstance(self.repository, ProtectedDataRepositoryInfo):
@@ -116,7 +117,7 @@ class ProtectedFileShareBackupInfo:
         else:
             repository = self.repository
 
-        archive_repository: Union[None, Unset, dict[str, Any]]
+        archive_repository: dict[str, Any] | None | Unset
         if isinstance(self.archive_repository, Unset):
             archive_repository = UNSET
         elif isinstance(self.archive_repository, ProtectedDataRepositoryInfo):
@@ -124,13 +125,13 @@ class ProtectedFileShareBackupInfo:
         else:
             archive_repository = self.archive_repository
 
-        backup_server_id: Union[None, Unset, int]
+        backup_server_id: int | None | Unset
         if isinstance(self.backup_server_id, Unset):
             backup_server_id = UNSET
         else:
             backup_server_id = self.backup_server_id
 
-        backup_server_name: Union[None, Unset, str]
+        backup_server_name: None | str | Unset
         if isinstance(self.backup_server_name, Unset):
             backup_server_name = UNSET
         else:
@@ -170,11 +171,11 @@ class ProtectedFileShareBackupInfo:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.protected_data_repository_info import ProtectedDataRepositoryInfo
+        from ..models.protected_data_repository_info import ProtectedDataRepositoryInfo  # noqa: PLC0415
 
         d = dict(src_dict)
 
-        def _parse_backup_uid(data: object) -> Union[None, UUID, Unset]:
+        def _parse_backup_uid(data: object) -> None | Unset | UUID:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -185,13 +186,13 @@ class ProtectedFileShareBackupInfo:
                 backup_uid_type_0 = UUID(data)
 
                 return backup_uid_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, UUID, Unset], data)
+            return cast(None | Unset | UUID, data)
 
         backup_uid = _parse_backup_uid(d.pop("backupUid", UNSET))
 
-        def _parse_file_share_uid_in_vbr(data: object) -> Union[None, UUID, Unset]:
+        def _parse_file_share_uid_in_vbr(data: object) -> None | Unset | UUID:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -202,13 +203,13 @@ class ProtectedFileShareBackupInfo:
                 file_share_uid_in_vbr_type_0 = UUID(data)
 
                 return file_share_uid_in_vbr_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, UUID, Unset], data)
+            return cast(None | Unset | UUID, data)
 
         file_share_uid_in_vbr = _parse_file_share_uid_in_vbr(d.pop("fileShareUidInVbr", UNSET))
 
-        def _parse_job_uid(data: object) -> Union[None, UUID, Unset]:
+        def _parse_job_uid(data: object) -> None | Unset | UUID:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -219,49 +220,49 @@ class ProtectedFileShareBackupInfo:
                 job_uid_type_0 = UUID(data)
 
                 return job_uid_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, UUID, Unset], data)
+            return cast(None | Unset | UUID, data)
 
         job_uid = _parse_job_uid(d.pop("jobUid", UNSET))
 
-        def _parse_job_name(data: object) -> Union[None, Unset, str]:
+        def _parse_job_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         job_name = _parse_job_name(d.pop("jobName", UNSET))
 
         _job_type = d.pop("jobType", UNSET)
-        job_type: Union[Unset, FileShareBackupJobType]
+        job_type: FileShareBackupJobType | Unset
         if isinstance(_job_type, Unset):
             job_type = UNSET
         else:
             job_type = FileShareBackupJobType(_job_type)
 
-        def _parse_backup_size(data: object) -> Union[None, Unset, int]:
+        def _parse_backup_size(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         backup_size = _parse_backup_size(d.pop("backupSize", UNSET))
 
-        def _parse_archive_size(data: object) -> Union[None, Unset, int]:
+        def _parse_archive_size(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         archive_size = _parse_archive_size(d.pop("archiveSize", UNSET))
 
         restore_points = d.pop("restorePoints", UNSET)
 
-        def _parse_last_protected_date(data: object) -> Union[None, Unset, datetime.datetime]:
+        def _parse_last_protected_date(data: object) -> datetime.datetime | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -269,16 +270,16 @@ class ProtectedFileShareBackupInfo:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                last_protected_date_type_0 = isoparse(data)
+                last_protected_date_type_0 = datetime.datetime.fromisoformat(data)
 
                 return last_protected_date_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, datetime.datetime], data)
+            return cast(datetime.datetime | None | Unset, data)
 
         last_protected_date = _parse_last_protected_date(d.pop("lastProtectedDate", UNSET))
 
-        def _parse_repository(data: object) -> Union["ProtectedDataRepositoryInfo", None, Unset]:
+        def _parse_repository(data: object) -> None | ProtectedDataRepositoryInfo | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -289,13 +290,13 @@ class ProtectedFileShareBackupInfo:
                 repository_type_1 = ProtectedDataRepositoryInfo.from_dict(data)
 
                 return repository_type_1
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union["ProtectedDataRepositoryInfo", None, Unset], data)
+            return cast(None | ProtectedDataRepositoryInfo | Unset, data)
 
         repository = _parse_repository(d.pop("repository", UNSET))
 
-        def _parse_archive_repository(data: object) -> Union["ProtectedDataRepositoryInfo", None, Unset]:
+        def _parse_archive_repository(data: object) -> None | ProtectedDataRepositoryInfo | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -306,27 +307,27 @@ class ProtectedFileShareBackupInfo:
                 archive_repository_type_1 = ProtectedDataRepositoryInfo.from_dict(data)
 
                 return archive_repository_type_1
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union["ProtectedDataRepositoryInfo", None, Unset], data)
+            return cast(None | ProtectedDataRepositoryInfo | Unset, data)
 
         archive_repository = _parse_archive_repository(d.pop("archiveRepository", UNSET))
 
-        def _parse_backup_server_id(data: object) -> Union[None, Unset, int]:
+        def _parse_backup_server_id(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         backup_server_id = _parse_backup_server_id(d.pop("backupServerId", UNSET))
 
-        def _parse_backup_server_name(data: object) -> Union[None, Unset, str]:
+        def _parse_backup_server_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         backup_server_name = _parse_backup_server_name(d.pop("backupServerName", UNSET))
 

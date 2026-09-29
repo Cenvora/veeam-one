@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class GuestAssignType(str, Enum):
+class GuestAssignType(StrEnum):
     GUESTLINUX = "GuestLinux"
     GUESTWINDOWS = "GuestWindows"
 

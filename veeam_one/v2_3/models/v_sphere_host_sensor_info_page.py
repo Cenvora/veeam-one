@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, Union, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 
@@ -16,15 +18,15 @@ T = TypeVar("T", bound="VSphereHostSensorInfoPage")
 class VSphereHostSensorInfoPage:
     """
     Attributes:
-        items (Union[None, Unset, list['VSphereHostSensorInfo']]):
-        total_count (Union[Unset, int]):
+        items (list[VSphereHostSensorInfo] | None | Unset):
+        total_count (int | Unset):
     """
 
-    items: Union[None, Unset, list["VSphereHostSensorInfo"]] = UNSET
-    total_count: Union[Unset, int] = UNSET
+    items: list[VSphereHostSensorInfo] | None | Unset = UNSET
+    total_count: int | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
-        items: Union[None, Unset, list[dict[str, Any]]]
+        items: list[dict[str, Any]] | None | Unset
         if isinstance(self.items, Unset):
             items = UNSET
         elif isinstance(self.items, list):
@@ -50,11 +52,11 @@ class VSphereHostSensorInfoPage:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.v_sphere_host_sensor_info import VSphereHostSensorInfo
+        from ..models.v_sphere_host_sensor_info import VSphereHostSensorInfo  # noqa: PLC0415
 
         d = dict(src_dict)
 
-        def _parse_items(data: object) -> Union[None, Unset, list["VSphereHostSensorInfo"]]:
+        def _parse_items(data: object) -> list[VSphereHostSensorInfo] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -70,9 +72,9 @@ class VSphereHostSensorInfoPage:
                     items_type_0.append(items_type_0_item)
 
                 return items_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, list["VSphereHostSensorInfo"]], data)
+            return cast(list[VSphereHostSensorInfo] | None | Unset, data)
 
         items = _parse_items(d.pop("items", UNSET))
 

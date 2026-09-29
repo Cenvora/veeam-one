@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, Union, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 
@@ -17,29 +19,29 @@ T = TypeVar("T", bound="CredentialAssignGuestRequest")
 class CredentialAssignGuestRequest:
     """
     Attributes:
-        object_id (Union[Unset, int]): ID assigned to an object accessed using the credential set.
-        propagate (Union[Unset, bool]): Indicates whether child objects are accessed using the same credential set.
-        guest (Union[Unset, GuestAssignType]):
-        guest_settings (Union['GuestSettingsRequest', None, Unset]): Guest OS settings.
+        object_id (int | Unset): ID assigned to an object accessed using the credential set.
+        propagate (bool | Unset): Indicates whether child objects are accessed using the same credential set.
+        guest (GuestAssignType | Unset):
+        guest_settings (GuestSettingsRequest | None | Unset): Guest OS settings.
     """
 
-    object_id: Union[Unset, int] = UNSET
-    propagate: Union[Unset, bool] = UNSET
-    guest: Union[Unset, GuestAssignType] = UNSET
-    guest_settings: Union["GuestSettingsRequest", None, Unset] = UNSET
+    object_id: int | Unset = UNSET
+    propagate: bool | Unset = UNSET
+    guest: GuestAssignType | Unset = UNSET
+    guest_settings: GuestSettingsRequest | None | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.guest_settings_request import GuestSettingsRequest
+        from ..models.guest_settings_request import GuestSettingsRequest  # noqa: PLC0415
 
         object_id = self.object_id
 
         propagate = self.propagate
 
-        guest: Union[Unset, str] = UNSET
+        guest: str | Unset = UNSET
         if not isinstance(self.guest, Unset):
             guest = self.guest.value
 
-        guest_settings: Union[None, Unset, dict[str, Any]]
+        guest_settings: dict[str, Any] | None | Unset
         if isinstance(self.guest_settings, Unset):
             guest_settings = UNSET
         elif isinstance(self.guest_settings, GuestSettingsRequest):
@@ -63,7 +65,7 @@ class CredentialAssignGuestRequest:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.guest_settings_request import GuestSettingsRequest
+        from ..models.guest_settings_request import GuestSettingsRequest  # noqa: PLC0415
 
         d = dict(src_dict)
         object_id = d.pop("objectId", UNSET)
@@ -71,13 +73,13 @@ class CredentialAssignGuestRequest:
         propagate = d.pop("propagate", UNSET)
 
         _guest = d.pop("guest", UNSET)
-        guest: Union[Unset, GuestAssignType]
+        guest: GuestAssignType | Unset
         if isinstance(_guest, Unset):
             guest = UNSET
         else:
             guest = GuestAssignType(_guest)
 
-        def _parse_guest_settings(data: object) -> Union["GuestSettingsRequest", None, Unset]:
+        def _parse_guest_settings(data: object) -> GuestSettingsRequest | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -88,9 +90,9 @@ class CredentialAssignGuestRequest:
                 guest_settings_type_1 = GuestSettingsRequest.from_dict(data)
 
                 return guest_settings_type_1
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union["GuestSettingsRequest", None, Unset], data)
+            return cast(GuestSettingsRequest | None | Unset, data)
 
         guest_settings = _parse_guest_settings(d.pop("guestSettings", UNSET))
 

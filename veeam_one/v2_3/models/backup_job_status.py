@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class BackupJobStatus(str, Enum):
+class BackupJobStatus(StrEnum):
     FAILED = "Failed"
     NONE = "None"
     RUNNING = "Running"

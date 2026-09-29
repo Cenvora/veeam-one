@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class ExternalRepositoryType(str, Enum):
+class ExternalRepositoryType(StrEnum):
     AMAZONGLACIER = "AmazonGlacier"
     AMAZONS3 = "AmazonS3"
     GOOGLECLOUDARCHIVESTORAGE = "GoogleCloudArchiveStorage"

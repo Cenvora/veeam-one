@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
@@ -13,48 +15,47 @@ T = TypeVar("T", bound="Vb365SiteInfo")
 class Vb365SiteInfo:
     """
     Attributes:
-        site_uid (Union[Unset, UUID]): UID assigned to a SharePoint site.
-        site_uid_in_vb_365 (Union[None, Unset, str]): UID assigned to a SharePoint site in Veeam Backup for Microsoft
-            365.
-        name (Union[None, Unset, str]): Name of a Microsoft SharePoint site.
-        url (Union[None, Unset, str]): URL of a Microsoft SharePoint site.
-        vb_365_server_id (Union[Unset, int]): ID assigned to a Veeam Backup for Microsoft 365 server.
-        organization_uid (Union[Unset, UUID]): UID assigned to a Microsoft 365 organization.
-        organization_name (Union[None, Unset, str]): Name of a Microsoft 365 organization.
-        is_cloud (Union[Unset, bool]): Indicates whether a Microsoft SharePoint site is cloud-based.
-        is_personal (Union[Unset, bool]): Indicates whether a Microsoft SharePoint site is personal.
-        is_available (Union[Unset, bool]): Indicates whether a Microsoft SharePoint site is available.
+        site_uid (UUID | Unset): UID assigned to a SharePoint site.
+        site_uid_in_vb_365 (None | str | Unset): UID assigned to a SharePoint site in Veeam Backup for Microsoft 365.
+        name (None | str | Unset): Name of a Microsoft SharePoint site.
+        url (None | str | Unset): URL of a Microsoft SharePoint site.
+        vb_365_server_id (int | Unset): ID assigned to a Veeam Backup for Microsoft 365 server.
+        organization_uid (UUID | Unset): UID assigned to a Microsoft 365 organization.
+        organization_name (None | str | Unset): Name of a Microsoft 365 organization.
+        is_cloud (bool | Unset): Indicates whether a Microsoft SharePoint site is cloud-based.
+        is_personal (bool | Unset): Indicates whether a Microsoft SharePoint site is personal.
+        is_available (bool | Unset): Indicates whether a Microsoft SharePoint site is available.
     """
 
-    site_uid: Union[Unset, UUID] = UNSET
-    site_uid_in_vb_365: Union[None, Unset, str] = UNSET
-    name: Union[None, Unset, str] = UNSET
-    url: Union[None, Unset, str] = UNSET
-    vb_365_server_id: Union[Unset, int] = UNSET
-    organization_uid: Union[Unset, UUID] = UNSET
-    organization_name: Union[None, Unset, str] = UNSET
-    is_cloud: Union[Unset, bool] = UNSET
-    is_personal: Union[Unset, bool] = UNSET
-    is_available: Union[Unset, bool] = UNSET
+    site_uid: UUID | Unset = UNSET
+    site_uid_in_vb_365: None | str | Unset = UNSET
+    name: None | str | Unset = UNSET
+    url: None | str | Unset = UNSET
+    vb_365_server_id: int | Unset = UNSET
+    organization_uid: UUID | Unset = UNSET
+    organization_name: None | str | Unset = UNSET
+    is_cloud: bool | Unset = UNSET
+    is_personal: bool | Unset = UNSET
+    is_available: bool | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
-        site_uid: Union[Unset, str] = UNSET
+        site_uid: str | Unset = UNSET
         if not isinstance(self.site_uid, Unset):
             site_uid = str(self.site_uid)
 
-        site_uid_in_vb_365: Union[None, Unset, str]
+        site_uid_in_vb_365: None | str | Unset
         if isinstance(self.site_uid_in_vb_365, Unset):
             site_uid_in_vb_365 = UNSET
         else:
             site_uid_in_vb_365 = self.site_uid_in_vb_365
 
-        name: Union[None, Unset, str]
+        name: None | str | Unset
         if isinstance(self.name, Unset):
             name = UNSET
         else:
             name = self.name
 
-        url: Union[None, Unset, str]
+        url: None | str | Unset
         if isinstance(self.url, Unset):
             url = UNSET
         else:
@@ -62,11 +63,11 @@ class Vb365SiteInfo:
 
         vb_365_server_id = self.vb_365_server_id
 
-        organization_uid: Union[Unset, str] = UNSET
+        organization_uid: str | Unset = UNSET
         if not isinstance(self.organization_uid, Unset):
             organization_uid = str(self.organization_uid)
 
-        organization_name: Union[None, Unset, str]
+        organization_name: None | str | Unset
         if isinstance(self.organization_name, Unset):
             organization_name = UNSET
         else:
@@ -108,54 +109,54 @@ class Vb365SiteInfo:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
         _site_uid = d.pop("siteUid", UNSET)
-        site_uid: Union[Unset, UUID]
+        site_uid: UUID | Unset
         if isinstance(_site_uid, Unset):
             site_uid = UNSET
         else:
             site_uid = UUID(_site_uid)
 
-        def _parse_site_uid_in_vb_365(data: object) -> Union[None, Unset, str]:
+        def _parse_site_uid_in_vb_365(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         site_uid_in_vb_365 = _parse_site_uid_in_vb_365(d.pop("siteUidInVb365", UNSET))
 
-        def _parse_name(data: object) -> Union[None, Unset, str]:
+        def _parse_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         name = _parse_name(d.pop("name", UNSET))
 
-        def _parse_url(data: object) -> Union[None, Unset, str]:
+        def _parse_url(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         url = _parse_url(d.pop("url", UNSET))
 
         vb_365_server_id = d.pop("vb365ServerId", UNSET)
 
         _organization_uid = d.pop("organizationUid", UNSET)
-        organization_uid: Union[Unset, UUID]
+        organization_uid: UUID | Unset
         if isinstance(_organization_uid, Unset):
             organization_uid = UNSET
         else:
             organization_uid = UUID(_organization_uid)
 
-        def _parse_organization_name(data: object) -> Union[None, Unset, str]:
+        def _parse_organization_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         organization_name = _parse_organization_name(d.pop("organizationName", UNSET))
 

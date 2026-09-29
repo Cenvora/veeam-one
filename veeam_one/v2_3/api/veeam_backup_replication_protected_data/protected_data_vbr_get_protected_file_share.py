@@ -1,5 +1,6 @@
 from http import HTTPStatus
-from typing import Any, Optional, Union
+from typing import Any
+from urllib.parse import quote
 from uuid import UUID
 
 import httpx
@@ -14,17 +15,20 @@ from ...types import Response
 def _get_kwargs(
     file_share_uid_in_vbr: UUID,
 ) -> dict[str, Any]:
+
     _kwargs: dict[str, Any] = {
         "method": "get",
-        "url": f"/api/v2.3/protectedData/unstructuredData/fileShares/{file_share_uid_in_vbr}",
+        "url": "/api/v2.3/protectedData/unstructuredData/fileShares/{file_share_uid_in_vbr}".format(
+            file_share_uid_in_vbr=quote(str(file_share_uid_in_vbr), safe=""),
+        ),
     }
 
     return _kwargs
 
 
 def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[ProblemDetails, ProtectedFileShareInfo]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> ProblemDetails | ProtectedFileShareInfo | None:
     if response.status_code == 200:
         response_200 = ProtectedFileShareInfo.from_dict(response.json())
 
@@ -42,8 +46,8 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[ProblemDetails, ProtectedFileShareInfo]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[ProblemDetails | ProtectedFileShareInfo]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -55,8 +59,8 @@ def _build_response(
 def sync_detailed(
     file_share_uid_in_vbr: UUID,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[ProblemDetails, ProtectedFileShareInfo]]:
+    client: AuthenticatedClient | Client,
+) -> Response[ProblemDetails | ProtectedFileShareInfo]:
     """Get Protected File Share
 
      Returns a resource representation of a protected file share with the specified UID.
@@ -69,7 +73,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[ProblemDetails, ProtectedFileShareInfo]]
+        Response[ProblemDetails | ProtectedFileShareInfo]
     """
 
     kwargs = _get_kwargs(
@@ -86,8 +90,8 @@ def sync_detailed(
 def sync(
     file_share_uid_in_vbr: UUID,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[ProblemDetails, ProtectedFileShareInfo]]:
+    client: AuthenticatedClient | Client,
+) -> ProblemDetails | ProtectedFileShareInfo | None:
     """Get Protected File Share
 
      Returns a resource representation of a protected file share with the specified UID.
@@ -100,7 +104,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[ProblemDetails, ProtectedFileShareInfo]
+        ProblemDetails | ProtectedFileShareInfo
     """
 
     return sync_detailed(
@@ -112,8 +116,8 @@ def sync(
 async def asyncio_detailed(
     file_share_uid_in_vbr: UUID,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[ProblemDetails, ProtectedFileShareInfo]]:
+    client: AuthenticatedClient | Client,
+) -> Response[ProblemDetails | ProtectedFileShareInfo]:
     """Get Protected File Share
 
      Returns a resource representation of a protected file share with the specified UID.
@@ -126,7 +130,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[ProblemDetails, ProtectedFileShareInfo]]
+        Response[ProblemDetails | ProtectedFileShareInfo]
     """
 
     kwargs = _get_kwargs(
@@ -141,8 +145,8 @@ async def asyncio_detailed(
 async def asyncio(
     file_share_uid_in_vbr: UUID,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[ProblemDetails, ProtectedFileShareInfo]]:
+    client: AuthenticatedClient | Client,
+) -> ProblemDetails | ProtectedFileShareInfo | None:
     """Get Protected File Share
 
      Returns a resource representation of a protected file share with the specified UID.
@@ -155,7 +159,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[ProblemDetails, ProtectedFileShareInfo]
+        ProblemDetails | ProtectedFileShareInfo
     """
 
     return (

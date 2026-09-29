@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class InfrequentAccess(str, Enum):
+class InfrequentAccess(StrEnum):
     COLDTIER = "ColdTier"
     DISABLED = "Disabled"
     S3ONEZONEIA = "S3OneZoneIA"

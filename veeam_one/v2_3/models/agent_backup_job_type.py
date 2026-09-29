@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class AgentBackupJobType(str, Enum):
+class AgentBackupJobType(StrEnum):
     AGENTPOLICY = "AgentPolicy"
     BACKUP = "Backup"
     BACKUPCOPY = "BackupCopy"

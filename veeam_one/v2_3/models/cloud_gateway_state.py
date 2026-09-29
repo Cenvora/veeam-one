@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class CloudGatewayState(str, Enum):
+class CloudGatewayState(StrEnum):
     DISCONNECTED = "Disconnected"
     HEALTHY = "Healthy"
     INACCESSIBLE = "Inaccessible"

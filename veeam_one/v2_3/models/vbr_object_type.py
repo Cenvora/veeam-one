@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class VbrObjectType(str, Enum):
+class VbrObjectType(StrEnum):
     ARCHIVEREPOSITORY = "ArchiveRepository"
     BACKUP = "Backup"
     BACKUPPROXY = "BackupProxy"

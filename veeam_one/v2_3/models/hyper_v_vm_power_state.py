@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class HyperVVmPowerState(str, Enum):
+class HyperVVmPowerState(StrEnum):
     DISABLED = "Disabled"
     ENABLED = "Enabled"
     PAUSED = "Paused"

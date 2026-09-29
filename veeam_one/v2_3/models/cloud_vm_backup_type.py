@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class CloudVmBackupType(str, Enum):
+class CloudVmBackupType(StrEnum):
     BACKUPCOPY = "BackupCopy"
     BACKUPTOTAPE = "BackupToTape"
     CLOUDARCHIVE = "CloudArchive"

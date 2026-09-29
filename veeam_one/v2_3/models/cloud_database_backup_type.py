@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class CloudDatabaseBackupType(str, Enum):
+class CloudDatabaseBackupType(StrEnum):
     CLOUDARCHIVE = "CloudArchive"
     CLOUDBACKUP = "CloudBackup"
     CLOUDREPLICA = "CloudReplica"

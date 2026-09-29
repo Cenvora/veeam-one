@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, Union, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 
@@ -18,39 +20,39 @@ T = TypeVar("T", bound="GuestAssignInfo")
 class GuestAssignInfo:
     """
     Attributes:
-        object_id (Union[Unset, int]): ID assigned to a host.
-        object_name (Union[None, Unset, str]): Name of a host.
-        object_type (Union[Unset, HostAssignType]):
-        guest_assign (Union[Unset, GuestAssignType]):
-        settings_info (Union['GuestSettingsInfo', None, Unset]): Guest OS settings.
+        object_id (int | Unset): ID assigned to a host.
+        object_name (None | str | Unset): Name of a host.
+        object_type (HostAssignType | Unset):
+        guest_assign (GuestAssignType | Unset):
+        settings_info (GuestSettingsInfo | None | Unset): Guest OS settings.
     """
 
-    object_id: Union[Unset, int] = UNSET
-    object_name: Union[None, Unset, str] = UNSET
-    object_type: Union[Unset, HostAssignType] = UNSET
-    guest_assign: Union[Unset, GuestAssignType] = UNSET
-    settings_info: Union["GuestSettingsInfo", None, Unset] = UNSET
+    object_id: int | Unset = UNSET
+    object_name: None | str | Unset = UNSET
+    object_type: HostAssignType | Unset = UNSET
+    guest_assign: GuestAssignType | Unset = UNSET
+    settings_info: GuestSettingsInfo | None | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.guest_settings_info import GuestSettingsInfo
+        from ..models.guest_settings_info import GuestSettingsInfo  # noqa: PLC0415
 
         object_id = self.object_id
 
-        object_name: Union[None, Unset, str]
+        object_name: None | str | Unset
         if isinstance(self.object_name, Unset):
             object_name = UNSET
         else:
             object_name = self.object_name
 
-        object_type: Union[Unset, str] = UNSET
+        object_type: str | Unset = UNSET
         if not isinstance(self.object_type, Unset):
             object_type = self.object_type.value
 
-        guest_assign: Union[Unset, str] = UNSET
+        guest_assign: str | Unset = UNSET
         if not isinstance(self.guest_assign, Unset):
             guest_assign = self.guest_assign.value
 
-        settings_info: Union[None, Unset, dict[str, Any]]
+        settings_info: dict[str, Any] | None | Unset
         if isinstance(self.settings_info, Unset):
             settings_info = UNSET
         elif isinstance(self.settings_info, GuestSettingsInfo):
@@ -76,35 +78,35 @@ class GuestAssignInfo:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.guest_settings_info import GuestSettingsInfo
+        from ..models.guest_settings_info import GuestSettingsInfo  # noqa: PLC0415
 
         d = dict(src_dict)
         object_id = d.pop("objectId", UNSET)
 
-        def _parse_object_name(data: object) -> Union[None, Unset, str]:
+        def _parse_object_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         object_name = _parse_object_name(d.pop("objectName", UNSET))
 
         _object_type = d.pop("objectType", UNSET)
-        object_type: Union[Unset, HostAssignType]
+        object_type: HostAssignType | Unset
         if isinstance(_object_type, Unset):
             object_type = UNSET
         else:
             object_type = HostAssignType(_object_type)
 
         _guest_assign = d.pop("guestAssign", UNSET)
-        guest_assign: Union[Unset, GuestAssignType]
+        guest_assign: GuestAssignType | Unset
         if isinstance(_guest_assign, Unset):
             guest_assign = UNSET
         else:
             guest_assign = GuestAssignType(_guest_assign)
 
-        def _parse_settings_info(data: object) -> Union["GuestSettingsInfo", None, Unset]:
+        def _parse_settings_info(data: object) -> GuestSettingsInfo | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -115,9 +117,9 @@ class GuestAssignInfo:
                 settings_info_type_1 = GuestSettingsInfo.from_dict(data)
 
                 return settings_info_type_1
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union["GuestSettingsInfo", None, Unset], data)
+            return cast(GuestSettingsInfo | None | Unset, data)
 
         settings_info = _parse_settings_info(d.pop("settingsInfo", UNSET))
 

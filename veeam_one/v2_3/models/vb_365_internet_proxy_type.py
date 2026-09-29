@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class Vb365InternetProxyType(str, Enum):
+class Vb365InternetProxyType(StrEnum):
     CUSTOM = "Custom"
     FROMMANAGEMENTSERVER = "FromManagementServer"
     UNKNOWN = "Unknown"

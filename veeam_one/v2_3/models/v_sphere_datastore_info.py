@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 
@@ -15,51 +17,51 @@ T = TypeVar("T", bound="VSphereDatastoreInfo")
 class VSphereDatastoreInfo:
     """
     Attributes:
-        datastore_id (Union[Unset, int]): ID assigned to a datastore.
-        mo_ref (Union[None, Unset, str]): MoRef ID assigned to a datastore in VMware vSphere.
-        parent_id (Union[None, Unset, int]): ID assigned to a parent object.
-        parent_type (Union[None, Unset, VSphereObjectType]): Type of a parent object.
-        name (Union[None, Unset, str]): Name of a datastore.
-        type_ (Union[Unset, VSphereDatastoreType]):
-        connection_state (Union[Unset, DatastoreConnectionState]):
-        path (Union[None, Unset, str]): Location of a datastore.
-        capacity_bytes (Union[None, Unset, int]): Storage capacity of a datastore, in bytes.
-        free_space_bytes (Union[None, Unset, int]): Amount of available free space on a datastore, in bytes.
-        vm_count (Union[None, Unset, int]): Number of VMs that reside on a datastore.
-        host_count (Union[None, Unset, int]): Number of hosts that are connected to a datastore.
-        business_view_group_ids (Union[None, Unset, list[int]]): Array of Business View groups.
+        datastore_id (int | Unset): ID assigned to a datastore.
+        mo_ref (None | str | Unset): MoRef ID assigned to a datastore in VMware vSphere.
+        parent_id (int | None | Unset): ID assigned to a parent object.
+        parent_type (None | Unset | VSphereObjectType): Type of a parent object.
+        name (None | str | Unset): Name of a datastore.
+        type_ (VSphereDatastoreType | Unset):
+        connection_state (DatastoreConnectionState | Unset):
+        path (None | str | Unset): Location of a datastore.
+        capacity_bytes (int | None | Unset): Storage capacity of a datastore, in bytes.
+        free_space_bytes (int | None | Unset): Amount of available free space on a datastore, in bytes.
+        vm_count (int | None | Unset): Number of VMs that reside on a datastore.
+        host_count (int | None | Unset): Number of hosts that are connected to a datastore.
+        business_view_group_ids (list[int] | None | Unset): Array of Business View groups.
     """
 
-    datastore_id: Union[Unset, int] = UNSET
-    mo_ref: Union[None, Unset, str] = UNSET
-    parent_id: Union[None, Unset, int] = UNSET
-    parent_type: Union[None, Unset, VSphereObjectType] = UNSET
-    name: Union[None, Unset, str] = UNSET
-    type_: Union[Unset, VSphereDatastoreType] = UNSET
-    connection_state: Union[Unset, DatastoreConnectionState] = UNSET
-    path: Union[None, Unset, str] = UNSET
-    capacity_bytes: Union[None, Unset, int] = UNSET
-    free_space_bytes: Union[None, Unset, int] = UNSET
-    vm_count: Union[None, Unset, int] = UNSET
-    host_count: Union[None, Unset, int] = UNSET
-    business_view_group_ids: Union[None, Unset, list[int]] = UNSET
+    datastore_id: int | Unset = UNSET
+    mo_ref: None | str | Unset = UNSET
+    parent_id: int | None | Unset = UNSET
+    parent_type: None | Unset | VSphereObjectType = UNSET
+    name: None | str | Unset = UNSET
+    type_: VSphereDatastoreType | Unset = UNSET
+    connection_state: DatastoreConnectionState | Unset = UNSET
+    path: None | str | Unset = UNSET
+    capacity_bytes: int | None | Unset = UNSET
+    free_space_bytes: int | None | Unset = UNSET
+    vm_count: int | None | Unset = UNSET
+    host_count: int | None | Unset = UNSET
+    business_view_group_ids: list[int] | None | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
         datastore_id = self.datastore_id
 
-        mo_ref: Union[None, Unset, str]
+        mo_ref: None | str | Unset
         if isinstance(self.mo_ref, Unset):
             mo_ref = UNSET
         else:
             mo_ref = self.mo_ref
 
-        parent_id: Union[None, Unset, int]
+        parent_id: int | None | Unset
         if isinstance(self.parent_id, Unset):
             parent_id = UNSET
         else:
             parent_id = self.parent_id
 
-        parent_type: Union[None, Unset, str]
+        parent_type: None | str | Unset
         if isinstance(self.parent_type, Unset):
             parent_type = UNSET
         elif isinstance(self.parent_type, VSphereObjectType):
@@ -67,51 +69,51 @@ class VSphereDatastoreInfo:
         else:
             parent_type = self.parent_type
 
-        name: Union[None, Unset, str]
+        name: None | str | Unset
         if isinstance(self.name, Unset):
             name = UNSET
         else:
             name = self.name
 
-        type_: Union[Unset, str] = UNSET
+        type_: str | Unset = UNSET
         if not isinstance(self.type_, Unset):
             type_ = self.type_.value
 
-        connection_state: Union[Unset, str] = UNSET
+        connection_state: str | Unset = UNSET
         if not isinstance(self.connection_state, Unset):
             connection_state = self.connection_state.value
 
-        path: Union[None, Unset, str]
+        path: None | str | Unset
         if isinstance(self.path, Unset):
             path = UNSET
         else:
             path = self.path
 
-        capacity_bytes: Union[None, Unset, int]
+        capacity_bytes: int | None | Unset
         if isinstance(self.capacity_bytes, Unset):
             capacity_bytes = UNSET
         else:
             capacity_bytes = self.capacity_bytes
 
-        free_space_bytes: Union[None, Unset, int]
+        free_space_bytes: int | None | Unset
         if isinstance(self.free_space_bytes, Unset):
             free_space_bytes = UNSET
         else:
             free_space_bytes = self.free_space_bytes
 
-        vm_count: Union[None, Unset, int]
+        vm_count: int | None | Unset
         if isinstance(self.vm_count, Unset):
             vm_count = UNSET
         else:
             vm_count = self.vm_count
 
-        host_count: Union[None, Unset, int]
+        host_count: int | None | Unset
         if isinstance(self.host_count, Unset):
             host_count = UNSET
         else:
             host_count = self.host_count
 
-        business_view_group_ids: Union[None, Unset, list[int]]
+        business_view_group_ids: list[int] | None | Unset
         if isinstance(self.business_view_group_ids, Unset):
             business_view_group_ids = UNSET
         elif isinstance(self.business_view_group_ids, list):
@@ -157,25 +159,25 @@ class VSphereDatastoreInfo:
         d = dict(src_dict)
         datastore_id = d.pop("datastoreId", UNSET)
 
-        def _parse_mo_ref(data: object) -> Union[None, Unset, str]:
+        def _parse_mo_ref(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         mo_ref = _parse_mo_ref(d.pop("moRef", UNSET))
 
-        def _parse_parent_id(data: object) -> Union[None, Unset, int]:
+        def _parse_parent_id(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         parent_id = _parse_parent_id(d.pop("parentId", UNSET))
 
-        def _parse_parent_type(data: object) -> Union[None, Unset, VSphereObjectType]:
+        def _parse_parent_type(data: object) -> None | Unset | VSphereObjectType:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -186,81 +188,81 @@ class VSphereDatastoreInfo:
                 parent_type_type_1 = VSphereObjectType(data)
 
                 return parent_type_type_1
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, VSphereObjectType], data)
+            return cast(None | Unset | VSphereObjectType, data)
 
         parent_type = _parse_parent_type(d.pop("parentType", UNSET))
 
-        def _parse_name(data: object) -> Union[None, Unset, str]:
+        def _parse_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         name = _parse_name(d.pop("name", UNSET))
 
         _type_ = d.pop("type", UNSET)
-        type_: Union[Unset, VSphereDatastoreType]
+        type_: VSphereDatastoreType | Unset
         if isinstance(_type_, Unset):
             type_ = UNSET
         else:
             type_ = VSphereDatastoreType(_type_)
 
         _connection_state = d.pop("connectionState", UNSET)
-        connection_state: Union[Unset, DatastoreConnectionState]
+        connection_state: DatastoreConnectionState | Unset
         if isinstance(_connection_state, Unset):
             connection_state = UNSET
         else:
             connection_state = DatastoreConnectionState(_connection_state)
 
-        def _parse_path(data: object) -> Union[None, Unset, str]:
+        def _parse_path(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         path = _parse_path(d.pop("path", UNSET))
 
-        def _parse_capacity_bytes(data: object) -> Union[None, Unset, int]:
+        def _parse_capacity_bytes(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         capacity_bytes = _parse_capacity_bytes(d.pop("capacityBytes", UNSET))
 
-        def _parse_free_space_bytes(data: object) -> Union[None, Unset, int]:
+        def _parse_free_space_bytes(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         free_space_bytes = _parse_free_space_bytes(d.pop("freeSpaceBytes", UNSET))
 
-        def _parse_vm_count(data: object) -> Union[None, Unset, int]:
+        def _parse_vm_count(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         vm_count = _parse_vm_count(d.pop("vmCount", UNSET))
 
-        def _parse_host_count(data: object) -> Union[None, Unset, int]:
+        def _parse_host_count(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         host_count = _parse_host_count(d.pop("hostCount", UNSET))
 
-        def _parse_business_view_group_ids(data: object) -> Union[None, Unset, list[int]]:
+        def _parse_business_view_group_ids(data: object) -> list[int] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -271,9 +273,9 @@ class VSphereDatastoreInfo:
                 business_view_group_ids_type_0 = cast(list[int], data)
 
                 return business_view_group_ids_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, list[int]], data)
+            return cast(list[int] | None | Unset, data)
 
         business_view_group_ids = _parse_business_view_group_ids(d.pop("businessViewGroupIds", UNSET))
 

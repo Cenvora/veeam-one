@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class ScheduleSessionStatus(str, Enum):
+class ScheduleSessionStatus(StrEnum):
     FAILED = "Failed"
     FAILEDWITHOUTSTART = "FailedWithoutStart"
     INQUEUE = "InQueue"

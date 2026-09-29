@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class VSphereObjectType(str, Enum):
+class VSphereObjectType(StrEnum):
     DATACENTER = "Datacenter"
     DATASTORE = "Datastore"
     DATASTORECLUSTER = "DatastoreCluster"

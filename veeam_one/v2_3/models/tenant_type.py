@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class TenantType(str, Enum):
+class TenantType(StrEnum):
     ACTIVEDIRECTORY = "ActiveDirectory"
     CLOUDDIRECTOR = "CloudDirector"
     STANDALONE = "Standalone"

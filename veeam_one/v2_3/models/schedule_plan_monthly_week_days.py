@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 
@@ -16,17 +18,17 @@ class SchedulePlanMonthlyWeekDays:
     """Scheduling settings for monthly data collection on specific week days.
 
     Attributes:
-        months (Union[None, Unset, list[Month]]): Array of months.
-        day_of_week_appearance (Union[None, Unset, list[DayOfWeekAppearance]]): Ordinal numeral.
-        days_of_week (Union[None, Unset, list[DayOfWeek]]): Week day.
+        months (list[Month] | None | Unset): Array of months.
+        day_of_week_appearance (list[DayOfWeekAppearance] | None | Unset): Ordinal numeral.
+        days_of_week (list[DayOfWeek] | None | Unset): Week day.
     """
 
-    months: Union[None, Unset, list[Month]] = UNSET
-    day_of_week_appearance: Union[None, Unset, list[DayOfWeekAppearance]] = UNSET
-    days_of_week: Union[None, Unset, list[DayOfWeek]] = UNSET
+    months: list[Month] | None | Unset = UNSET
+    day_of_week_appearance: list[DayOfWeekAppearance] | None | Unset = UNSET
+    days_of_week: list[DayOfWeek] | None | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
-        months: Union[None, Unset, list[str]]
+        months: list[str] | None | Unset
         if isinstance(self.months, Unset):
             months = UNSET
         elif isinstance(self.months, list):
@@ -38,7 +40,7 @@ class SchedulePlanMonthlyWeekDays:
         else:
             months = self.months
 
-        day_of_week_appearance: Union[None, Unset, list[str]]
+        day_of_week_appearance: list[str] | None | Unset
         if isinstance(self.day_of_week_appearance, Unset):
             day_of_week_appearance = UNSET
         elif isinstance(self.day_of_week_appearance, list):
@@ -50,7 +52,7 @@ class SchedulePlanMonthlyWeekDays:
         else:
             day_of_week_appearance = self.day_of_week_appearance
 
-        days_of_week: Union[None, Unset, list[str]]
+        days_of_week: list[str] | None | Unset
         if isinstance(self.days_of_week, Unset):
             days_of_week = UNSET
         elif isinstance(self.days_of_week, list):
@@ -78,7 +80,7 @@ class SchedulePlanMonthlyWeekDays:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
 
-        def _parse_months(data: object) -> Union[None, Unset, list[Month]]:
+        def _parse_months(data: object) -> list[Month] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -94,13 +96,13 @@ class SchedulePlanMonthlyWeekDays:
                     months_type_0.append(months_type_0_item)
 
                 return months_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, list[Month]], data)
+            return cast(list[Month] | None | Unset, data)
 
         months = _parse_months(d.pop("months", UNSET))
 
-        def _parse_day_of_week_appearance(data: object) -> Union[None, Unset, list[DayOfWeekAppearance]]:
+        def _parse_day_of_week_appearance(data: object) -> list[DayOfWeekAppearance] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -116,13 +118,13 @@ class SchedulePlanMonthlyWeekDays:
                     day_of_week_appearance_type_0.append(day_of_week_appearance_type_0_item)
 
                 return day_of_week_appearance_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, list[DayOfWeekAppearance]], data)
+            return cast(list[DayOfWeekAppearance] | None | Unset, data)
 
         day_of_week_appearance = _parse_day_of_week_appearance(d.pop("dayOfWeekAppearance", UNSET))
 
-        def _parse_days_of_week(data: object) -> Union[None, Unset, list[DayOfWeek]]:
+        def _parse_days_of_week(data: object) -> list[DayOfWeek] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -138,9 +140,9 @@ class SchedulePlanMonthlyWeekDays:
                     days_of_week_type_0.append(days_of_week_type_0_item)
 
                 return days_of_week_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, list[DayOfWeek]], data)
+            return cast(list[DayOfWeek] | None | Unset, data)
 
         days_of_week = _parse_days_of_week(d.pop("daysOfWeek", UNSET))
 

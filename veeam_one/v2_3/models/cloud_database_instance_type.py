@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class CloudDatabaseInstanceType(str, Enum):
+class CloudDatabaseInstanceType(StrEnum):
     CLOUDSPANNER = "CloudSpanner"
     CLOUDSQL = "CloudSQL"
     COSMOSDB = "CosmosDB"

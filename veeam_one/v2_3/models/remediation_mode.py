@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class RemediationMode(str, Enum):
+class RemediationMode(StrEnum):
     AUTOMATIC = "Automatic"
     DISABLE = "Disable"
     MANUAL = "Manual"

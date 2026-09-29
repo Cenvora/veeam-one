@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class VmBackupJobPlatform(str, Enum):
+class VmBackupJobPlatform(StrEnum):
     HPEVME = "HpeVme"
     HYPERV = "HyperV"
     NUTANIX = "Nutanix"

@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class BackupPlatformType(str, Enum):
+class BackupPlatformType(StrEnum):
     LINUX = "Linux"
     UNKNOWN = "Unknown"
     WINDOWS = "Windows"

@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class MemorySharesLevel(str, Enum):
+class MemorySharesLevel(StrEnum):
     CUSTOM = "Custom"
     HIGH = "High"
     LOW = "Low"

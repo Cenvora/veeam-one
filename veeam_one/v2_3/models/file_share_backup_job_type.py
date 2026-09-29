@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class FileShareBackupJobType(str, Enum):
+class FileShareBackupJobType(StrEnum):
     BACKUPCOPY = "BackupCopy"
     FILEBACKUP = "FileBackup"
     FILECOPY = "FileCopy"

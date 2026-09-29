@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class CloudFileSharesPlatform(str, Enum):
+class CloudFileSharesPlatform(StrEnum):
     AWS = "AWS"
     MICROSOFTAZURE = "MicrosoftAzure"
     UNKNOWN = "Unknown"

@@ -1,5 +1,5 @@
 from http import HTTPStatus
-from typing import Any, Optional, Union
+from typing import Any
 
 import httpx
 
@@ -12,12 +12,13 @@ from ...types import UNSET, Response, Unset
 
 def _get_kwargs(
     *,
-    offset: Union[Unset, int] = 0,
-    limit: Union[Unset, int] = 100,
-    filter_: Union[Unset, str] = UNSET,
-    sort: Union[Unset, str] = UNSET,
-    select: Union[Unset, str] = UNSET,
+    offset: int | Unset = 0,
+    limit: int | Unset = 100,
+    filter_: str | Unset = UNSET,
+    sort: str | Unset = UNSET,
+    select: str | Unset = UNSET,
 ) -> dict[str, Any]:
+
     params: dict[str, Any] = {}
 
     params["Offset"] = offset
@@ -42,8 +43,8 @@ def _get_kwargs(
 
 
 def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[BusinessViewGroupInfoPage, ProblemDetails]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> BusinessViewGroupInfoPage | ProblemDetails | None:
     if response.status_code == 200:
         response_200 = BusinessViewGroupInfoPage.from_dict(response.json())
 
@@ -61,8 +62,8 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[BusinessViewGroupInfoPage, ProblemDetails]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[BusinessViewGroupInfoPage | ProblemDetails]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -73,30 +74,30 @@ def _build_response(
 
 def sync_detailed(
     *,
-    client: Union[AuthenticatedClient, Client],
-    offset: Union[Unset, int] = 0,
-    limit: Union[Unset, int] = 100,
-    filter_: Union[Unset, str] = UNSET,
-    sort: Union[Unset, str] = UNSET,
-    select: Union[Unset, str] = UNSET,
-) -> Response[Union[BusinessViewGroupInfoPage, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+    offset: int | Unset = 0,
+    limit: int | Unset = 100,
+    filter_: str | Unset = UNSET,
+    sort: str | Unset = UNSET,
+    select: str | Unset = UNSET,
+) -> Response[BusinessViewGroupInfoPage | ProblemDetails]:
     """Get All Business View Groups
 
      Returns a collection resource representation of all Business View groups.
 
     Args:
-        offset (Union[Unset, int]):  Default: 0.
-        limit (Union[Unset, int]):  Default: 100.
-        filter_ (Union[Unset, str]):
-        sort (Union[Unset, str]):
-        select (Union[Unset, str]):
+        offset (int | Unset):  Default: 0.
+        limit (int | Unset):  Default: 100.
+        filter_ (str | Unset):
+        sort (str | Unset):
+        select (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[BusinessViewGroupInfoPage, ProblemDetails]]
+        Response[BusinessViewGroupInfoPage | ProblemDetails]
     """
 
     kwargs = _get_kwargs(
@@ -116,30 +117,30 @@ def sync_detailed(
 
 def sync(
     *,
-    client: Union[AuthenticatedClient, Client],
-    offset: Union[Unset, int] = 0,
-    limit: Union[Unset, int] = 100,
-    filter_: Union[Unset, str] = UNSET,
-    sort: Union[Unset, str] = UNSET,
-    select: Union[Unset, str] = UNSET,
-) -> Optional[Union[BusinessViewGroupInfoPage, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+    offset: int | Unset = 0,
+    limit: int | Unset = 100,
+    filter_: str | Unset = UNSET,
+    sort: str | Unset = UNSET,
+    select: str | Unset = UNSET,
+) -> BusinessViewGroupInfoPage | ProblemDetails | None:
     """Get All Business View Groups
 
      Returns a collection resource representation of all Business View groups.
 
     Args:
-        offset (Union[Unset, int]):  Default: 0.
-        limit (Union[Unset, int]):  Default: 100.
-        filter_ (Union[Unset, str]):
-        sort (Union[Unset, str]):
-        select (Union[Unset, str]):
+        offset (int | Unset):  Default: 0.
+        limit (int | Unset):  Default: 100.
+        filter_ (str | Unset):
+        sort (str | Unset):
+        select (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[BusinessViewGroupInfoPage, ProblemDetails]
+        BusinessViewGroupInfoPage | ProblemDetails
     """
 
     return sync_detailed(
@@ -154,30 +155,30 @@ def sync(
 
 async def asyncio_detailed(
     *,
-    client: Union[AuthenticatedClient, Client],
-    offset: Union[Unset, int] = 0,
-    limit: Union[Unset, int] = 100,
-    filter_: Union[Unset, str] = UNSET,
-    sort: Union[Unset, str] = UNSET,
-    select: Union[Unset, str] = UNSET,
-) -> Response[Union[BusinessViewGroupInfoPage, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+    offset: int | Unset = 0,
+    limit: int | Unset = 100,
+    filter_: str | Unset = UNSET,
+    sort: str | Unset = UNSET,
+    select: str | Unset = UNSET,
+) -> Response[BusinessViewGroupInfoPage | ProblemDetails]:
     """Get All Business View Groups
 
      Returns a collection resource representation of all Business View groups.
 
     Args:
-        offset (Union[Unset, int]):  Default: 0.
-        limit (Union[Unset, int]):  Default: 100.
-        filter_ (Union[Unset, str]):
-        sort (Union[Unset, str]):
-        select (Union[Unset, str]):
+        offset (int | Unset):  Default: 0.
+        limit (int | Unset):  Default: 100.
+        filter_ (str | Unset):
+        sort (str | Unset):
+        select (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[BusinessViewGroupInfoPage, ProblemDetails]]
+        Response[BusinessViewGroupInfoPage | ProblemDetails]
     """
 
     kwargs = _get_kwargs(
@@ -195,30 +196,30 @@ async def asyncio_detailed(
 
 async def asyncio(
     *,
-    client: Union[AuthenticatedClient, Client],
-    offset: Union[Unset, int] = 0,
-    limit: Union[Unset, int] = 100,
-    filter_: Union[Unset, str] = UNSET,
-    sort: Union[Unset, str] = UNSET,
-    select: Union[Unset, str] = UNSET,
-) -> Optional[Union[BusinessViewGroupInfoPage, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+    offset: int | Unset = 0,
+    limit: int | Unset = 100,
+    filter_: str | Unset = UNSET,
+    sort: str | Unset = UNSET,
+    select: str | Unset = UNSET,
+) -> BusinessViewGroupInfoPage | ProblemDetails | None:
     """Get All Business View Groups
 
      Returns a collection resource representation of all Business View groups.
 
     Args:
-        offset (Union[Unset, int]):  Default: 0.
-        limit (Union[Unset, int]):  Default: 100.
-        filter_ (Union[Unset, str]):
-        sort (Union[Unset, str]):
-        select (Union[Unset, str]):
+        offset (int | Unset):  Default: 0.
+        limit (int | Unset):  Default: 100.
+        filter_ (str | Unset):
+        sort (str | Unset):
+        select (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[BusinessViewGroupInfoPage, ProblemDetails]
+        BusinessViewGroupInfoPage | ProblemDetails
     """
 
     return (

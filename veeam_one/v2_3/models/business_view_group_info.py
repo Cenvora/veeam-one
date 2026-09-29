@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 
@@ -13,27 +15,27 @@ T = TypeVar("T", bound="BusinessViewGroupInfo")
 class BusinessViewGroupInfo:
     """
     Attributes:
-        group_id (Union[Unset, int]): ID assigned to a Business View group.
-        name (Union[None, Unset, str]): Name of a Business View group.
-        type_ (Union[Unset, BusinessViewGroupType]):
-        category_id (Union[Unset, int]): ID assigned to a Business View category that includes the group.
+        group_id (int | Unset): ID assigned to a Business View group.
+        name (None | str | Unset): Name of a Business View group.
+        type_ (BusinessViewGroupType | Unset):
+        category_id (int | Unset): ID assigned to a Business View category that includes the group.
     """
 
-    group_id: Union[Unset, int] = UNSET
-    name: Union[None, Unset, str] = UNSET
-    type_: Union[Unset, BusinessViewGroupType] = UNSET
-    category_id: Union[Unset, int] = UNSET
+    group_id: int | Unset = UNSET
+    name: None | str | Unset = UNSET
+    type_: BusinessViewGroupType | Unset = UNSET
+    category_id: int | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
         group_id = self.group_id
 
-        name: Union[None, Unset, str]
+        name: None | str | Unset
         if isinstance(self.name, Unset):
             name = UNSET
         else:
             name = self.name
 
-        type_: Union[Unset, str] = UNSET
+        type_: str | Unset = UNSET
         if not isinstance(self.type_, Unset):
             type_ = self.type_.value
 
@@ -58,17 +60,17 @@ class BusinessViewGroupInfo:
         d = dict(src_dict)
         group_id = d.pop("groupId", UNSET)
 
-        def _parse_name(data: object) -> Union[None, Unset, str]:
+        def _parse_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         name = _parse_name(d.pop("name", UNSET))
 
         _type_ = d.pop("type", UNSET)
-        type_: Union[Unset, BusinessViewGroupType]
+        type_: BusinessViewGroupType | Unset
         if isinstance(_type_, Unset):
             type_ = UNSET
         else:

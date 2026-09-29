@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class RegularRepositoryType(str, Enum):
+class RegularRepositoryType(StrEnum):
     CLOUD = "Cloud"
     DELLEMCDATADOMAIN = "DellEMCDataDomain"
     EXAGRID = "ExaGrid"

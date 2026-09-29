@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class FailoverPlanState(str, Enum):
+class FailoverPlanState(StrEnum):
     FAILED = "Failed"
     INPROGRESS = "InProgress"
     INUNDOPROGRESS = "InUndoProgress"

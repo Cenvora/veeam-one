@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class ProtectedComputerPlatform(str, Enum):
+class ProtectedComputerPlatform(StrEnum):
     CUSTOM = "Custom"
     IBMAIX = "IbmAix"
     LINUX = "Linux"

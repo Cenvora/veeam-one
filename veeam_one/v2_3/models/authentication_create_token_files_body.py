@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -17,15 +19,15 @@ class AuthenticationCreateTokenFilesBody:
     Attributes:
         grant_type (AuthenticationCreateTokenFilesBodyGrantType):  Default:
             AuthenticationCreateTokenFilesBodyGrantType.PASSWORD.
-        username (Union[Unset, str]):
-        password (Union[Unset, str]):
-        refresh_token (Union[Unset, str]):
+        username (str | Unset):
+        password (str | Unset):
+        refresh_token (str | Unset):
     """
 
     grant_type: AuthenticationCreateTokenFilesBodyGrantType = AuthenticationCreateTokenFilesBodyGrantType.PASSWORD
-    username: Union[Unset, str] = UNSET
-    password: Union[Unset, str] = UNSET
-    refresh_token: Union[Unset, str] = UNSET
+    username: str | Unset = UNSET
+    password: str | Unset = UNSET
+    refresh_token: str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:

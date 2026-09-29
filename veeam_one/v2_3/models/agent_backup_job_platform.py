@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class AgentBackupJobPlatform(str, Enum):
+class AgentBackupJobPlatform(StrEnum):
     CUSTOM = "Custom"
     IBMAIX = "IbmAix"
     IBMAIXORACLESOLARIS = "IbmAixOracleSolaris"

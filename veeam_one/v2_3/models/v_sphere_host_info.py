@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 
@@ -15,79 +17,79 @@ T = TypeVar("T", bound="VSphereHostInfo")
 class VSphereHostInfo:
     """
     Attributes:
-        host_id (Union[Unset, int]): ID assigned to a host.
-        mo_ref (Union[None, Unset, str]): MoRef ID assigned to a host in VMware vSphere.
-        name (Union[None, Unset, str]): Name of a host.
-        parent_id (Union[None, Unset, int]): ID assigned to a parent object.
-        parent_type (Union[None, Unset, VSphereObjectType]): Type of a parent object.
-        port (Union[None, Unset, int]): Port used to access a host.
-        connection_state (Union[Unset, VSphereHostConnectionState]):
-        power_state (Union[Unset, VSphereHostPowerState]):
-        vendor (Union[None, Unset, str]): Host vendor.
-        model (Union[None, Unset, str]): Host model.
-        socket_count (Union[None, Unset, int]): Number of CPU sockets on a host.
-        cpu_package_count (Union[None, Unset, int]): Number of CPU packages on a host.
-        cpu_core_count (Union[None, Unset, int]): Number of CPU cores on a host.
-        cpu_model (Union[None, Unset, str]): Model of a host CPU.
-        cpu_mhz (Union[None, Unset, int]): Host CPU frequency, in MHz.
-        memory_size_bytes (Union[None, Unset, int]): Amount of memory available on a host, in bytes.
-        nic_count (Union[None, Unset, int]): Number of network interface controllers connected to a host.
-        is_maintenance_mode_enabled (Union[None, Unset, bool]): Indicates whether a host is in the maintenance mode.
-        memory_usage_mb (Union[None, Unset, int]): Host memory usage, in MB.
-        cpu_usage_mhz (Union[None, Unset, int]): Host CPU usage, in MHz.
-        is_vmotion_enabled (Union[None, Unset, bool]): Indicates whether VMware vSphere vMotion is enabled for a host.
-        connection_error (Union[None, Unset, str]): Error message for failed connection.
-        version (Union[None, Unset, str]): Version of a host.
-        business_view_group_ids (Union[None, Unset, list[int]]): Array of Business View groups.
+        host_id (int | Unset): ID assigned to a host.
+        mo_ref (None | str | Unset): MoRef ID assigned to a host in VMware vSphere.
+        name (None | str | Unset): Name of a host.
+        parent_id (int | None | Unset): ID assigned to a parent object.
+        parent_type (None | Unset | VSphereObjectType): Type of a parent object.
+        port (int | None | Unset): Port used to access a host.
+        connection_state (VSphereHostConnectionState | Unset):
+        power_state (VSphereHostPowerState | Unset):
+        vendor (None | str | Unset): Host vendor.
+        model (None | str | Unset): Host model.
+        socket_count (int | None | Unset): Number of CPU sockets on a host.
+        cpu_package_count (int | None | Unset): Number of CPU packages on a host.
+        cpu_core_count (int | None | Unset): Number of CPU cores on a host.
+        cpu_model (None | str | Unset): Model of a host CPU.
+        cpu_mhz (int | None | Unset): Host CPU frequency, in MHz.
+        memory_size_bytes (int | None | Unset): Amount of memory available on a host, in bytes.
+        nic_count (int | None | Unset): Number of network interface controllers connected to a host.
+        is_maintenance_mode_enabled (bool | None | Unset): Indicates whether a host is in the maintenance mode.
+        memory_usage_mb (int | None | Unset): Host memory usage, in MB.
+        cpu_usage_mhz (int | None | Unset): Host CPU usage, in MHz.
+        is_vmotion_enabled (bool | None | Unset): Indicates whether VMware vSphere vMotion is enabled for a host.
+        connection_error (None | str | Unset): Error message for failed connection.
+        version (None | str | Unset): Version of a host.
+        business_view_group_ids (list[int] | None | Unset): Array of Business View groups.
     """
 
-    host_id: Union[Unset, int] = UNSET
-    mo_ref: Union[None, Unset, str] = UNSET
-    name: Union[None, Unset, str] = UNSET
-    parent_id: Union[None, Unset, int] = UNSET
-    parent_type: Union[None, Unset, VSphereObjectType] = UNSET
-    port: Union[None, Unset, int] = UNSET
-    connection_state: Union[Unset, VSphereHostConnectionState] = UNSET
-    power_state: Union[Unset, VSphereHostPowerState] = UNSET
-    vendor: Union[None, Unset, str] = UNSET
-    model: Union[None, Unset, str] = UNSET
-    socket_count: Union[None, Unset, int] = UNSET
-    cpu_package_count: Union[None, Unset, int] = UNSET
-    cpu_core_count: Union[None, Unset, int] = UNSET
-    cpu_model: Union[None, Unset, str] = UNSET
-    cpu_mhz: Union[None, Unset, int] = UNSET
-    memory_size_bytes: Union[None, Unset, int] = UNSET
-    nic_count: Union[None, Unset, int] = UNSET
-    is_maintenance_mode_enabled: Union[None, Unset, bool] = UNSET
-    memory_usage_mb: Union[None, Unset, int] = UNSET
-    cpu_usage_mhz: Union[None, Unset, int] = UNSET
-    is_vmotion_enabled: Union[None, Unset, bool] = UNSET
-    connection_error: Union[None, Unset, str] = UNSET
-    version: Union[None, Unset, str] = UNSET
-    business_view_group_ids: Union[None, Unset, list[int]] = UNSET
+    host_id: int | Unset = UNSET
+    mo_ref: None | str | Unset = UNSET
+    name: None | str | Unset = UNSET
+    parent_id: int | None | Unset = UNSET
+    parent_type: None | Unset | VSphereObjectType = UNSET
+    port: int | None | Unset = UNSET
+    connection_state: VSphereHostConnectionState | Unset = UNSET
+    power_state: VSphereHostPowerState | Unset = UNSET
+    vendor: None | str | Unset = UNSET
+    model: None | str | Unset = UNSET
+    socket_count: int | None | Unset = UNSET
+    cpu_package_count: int | None | Unset = UNSET
+    cpu_core_count: int | None | Unset = UNSET
+    cpu_model: None | str | Unset = UNSET
+    cpu_mhz: int | None | Unset = UNSET
+    memory_size_bytes: int | None | Unset = UNSET
+    nic_count: int | None | Unset = UNSET
+    is_maintenance_mode_enabled: bool | None | Unset = UNSET
+    memory_usage_mb: int | None | Unset = UNSET
+    cpu_usage_mhz: int | None | Unset = UNSET
+    is_vmotion_enabled: bool | None | Unset = UNSET
+    connection_error: None | str | Unset = UNSET
+    version: None | str | Unset = UNSET
+    business_view_group_ids: list[int] | None | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
         host_id = self.host_id
 
-        mo_ref: Union[None, Unset, str]
+        mo_ref: None | str | Unset
         if isinstance(self.mo_ref, Unset):
             mo_ref = UNSET
         else:
             mo_ref = self.mo_ref
 
-        name: Union[None, Unset, str]
+        name: None | str | Unset
         if isinstance(self.name, Unset):
             name = UNSET
         else:
             name = self.name
 
-        parent_id: Union[None, Unset, int]
+        parent_id: int | None | Unset
         if isinstance(self.parent_id, Unset):
             parent_id = UNSET
         else:
             parent_id = self.parent_id
 
-        parent_type: Union[None, Unset, str]
+        parent_type: None | str | Unset
         if isinstance(self.parent_type, Unset):
             parent_type = UNSET
         elif isinstance(self.parent_type, VSphereObjectType):
@@ -95,111 +97,111 @@ class VSphereHostInfo:
         else:
             parent_type = self.parent_type
 
-        port: Union[None, Unset, int]
+        port: int | None | Unset
         if isinstance(self.port, Unset):
             port = UNSET
         else:
             port = self.port
 
-        connection_state: Union[Unset, str] = UNSET
+        connection_state: str | Unset = UNSET
         if not isinstance(self.connection_state, Unset):
             connection_state = self.connection_state.value
 
-        power_state: Union[Unset, str] = UNSET
+        power_state: str | Unset = UNSET
         if not isinstance(self.power_state, Unset):
             power_state = self.power_state.value
 
-        vendor: Union[None, Unset, str]
+        vendor: None | str | Unset
         if isinstance(self.vendor, Unset):
             vendor = UNSET
         else:
             vendor = self.vendor
 
-        model: Union[None, Unset, str]
+        model: None | str | Unset
         if isinstance(self.model, Unset):
             model = UNSET
         else:
             model = self.model
 
-        socket_count: Union[None, Unset, int]
+        socket_count: int | None | Unset
         if isinstance(self.socket_count, Unset):
             socket_count = UNSET
         else:
             socket_count = self.socket_count
 
-        cpu_package_count: Union[None, Unset, int]
+        cpu_package_count: int | None | Unset
         if isinstance(self.cpu_package_count, Unset):
             cpu_package_count = UNSET
         else:
             cpu_package_count = self.cpu_package_count
 
-        cpu_core_count: Union[None, Unset, int]
+        cpu_core_count: int | None | Unset
         if isinstance(self.cpu_core_count, Unset):
             cpu_core_count = UNSET
         else:
             cpu_core_count = self.cpu_core_count
 
-        cpu_model: Union[None, Unset, str]
+        cpu_model: None | str | Unset
         if isinstance(self.cpu_model, Unset):
             cpu_model = UNSET
         else:
             cpu_model = self.cpu_model
 
-        cpu_mhz: Union[None, Unset, int]
+        cpu_mhz: int | None | Unset
         if isinstance(self.cpu_mhz, Unset):
             cpu_mhz = UNSET
         else:
             cpu_mhz = self.cpu_mhz
 
-        memory_size_bytes: Union[None, Unset, int]
+        memory_size_bytes: int | None | Unset
         if isinstance(self.memory_size_bytes, Unset):
             memory_size_bytes = UNSET
         else:
             memory_size_bytes = self.memory_size_bytes
 
-        nic_count: Union[None, Unset, int]
+        nic_count: int | None | Unset
         if isinstance(self.nic_count, Unset):
             nic_count = UNSET
         else:
             nic_count = self.nic_count
 
-        is_maintenance_mode_enabled: Union[None, Unset, bool]
+        is_maintenance_mode_enabled: bool | None | Unset
         if isinstance(self.is_maintenance_mode_enabled, Unset):
             is_maintenance_mode_enabled = UNSET
         else:
             is_maintenance_mode_enabled = self.is_maintenance_mode_enabled
 
-        memory_usage_mb: Union[None, Unset, int]
+        memory_usage_mb: int | None | Unset
         if isinstance(self.memory_usage_mb, Unset):
             memory_usage_mb = UNSET
         else:
             memory_usage_mb = self.memory_usage_mb
 
-        cpu_usage_mhz: Union[None, Unset, int]
+        cpu_usage_mhz: int | None | Unset
         if isinstance(self.cpu_usage_mhz, Unset):
             cpu_usage_mhz = UNSET
         else:
             cpu_usage_mhz = self.cpu_usage_mhz
 
-        is_vmotion_enabled: Union[None, Unset, bool]
+        is_vmotion_enabled: bool | None | Unset
         if isinstance(self.is_vmotion_enabled, Unset):
             is_vmotion_enabled = UNSET
         else:
             is_vmotion_enabled = self.is_vmotion_enabled
 
-        connection_error: Union[None, Unset, str]
+        connection_error: None | str | Unset
         if isinstance(self.connection_error, Unset):
             connection_error = UNSET
         else:
             connection_error = self.connection_error
 
-        version: Union[None, Unset, str]
+        version: None | str | Unset
         if isinstance(self.version, Unset):
             version = UNSET
         else:
             version = self.version
 
-        business_view_group_ids: Union[None, Unset, list[int]]
+        business_view_group_ids: list[int] | None | Unset
         if isinstance(self.business_view_group_ids, Unset):
             business_view_group_ids = UNSET
         elif isinstance(self.business_view_group_ids, list):
@@ -267,34 +269,34 @@ class VSphereHostInfo:
         d = dict(src_dict)
         host_id = d.pop("hostId", UNSET)
 
-        def _parse_mo_ref(data: object) -> Union[None, Unset, str]:
+        def _parse_mo_ref(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         mo_ref = _parse_mo_ref(d.pop("moRef", UNSET))
 
-        def _parse_name(data: object) -> Union[None, Unset, str]:
+        def _parse_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         name = _parse_name(d.pop("name", UNSET))
 
-        def _parse_parent_id(data: object) -> Union[None, Unset, int]:
+        def _parse_parent_id(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         parent_id = _parse_parent_id(d.pop("parentId", UNSET))
 
-        def _parse_parent_type(data: object) -> Union[None, Unset, VSphereObjectType]:
+        def _parse_parent_type(data: object) -> None | Unset | VSphereObjectType:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -305,171 +307,171 @@ class VSphereHostInfo:
                 parent_type_type_1 = VSphereObjectType(data)
 
                 return parent_type_type_1
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, VSphereObjectType], data)
+            return cast(None | Unset | VSphereObjectType, data)
 
         parent_type = _parse_parent_type(d.pop("parentType", UNSET))
 
-        def _parse_port(data: object) -> Union[None, Unset, int]:
+        def _parse_port(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         port = _parse_port(d.pop("port", UNSET))
 
         _connection_state = d.pop("connectionState", UNSET)
-        connection_state: Union[Unset, VSphereHostConnectionState]
+        connection_state: VSphereHostConnectionState | Unset
         if isinstance(_connection_state, Unset):
             connection_state = UNSET
         else:
             connection_state = VSphereHostConnectionState(_connection_state)
 
         _power_state = d.pop("powerState", UNSET)
-        power_state: Union[Unset, VSphereHostPowerState]
+        power_state: VSphereHostPowerState | Unset
         if isinstance(_power_state, Unset):
             power_state = UNSET
         else:
             power_state = VSphereHostPowerState(_power_state)
 
-        def _parse_vendor(data: object) -> Union[None, Unset, str]:
+        def _parse_vendor(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         vendor = _parse_vendor(d.pop("vendor", UNSET))
 
-        def _parse_model(data: object) -> Union[None, Unset, str]:
+        def _parse_model(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         model = _parse_model(d.pop("model", UNSET))
 
-        def _parse_socket_count(data: object) -> Union[None, Unset, int]:
+        def _parse_socket_count(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         socket_count = _parse_socket_count(d.pop("socketCount", UNSET))
 
-        def _parse_cpu_package_count(data: object) -> Union[None, Unset, int]:
+        def _parse_cpu_package_count(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         cpu_package_count = _parse_cpu_package_count(d.pop("cpuPackageCount", UNSET))
 
-        def _parse_cpu_core_count(data: object) -> Union[None, Unset, int]:
+        def _parse_cpu_core_count(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         cpu_core_count = _parse_cpu_core_count(d.pop("cpuCoreCount", UNSET))
 
-        def _parse_cpu_model(data: object) -> Union[None, Unset, str]:
+        def _parse_cpu_model(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         cpu_model = _parse_cpu_model(d.pop("cpuModel", UNSET))
 
-        def _parse_cpu_mhz(data: object) -> Union[None, Unset, int]:
+        def _parse_cpu_mhz(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         cpu_mhz = _parse_cpu_mhz(d.pop("cpuMhz", UNSET))
 
-        def _parse_memory_size_bytes(data: object) -> Union[None, Unset, int]:
+        def _parse_memory_size_bytes(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         memory_size_bytes = _parse_memory_size_bytes(d.pop("memorySizeBytes", UNSET))
 
-        def _parse_nic_count(data: object) -> Union[None, Unset, int]:
+        def _parse_nic_count(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         nic_count = _parse_nic_count(d.pop("nicCount", UNSET))
 
-        def _parse_is_maintenance_mode_enabled(data: object) -> Union[None, Unset, bool]:
+        def _parse_is_maintenance_mode_enabled(data: object) -> bool | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, bool], data)
+            return cast(bool | None | Unset, data)
 
         is_maintenance_mode_enabled = _parse_is_maintenance_mode_enabled(d.pop("isMaintenanceModeEnabled", UNSET))
 
-        def _parse_memory_usage_mb(data: object) -> Union[None, Unset, int]:
+        def _parse_memory_usage_mb(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         memory_usage_mb = _parse_memory_usage_mb(d.pop("memoryUsageMb", UNSET))
 
-        def _parse_cpu_usage_mhz(data: object) -> Union[None, Unset, int]:
+        def _parse_cpu_usage_mhz(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         cpu_usage_mhz = _parse_cpu_usage_mhz(d.pop("cpuUsageMhz", UNSET))
 
-        def _parse_is_vmotion_enabled(data: object) -> Union[None, Unset, bool]:
+        def _parse_is_vmotion_enabled(data: object) -> bool | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, bool], data)
+            return cast(bool | None | Unset, data)
 
         is_vmotion_enabled = _parse_is_vmotion_enabled(d.pop("isVmotionEnabled", UNSET))
 
-        def _parse_connection_error(data: object) -> Union[None, Unset, str]:
+        def _parse_connection_error(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         connection_error = _parse_connection_error(d.pop("connectionError", UNSET))
 
-        def _parse_version(data: object) -> Union[None, Unset, str]:
+        def _parse_version(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         version = _parse_version(d.pop("version", UNSET))
 
-        def _parse_business_view_group_ids(data: object) -> Union[None, Unset, list[int]]:
+        def _parse_business_view_group_ids(data: object) -> list[int] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -480,9 +482,9 @@ class VSphereHostInfo:
                 business_view_group_ids_type_0 = cast(list[int], data)
 
                 return business_view_group_ids_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, list[int]], data)
+            return cast(list[int] | None | Unset, data)
 
         business_view_group_ids = _parse_business_view_group_ids(d.pop("businessViewGroupIds", UNSET))
 

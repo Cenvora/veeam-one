@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class DatastoreConnectionState(str, Enum):
+class DatastoreConnectionState(StrEnum):
     CONNECTED = "Connected"
     NOTRESPONDING = "NotResponding"
     UNKNOWN = "Unknown"

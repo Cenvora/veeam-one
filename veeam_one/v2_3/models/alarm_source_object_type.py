@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class AlarmSourceObjectType(str, Enum):
+class AlarmSourceObjectType(StrEnum):
     BACKUPAGENT = "BackupAgent"
     BUSINESSVIEW = "BusinessView"
     BUSINESSVIEWBACKUPAGENTCATEGORY = "BusinessViewBackupAgentCategory"

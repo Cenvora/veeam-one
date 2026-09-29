@@ -1,9 +1,10 @@
+from __future__ import annotations
+
 import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
-from dateutil.parser import isoparse
 
 from ..models.schedule_session_status import ScheduleSessionStatus
 from ..types import UNSET, Unset
@@ -15,40 +16,41 @@ T = TypeVar("T", bound="CollectingStatus")
 class CollectingStatus:
     """
     Attributes:
-        progress (Union[None, Unset, int]): Data collection session progress, in percent. Example: 100.
-        status (Union[Unset, ScheduleSessionStatus]): Task session status.
-        manually_start (Union[Unset, bool]): Indicates whether a data collection session must be initiated manually.
-        next_run (Union[None, Unset, datetime.datetime]): Date and time of the next data collection session start.
-            Example: '2021-02-10T19:00:00Z'.
-        tasks_success (Union[Unset, int]): Number of successful data collection sessions. Example: 10.
-        tasks_warning (Union[Unset, int]): Number of data collection sessions that ended with warnings. Example: 2.
-        tasks_failed (Union[Unset, int]): Number of failed data collection sessions. Example: 1.
-        tasks_stopped (Union[Unset, int]): Number of canceled data collection sessions. Example: 2.
+        progress (int | None | Unset): Data collection session progress, in percent. Example: 100.
+        status (ScheduleSessionStatus | Unset): Task session status.
+        manually_start (bool | Unset): Indicates whether a data collection session must be initiated manually. Example:
+            False.
+        next_run (datetime.datetime | None | Unset): Date and time of the next data collection session start. Example:
+            '2021-02-10T19:00:00Z'.
+        tasks_success (int | Unset): Number of successful data collection sessions. Example: 10.
+        tasks_warning (int | Unset): Number of data collection sessions that ended with warnings. Example: 2.
+        tasks_failed (int | Unset): Number of failed data collection sessions. Example: 1.
+        tasks_stopped (int | Unset): Number of canceled data collection sessions. Example: 2.
     """
 
-    progress: Union[None, Unset, int] = UNSET
-    status: Union[Unset, ScheduleSessionStatus] = UNSET
-    manually_start: Union[Unset, bool] = UNSET
-    next_run: Union[None, Unset, datetime.datetime] = UNSET
-    tasks_success: Union[Unset, int] = UNSET
-    tasks_warning: Union[Unset, int] = UNSET
-    tasks_failed: Union[Unset, int] = UNSET
-    tasks_stopped: Union[Unset, int] = UNSET
+    progress: int | None | Unset = UNSET
+    status: ScheduleSessionStatus | Unset = UNSET
+    manually_start: bool | Unset = UNSET
+    next_run: datetime.datetime | None | Unset = UNSET
+    tasks_success: int | Unset = UNSET
+    tasks_warning: int | Unset = UNSET
+    tasks_failed: int | Unset = UNSET
+    tasks_stopped: int | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
-        progress: Union[None, Unset, int]
+        progress: int | None | Unset
         if isinstance(self.progress, Unset):
             progress = UNSET
         else:
             progress = self.progress
 
-        status: Union[Unset, str] = UNSET
+        status: str | Unset = UNSET
         if not isinstance(self.status, Unset):
             status = self.status.value
 
         manually_start = self.manually_start
 
-        next_run: Union[None, Unset, str]
+        next_run: None | str | Unset
         if isinstance(self.next_run, Unset):
             next_run = UNSET
         elif isinstance(self.next_run, datetime.datetime):
@@ -90,17 +92,17 @@ class CollectingStatus:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
 
-        def _parse_progress(data: object) -> Union[None, Unset, int]:
+        def _parse_progress(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         progress = _parse_progress(d.pop("progress", UNSET))
 
         _status = d.pop("status", UNSET)
-        status: Union[Unset, ScheduleSessionStatus]
+        status: ScheduleSessionStatus | Unset
         if isinstance(_status, Unset):
             status = UNSET
         else:
@@ -108,7 +110,7 @@ class CollectingStatus:
 
         manually_start = d.pop("manuallyStart", UNSET)
 
-        def _parse_next_run(data: object) -> Union[None, Unset, datetime.datetime]:
+        def _parse_next_run(data: object) -> datetime.datetime | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -116,12 +118,12 @@ class CollectingStatus:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                next_run_type_0 = isoparse(data)
+                next_run_type_0 = datetime.datetime.fromisoformat(data)
 
                 return next_run_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, datetime.datetime], data)
+            return cast(datetime.datetime | None | Unset, data)
 
         next_run = _parse_next_run(d.pop("nextRun", UNSET))
 

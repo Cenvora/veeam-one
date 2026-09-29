@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, Union, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 
@@ -17,19 +19,19 @@ T = TypeVar("T", bound="VeeamOneLicenseUsageCurrent")
 class VeeamOneLicenseUsageCurrent:
     """
     Attributes:
-        units_type (Union[Unset, VeeamOneLicenseUsageUnitType]): Type of license units.
-        workloads (Union[None, Unset, list['VeeamOneLicenseUsageCommonWorkload']]): Array of licensed objects.
+        units_type (VeeamOneLicenseUsageUnitType | Unset): Type of license units.
+        workloads (list[VeeamOneLicenseUsageCommonWorkload] | None | Unset): Array of licensed objects.
     """
 
-    units_type: Union[Unset, VeeamOneLicenseUsageUnitType] = UNSET
-    workloads: Union[None, Unset, list["VeeamOneLicenseUsageCommonWorkload"]] = UNSET
+    units_type: VeeamOneLicenseUsageUnitType | Unset = UNSET
+    workloads: list[VeeamOneLicenseUsageCommonWorkload] | None | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
-        units_type: Union[Unset, str] = UNSET
+        units_type: str | Unset = UNSET
         if not isinstance(self.units_type, Unset):
             units_type = self.units_type.value
 
-        workloads: Union[None, Unset, list[dict[str, Any]]]
+        workloads: list[dict[str, Any]] | None | Unset
         if isinstance(self.workloads, Unset):
             workloads = UNSET
         elif isinstance(self.workloads, list):
@@ -53,17 +55,17 @@ class VeeamOneLicenseUsageCurrent:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.veeam_one_license_usage_common_workload import VeeamOneLicenseUsageCommonWorkload
+        from ..models.veeam_one_license_usage_common_workload import VeeamOneLicenseUsageCommonWorkload  # noqa: PLC0415
 
         d = dict(src_dict)
         _units_type = d.pop("unitsType", UNSET)
-        units_type: Union[Unset, VeeamOneLicenseUsageUnitType]
+        units_type: VeeamOneLicenseUsageUnitType | Unset
         if isinstance(_units_type, Unset):
             units_type = UNSET
         else:
             units_type = VeeamOneLicenseUsageUnitType(_units_type)
 
-        def _parse_workloads(data: object) -> Union[None, Unset, list["VeeamOneLicenseUsageCommonWorkload"]]:
+        def _parse_workloads(data: object) -> list[VeeamOneLicenseUsageCommonWorkload] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -79,9 +81,9 @@ class VeeamOneLicenseUsageCurrent:
                     workloads_type_0.append(workloads_type_0_item)
 
                 return workloads_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, list["VeeamOneLicenseUsageCommonWorkload"]], data)
+            return cast(list[VeeamOneLicenseUsageCommonWorkload] | None | Unset, data)
 
         workloads = _parse_workloads(d.pop("workloads", UNSET))
 

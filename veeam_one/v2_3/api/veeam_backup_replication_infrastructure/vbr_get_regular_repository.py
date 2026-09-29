@@ -1,5 +1,6 @@
 from http import HTTPStatus
-from typing import Any, Optional, Union
+from typing import Any
+from urllib.parse import quote
 
 import httpx
 
@@ -13,17 +14,20 @@ from ...types import Response
 def _get_kwargs(
     repository_id: int,
 ) -> dict[str, Any]:
+
     _kwargs: dict[str, Any] = {
         "method": "get",
-        "url": f"/api/v2.3/vbr/repositories/{repository_id}",
+        "url": "/api/v2.3/vbr/repositories/{repository_id}".format(
+            repository_id=quote(str(repository_id), safe=""),
+        ),
     }
 
     return _kwargs
 
 
 def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[BackupRepositoryInfo, ProblemDetails]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> BackupRepositoryInfo | ProblemDetails | None:
     if response.status_code == 200:
         response_200 = BackupRepositoryInfo.from_dict(response.json())
 
@@ -41,8 +45,8 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[BackupRepositoryInfo, ProblemDetails]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[BackupRepositoryInfo | ProblemDetails]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -54,8 +58,8 @@ def _build_response(
 def sync_detailed(
     repository_id: int,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[BackupRepositoryInfo, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+) -> Response[BackupRepositoryInfo | ProblemDetails]:
     """Get Backup Repository
 
      Returns a resource representation of a backup repository with the specified ID. Does not return
@@ -69,7 +73,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[BackupRepositoryInfo, ProblemDetails]]
+        Response[BackupRepositoryInfo | ProblemDetails]
     """
 
     kwargs = _get_kwargs(
@@ -86,8 +90,8 @@ def sync_detailed(
 def sync(
     repository_id: int,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[BackupRepositoryInfo, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+) -> BackupRepositoryInfo | ProblemDetails | None:
     """Get Backup Repository
 
      Returns a resource representation of a backup repository with the specified ID. Does not return
@@ -101,7 +105,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[BackupRepositoryInfo, ProblemDetails]
+        BackupRepositoryInfo | ProblemDetails
     """
 
     return sync_detailed(
@@ -113,8 +117,8 @@ def sync(
 async def asyncio_detailed(
     repository_id: int,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[BackupRepositoryInfo, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+) -> Response[BackupRepositoryInfo | ProblemDetails]:
     """Get Backup Repository
 
      Returns a resource representation of a backup repository with the specified ID. Does not return
@@ -128,7 +132,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[BackupRepositoryInfo, ProblemDetails]]
+        Response[BackupRepositoryInfo | ProblemDetails]
     """
 
     kwargs = _get_kwargs(
@@ -143,8 +147,8 @@ async def asyncio_detailed(
 async def asyncio(
     repository_id: int,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[BackupRepositoryInfo, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+) -> BackupRepositoryInfo | ProblemDetails | None:
     """Get Backup Repository
 
      Returns a resource representation of a backup repository with the specified ID. Does not return
@@ -158,7 +162,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[BackupRepositoryInfo, ProblemDetails]
+        BackupRepositoryInfo | ProblemDetails
     """
 
     return (

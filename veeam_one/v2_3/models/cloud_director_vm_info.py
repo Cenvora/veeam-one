@@ -1,10 +1,11 @@
+from __future__ import annotations
+
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, Union, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
-from dateutil.parser import isoparse
 
 from ..models.v_sphere_vm_connection_state import VSphereVmConnectionState
 from ..models.v_sphere_vm_power_state import VSphereVmPowerState
@@ -23,98 +24,97 @@ T = TypeVar("T", bound="CloudDirectorVmInfo")
 class CloudDirectorVmInfo:
     """
     Attributes:
-        vm_id (Union[Unset, int]): ID assigned to a VM.
-        mo_ref (Union[None, Unset, str]): MoRef ID assigned to a VM in VMware vSphere.
-        name (Union[None, Unset, str]): Name of a VM.
-        power_state (Union[Unset, VSphereVmPowerState]):
-        cpu_count (Union[None, Unset, int]): Number of virtual CPUs on a VM.
-        guest_dns_name (Union[None, Unset, str]): DNS name of a VM.
-        memory_size_mb (Union[None, Unset, int]): Amount of memory available on a VM.
-        guest_disks (Union[None, Unset, list['VmGuestDisk']]): Array of guest disks configured in a VM.
-        guest_ip_addresses (Union[None, Unset, list[str]]): Array of VM IP addresses.
-        guest_os (Union[None, Unset, str]): Guest OS installed on a VM.
-        is_replica (Union[None, Unset, bool]): Indicates whether a VM is a replica.
-        virtual_disk_count (Union[None, Unset, int]): Number of virtual disks configured for a VM.
-        virtual_disks (Union[None, Unset, list['VmVirtualDisk']]): Array of virtual disks configured for a VM.
-        connection_state (Union[Unset, VSphereVmConnectionState]):
-        notes (Union[None, Unset, str]): Additional information on a VM.
-        total_disk_capacity_bytes (Union[None, Unset, int]): Total disk capacity, in bytes.
-        datastore_usage (Union[None, Unset, list['VmDatastoreUsage']]): Usage of datastore resources allocated to a VM.
-        is_cdp_replica (Union[None, Unset, bool]): Indicates whether a VM is a CDP replica.
-        virtual_hardware_version (Union[None, Unset, str]): Version of VM virtual hardware.
-        last_protected_date (Union[None, Unset, datetime.datetime]): Date and time of the latest successful VM job.
-        vm_protection_job_uids (Union[None, Unset, list[Union[None, UUID]]]): Array of UIDs assigned to jobs that
-            protect a VM.
-        business_view_group_ids (Union[None, Unset, list[int]]): Array of IDs assigned to the Business View groups.
-        cloud_director_id (Union[None, Unset, int]): ID assigned to a VMware Cloud Director server.
-        v_app_id (Union[None, Unset, int]): ID assigned to a vApp.
-        organization_id (Union[None, Unset, int]): ID assigned to an organization.
+        vm_id (int | Unset): ID assigned to a VM.
+        mo_ref (None | str | Unset): MoRef ID assigned to a VM in VMware vSphere.
+        name (None | str | Unset): Name of a VM.
+        power_state (VSphereVmPowerState | Unset):
+        cpu_count (int | None | Unset): Number of virtual CPUs on a VM.
+        guest_dns_name (None | str | Unset): DNS name of a VM.
+        memory_size_mb (int | None | Unset): Amount of memory available on a VM.
+        guest_disks (list[VmGuestDisk] | None | Unset): Array of guest disks configured in a VM.
+        guest_ip_addresses (list[str] | None | Unset): Array of VM IP addresses.
+        guest_os (None | str | Unset): Guest OS installed on a VM.
+        is_replica (bool | None | Unset): Indicates whether a VM is a replica.
+        virtual_disk_count (int | None | Unset): Number of virtual disks configured for a VM.
+        virtual_disks (list[VmVirtualDisk] | None | Unset): Array of virtual disks configured for a VM.
+        connection_state (VSphereVmConnectionState | Unset):
+        notes (None | str | Unset): Additional information on a VM.
+        total_disk_capacity_bytes (int | None | Unset): Total disk capacity, in bytes.
+        datastore_usage (list[VmDatastoreUsage] | None | Unset): Usage of datastore resources allocated to a VM.
+        is_cdp_replica (bool | None | Unset): Indicates whether a VM is a CDP replica.
+        virtual_hardware_version (None | str | Unset): Version of VM virtual hardware.
+        last_protected_date (datetime.datetime | None | Unset): Date and time of the latest successful VM job.
+        vm_protection_job_uids (list[None | UUID] | None | Unset): Array of UIDs assigned to jobs that protect a VM.
+        business_view_group_ids (list[int] | None | Unset): Array of IDs assigned to the Business View groups.
+        cloud_director_id (int | None | Unset): ID assigned to a VMware Cloud Director server.
+        v_app_id (int | None | Unset): ID assigned to a vApp.
+        organization_id (int | None | Unset): ID assigned to an organization.
     """
 
-    vm_id: Union[Unset, int] = UNSET
-    mo_ref: Union[None, Unset, str] = UNSET
-    name: Union[None, Unset, str] = UNSET
-    power_state: Union[Unset, VSphereVmPowerState] = UNSET
-    cpu_count: Union[None, Unset, int] = UNSET
-    guest_dns_name: Union[None, Unset, str] = UNSET
-    memory_size_mb: Union[None, Unset, int] = UNSET
-    guest_disks: Union[None, Unset, list["VmGuestDisk"]] = UNSET
-    guest_ip_addresses: Union[None, Unset, list[str]] = UNSET
-    guest_os: Union[None, Unset, str] = UNSET
-    is_replica: Union[None, Unset, bool] = UNSET
-    virtual_disk_count: Union[None, Unset, int] = UNSET
-    virtual_disks: Union[None, Unset, list["VmVirtualDisk"]] = UNSET
-    connection_state: Union[Unset, VSphereVmConnectionState] = UNSET
-    notes: Union[None, Unset, str] = UNSET
-    total_disk_capacity_bytes: Union[None, Unset, int] = UNSET
-    datastore_usage: Union[None, Unset, list["VmDatastoreUsage"]] = UNSET
-    is_cdp_replica: Union[None, Unset, bool] = UNSET
-    virtual_hardware_version: Union[None, Unset, str] = UNSET
-    last_protected_date: Union[None, Unset, datetime.datetime] = UNSET
-    vm_protection_job_uids: Union[None, Unset, list[Union[None, UUID]]] = UNSET
-    business_view_group_ids: Union[None, Unset, list[int]] = UNSET
-    cloud_director_id: Union[None, Unset, int] = UNSET
-    v_app_id: Union[None, Unset, int] = UNSET
-    organization_id: Union[None, Unset, int] = UNSET
+    vm_id: int | Unset = UNSET
+    mo_ref: None | str | Unset = UNSET
+    name: None | str | Unset = UNSET
+    power_state: VSphereVmPowerState | Unset = UNSET
+    cpu_count: int | None | Unset = UNSET
+    guest_dns_name: None | str | Unset = UNSET
+    memory_size_mb: int | None | Unset = UNSET
+    guest_disks: list[VmGuestDisk] | None | Unset = UNSET
+    guest_ip_addresses: list[str] | None | Unset = UNSET
+    guest_os: None | str | Unset = UNSET
+    is_replica: bool | None | Unset = UNSET
+    virtual_disk_count: int | None | Unset = UNSET
+    virtual_disks: list[VmVirtualDisk] | None | Unset = UNSET
+    connection_state: VSphereVmConnectionState | Unset = UNSET
+    notes: None | str | Unset = UNSET
+    total_disk_capacity_bytes: int | None | Unset = UNSET
+    datastore_usage: list[VmDatastoreUsage] | None | Unset = UNSET
+    is_cdp_replica: bool | None | Unset = UNSET
+    virtual_hardware_version: None | str | Unset = UNSET
+    last_protected_date: datetime.datetime | None | Unset = UNSET
+    vm_protection_job_uids: list[None | UUID] | None | Unset = UNSET
+    business_view_group_ids: list[int] | None | Unset = UNSET
+    cloud_director_id: int | None | Unset = UNSET
+    v_app_id: int | None | Unset = UNSET
+    organization_id: int | None | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
         vm_id = self.vm_id
 
-        mo_ref: Union[None, Unset, str]
+        mo_ref: None | str | Unset
         if isinstance(self.mo_ref, Unset):
             mo_ref = UNSET
         else:
             mo_ref = self.mo_ref
 
-        name: Union[None, Unset, str]
+        name: None | str | Unset
         if isinstance(self.name, Unset):
             name = UNSET
         else:
             name = self.name
 
-        power_state: Union[Unset, str] = UNSET
+        power_state: str | Unset = UNSET
         if not isinstance(self.power_state, Unset):
             power_state = self.power_state.value
 
-        cpu_count: Union[None, Unset, int]
+        cpu_count: int | None | Unset
         if isinstance(self.cpu_count, Unset):
             cpu_count = UNSET
         else:
             cpu_count = self.cpu_count
 
-        guest_dns_name: Union[None, Unset, str]
+        guest_dns_name: None | str | Unset
         if isinstance(self.guest_dns_name, Unset):
             guest_dns_name = UNSET
         else:
             guest_dns_name = self.guest_dns_name
 
-        memory_size_mb: Union[None, Unset, int]
+        memory_size_mb: int | None | Unset
         if isinstance(self.memory_size_mb, Unset):
             memory_size_mb = UNSET
         else:
             memory_size_mb = self.memory_size_mb
 
-        guest_disks: Union[None, Unset, list[dict[str, Any]]]
+        guest_disks: list[dict[str, Any]] | None | Unset
         if isinstance(self.guest_disks, Unset):
             guest_disks = UNSET
         elif isinstance(self.guest_disks, list):
@@ -126,7 +126,7 @@ class CloudDirectorVmInfo:
         else:
             guest_disks = self.guest_disks
 
-        guest_ip_addresses: Union[None, Unset, list[str]]
+        guest_ip_addresses: list[str] | None | Unset
         if isinstance(self.guest_ip_addresses, Unset):
             guest_ip_addresses = UNSET
         elif isinstance(self.guest_ip_addresses, list):
@@ -135,25 +135,25 @@ class CloudDirectorVmInfo:
         else:
             guest_ip_addresses = self.guest_ip_addresses
 
-        guest_os: Union[None, Unset, str]
+        guest_os: None | str | Unset
         if isinstance(self.guest_os, Unset):
             guest_os = UNSET
         else:
             guest_os = self.guest_os
 
-        is_replica: Union[None, Unset, bool]
+        is_replica: bool | None | Unset
         if isinstance(self.is_replica, Unset):
             is_replica = UNSET
         else:
             is_replica = self.is_replica
 
-        virtual_disk_count: Union[None, Unset, int]
+        virtual_disk_count: int | None | Unset
         if isinstance(self.virtual_disk_count, Unset):
             virtual_disk_count = UNSET
         else:
             virtual_disk_count = self.virtual_disk_count
 
-        virtual_disks: Union[None, Unset, list[dict[str, Any]]]
+        virtual_disks: list[dict[str, Any]] | None | Unset
         if isinstance(self.virtual_disks, Unset):
             virtual_disks = UNSET
         elif isinstance(self.virtual_disks, list):
@@ -165,23 +165,23 @@ class CloudDirectorVmInfo:
         else:
             virtual_disks = self.virtual_disks
 
-        connection_state: Union[Unset, str] = UNSET
+        connection_state: str | Unset = UNSET
         if not isinstance(self.connection_state, Unset):
             connection_state = self.connection_state.value
 
-        notes: Union[None, Unset, str]
+        notes: None | str | Unset
         if isinstance(self.notes, Unset):
             notes = UNSET
         else:
             notes = self.notes
 
-        total_disk_capacity_bytes: Union[None, Unset, int]
+        total_disk_capacity_bytes: int | None | Unset
         if isinstance(self.total_disk_capacity_bytes, Unset):
             total_disk_capacity_bytes = UNSET
         else:
             total_disk_capacity_bytes = self.total_disk_capacity_bytes
 
-        datastore_usage: Union[None, Unset, list[dict[str, Any]]]
+        datastore_usage: list[dict[str, Any]] | None | Unset
         if isinstance(self.datastore_usage, Unset):
             datastore_usage = UNSET
         elif isinstance(self.datastore_usage, list):
@@ -193,19 +193,19 @@ class CloudDirectorVmInfo:
         else:
             datastore_usage = self.datastore_usage
 
-        is_cdp_replica: Union[None, Unset, bool]
+        is_cdp_replica: bool | None | Unset
         if isinstance(self.is_cdp_replica, Unset):
             is_cdp_replica = UNSET
         else:
             is_cdp_replica = self.is_cdp_replica
 
-        virtual_hardware_version: Union[None, Unset, str]
+        virtual_hardware_version: None | str | Unset
         if isinstance(self.virtual_hardware_version, Unset):
             virtual_hardware_version = UNSET
         else:
             virtual_hardware_version = self.virtual_hardware_version
 
-        last_protected_date: Union[None, Unset, str]
+        last_protected_date: None | str | Unset
         if isinstance(self.last_protected_date, Unset):
             last_protected_date = UNSET
         elif isinstance(self.last_protected_date, datetime.datetime):
@@ -213,13 +213,13 @@ class CloudDirectorVmInfo:
         else:
             last_protected_date = self.last_protected_date
 
-        vm_protection_job_uids: Union[None, Unset, list[Union[None, str]]]
+        vm_protection_job_uids: list[None | str] | None | Unset
         if isinstance(self.vm_protection_job_uids, Unset):
             vm_protection_job_uids = UNSET
         elif isinstance(self.vm_protection_job_uids, list):
             vm_protection_job_uids = []
             for vm_protection_job_uids_type_0_item_data in self.vm_protection_job_uids:
-                vm_protection_job_uids_type_0_item: Union[None, str]
+                vm_protection_job_uids_type_0_item: None | str
                 if isinstance(vm_protection_job_uids_type_0_item_data, UUID):
                     vm_protection_job_uids_type_0_item = str(vm_protection_job_uids_type_0_item_data)
                 else:
@@ -229,7 +229,7 @@ class CloudDirectorVmInfo:
         else:
             vm_protection_job_uids = self.vm_protection_job_uids
 
-        business_view_group_ids: Union[None, Unset, list[int]]
+        business_view_group_ids: list[int] | None | Unset
         if isinstance(self.business_view_group_ids, Unset):
             business_view_group_ids = UNSET
         elif isinstance(self.business_view_group_ids, list):
@@ -238,19 +238,19 @@ class CloudDirectorVmInfo:
         else:
             business_view_group_ids = self.business_view_group_ids
 
-        cloud_director_id: Union[None, Unset, int]
+        cloud_director_id: int | None | Unset
         if isinstance(self.cloud_director_id, Unset):
             cloud_director_id = UNSET
         else:
             cloud_director_id = self.cloud_director_id
 
-        v_app_id: Union[None, Unset, int]
+        v_app_id: int | None | Unset
         if isinstance(self.v_app_id, Unset):
             v_app_id = UNSET
         else:
             v_app_id = self.v_app_id
 
-        organization_id: Union[None, Unset, int]
+        organization_id: int | None | Unset
         if isinstance(self.organization_id, Unset):
             organization_id = UNSET
         else:
@@ -314,66 +314,66 @@ class CloudDirectorVmInfo:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.vm_datastore_usage import VmDatastoreUsage
-        from ..models.vm_guest_disk import VmGuestDisk
-        from ..models.vm_virtual_disk import VmVirtualDisk
+        from ..models.vm_datastore_usage import VmDatastoreUsage  # noqa: PLC0415
+        from ..models.vm_guest_disk import VmGuestDisk  # noqa: PLC0415
+        from ..models.vm_virtual_disk import VmVirtualDisk  # noqa: PLC0415
 
         d = dict(src_dict)
         vm_id = d.pop("vmId", UNSET)
 
-        def _parse_mo_ref(data: object) -> Union[None, Unset, str]:
+        def _parse_mo_ref(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         mo_ref = _parse_mo_ref(d.pop("moRef", UNSET))
 
-        def _parse_name(data: object) -> Union[None, Unset, str]:
+        def _parse_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         name = _parse_name(d.pop("name", UNSET))
 
         _power_state = d.pop("powerState", UNSET)
-        power_state: Union[Unset, VSphereVmPowerState]
+        power_state: VSphereVmPowerState | Unset
         if isinstance(_power_state, Unset):
             power_state = UNSET
         else:
             power_state = VSphereVmPowerState(_power_state)
 
-        def _parse_cpu_count(data: object) -> Union[None, Unset, int]:
+        def _parse_cpu_count(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         cpu_count = _parse_cpu_count(d.pop("cpuCount", UNSET))
 
-        def _parse_guest_dns_name(data: object) -> Union[None, Unset, str]:
+        def _parse_guest_dns_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         guest_dns_name = _parse_guest_dns_name(d.pop("guestDnsName", UNSET))
 
-        def _parse_memory_size_mb(data: object) -> Union[None, Unset, int]:
+        def _parse_memory_size_mb(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         memory_size_mb = _parse_memory_size_mb(d.pop("memorySizeMb", UNSET))
 
-        def _parse_guest_disks(data: object) -> Union[None, Unset, list["VmGuestDisk"]]:
+        def _parse_guest_disks(data: object) -> list[VmGuestDisk] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -389,13 +389,13 @@ class CloudDirectorVmInfo:
                     guest_disks_type_0.append(guest_disks_type_0_item)
 
                 return guest_disks_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, list["VmGuestDisk"]], data)
+            return cast(list[VmGuestDisk] | None | Unset, data)
 
         guest_disks = _parse_guest_disks(d.pop("guestDisks", UNSET))
 
-        def _parse_guest_ip_addresses(data: object) -> Union[None, Unset, list[str]]:
+        def _parse_guest_ip_addresses(data: object) -> list[str] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -406,40 +406,40 @@ class CloudDirectorVmInfo:
                 guest_ip_addresses_type_0 = cast(list[str], data)
 
                 return guest_ip_addresses_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, list[str]], data)
+            return cast(list[str] | None | Unset, data)
 
         guest_ip_addresses = _parse_guest_ip_addresses(d.pop("guestIpAddresses", UNSET))
 
-        def _parse_guest_os(data: object) -> Union[None, Unset, str]:
+        def _parse_guest_os(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         guest_os = _parse_guest_os(d.pop("guestOs", UNSET))
 
-        def _parse_is_replica(data: object) -> Union[None, Unset, bool]:
+        def _parse_is_replica(data: object) -> bool | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, bool], data)
+            return cast(bool | None | Unset, data)
 
         is_replica = _parse_is_replica(d.pop("isReplica", UNSET))
 
-        def _parse_virtual_disk_count(data: object) -> Union[None, Unset, int]:
+        def _parse_virtual_disk_count(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         virtual_disk_count = _parse_virtual_disk_count(d.pop("virtualDiskCount", UNSET))
 
-        def _parse_virtual_disks(data: object) -> Union[None, Unset, list["VmVirtualDisk"]]:
+        def _parse_virtual_disks(data: object) -> list[VmVirtualDisk] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -455,38 +455,38 @@ class CloudDirectorVmInfo:
                     virtual_disks_type_0.append(virtual_disks_type_0_item)
 
                 return virtual_disks_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, list["VmVirtualDisk"]], data)
+            return cast(list[VmVirtualDisk] | None | Unset, data)
 
         virtual_disks = _parse_virtual_disks(d.pop("virtualDisks", UNSET))
 
         _connection_state = d.pop("connectionState", UNSET)
-        connection_state: Union[Unset, VSphereVmConnectionState]
+        connection_state: VSphereVmConnectionState | Unset
         if isinstance(_connection_state, Unset):
             connection_state = UNSET
         else:
             connection_state = VSphereVmConnectionState(_connection_state)
 
-        def _parse_notes(data: object) -> Union[None, Unset, str]:
+        def _parse_notes(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         notes = _parse_notes(d.pop("notes", UNSET))
 
-        def _parse_total_disk_capacity_bytes(data: object) -> Union[None, Unset, int]:
+        def _parse_total_disk_capacity_bytes(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         total_disk_capacity_bytes = _parse_total_disk_capacity_bytes(d.pop("totalDiskCapacityBytes", UNSET))
 
-        def _parse_datastore_usage(data: object) -> Union[None, Unset, list["VmDatastoreUsage"]]:
+        def _parse_datastore_usage(data: object) -> list[VmDatastoreUsage] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -502,31 +502,31 @@ class CloudDirectorVmInfo:
                     datastore_usage_type_0.append(datastore_usage_type_0_item)
 
                 return datastore_usage_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, list["VmDatastoreUsage"]], data)
+            return cast(list[VmDatastoreUsage] | None | Unset, data)
 
         datastore_usage = _parse_datastore_usage(d.pop("datastoreUsage", UNSET))
 
-        def _parse_is_cdp_replica(data: object) -> Union[None, Unset, bool]:
+        def _parse_is_cdp_replica(data: object) -> bool | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, bool], data)
+            return cast(bool | None | Unset, data)
 
         is_cdp_replica = _parse_is_cdp_replica(d.pop("isCdpReplica", UNSET))
 
-        def _parse_virtual_hardware_version(data: object) -> Union[None, Unset, str]:
+        def _parse_virtual_hardware_version(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         virtual_hardware_version = _parse_virtual_hardware_version(d.pop("virtualHardwareVersion", UNSET))
 
-        def _parse_last_protected_date(data: object) -> Union[None, Unset, datetime.datetime]:
+        def _parse_last_protected_date(data: object) -> datetime.datetime | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -534,16 +534,16 @@ class CloudDirectorVmInfo:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                last_protected_date_type_0 = isoparse(data)
+                last_protected_date_type_0 = datetime.datetime.fromisoformat(data)
 
                 return last_protected_date_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, datetime.datetime], data)
+            return cast(datetime.datetime | None | Unset, data)
 
         last_protected_date = _parse_last_protected_date(d.pop("lastProtectedDate", UNSET))
 
-        def _parse_vm_protection_job_uids(data: object) -> Union[None, Unset, list[Union[None, UUID]]]:
+        def _parse_vm_protection_job_uids(data: object) -> list[None | UUID] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -555,7 +555,7 @@ class CloudDirectorVmInfo:
                 _vm_protection_job_uids_type_0 = data
                 for vm_protection_job_uids_type_0_item_data in _vm_protection_job_uids_type_0:
 
-                    def _parse_vm_protection_job_uids_type_0_item(data: object) -> Union[None, UUID]:
+                    def _parse_vm_protection_job_uids_type_0_item(data: object) -> None | UUID:
                         if data is None:
                             return data
                         try:
@@ -564,9 +564,9 @@ class CloudDirectorVmInfo:
                             vm_protection_job_uids_type_0_item_type_0 = UUID(data)
 
                             return vm_protection_job_uids_type_0_item_type_0
-                        except:  # noqa: E722
+                        except (TypeError, ValueError, AttributeError, KeyError):
                             pass
-                        return cast(Union[None, UUID], data)
+                        return cast(None | UUID, data)
 
                     vm_protection_job_uids_type_0_item = _parse_vm_protection_job_uids_type_0_item(
                         vm_protection_job_uids_type_0_item_data
@@ -575,13 +575,13 @@ class CloudDirectorVmInfo:
                     vm_protection_job_uids_type_0.append(vm_protection_job_uids_type_0_item)
 
                 return vm_protection_job_uids_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, list[Union[None, UUID]]], data)
+            return cast(list[None | UUID] | None | Unset, data)
 
         vm_protection_job_uids = _parse_vm_protection_job_uids(d.pop("vmProtectionJobUids", UNSET))
 
-        def _parse_business_view_group_ids(data: object) -> Union[None, Unset, list[int]]:
+        def _parse_business_view_group_ids(data: object) -> list[int] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -592,36 +592,36 @@ class CloudDirectorVmInfo:
                 business_view_group_ids_type_0 = cast(list[int], data)
 
                 return business_view_group_ids_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, list[int]], data)
+            return cast(list[int] | None | Unset, data)
 
         business_view_group_ids = _parse_business_view_group_ids(d.pop("businessViewGroupIds", UNSET))
 
-        def _parse_cloud_director_id(data: object) -> Union[None, Unset, int]:
+        def _parse_cloud_director_id(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         cloud_director_id = _parse_cloud_director_id(d.pop("cloudDirectorId", UNSET))
 
-        def _parse_v_app_id(data: object) -> Union[None, Unset, int]:
+        def _parse_v_app_id(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         v_app_id = _parse_v_app_id(d.pop("vAppId", UNSET))
 
-        def _parse_organization_id(data: object) -> Union[None, Unset, int]:
+        def _parse_organization_id(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         organization_id = _parse_organization_id(d.pop("organizationId", UNSET))
 

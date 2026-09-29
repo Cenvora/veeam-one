@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, Union, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 
@@ -16,26 +18,26 @@ T = TypeVar("T", bound="GuestAssignInfoCredentialAssignInfo")
 class GuestAssignInfoCredentialAssignInfo:
     """
     Attributes:
-        credential_id (Union[Unset, int]): ID assigned to a credential set.
-        user_name (Union[None, Unset, str]): User name.
-        assigned_objects (Union[None, Unset, list['GuestAssignInfo']]): Array of hosts that can be accessed using the
+        credential_id (int | Unset): ID assigned to a credential set.
+        user_name (None | str | Unset): User name.
+        assigned_objects (list[GuestAssignInfo] | None | Unset): Array of hosts that can be accessed using the
             credential set.
     """
 
-    credential_id: Union[Unset, int] = UNSET
-    user_name: Union[None, Unset, str] = UNSET
-    assigned_objects: Union[None, Unset, list["GuestAssignInfo"]] = UNSET
+    credential_id: int | Unset = UNSET
+    user_name: None | str | Unset = UNSET
+    assigned_objects: list[GuestAssignInfo] | None | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
         credential_id = self.credential_id
 
-        user_name: Union[None, Unset, str]
+        user_name: None | str | Unset
         if isinstance(self.user_name, Unset):
             user_name = UNSET
         else:
             user_name = self.user_name
 
-        assigned_objects: Union[None, Unset, list[dict[str, Any]]]
+        assigned_objects: list[dict[str, Any]] | None | Unset
         if isinstance(self.assigned_objects, Unset):
             assigned_objects = UNSET
         elif isinstance(self.assigned_objects, list):
@@ -61,21 +63,21 @@ class GuestAssignInfoCredentialAssignInfo:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.guest_assign_info import GuestAssignInfo
+        from ..models.guest_assign_info import GuestAssignInfo  # noqa: PLC0415
 
         d = dict(src_dict)
         credential_id = d.pop("credentialId", UNSET)
 
-        def _parse_user_name(data: object) -> Union[None, Unset, str]:
+        def _parse_user_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         user_name = _parse_user_name(d.pop("userName", UNSET))
 
-        def _parse_assigned_objects(data: object) -> Union[None, Unset, list["GuestAssignInfo"]]:
+        def _parse_assigned_objects(data: object) -> list[GuestAssignInfo] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -91,9 +93,9 @@ class GuestAssignInfoCredentialAssignInfo:
                     assigned_objects_type_0.append(assigned_objects_type_0_item)
 
                 return assigned_objects_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, list["GuestAssignInfo"]], data)
+            return cast(list[GuestAssignInfo] | None | Unset, data)
 
         assigned_objects = _parse_assigned_objects(d.pop("assignedObjects", UNSET))
 

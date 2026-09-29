@@ -1,5 +1,6 @@
 from http import HTTPStatus
-from typing import Any, Optional, Union
+from typing import Any
+from urllib.parse import quote
 
 import httpx
 
@@ -13,17 +14,20 @@ from ...types import Response
 def _get_kwargs(
     thumbprint: str,
 ) -> dict[str, Any]:
+
     _kwargs: dict[str, Any] = {
         "method": "get",
-        "url": f"/api/v2.3/certificates/{thumbprint}",
+        "url": "/api/v2.3/certificates/{thumbprint}".format(
+            thumbprint=quote(str(thumbprint), safe=""),
+        ),
     }
 
     return _kwargs
 
 
 def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[CertificateFullInfo, ProblemDetails]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> CertificateFullInfo | ProblemDetails | None:
     if response.status_code == 200:
         response_200 = CertificateFullInfo.from_dict(response.json())
 
@@ -46,8 +50,8 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[CertificateFullInfo, ProblemDetails]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[CertificateFullInfo | ProblemDetails]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -59,8 +63,8 @@ def _build_response(
 def sync_detailed(
     thumbprint: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[CertificateFullInfo, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+) -> Response[CertificateFullInfo | ProblemDetails]:
     """Get Certificate
 
      Returns a resource representation of a certificate with the specified thumbprint.
@@ -73,7 +77,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[CertificateFullInfo, ProblemDetails]]
+        Response[CertificateFullInfo | ProblemDetails]
     """
 
     kwargs = _get_kwargs(
@@ -90,8 +94,8 @@ def sync_detailed(
 def sync(
     thumbprint: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[CertificateFullInfo, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+) -> CertificateFullInfo | ProblemDetails | None:
     """Get Certificate
 
      Returns a resource representation of a certificate with the specified thumbprint.
@@ -104,7 +108,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[CertificateFullInfo, ProblemDetails]
+        CertificateFullInfo | ProblemDetails
     """
 
     return sync_detailed(
@@ -116,8 +120,8 @@ def sync(
 async def asyncio_detailed(
     thumbprint: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[CertificateFullInfo, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+) -> Response[CertificateFullInfo | ProblemDetails]:
     """Get Certificate
 
      Returns a resource representation of a certificate with the specified thumbprint.
@@ -130,7 +134,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[CertificateFullInfo, ProblemDetails]]
+        Response[CertificateFullInfo | ProblemDetails]
     """
 
     kwargs = _get_kwargs(
@@ -145,8 +149,8 @@ async def asyncio_detailed(
 async def asyncio(
     thumbprint: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[CertificateFullInfo, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+) -> CertificateFullInfo | ProblemDetails | None:
     """Get Certificate
 
      Returns a resource representation of a certificate with the specified thumbprint.
@@ -159,7 +163,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[CertificateFullInfo, ProblemDetails]
+        CertificateFullInfo | ProblemDetails
     """
 
     return (

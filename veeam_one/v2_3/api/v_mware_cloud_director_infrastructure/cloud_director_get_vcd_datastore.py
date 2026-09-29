@@ -1,5 +1,6 @@
 from http import HTTPStatus
-from typing import Any, Optional, Union
+from typing import Any
+from urllib.parse import quote
 
 import httpx
 
@@ -13,17 +14,20 @@ from ...types import Response
 def _get_kwargs(
     datastore_id: int,
 ) -> dict[str, Any]:
+
     _kwargs: dict[str, Any] = {
         "method": "get",
-        "url": f"/api/v2.3/cloudDirector/providerVdcs/datastores/{datastore_id}",
+        "url": "/api/v2.3/cloudDirector/providerVdcs/datastores/{datastore_id}".format(
+            datastore_id=quote(str(datastore_id), safe=""),
+        ),
     }
 
     return _kwargs
 
 
 def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[CloudDirectorDatastoreInfo, ProblemDetails]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> CloudDirectorDatastoreInfo | ProblemDetails | None:
     if response.status_code == 200:
         response_200 = CloudDirectorDatastoreInfo.from_dict(response.json())
 
@@ -41,8 +45,8 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[CloudDirectorDatastoreInfo, ProblemDetails]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[CloudDirectorDatastoreInfo | ProblemDetails]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -54,8 +58,8 @@ def _build_response(
 def sync_detailed(
     datastore_id: int,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[CloudDirectorDatastoreInfo, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+) -> Response[CloudDirectorDatastoreInfo | ProblemDetails]:
     """Get Provider VDC Datastore
 
      Returns a resource representation of a datastore with the specified ID.
@@ -68,7 +72,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[CloudDirectorDatastoreInfo, ProblemDetails]]
+        Response[CloudDirectorDatastoreInfo | ProblemDetails]
     """
 
     kwargs = _get_kwargs(
@@ -85,8 +89,8 @@ def sync_detailed(
 def sync(
     datastore_id: int,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[CloudDirectorDatastoreInfo, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+) -> CloudDirectorDatastoreInfo | ProblemDetails | None:
     """Get Provider VDC Datastore
 
      Returns a resource representation of a datastore with the specified ID.
@@ -99,7 +103,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[CloudDirectorDatastoreInfo, ProblemDetails]
+        CloudDirectorDatastoreInfo | ProblemDetails
     """
 
     return sync_detailed(
@@ -111,8 +115,8 @@ def sync(
 async def asyncio_detailed(
     datastore_id: int,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[CloudDirectorDatastoreInfo, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+) -> Response[CloudDirectorDatastoreInfo | ProblemDetails]:
     """Get Provider VDC Datastore
 
      Returns a resource representation of a datastore with the specified ID.
@@ -125,7 +129,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[CloudDirectorDatastoreInfo, ProblemDetails]]
+        Response[CloudDirectorDatastoreInfo | ProblemDetails]
     """
 
     kwargs = _get_kwargs(
@@ -140,8 +144,8 @@ async def asyncio_detailed(
 async def asyncio(
     datastore_id: int,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[CloudDirectorDatastoreInfo, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+) -> CloudDirectorDatastoreInfo | ProblemDetails | None:
     """Get Provider VDC Datastore
 
      Returns a resource representation of a datastore with the specified ID.
@@ -154,7 +158,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[CloudDirectorDatastoreInfo, ProblemDetails]
+        CloudDirectorDatastoreInfo | ProblemDetails
     """
 
     return (

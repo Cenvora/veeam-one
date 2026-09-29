@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class BackupProxyTransportMode(str, Enum):
+class BackupProxyTransportMode(StrEnum):
     AUTOMATICPROCESSINGMODE = "AutomaticProcessingMode"
     DIRECTSANACCESSPROXY = "DirectSANAccessProxy"
     HOTADDPROXY = "HotAddProxy"

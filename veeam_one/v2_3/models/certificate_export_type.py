@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class CertificateExportType(str, Enum):
+class CertificateExportType(StrEnum):
     CSV = "Csv"
     JSON = "Json"
 

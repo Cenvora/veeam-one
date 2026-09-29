@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class AsyncTaskState(str, Enum):
+class AsyncTaskState(StrEnum):
     CANCELED = "Canceled"
     COMPLETED = "Completed"
     FAILED = "Failed"

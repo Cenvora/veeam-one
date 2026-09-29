@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class Vb365MonthlyDayNumber(str, Enum):
+class Vb365MonthlyDayNumber(StrEnum):
     FIRST = "First"
     FOURTH = "Fourth"
     LAST = "Last"

@@ -1,10 +1,11 @@
+from __future__ import annotations
+
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, Union, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
-from dateutil.parser import isoparse
 
 from ..models.protected_application_platform import ProtectedApplicationPlatform
 from ..types import UNSET, Unset
@@ -20,33 +21,33 @@ T = TypeVar("T", bound="ProtectedApplicationInfo")
 class ProtectedApplicationInfo:
     """
     Attributes:
-        application_uid_in_vbr (Union[None, UUID, Unset]): UID assigned to an application in Veeam Backup & Replication.
-        backup_server_id (Union[None, Unset, int]): ID assigned to the Veeam Backup & Replication server.
-        backup_server_name (Union[None, Unset, str]): Name of a Veeam Backup & Replication server.
-        name (Union[None, Unset, str]): Name of an application.
-        is_cluster (Union[Unset, bool]): Indicates whether an application is a cluster.
-        platform (Union[Unset, ProtectedApplicationPlatform]):
-        processed_databases (Union[Unset, int]): Number of application databases processed by jobs.
-        not_processed_databases (Union[Unset, int]): Number of application databases not processed by jobs.
-        protection_groups (Union[None, Unset, list['ProtectionGroup']]): Array of protection groups that include the
+        application_uid_in_vbr (None | Unset | UUID): UID assigned to an application in Veeam Backup & Replication.
+        backup_server_id (int | None | Unset): ID assigned to the Veeam Backup & Replication server.
+        backup_server_name (None | str | Unset): Name of a Veeam Backup & Replication server.
+        name (None | str | Unset): Name of an application.
+        is_cluster (bool | Unset): Indicates whether an application is a cluster.
+        platform (ProtectedApplicationPlatform | Unset):
+        processed_databases (int | Unset): Number of application databases processed by jobs.
+        not_processed_databases (int | Unset): Number of application databases not processed by jobs.
+        protection_groups (list[ProtectionGroup] | None | Unset): Array of protection groups that include the
             application.
-        last_protected_date (Union[None, Unset, datetime.datetime]): Date and time when the latest successful job
-            session finished.
+        last_protected_date (datetime.datetime | None | Unset): Date and time when the latest successful job session
+            finished.
     """
 
-    application_uid_in_vbr: Union[None, UUID, Unset] = UNSET
-    backup_server_id: Union[None, Unset, int] = UNSET
-    backup_server_name: Union[None, Unset, str] = UNSET
-    name: Union[None, Unset, str] = UNSET
-    is_cluster: Union[Unset, bool] = UNSET
-    platform: Union[Unset, ProtectedApplicationPlatform] = UNSET
-    processed_databases: Union[Unset, int] = UNSET
-    not_processed_databases: Union[Unset, int] = UNSET
-    protection_groups: Union[None, Unset, list["ProtectionGroup"]] = UNSET
-    last_protected_date: Union[None, Unset, datetime.datetime] = UNSET
+    application_uid_in_vbr: None | Unset | UUID = UNSET
+    backup_server_id: int | None | Unset = UNSET
+    backup_server_name: None | str | Unset = UNSET
+    name: None | str | Unset = UNSET
+    is_cluster: bool | Unset = UNSET
+    platform: ProtectedApplicationPlatform | Unset = UNSET
+    processed_databases: int | Unset = UNSET
+    not_processed_databases: int | Unset = UNSET
+    protection_groups: list[ProtectionGroup] | None | Unset = UNSET
+    last_protected_date: datetime.datetime | None | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
-        application_uid_in_vbr: Union[None, Unset, str]
+        application_uid_in_vbr: None | str | Unset
         if isinstance(self.application_uid_in_vbr, Unset):
             application_uid_in_vbr = UNSET
         elif isinstance(self.application_uid_in_vbr, UUID):
@@ -54,19 +55,19 @@ class ProtectedApplicationInfo:
         else:
             application_uid_in_vbr = self.application_uid_in_vbr
 
-        backup_server_id: Union[None, Unset, int]
+        backup_server_id: int | None | Unset
         if isinstance(self.backup_server_id, Unset):
             backup_server_id = UNSET
         else:
             backup_server_id = self.backup_server_id
 
-        backup_server_name: Union[None, Unset, str]
+        backup_server_name: None | str | Unset
         if isinstance(self.backup_server_name, Unset):
             backup_server_name = UNSET
         else:
             backup_server_name = self.backup_server_name
 
-        name: Union[None, Unset, str]
+        name: None | str | Unset
         if isinstance(self.name, Unset):
             name = UNSET
         else:
@@ -74,7 +75,7 @@ class ProtectedApplicationInfo:
 
         is_cluster = self.is_cluster
 
-        platform: Union[Unset, str] = UNSET
+        platform: str | Unset = UNSET
         if not isinstance(self.platform, Unset):
             platform = self.platform.value
 
@@ -82,7 +83,7 @@ class ProtectedApplicationInfo:
 
         not_processed_databases = self.not_processed_databases
 
-        protection_groups: Union[None, Unset, list[dict[str, Any]]]
+        protection_groups: list[dict[str, Any]] | None | Unset
         if isinstance(self.protection_groups, Unset):
             protection_groups = UNSET
         elif isinstance(self.protection_groups, list):
@@ -94,7 +95,7 @@ class ProtectedApplicationInfo:
         else:
             protection_groups = self.protection_groups
 
-        last_protected_date: Union[None, Unset, str]
+        last_protected_date: None | str | Unset
         if isinstance(self.last_protected_date, Unset):
             last_protected_date = UNSET
         elif isinstance(self.last_protected_date, datetime.datetime):
@@ -130,11 +131,11 @@ class ProtectedApplicationInfo:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.protection_group import ProtectionGroup
+        from ..models.protection_group import ProtectionGroup  # noqa: PLC0415
 
         d = dict(src_dict)
 
-        def _parse_application_uid_in_vbr(data: object) -> Union[None, UUID, Unset]:
+        def _parse_application_uid_in_vbr(data: object) -> None | Unset | UUID:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -145,43 +146,43 @@ class ProtectedApplicationInfo:
                 application_uid_in_vbr_type_0 = UUID(data)
 
                 return application_uid_in_vbr_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, UUID, Unset], data)
+            return cast(None | Unset | UUID, data)
 
         application_uid_in_vbr = _parse_application_uid_in_vbr(d.pop("applicationUidInVbr", UNSET))
 
-        def _parse_backup_server_id(data: object) -> Union[None, Unset, int]:
+        def _parse_backup_server_id(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         backup_server_id = _parse_backup_server_id(d.pop("backupServerId", UNSET))
 
-        def _parse_backup_server_name(data: object) -> Union[None, Unset, str]:
+        def _parse_backup_server_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         backup_server_name = _parse_backup_server_name(d.pop("backupServerName", UNSET))
 
-        def _parse_name(data: object) -> Union[None, Unset, str]:
+        def _parse_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         name = _parse_name(d.pop("name", UNSET))
 
         is_cluster = d.pop("isCluster", UNSET)
 
         _platform = d.pop("platform", UNSET)
-        platform: Union[Unset, ProtectedApplicationPlatform]
+        platform: ProtectedApplicationPlatform | Unset
         if isinstance(_platform, Unset):
             platform = UNSET
         else:
@@ -191,7 +192,7 @@ class ProtectedApplicationInfo:
 
         not_processed_databases = d.pop("notProcessedDatabases", UNSET)
 
-        def _parse_protection_groups(data: object) -> Union[None, Unset, list["ProtectionGroup"]]:
+        def _parse_protection_groups(data: object) -> list[ProtectionGroup] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -207,13 +208,13 @@ class ProtectedApplicationInfo:
                     protection_groups_type_0.append(protection_groups_type_0_item)
 
                 return protection_groups_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, list["ProtectionGroup"]], data)
+            return cast(list[ProtectionGroup] | None | Unset, data)
 
         protection_groups = _parse_protection_groups(d.pop("protectionGroups", UNSET))
 
-        def _parse_last_protected_date(data: object) -> Union[None, Unset, datetime.datetime]:
+        def _parse_last_protected_date(data: object) -> datetime.datetime | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -221,12 +222,12 @@ class ProtectedApplicationInfo:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                last_protected_date_type_0 = isoparse(data)
+                last_protected_date_type_0 = datetime.datetime.fromisoformat(data)
 
                 return last_protected_date_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, datetime.datetime], data)
+            return cast(datetime.datetime | None | Unset, data)
 
         last_protected_date = _parse_last_protected_date(d.pop("lastProtectedDate", UNSET))
 

@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class BestPracticeGroup(str, Enum):
+class BestPracticeGroup(StrEnum):
     BACKUPINFRASTRUCTURESECURITY = "BackupInfrastructureSecurity"
     PRODUCTCONFIGURATION = "ProductConfiguration"
     UNKNOWN = "Unknown"

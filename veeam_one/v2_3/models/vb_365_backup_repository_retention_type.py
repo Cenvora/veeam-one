@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class Vb365BackupRepositoryRetentionType(str, Enum):
+class Vb365BackupRepositoryRetentionType(StrEnum):
     ITEMLEVEL = "ItemLevel"
     SNAPSHOTBASED = "SnapshotBased"
     UNKNOWN = "Unknown"

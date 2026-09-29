@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class RepositoryState(str, Enum):
+class RepositoryState(StrEnum):
     DISCONNECTED = "Disconnected"
     INACCESSIBLE = "Inaccessible"
     OK = "Ok"

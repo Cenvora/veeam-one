@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class CloudNetworkInstanceType(str, Enum):
+class CloudNetworkInstanceType(StrEnum):
     UNKNOWN = "Unknown"
     VNET = "VNET"
     VPC = "VPC"

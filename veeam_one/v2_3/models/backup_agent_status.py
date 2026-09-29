@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class BackupAgentStatus(str, Enum):
+class BackupAgentStatus(StrEnum):
     EXCLUDE = "Exclude"
     FAILED = "Failed"
     INSTALLED = "Installed"

@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union
+from typing import Any, TypeVar
 from uuid import UUID
 
 from attrs import define as _attrs_define
@@ -14,21 +16,21 @@ T = TypeVar("T", bound="AsyncTaskStatus")
 class AsyncTaskStatus:
     """
     Attributes:
-        id (Union[Unset, UUID]): UID assigned to an asynchronous task.
-        state (Union[Unset, AsyncTaskState]):
-        result (Union[Unset, Any]): Result of an asynchronous task.
+        id (UUID | Unset): UID assigned to an asynchronous task.
+        state (AsyncTaskState | Unset):
+        result (Any | Unset): Result of an asynchronous task.
     """
 
-    id: Union[Unset, UUID] = UNSET
-    state: Union[Unset, AsyncTaskState] = UNSET
-    result: Union[Unset, Any] = UNSET
+    id: UUID | Unset = UNSET
+    state: AsyncTaskState | Unset = UNSET
+    result: Any | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
-        id: Union[Unset, str] = UNSET
+        id: str | Unset = UNSET
         if not isinstance(self.id, Unset):
             id = str(self.id)
 
-        state: Union[Unset, str] = UNSET
+        state: str | Unset = UNSET
         if not isinstance(self.state, Unset):
             state = self.state.value
 
@@ -50,14 +52,14 @@ class AsyncTaskStatus:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
         _id = d.pop("id", UNSET)
-        id: Union[Unset, UUID]
+        id: UUID | Unset
         if isinstance(_id, Unset):
             id = UNSET
         else:
             id = UUID(_id)
 
         _state = d.pop("state", UNSET)
-        state: Union[Unset, AsyncTaskState]
+        state: AsyncTaskState | Unset
         if isinstance(_state, Unset):
             state = UNSET
         else:

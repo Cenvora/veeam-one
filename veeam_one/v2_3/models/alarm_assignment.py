@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 
@@ -13,25 +15,25 @@ T = TypeVar("T", bound="AlarmAssignment")
 class AlarmAssignment:
     """
     Attributes:
-        object_id (Union[Unset, int]): ID assigned to an object.
-        object_name (Union[None, Unset, str]): Name of an object.
-        object_type (Union[Unset, AlarmAssignmentObjectType]):
+        object_id (int | Unset): ID assigned to an object.
+        object_name (None | str | Unset): Name of an object.
+        object_type (AlarmAssignmentObjectType | Unset):
     """
 
-    object_id: Union[Unset, int] = UNSET
-    object_name: Union[None, Unset, str] = UNSET
-    object_type: Union[Unset, AlarmAssignmentObjectType] = UNSET
+    object_id: int | Unset = UNSET
+    object_name: None | str | Unset = UNSET
+    object_type: AlarmAssignmentObjectType | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
         object_id = self.object_id
 
-        object_name: Union[None, Unset, str]
+        object_name: None | str | Unset
         if isinstance(self.object_name, Unset):
             object_name = UNSET
         else:
             object_name = self.object_name
 
-        object_type: Union[Unset, str] = UNSET
+        object_type: str | Unset = UNSET
         if not isinstance(self.object_type, Unset):
             object_type = self.object_type.value
 
@@ -52,17 +54,17 @@ class AlarmAssignment:
         d = dict(src_dict)
         object_id = d.pop("objectId", UNSET)
 
-        def _parse_object_name(data: object) -> Union[None, Unset, str]:
+        def _parse_object_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         object_name = _parse_object_name(d.pop("objectName", UNSET))
 
         _object_type = d.pop("objectType", UNSET)
-        object_type: Union[Unset, AlarmAssignmentObjectType]
+        object_type: AlarmAssignmentObjectType | Unset
         if isinstance(_object_type, Unset):
             object_type = UNSET
         else:

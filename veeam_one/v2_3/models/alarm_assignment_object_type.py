@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class AlarmAssignmentObjectType(str, Enum):
+class AlarmAssignmentObjectType(StrEnum):
     BACKUPAGENT = "BackupAgent"
     BUSINESSVIEW = "BusinessView"
     BUSINESSVIEWBACKUPAGENTCATEGORY = "BusinessViewBackupAgentCategory"

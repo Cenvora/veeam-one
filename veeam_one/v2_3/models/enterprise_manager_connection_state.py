@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class EnterpriseManagerConnectionState(str, Enum):
+class EnterpriseManagerConnectionState(StrEnum):
     CONNECTED = "Connected"
     NOTRESPONDING = "NotResponding"
     UNKNOWN = "Unknown"

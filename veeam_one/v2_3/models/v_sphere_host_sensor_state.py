@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class VSphereHostSensorState(str, Enum):
+class VSphereHostSensorState(StrEnum):
     EMPTY = "Empty"
     ERROR = "Error"
     HEALTHY = "Healthy"

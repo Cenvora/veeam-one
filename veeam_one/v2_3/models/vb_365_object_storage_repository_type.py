@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class Vb365ObjectStorageRepositoryType(str, Enum):
+class Vb365ObjectStorageRepositoryType(StrEnum):
     AMAZONS3 = "AmazonS3"
     AMAZONS3COMPATIBLE = "AmazonS3Compatible"
     AMAZONS3GLACIER = "AmazonS3Glacier"

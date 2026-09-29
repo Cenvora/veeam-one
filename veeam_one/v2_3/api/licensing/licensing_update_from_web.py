@@ -1,5 +1,5 @@
 from http import HTTPStatus
-from typing import Any, Optional, Union, cast
+from typing import Any, cast
 
 import httpx
 
@@ -10,6 +10,7 @@ from ...types import Response
 
 
 def _get_kwargs() -> dict[str, Any]:
+
     _kwargs: dict[str, Any] = {
         "method": "patch",
         "url": "/api/v2.3/license/update",
@@ -18,9 +19,7 @@ def _get_kwargs() -> dict[str, Any]:
     return _kwargs
 
 
-def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[Any, ProblemDetails]]:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Any | ProblemDetails | None:
     if response.status_code == 200:
         response_200 = cast(Any, None)
         return response_200
@@ -37,8 +36,8 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[Any, ProblemDetails]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[Any | ProblemDetails]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -49,8 +48,8 @@ def _build_response(
 
 def sync_detailed(
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[Any, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+) -> Response[Any | ProblemDetails]:
     """Update License
 
      Downloads a new license from the Veeam License Update Server and installs it on the Veeam ONE
@@ -61,7 +60,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Any, ProblemDetails]]
+        Response[Any | ProblemDetails]
     """
 
     kwargs = _get_kwargs()
@@ -75,8 +74,8 @@ def sync_detailed(
 
 def sync(
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[Any, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+) -> Any | ProblemDetails | None:
     """Update License
 
      Downloads a new license from the Veeam License Update Server and installs it on the Veeam ONE
@@ -87,7 +86,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Any, ProblemDetails]
+        Any | ProblemDetails
     """
 
     return sync_detailed(
@@ -97,8 +96,8 @@ def sync(
 
 async def asyncio_detailed(
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[Any, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+) -> Response[Any | ProblemDetails]:
     """Update License
 
      Downloads a new license from the Veeam License Update Server and installs it on the Veeam ONE
@@ -109,7 +108,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Any, ProblemDetails]]
+        Response[Any | ProblemDetails]
     """
 
     kwargs = _get_kwargs()
@@ -121,8 +120,8 @@ async def asyncio_detailed(
 
 async def asyncio(
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[Any, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+) -> Any | ProblemDetails | None:
     """Update License
 
      Downloads a new license from the Veeam License Update Server and installs it on the Veeam ONE
@@ -133,7 +132,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Any, ProblemDetails]
+        Any | ProblemDetails
     """
 
     return (

@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 
@@ -12,21 +14,21 @@ T = TypeVar("T", bound="CredentialAssignHostRequest")
 class CredentialAssignHostRequest:
     """
     Attributes:
-        object_id (Union[Unset, int]): ID assigned to a host
-        propagate (Union[Unset, bool]): Defines whether credentials must be propagated to host child objects.
-        port (Union[None, Unset, int]): Host connection port.
+        object_id (int | Unset): ID assigned to a host
+        propagate (bool | Unset): Defines whether credentials must be propagated to host child objects.
+        port (int | None | Unset): Host connection port.
     """
 
-    object_id: Union[Unset, int] = UNSET
-    propagate: Union[Unset, bool] = UNSET
-    port: Union[None, Unset, int] = UNSET
+    object_id: int | Unset = UNSET
+    propagate: bool | Unset = UNSET
+    port: int | None | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
         object_id = self.object_id
 
         propagate = self.propagate
 
-        port: Union[None, Unset, int]
+        port: int | None | Unset
         if isinstance(self.port, Unset):
             port = UNSET
         else:
@@ -51,12 +53,12 @@ class CredentialAssignHostRequest:
 
         propagate = d.pop("propagate", UNSET)
 
-        def _parse_port(data: object) -> Union[None, Unset, int]:
+        def _parse_port(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         port = _parse_port(d.pop("port", UNSET))
 

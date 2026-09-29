@@ -1,5 +1,5 @@
 from http import HTTPStatus
-from typing import Any, Optional, Union
+from typing import Any
 
 import httpx
 
@@ -11,6 +11,7 @@ from ...types import Response
 
 
 def _get_kwargs() -> dict[str, Any]:
+
     _kwargs: dict[str, Any] = {
         "method": "get",
         "url": "/api/v2.3/credentials/assign/servicenow",
@@ -20,8 +21,8 @@ def _get_kwargs() -> dict[str, Any]:
 
 
 def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[GuestAssignInfoCredentialAssignInfo, ProblemDetails]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> GuestAssignInfoCredentialAssignInfo | ProblemDetails | None:
     if response.status_code == 200:
         response_200 = GuestAssignInfoCredentialAssignInfo.from_dict(response.json())
 
@@ -39,8 +40,8 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[GuestAssignInfoCredentialAssignInfo, ProblemDetails]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[GuestAssignInfoCredentialAssignInfo | ProblemDetails]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -51,8 +52,8 @@ def _build_response(
 
 def sync_detailed(
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[GuestAssignInfoCredentialAssignInfo, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+) -> Response[GuestAssignInfoCredentialAssignInfo | ProblemDetails]:
     """Get ServiceNow Credentials
 
      Returns a resource representation of the ServiceNow credentials.
@@ -62,7 +63,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[GuestAssignInfoCredentialAssignInfo, ProblemDetails]]
+        Response[GuestAssignInfoCredentialAssignInfo | ProblemDetails]
     """
 
     kwargs = _get_kwargs()
@@ -76,8 +77,8 @@ def sync_detailed(
 
 def sync(
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[GuestAssignInfoCredentialAssignInfo, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+) -> GuestAssignInfoCredentialAssignInfo | ProblemDetails | None:
     """Get ServiceNow Credentials
 
      Returns a resource representation of the ServiceNow credentials.
@@ -87,7 +88,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[GuestAssignInfoCredentialAssignInfo, ProblemDetails]
+        GuestAssignInfoCredentialAssignInfo | ProblemDetails
     """
 
     return sync_detailed(
@@ -97,8 +98,8 @@ def sync(
 
 async def asyncio_detailed(
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[GuestAssignInfoCredentialAssignInfo, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+) -> Response[GuestAssignInfoCredentialAssignInfo | ProblemDetails]:
     """Get ServiceNow Credentials
 
      Returns a resource representation of the ServiceNow credentials.
@@ -108,7 +109,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[GuestAssignInfoCredentialAssignInfo, ProblemDetails]]
+        Response[GuestAssignInfoCredentialAssignInfo | ProblemDetails]
     """
 
     kwargs = _get_kwargs()
@@ -120,8 +121,8 @@ async def asyncio_detailed(
 
 async def asyncio(
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[GuestAssignInfoCredentialAssignInfo, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+) -> GuestAssignInfoCredentialAssignInfo | ProblemDetails | None:
     """Get ServiceNow Credentials
 
      Returns a resource representation of the ServiceNow credentials.
@@ -131,7 +132,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[GuestAssignInfoCredentialAssignInfo, ProblemDetails]
+        GuestAssignInfoCredentialAssignInfo | ProblemDetails
     """
 
     return (

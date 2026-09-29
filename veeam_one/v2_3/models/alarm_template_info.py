@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, Union, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 
@@ -17,79 +19,79 @@ T = TypeVar("T", bound="AlarmTemplateInfo")
 class AlarmTemplateInfo:
     """
     Attributes:
-        alarm_template_id (Union[Unset, int]): ID assigned to an alarm template.
-        name (Union[None, Unset, str]): Name of an alarm.
-        type_ (Union[Unset, AlarmTemplateType]):
-        predefined_alarm_id (Union[None, Unset, int]): Internal ID assigned to a predefined alarm template.
-        knowledge_summary (Union[None, Unset, str]): Description of an alarm.
-        knowledge_cause (Union[None, Unset, str]): Possible cause of a problem that triggered an alarm.
-        knowledge_resolution (Union[None, Unset, str]): Instructions for alarm resolution.
-        knowledge_custom (Union[None, Unset, str]): Additional alarm details.
-        knowledge_external (Union[None, Unset, str]): Links to external resources containing reference information.
-        is_enabled (Union[Unset, bool]): Indicates whether an alarm is enabled.
-        is_predefined (Union[None, Unset, bool]): Indicates whether an alarm is predefined.
-        assignments (Union[None, Unset, list['AlarmAssignment']]): Array of objects to which an alarm is assigned.
-        exclusions (Union[None, Unset, list['AlarmAssignment']]): Array of objects excluded from the alarm scope.
+        alarm_template_id (int | Unset): ID assigned to an alarm template.
+        name (None | str | Unset): Name of an alarm.
+        type_ (AlarmTemplateType | Unset):
+        predefined_alarm_id (int | None | Unset): Internal ID assigned to a predefined alarm template.
+        knowledge_summary (None | str | Unset): Description of an alarm.
+        knowledge_cause (None | str | Unset): Possible cause of a problem that triggered an alarm.
+        knowledge_resolution (None | str | Unset): Instructions for alarm resolution.
+        knowledge_custom (None | str | Unset): Additional alarm details.
+        knowledge_external (None | str | Unset): Links to external resources containing reference information.
+        is_enabled (bool | Unset): Indicates whether an alarm is enabled.
+        is_predefined (bool | None | Unset): Indicates whether an alarm is predefined.
+        assignments (list[AlarmAssignment] | None | Unset): Array of objects to which an alarm is assigned.
+        exclusions (list[AlarmAssignment] | None | Unset): Array of objects excluded from the alarm scope.
     """
 
-    alarm_template_id: Union[Unset, int] = UNSET
-    name: Union[None, Unset, str] = UNSET
-    type_: Union[Unset, AlarmTemplateType] = UNSET
-    predefined_alarm_id: Union[None, Unset, int] = UNSET
-    knowledge_summary: Union[None, Unset, str] = UNSET
-    knowledge_cause: Union[None, Unset, str] = UNSET
-    knowledge_resolution: Union[None, Unset, str] = UNSET
-    knowledge_custom: Union[None, Unset, str] = UNSET
-    knowledge_external: Union[None, Unset, str] = UNSET
-    is_enabled: Union[Unset, bool] = UNSET
-    is_predefined: Union[None, Unset, bool] = UNSET
-    assignments: Union[None, Unset, list["AlarmAssignment"]] = UNSET
-    exclusions: Union[None, Unset, list["AlarmAssignment"]] = UNSET
+    alarm_template_id: int | Unset = UNSET
+    name: None | str | Unset = UNSET
+    type_: AlarmTemplateType | Unset = UNSET
+    predefined_alarm_id: int | None | Unset = UNSET
+    knowledge_summary: None | str | Unset = UNSET
+    knowledge_cause: None | str | Unset = UNSET
+    knowledge_resolution: None | str | Unset = UNSET
+    knowledge_custom: None | str | Unset = UNSET
+    knowledge_external: None | str | Unset = UNSET
+    is_enabled: bool | Unset = UNSET
+    is_predefined: bool | None | Unset = UNSET
+    assignments: list[AlarmAssignment] | None | Unset = UNSET
+    exclusions: list[AlarmAssignment] | None | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
         alarm_template_id = self.alarm_template_id
 
-        name: Union[None, Unset, str]
+        name: None | str | Unset
         if isinstance(self.name, Unset):
             name = UNSET
         else:
             name = self.name
 
-        type_: Union[Unset, str] = UNSET
+        type_: str | Unset = UNSET
         if not isinstance(self.type_, Unset):
             type_ = self.type_.value
 
-        predefined_alarm_id: Union[None, Unset, int]
+        predefined_alarm_id: int | None | Unset
         if isinstance(self.predefined_alarm_id, Unset):
             predefined_alarm_id = UNSET
         else:
             predefined_alarm_id = self.predefined_alarm_id
 
-        knowledge_summary: Union[None, Unset, str]
+        knowledge_summary: None | str | Unset
         if isinstance(self.knowledge_summary, Unset):
             knowledge_summary = UNSET
         else:
             knowledge_summary = self.knowledge_summary
 
-        knowledge_cause: Union[None, Unset, str]
+        knowledge_cause: None | str | Unset
         if isinstance(self.knowledge_cause, Unset):
             knowledge_cause = UNSET
         else:
             knowledge_cause = self.knowledge_cause
 
-        knowledge_resolution: Union[None, Unset, str]
+        knowledge_resolution: None | str | Unset
         if isinstance(self.knowledge_resolution, Unset):
             knowledge_resolution = UNSET
         else:
             knowledge_resolution = self.knowledge_resolution
 
-        knowledge_custom: Union[None, Unset, str]
+        knowledge_custom: None | str | Unset
         if isinstance(self.knowledge_custom, Unset):
             knowledge_custom = UNSET
         else:
             knowledge_custom = self.knowledge_custom
 
-        knowledge_external: Union[None, Unset, str]
+        knowledge_external: None | str | Unset
         if isinstance(self.knowledge_external, Unset):
             knowledge_external = UNSET
         else:
@@ -97,13 +99,13 @@ class AlarmTemplateInfo:
 
         is_enabled = self.is_enabled
 
-        is_predefined: Union[None, Unset, bool]
+        is_predefined: bool | None | Unset
         if isinstance(self.is_predefined, Unset):
             is_predefined = UNSET
         else:
             is_predefined = self.is_predefined
 
-        assignments: Union[None, Unset, list[dict[str, Any]]]
+        assignments: list[dict[str, Any]] | None | Unset
         if isinstance(self.assignments, Unset):
             assignments = UNSET
         elif isinstance(self.assignments, list):
@@ -115,7 +117,7 @@ class AlarmTemplateInfo:
         else:
             assignments = self.assignments
 
-        exclusions: Union[None, Unset, list[dict[str, Any]]]
+        exclusions: list[dict[str, Any]] | None | Unset
         if isinstance(self.exclusions, Unset):
             exclusions = UNSET
         elif isinstance(self.exclusions, list):
@@ -161,93 +163,93 @@ class AlarmTemplateInfo:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.alarm_assignment import AlarmAssignment
+        from ..models.alarm_assignment import AlarmAssignment  # noqa: PLC0415
 
         d = dict(src_dict)
         alarm_template_id = d.pop("alarmTemplateId", UNSET)
 
-        def _parse_name(data: object) -> Union[None, Unset, str]:
+        def _parse_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         name = _parse_name(d.pop("name", UNSET))
 
         _type_ = d.pop("type", UNSET)
-        type_: Union[Unset, AlarmTemplateType]
+        type_: AlarmTemplateType | Unset
         if isinstance(_type_, Unset):
             type_ = UNSET
         else:
             type_ = AlarmTemplateType(_type_)
 
-        def _parse_predefined_alarm_id(data: object) -> Union[None, Unset, int]:
+        def _parse_predefined_alarm_id(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         predefined_alarm_id = _parse_predefined_alarm_id(d.pop("predefinedAlarmId", UNSET))
 
-        def _parse_knowledge_summary(data: object) -> Union[None, Unset, str]:
+        def _parse_knowledge_summary(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         knowledge_summary = _parse_knowledge_summary(d.pop("knowledgeSummary", UNSET))
 
-        def _parse_knowledge_cause(data: object) -> Union[None, Unset, str]:
+        def _parse_knowledge_cause(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         knowledge_cause = _parse_knowledge_cause(d.pop("knowledgeCause", UNSET))
 
-        def _parse_knowledge_resolution(data: object) -> Union[None, Unset, str]:
+        def _parse_knowledge_resolution(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         knowledge_resolution = _parse_knowledge_resolution(d.pop("knowledgeResolution", UNSET))
 
-        def _parse_knowledge_custom(data: object) -> Union[None, Unset, str]:
+        def _parse_knowledge_custom(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         knowledge_custom = _parse_knowledge_custom(d.pop("knowledgeCustom", UNSET))
 
-        def _parse_knowledge_external(data: object) -> Union[None, Unset, str]:
+        def _parse_knowledge_external(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         knowledge_external = _parse_knowledge_external(d.pop("knowledgeExternal", UNSET))
 
         is_enabled = d.pop("isEnabled", UNSET)
 
-        def _parse_is_predefined(data: object) -> Union[None, Unset, bool]:
+        def _parse_is_predefined(data: object) -> bool | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, bool], data)
+            return cast(bool | None | Unset, data)
 
         is_predefined = _parse_is_predefined(d.pop("isPredefined", UNSET))
 
-        def _parse_assignments(data: object) -> Union[None, Unset, list["AlarmAssignment"]]:
+        def _parse_assignments(data: object) -> list[AlarmAssignment] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -263,13 +265,13 @@ class AlarmTemplateInfo:
                     assignments_type_0.append(assignments_type_0_item)
 
                 return assignments_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, list["AlarmAssignment"]], data)
+            return cast(list[AlarmAssignment] | None | Unset, data)
 
         assignments = _parse_assignments(d.pop("assignments", UNSET))
 
-        def _parse_exclusions(data: object) -> Union[None, Unset, list["AlarmAssignment"]]:
+        def _parse_exclusions(data: object) -> list[AlarmAssignment] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -285,9 +287,9 @@ class AlarmTemplateInfo:
                     exclusions_type_0.append(exclusions_type_0_item)
 
                 return exclusions_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, list["AlarmAssignment"]], data)
+            return cast(list[AlarmAssignment] | None | Unset, data)
 
         exclusions = _parse_exclusions(d.pop("exclusions", UNSET))
 

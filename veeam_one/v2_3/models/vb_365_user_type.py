@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class Vb365UserType(str, Enum):
+class Vb365UserType(StrEnum):
     O365USER = "O365User"
     PUBLIC = "Public"
     SHARED = "Shared"

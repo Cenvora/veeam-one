@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class CloudFileShareInstanceType(str, Enum):
+class CloudFileShareInstanceType(StrEnum):
     EFS = "EFS"
     FILES = "Files"
     FSX = "FSx"

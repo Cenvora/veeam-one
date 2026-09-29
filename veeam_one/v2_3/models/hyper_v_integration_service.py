@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 
@@ -12,23 +14,23 @@ T = TypeVar("T", bound="HyperVIntegrationService")
 class HyperVIntegrationService:
     """
     Attributes:
-        wmi_class_name (Union[None, Unset, str]): Name of a WMI Hyper-V class.
-        name (Union[None, Unset, str]): Name of an integration service.
-        is_launched (Union[Unset, bool]): Indicates whether an integration service is launched.
+        wmi_class_name (None | str | Unset): Name of a WMI Hyper-V class.
+        name (None | str | Unset): Name of an integration service.
+        is_launched (bool | Unset): Indicates whether an integration service is launched.
     """
 
-    wmi_class_name: Union[None, Unset, str] = UNSET
-    name: Union[None, Unset, str] = UNSET
-    is_launched: Union[Unset, bool] = UNSET
+    wmi_class_name: None | str | Unset = UNSET
+    name: None | str | Unset = UNSET
+    is_launched: bool | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
-        wmi_class_name: Union[None, Unset, str]
+        wmi_class_name: None | str | Unset
         if isinstance(self.wmi_class_name, Unset):
             wmi_class_name = UNSET
         else:
             wmi_class_name = self.wmi_class_name
 
-        name: Union[None, Unset, str]
+        name: None | str | Unset
         if isinstance(self.name, Unset):
             name = UNSET
         else:
@@ -52,21 +54,21 @@ class HyperVIntegrationService:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
 
-        def _parse_wmi_class_name(data: object) -> Union[None, Unset, str]:
+        def _parse_wmi_class_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         wmi_class_name = _parse_wmi_class_name(d.pop("wmiClassName", UNSET))
 
-        def _parse_name(data: object) -> Union[None, Unset, str]:
+        def _parse_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         name = _parse_name(d.pop("name", UNSET))
 

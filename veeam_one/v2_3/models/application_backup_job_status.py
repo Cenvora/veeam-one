@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class ApplicationBackupJobStatus(str, Enum):
+class ApplicationBackupJobStatus(StrEnum):
     DISABLED = "Disabled"
     FAILED = "Failed"
     NONE = "None"

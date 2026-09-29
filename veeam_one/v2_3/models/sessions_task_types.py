@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class SessionsTaskTypes(str, Enum):
+class SessionsTaskTypes(StrEnum):
     AGGREGATEPROPERTIES = "AggregateProperties"
     BUSINESSVIEWDATA = "BusinessviewData"
     CAPACITYPLANNING = "CapacityPlanning"

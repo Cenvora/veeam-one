@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
@@ -13,26 +15,26 @@ T = TypeVar("T", bound="CloudGatewayPoolInfo")
 class CloudGatewayPoolInfo:
     """
     Attributes:
-        cloud_gateway_pool_id (Union[Unset, int]): ID assigned to a cloud gateway pool.
-        cloud_gateway_pool_uid_in_vbr (Union[None, UUID, Unset]): UID assigned to a cloud gateway pool in Veeam Cloud
+        cloud_gateway_pool_id (int | Unset): ID assigned to a cloud gateway pool.
+        cloud_gateway_pool_uid_in_vbr (None | Unset | UUID): UID assigned to a cloud gateway pool in Veeam Cloud
             Connect.
-        name (Union[None, Unset, str]): Name of a cloud gateway pool.
-        backup_server_id (Union[None, Unset, int]): ID assigned to a Veeam Cloud Connect server.
-        description (Union[None, Unset, str]): Description of a cloud gateway pool.
-        gateway_count (Union[Unset, int]): Number of gateways included in a cloud gateway pool.
+        name (None | str | Unset): Name of a cloud gateway pool.
+        backup_server_id (int | None | Unset): ID assigned to a Veeam Cloud Connect server.
+        description (None | str | Unset): Description of a cloud gateway pool.
+        gateway_count (int | Unset): Number of gateways included in a cloud gateway pool.
     """
 
-    cloud_gateway_pool_id: Union[Unset, int] = UNSET
-    cloud_gateway_pool_uid_in_vbr: Union[None, UUID, Unset] = UNSET
-    name: Union[None, Unset, str] = UNSET
-    backup_server_id: Union[None, Unset, int] = UNSET
-    description: Union[None, Unset, str] = UNSET
-    gateway_count: Union[Unset, int] = UNSET
+    cloud_gateway_pool_id: int | Unset = UNSET
+    cloud_gateway_pool_uid_in_vbr: None | Unset | UUID = UNSET
+    name: None | str | Unset = UNSET
+    backup_server_id: int | None | Unset = UNSET
+    description: None | str | Unset = UNSET
+    gateway_count: int | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
         cloud_gateway_pool_id = self.cloud_gateway_pool_id
 
-        cloud_gateway_pool_uid_in_vbr: Union[None, Unset, str]
+        cloud_gateway_pool_uid_in_vbr: None | str | Unset
         if isinstance(self.cloud_gateway_pool_uid_in_vbr, Unset):
             cloud_gateway_pool_uid_in_vbr = UNSET
         elif isinstance(self.cloud_gateway_pool_uid_in_vbr, UUID):
@@ -40,19 +42,19 @@ class CloudGatewayPoolInfo:
         else:
             cloud_gateway_pool_uid_in_vbr = self.cloud_gateway_pool_uid_in_vbr
 
-        name: Union[None, Unset, str]
+        name: None | str | Unset
         if isinstance(self.name, Unset):
             name = UNSET
         else:
             name = self.name
 
-        backup_server_id: Union[None, Unset, int]
+        backup_server_id: int | None | Unset
         if isinstance(self.backup_server_id, Unset):
             backup_server_id = UNSET
         else:
             backup_server_id = self.backup_server_id
 
-        description: Union[None, Unset, str]
+        description: None | str | Unset
         if isinstance(self.description, Unset):
             description = UNSET
         else:
@@ -83,7 +85,7 @@ class CloudGatewayPoolInfo:
         d = dict(src_dict)
         cloud_gateway_pool_id = d.pop("cloudGatewayPoolId", UNSET)
 
-        def _parse_cloud_gateway_pool_uid_in_vbr(data: object) -> Union[None, UUID, Unset]:
+        def _parse_cloud_gateway_pool_uid_in_vbr(data: object) -> None | Unset | UUID:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -94,36 +96,36 @@ class CloudGatewayPoolInfo:
                 cloud_gateway_pool_uid_in_vbr_type_0 = UUID(data)
 
                 return cloud_gateway_pool_uid_in_vbr_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, UUID, Unset], data)
+            return cast(None | Unset | UUID, data)
 
         cloud_gateway_pool_uid_in_vbr = _parse_cloud_gateway_pool_uid_in_vbr(d.pop("cloudGatewayPoolUidInVbr", UNSET))
 
-        def _parse_name(data: object) -> Union[None, Unset, str]:
+        def _parse_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         name = _parse_name(d.pop("name", UNSET))
 
-        def _parse_backup_server_id(data: object) -> Union[None, Unset, int]:
+        def _parse_backup_server_id(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         backup_server_id = _parse_backup_server_id(d.pop("backupServerId", UNSET))
 
-        def _parse_description(data: object) -> Union[None, Unset, str]:
+        def _parse_description(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         description = _parse_description(d.pop("description", UNSET))
 

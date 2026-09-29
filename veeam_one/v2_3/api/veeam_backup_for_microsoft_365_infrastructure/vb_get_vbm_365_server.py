@@ -1,5 +1,6 @@
 from http import HTTPStatus
-from typing import Any, Optional, Union
+from typing import Any
+from urllib.parse import quote
 
 import httpx
 
@@ -13,17 +14,20 @@ from ...types import Response
 def _get_kwargs(
     vb_365_server_id: int,
 ) -> dict[str, Any]:
+
     _kwargs: dict[str, Any] = {
         "method": "get",
-        "url": f"/api/v2.3/vb365/servers/{vb_365_server_id}",
+        "url": "/api/v2.3/vb365/servers/{vb_365_server_id}".format(
+            vb_365_server_id=quote(str(vb_365_server_id), safe=""),
+        ),
     }
 
     return _kwargs
 
 
 def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[ProblemDetails, Vb365ServerInfo]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> ProblemDetails | Vb365ServerInfo | None:
     if response.status_code == 200:
         response_200 = Vb365ServerInfo.from_dict(response.json())
 
@@ -41,8 +45,8 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[ProblemDetails, Vb365ServerInfo]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[ProblemDetails | Vb365ServerInfo]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -54,8 +58,8 @@ def _build_response(
 def sync_detailed(
     vb_365_server_id: int,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[ProblemDetails, Vb365ServerInfo]]:
+    client: AuthenticatedClient | Client,
+) -> Response[ProblemDetails | Vb365ServerInfo]:
     """Get Veeam Backup for Microsoft 365 Server
 
      Returns a resource representation of a Veeam Backup for Microsoft 365 server with the specified ID.
@@ -68,7 +72,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[ProblemDetails, Vb365ServerInfo]]
+        Response[ProblemDetails | Vb365ServerInfo]
     """
 
     kwargs = _get_kwargs(
@@ -85,8 +89,8 @@ def sync_detailed(
 def sync(
     vb_365_server_id: int,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[ProblemDetails, Vb365ServerInfo]]:
+    client: AuthenticatedClient | Client,
+) -> ProblemDetails | Vb365ServerInfo | None:
     """Get Veeam Backup for Microsoft 365 Server
 
      Returns a resource representation of a Veeam Backup for Microsoft 365 server with the specified ID.
@@ -99,7 +103,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[ProblemDetails, Vb365ServerInfo]
+        ProblemDetails | Vb365ServerInfo
     """
 
     return sync_detailed(
@@ -111,8 +115,8 @@ def sync(
 async def asyncio_detailed(
     vb_365_server_id: int,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[ProblemDetails, Vb365ServerInfo]]:
+    client: AuthenticatedClient | Client,
+) -> Response[ProblemDetails | Vb365ServerInfo]:
     """Get Veeam Backup for Microsoft 365 Server
 
      Returns a resource representation of a Veeam Backup for Microsoft 365 server with the specified ID.
@@ -125,7 +129,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[ProblemDetails, Vb365ServerInfo]]
+        Response[ProblemDetails | Vb365ServerInfo]
     """
 
     kwargs = _get_kwargs(
@@ -140,8 +144,8 @@ async def asyncio_detailed(
 async def asyncio(
     vb_365_server_id: int,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[ProblemDetails, Vb365ServerInfo]]:
+    client: AuthenticatedClient | Client,
+) -> ProblemDetails | Vb365ServerInfo | None:
     """Get Veeam Backup for Microsoft 365 Server
 
      Returns a resource representation of a Veeam Backup for Microsoft 365 server with the specified ID.
@@ -154,7 +158,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[ProblemDetails, Vb365ServerInfo]
+        ProblemDetails | Vb365ServerInfo
     """
 
     return (

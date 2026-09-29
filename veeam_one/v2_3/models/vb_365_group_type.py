@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class Vb365GroupType(str, Enum):
+class Vb365GroupType(StrEnum):
     DISTRIBUTION = "Distribution"
     DYNAMICDISTRIBUTION = "DynamicDistribution"
     OFFICE365 = "Office365"

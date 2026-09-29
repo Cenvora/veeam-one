@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class BestPracticeStatus(str, Enum):
+class BestPracticeStatus(StrEnum):
     NOTCHECKED = "NotChecked"
     NOTIMPLEMENTED = "NotImplemented"
     PASSED = "Passed"

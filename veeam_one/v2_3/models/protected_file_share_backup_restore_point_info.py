@@ -1,10 +1,11 @@
+from __future__ import annotations
+
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, Union, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
-from dateutil.parser import isoparse
 
 from ..types import UNSET, Unset
 
@@ -19,41 +20,40 @@ T = TypeVar("T", bound="ProtectedFileShareBackupRestorePointInfo")
 class ProtectedFileShareBackupRestorePointInfo:
     """
     Attributes:
-        restore_point_uid (Union[Unset, UUID]): UID assigned to a restore point.
-        file_share_uid_in_vbr (Union[None, UUID, Unset]): UID assigned to a protected file share.
-        backup_uid (Union[None, UUID, Unset]): UID assigned to a backup chain.
-        job_uid (Union[None, UUID, Unset]): UID assigned to a backup job.
-        job_name (Union[None, Unset, str]): Name of a backup job.
-        repository_uid (Union[None, UUID, Unset]): UID assigned to a repository on which a restore point resides.
-        archive_repository_uid (Union[None, UUID, Unset]): UID assigned to an archive repository on which a restore
-            point resides.
-        source_size_bytes (Union[None, Unset, int]): Size of protected data, in bytes.
-        creation_date (Union[None, Unset, datetime.datetime]): Time and date when a restore point was created.
-        immutable_till (Union[None, Unset, datetime.datetime]): Date and time till which a restore point remains
-            immutable.
-        is_long_term (Union[None, Unset, bool]): Indicates whether protected files are stored in archive repository.
-        sources (Union[None, Unset, list['UnstructuredDataSource']]): Information on protected files and folders.
+        restore_point_uid (UUID | Unset): UID assigned to a restore point.
+        file_share_uid_in_vbr (None | Unset | UUID): UID assigned to a protected file share.
+        backup_uid (None | Unset | UUID): UID assigned to a backup chain.
+        job_uid (None | Unset | UUID): UID assigned to a backup job.
+        job_name (None | str | Unset): Name of a backup job.
+        repository_uid (None | Unset | UUID): UID assigned to a repository on which a restore point resides.
+        archive_repository_uid (None | Unset | UUID): UID assigned to an archive repository on which a restore point
+            resides.
+        source_size_bytes (int | None | Unset): Size of protected data, in bytes.
+        creation_date (datetime.datetime | None | Unset): Time and date when a restore point was created.
+        immutable_till (datetime.datetime | None | Unset): Date and time till which a restore point remains immutable.
+        is_long_term (bool | None | Unset): Indicates whether protected files are stored in archive repository.
+        sources (list[UnstructuredDataSource] | None | Unset): Information on protected files and folders.
     """
 
-    restore_point_uid: Union[Unset, UUID] = UNSET
-    file_share_uid_in_vbr: Union[None, UUID, Unset] = UNSET
-    backup_uid: Union[None, UUID, Unset] = UNSET
-    job_uid: Union[None, UUID, Unset] = UNSET
-    job_name: Union[None, Unset, str] = UNSET
-    repository_uid: Union[None, UUID, Unset] = UNSET
-    archive_repository_uid: Union[None, UUID, Unset] = UNSET
-    source_size_bytes: Union[None, Unset, int] = UNSET
-    creation_date: Union[None, Unset, datetime.datetime] = UNSET
-    immutable_till: Union[None, Unset, datetime.datetime] = UNSET
-    is_long_term: Union[None, Unset, bool] = UNSET
-    sources: Union[None, Unset, list["UnstructuredDataSource"]] = UNSET
+    restore_point_uid: UUID | Unset = UNSET
+    file_share_uid_in_vbr: None | Unset | UUID = UNSET
+    backup_uid: None | Unset | UUID = UNSET
+    job_uid: None | Unset | UUID = UNSET
+    job_name: None | str | Unset = UNSET
+    repository_uid: None | Unset | UUID = UNSET
+    archive_repository_uid: None | Unset | UUID = UNSET
+    source_size_bytes: int | None | Unset = UNSET
+    creation_date: datetime.datetime | None | Unset = UNSET
+    immutable_till: datetime.datetime | None | Unset = UNSET
+    is_long_term: bool | None | Unset = UNSET
+    sources: list[UnstructuredDataSource] | None | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
-        restore_point_uid: Union[Unset, str] = UNSET
+        restore_point_uid: str | Unset = UNSET
         if not isinstance(self.restore_point_uid, Unset):
             restore_point_uid = str(self.restore_point_uid)
 
-        file_share_uid_in_vbr: Union[None, Unset, str]
+        file_share_uid_in_vbr: None | str | Unset
         if isinstance(self.file_share_uid_in_vbr, Unset):
             file_share_uid_in_vbr = UNSET
         elif isinstance(self.file_share_uid_in_vbr, UUID):
@@ -61,7 +61,7 @@ class ProtectedFileShareBackupRestorePointInfo:
         else:
             file_share_uid_in_vbr = self.file_share_uid_in_vbr
 
-        backup_uid: Union[None, Unset, str]
+        backup_uid: None | str | Unset
         if isinstance(self.backup_uid, Unset):
             backup_uid = UNSET
         elif isinstance(self.backup_uid, UUID):
@@ -69,7 +69,7 @@ class ProtectedFileShareBackupRestorePointInfo:
         else:
             backup_uid = self.backup_uid
 
-        job_uid: Union[None, Unset, str]
+        job_uid: None | str | Unset
         if isinstance(self.job_uid, Unset):
             job_uid = UNSET
         elif isinstance(self.job_uid, UUID):
@@ -77,13 +77,13 @@ class ProtectedFileShareBackupRestorePointInfo:
         else:
             job_uid = self.job_uid
 
-        job_name: Union[None, Unset, str]
+        job_name: None | str | Unset
         if isinstance(self.job_name, Unset):
             job_name = UNSET
         else:
             job_name = self.job_name
 
-        repository_uid: Union[None, Unset, str]
+        repository_uid: None | str | Unset
         if isinstance(self.repository_uid, Unset):
             repository_uid = UNSET
         elif isinstance(self.repository_uid, UUID):
@@ -91,7 +91,7 @@ class ProtectedFileShareBackupRestorePointInfo:
         else:
             repository_uid = self.repository_uid
 
-        archive_repository_uid: Union[None, Unset, str]
+        archive_repository_uid: None | str | Unset
         if isinstance(self.archive_repository_uid, Unset):
             archive_repository_uid = UNSET
         elif isinstance(self.archive_repository_uid, UUID):
@@ -99,13 +99,13 @@ class ProtectedFileShareBackupRestorePointInfo:
         else:
             archive_repository_uid = self.archive_repository_uid
 
-        source_size_bytes: Union[None, Unset, int]
+        source_size_bytes: int | None | Unset
         if isinstance(self.source_size_bytes, Unset):
             source_size_bytes = UNSET
         else:
             source_size_bytes = self.source_size_bytes
 
-        creation_date: Union[None, Unset, str]
+        creation_date: None | str | Unset
         if isinstance(self.creation_date, Unset):
             creation_date = UNSET
         elif isinstance(self.creation_date, datetime.datetime):
@@ -113,7 +113,7 @@ class ProtectedFileShareBackupRestorePointInfo:
         else:
             creation_date = self.creation_date
 
-        immutable_till: Union[None, Unset, str]
+        immutable_till: None | str | Unset
         if isinstance(self.immutable_till, Unset):
             immutable_till = UNSET
         elif isinstance(self.immutable_till, datetime.datetime):
@@ -121,13 +121,13 @@ class ProtectedFileShareBackupRestorePointInfo:
         else:
             immutable_till = self.immutable_till
 
-        is_long_term: Union[None, Unset, bool]
+        is_long_term: bool | None | Unset
         if isinstance(self.is_long_term, Unset):
             is_long_term = UNSET
         else:
             is_long_term = self.is_long_term
 
-        sources: Union[None, Unset, list[dict[str, Any]]]
+        sources: list[dict[str, Any]] | None | Unset
         if isinstance(self.sources, Unset):
             sources = UNSET
         elif isinstance(self.sources, list):
@@ -171,17 +171,17 @@ class ProtectedFileShareBackupRestorePointInfo:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.unstructured_data_source import UnstructuredDataSource
+        from ..models.unstructured_data_source import UnstructuredDataSource  # noqa: PLC0415
 
         d = dict(src_dict)
         _restore_point_uid = d.pop("restorePointUid", UNSET)
-        restore_point_uid: Union[Unset, UUID]
+        restore_point_uid: UUID | Unset
         if isinstance(_restore_point_uid, Unset):
             restore_point_uid = UNSET
         else:
             restore_point_uid = UUID(_restore_point_uid)
 
-        def _parse_file_share_uid_in_vbr(data: object) -> Union[None, UUID, Unset]:
+        def _parse_file_share_uid_in_vbr(data: object) -> None | Unset | UUID:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -192,13 +192,13 @@ class ProtectedFileShareBackupRestorePointInfo:
                 file_share_uid_in_vbr_type_0 = UUID(data)
 
                 return file_share_uid_in_vbr_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, UUID, Unset], data)
+            return cast(None | Unset | UUID, data)
 
         file_share_uid_in_vbr = _parse_file_share_uid_in_vbr(d.pop("fileShareUidInVbr", UNSET))
 
-        def _parse_backup_uid(data: object) -> Union[None, UUID, Unset]:
+        def _parse_backup_uid(data: object) -> None | Unset | UUID:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -209,13 +209,13 @@ class ProtectedFileShareBackupRestorePointInfo:
                 backup_uid_type_0 = UUID(data)
 
                 return backup_uid_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, UUID, Unset], data)
+            return cast(None | Unset | UUID, data)
 
         backup_uid = _parse_backup_uid(d.pop("backupUid", UNSET))
 
-        def _parse_job_uid(data: object) -> Union[None, UUID, Unset]:
+        def _parse_job_uid(data: object) -> None | Unset | UUID:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -226,22 +226,22 @@ class ProtectedFileShareBackupRestorePointInfo:
                 job_uid_type_0 = UUID(data)
 
                 return job_uid_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, UUID, Unset], data)
+            return cast(None | Unset | UUID, data)
 
         job_uid = _parse_job_uid(d.pop("jobUid", UNSET))
 
-        def _parse_job_name(data: object) -> Union[None, Unset, str]:
+        def _parse_job_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         job_name = _parse_job_name(d.pop("jobName", UNSET))
 
-        def _parse_repository_uid(data: object) -> Union[None, UUID, Unset]:
+        def _parse_repository_uid(data: object) -> None | Unset | UUID:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -252,13 +252,13 @@ class ProtectedFileShareBackupRestorePointInfo:
                 repository_uid_type_0 = UUID(data)
 
                 return repository_uid_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, UUID, Unset], data)
+            return cast(None | Unset | UUID, data)
 
         repository_uid = _parse_repository_uid(d.pop("repositoryUid", UNSET))
 
-        def _parse_archive_repository_uid(data: object) -> Union[None, UUID, Unset]:
+        def _parse_archive_repository_uid(data: object) -> None | Unset | UUID:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -269,22 +269,22 @@ class ProtectedFileShareBackupRestorePointInfo:
                 archive_repository_uid_type_0 = UUID(data)
 
                 return archive_repository_uid_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, UUID, Unset], data)
+            return cast(None | Unset | UUID, data)
 
         archive_repository_uid = _parse_archive_repository_uid(d.pop("archiveRepositoryUid", UNSET))
 
-        def _parse_source_size_bytes(data: object) -> Union[None, Unset, int]:
+        def _parse_source_size_bytes(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         source_size_bytes = _parse_source_size_bytes(d.pop("sourceSizeBytes", UNSET))
 
-        def _parse_creation_date(data: object) -> Union[None, Unset, datetime.datetime]:
+        def _parse_creation_date(data: object) -> datetime.datetime | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -292,16 +292,16 @@ class ProtectedFileShareBackupRestorePointInfo:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                creation_date_type_0 = isoparse(data)
+                creation_date_type_0 = datetime.datetime.fromisoformat(data)
 
                 return creation_date_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, datetime.datetime], data)
+            return cast(datetime.datetime | None | Unset, data)
 
         creation_date = _parse_creation_date(d.pop("creationDate", UNSET))
 
-        def _parse_immutable_till(data: object) -> Union[None, Unset, datetime.datetime]:
+        def _parse_immutable_till(data: object) -> datetime.datetime | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -309,25 +309,25 @@ class ProtectedFileShareBackupRestorePointInfo:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                immutable_till_type_0 = isoparse(data)
+                immutable_till_type_0 = datetime.datetime.fromisoformat(data)
 
                 return immutable_till_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, datetime.datetime], data)
+            return cast(datetime.datetime | None | Unset, data)
 
         immutable_till = _parse_immutable_till(d.pop("immutableTill", UNSET))
 
-        def _parse_is_long_term(data: object) -> Union[None, Unset, bool]:
+        def _parse_is_long_term(data: object) -> bool | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, bool], data)
+            return cast(bool | None | Unset, data)
 
         is_long_term = _parse_is_long_term(d.pop("isLongTerm", UNSET))
 
-        def _parse_sources(data: object) -> Union[None, Unset, list["UnstructuredDataSource"]]:
+        def _parse_sources(data: object) -> list[UnstructuredDataSource] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -343,9 +343,9 @@ class ProtectedFileShareBackupRestorePointInfo:
                     sources_type_0.append(sources_type_0_item)
 
                 return sources_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, list["UnstructuredDataSource"]], data)
+            return cast(list[UnstructuredDataSource] | None | Unset, data)
 
         sources = _parse_sources(d.pop("sources", UNSET))
 

@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class Vb365OrganizationType(str, Enum):
+class Vb365OrganizationType(StrEnum):
     HYBRID = "Hybrid"
     OFFICE365 = "Office365"
     ONPREMISES = "OnPremises"

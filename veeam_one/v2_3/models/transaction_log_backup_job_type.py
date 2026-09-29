@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class TransactionLogBackupJobType(str, Enum):
+class TransactionLogBackupJobType(StrEnum):
     MICROSOFTSQLLOGBACKUP = "MicrosoftSqlLogBackup"
     ORACLESQLLOGBACKUP = "OracleSqlLogBackup"
     POSTGRESQLLOGBACKUP = "PostgreSqlLogBackup"

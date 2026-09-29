@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class ExtentRepositoryType(str, Enum):
+class ExtentRepositoryType(StrEnum):
     OBJECTSTORAGE = "ObjectStorage"
     REGULAR = "Regular"
 

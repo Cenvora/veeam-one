@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class HostAssignType(str, Enum):
+class HostAssignType(StrEnum):
     BPBACKUPSERVER = "BpBackupServer"
     BPENTERPRISEMANAGER = "BpEnterpriseManager"
     BPPROXY = "BpProxy"

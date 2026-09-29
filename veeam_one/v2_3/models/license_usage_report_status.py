@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class LicenseUsageReportStatus(str, Enum):
+class LicenseUsageReportStatus(StrEnum):
     APPROVED = "Approved"
     DRAFT = "Draft"
 

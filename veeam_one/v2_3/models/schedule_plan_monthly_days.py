@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 
@@ -14,15 +16,15 @@ class SchedulePlanMonthlyDays:
     """Scheduling settings for monthly data collection on specific date.
 
     Attributes:
-        months (Union[None, Unset, list[Month]]): Array of months.
-        days (Union[None, Unset, list[int]]): Array of dates.
+        months (list[Month] | None | Unset): Array of months.
+        days (list[int] | None | Unset): Array of dates.
     """
 
-    months: Union[None, Unset, list[Month]] = UNSET
-    days: Union[None, Unset, list[int]] = UNSET
+    months: list[Month] | None | Unset = UNSET
+    days: list[int] | None | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
-        months: Union[None, Unset, list[str]]
+        months: list[str] | None | Unset
         if isinstance(self.months, Unset):
             months = UNSET
         elif isinstance(self.months, list):
@@ -34,7 +36,7 @@ class SchedulePlanMonthlyDays:
         else:
             months = self.months
 
-        days: Union[None, Unset, list[int]]
+        days: list[int] | None | Unset
         if isinstance(self.days, Unset):
             days = UNSET
         elif isinstance(self.days, list):
@@ -57,7 +59,7 @@ class SchedulePlanMonthlyDays:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
 
-        def _parse_months(data: object) -> Union[None, Unset, list[Month]]:
+        def _parse_months(data: object) -> list[Month] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -73,13 +75,13 @@ class SchedulePlanMonthlyDays:
                     months_type_0.append(months_type_0_item)
 
                 return months_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, list[Month]], data)
+            return cast(list[Month] | None | Unset, data)
 
         months = _parse_months(d.pop("months", UNSET))
 
-        def _parse_days(data: object) -> Union[None, Unset, list[int]]:
+        def _parse_days(data: object) -> list[int] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -90,9 +92,9 @@ class SchedulePlanMonthlyDays:
                 days_type_0 = cast(list[int], data)
 
                 return days_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, list[int]], data)
+            return cast(list[int] | None | Unset, data)
 
         days = _parse_days(d.pop("days", UNSET))
 

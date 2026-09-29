@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class ProtectedComputerOperationMode(str, Enum):
+class ProtectedComputerOperationMode(StrEnum):
     SERVER = "Server"
     UNKNOWN = "Unknown"
     WORKSTATION = "Workstation"

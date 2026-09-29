@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
@@ -15,53 +17,52 @@ T = TypeVar("T", bound="ObjectStorageInfo")
 class ObjectStorageInfo:
     """
     Attributes:
-        object_storage_id (Union[None, Unset, int]): ID assigned to an object storage repository.
-        object_storage_uid_in_vbr (Union[None, UUID, Unset]): UID assigned to an object storage repository in Veeam
-            Backup & Replication.
-        backup_server_id (Union[None, Unset, int]): ID assigned to a Veeam Backup & Replication.
-        name (Union[None, Unset, str]): Name of an object storage repository.
-        type_ (Union[Unset, ObjectStorageType]):
-        running_tasks (Union[None, Unset, int]): Number of tasks that are currently running on a backup repository.
-        description (Union[None, Unset, str]): Description of an object storage repository.
-        region (Union[None, Unset, str]): Region at which an object storage repository is located
-        bucket (Union[None, Unset, str]): Name of bucket or container.
-        capacity_bytes (Union[None, Unset, int]): Object storage capacity, in bytes.
-        used_space_bytes (Union[None, Unset, int]): Amount of used storage space, in bytes.
-        consumption_limit_gb (Union[None, Unset, int]): Soft limit for object storage consumption, in GB.
-        is_immutable (Union[None, Unset, bool]): Indicates whether immutability is enabled for an object storage
-            repository.
-        immutability_interval_days (Union[None, Unset, int]): Immutability period, in days.
-        concurrent_jobs_max (Union[None, Unset, int]): Maximum number of concurrent jobs.
-        concurrent_jobs_now (Union[None, Unset, int]): Number of currently running concurrent jobs.
-        infrequent_access_storage (Union[Unset, InfrequentAccess]):
+        object_storage_id (int | None | Unset): ID assigned to an object storage repository.
+        object_storage_uid_in_vbr (None | Unset | UUID): UID assigned to an object storage repository in Veeam Backup &
+            Replication.
+        backup_server_id (int | None | Unset): ID assigned to a Veeam Backup & Replication.
+        name (None | str | Unset): Name of an object storage repository.
+        type_ (ObjectStorageType | Unset):
+        running_tasks (int | None | Unset): Number of tasks that are currently running on a backup repository.
+        description (None | str | Unset): Description of an object storage repository.
+        region (None | str | Unset): Region at which an object storage repository is located
+        bucket (None | str | Unset): Name of bucket or container.
+        capacity_bytes (int | None | Unset): Object storage capacity, in bytes.
+        used_space_bytes (int | None | Unset): Amount of used storage space, in bytes.
+        consumption_limit_gb (int | None | Unset): Soft limit for object storage consumption, in GB.
+        is_immutable (bool | None | Unset): Indicates whether immutability is enabled for an object storage repository.
+        immutability_interval_days (int | None | Unset): Immutability period, in days.
+        concurrent_jobs_max (int | None | Unset): Maximum number of concurrent jobs.
+        concurrent_jobs_now (int | None | Unset): Number of currently running concurrent jobs.
+        infrequent_access_storage (InfrequentAccess | Unset):
     """
 
-    object_storage_id: Union[None, Unset, int] = UNSET
-    object_storage_uid_in_vbr: Union[None, UUID, Unset] = UNSET
-    backup_server_id: Union[None, Unset, int] = UNSET
-    name: Union[None, Unset, str] = UNSET
-    type_: Union[Unset, ObjectStorageType] = UNSET
-    running_tasks: Union[None, Unset, int] = UNSET
-    description: Union[None, Unset, str] = UNSET
-    region: Union[None, Unset, str] = UNSET
-    bucket: Union[None, Unset, str] = UNSET
-    capacity_bytes: Union[None, Unset, int] = UNSET
-    used_space_bytes: Union[None, Unset, int] = UNSET
-    consumption_limit_gb: Union[None, Unset, int] = UNSET
-    is_immutable: Union[None, Unset, bool] = UNSET
-    immutability_interval_days: Union[None, Unset, int] = UNSET
-    concurrent_jobs_max: Union[None, Unset, int] = UNSET
-    concurrent_jobs_now: Union[None, Unset, int] = UNSET
-    infrequent_access_storage: Union[Unset, InfrequentAccess] = UNSET
+    object_storage_id: int | None | Unset = UNSET
+    object_storage_uid_in_vbr: None | Unset | UUID = UNSET
+    backup_server_id: int | None | Unset = UNSET
+    name: None | str | Unset = UNSET
+    type_: ObjectStorageType | Unset = UNSET
+    running_tasks: int | None | Unset = UNSET
+    description: None | str | Unset = UNSET
+    region: None | str | Unset = UNSET
+    bucket: None | str | Unset = UNSET
+    capacity_bytes: int | None | Unset = UNSET
+    used_space_bytes: int | None | Unset = UNSET
+    consumption_limit_gb: int | None | Unset = UNSET
+    is_immutable: bool | None | Unset = UNSET
+    immutability_interval_days: int | None | Unset = UNSET
+    concurrent_jobs_max: int | None | Unset = UNSET
+    concurrent_jobs_now: int | None | Unset = UNSET
+    infrequent_access_storage: InfrequentAccess | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
-        object_storage_id: Union[None, Unset, int]
+        object_storage_id: int | None | Unset
         if isinstance(self.object_storage_id, Unset):
             object_storage_id = UNSET
         else:
             object_storage_id = self.object_storage_id
 
-        object_storage_uid_in_vbr: Union[None, Unset, str]
+        object_storage_uid_in_vbr: None | str | Unset
         if isinstance(self.object_storage_uid_in_vbr, Unset):
             object_storage_uid_in_vbr = UNSET
         elif isinstance(self.object_storage_uid_in_vbr, UUID):
@@ -69,89 +70,89 @@ class ObjectStorageInfo:
         else:
             object_storage_uid_in_vbr = self.object_storage_uid_in_vbr
 
-        backup_server_id: Union[None, Unset, int]
+        backup_server_id: int | None | Unset
         if isinstance(self.backup_server_id, Unset):
             backup_server_id = UNSET
         else:
             backup_server_id = self.backup_server_id
 
-        name: Union[None, Unset, str]
+        name: None | str | Unset
         if isinstance(self.name, Unset):
             name = UNSET
         else:
             name = self.name
 
-        type_: Union[Unset, str] = UNSET
+        type_: str | Unset = UNSET
         if not isinstance(self.type_, Unset):
             type_ = self.type_.value
 
-        running_tasks: Union[None, Unset, int]
+        running_tasks: int | None | Unset
         if isinstance(self.running_tasks, Unset):
             running_tasks = UNSET
         else:
             running_tasks = self.running_tasks
 
-        description: Union[None, Unset, str]
+        description: None | str | Unset
         if isinstance(self.description, Unset):
             description = UNSET
         else:
             description = self.description
 
-        region: Union[None, Unset, str]
+        region: None | str | Unset
         if isinstance(self.region, Unset):
             region = UNSET
         else:
             region = self.region
 
-        bucket: Union[None, Unset, str]
+        bucket: None | str | Unset
         if isinstance(self.bucket, Unset):
             bucket = UNSET
         else:
             bucket = self.bucket
 
-        capacity_bytes: Union[None, Unset, int]
+        capacity_bytes: int | None | Unset
         if isinstance(self.capacity_bytes, Unset):
             capacity_bytes = UNSET
         else:
             capacity_bytes = self.capacity_bytes
 
-        used_space_bytes: Union[None, Unset, int]
+        used_space_bytes: int | None | Unset
         if isinstance(self.used_space_bytes, Unset):
             used_space_bytes = UNSET
         else:
             used_space_bytes = self.used_space_bytes
 
-        consumption_limit_gb: Union[None, Unset, int]
+        consumption_limit_gb: int | None | Unset
         if isinstance(self.consumption_limit_gb, Unset):
             consumption_limit_gb = UNSET
         else:
             consumption_limit_gb = self.consumption_limit_gb
 
-        is_immutable: Union[None, Unset, bool]
+        is_immutable: bool | None | Unset
         if isinstance(self.is_immutable, Unset):
             is_immutable = UNSET
         else:
             is_immutable = self.is_immutable
 
-        immutability_interval_days: Union[None, Unset, int]
+        immutability_interval_days: int | None | Unset
         if isinstance(self.immutability_interval_days, Unset):
             immutability_interval_days = UNSET
         else:
             immutability_interval_days = self.immutability_interval_days
 
-        concurrent_jobs_max: Union[None, Unset, int]
+        concurrent_jobs_max: int | None | Unset
         if isinstance(self.concurrent_jobs_max, Unset):
             concurrent_jobs_max = UNSET
         else:
             concurrent_jobs_max = self.concurrent_jobs_max
 
-        concurrent_jobs_now: Union[None, Unset, int]
+        concurrent_jobs_now: int | None | Unset
         if isinstance(self.concurrent_jobs_now, Unset):
             concurrent_jobs_now = UNSET
         else:
             concurrent_jobs_now = self.concurrent_jobs_now
 
-        infrequent_access_storage: Union[Unset, str] = UNSET
+        infrequent_access_storage: str | Unset = UNSET
         if not isinstance(self.infrequent_access_storage, Unset):
             infrequent_access_storage = self.infrequent_access_storage.value
 
@@ -199,16 +200,16 @@ class ObjectStorageInfo:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
 
-        def _parse_object_storage_id(data: object) -> Union[None, Unset, int]:
+        def _parse_object_storage_id(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         object_storage_id = _parse_object_storage_id(d.pop("objectStorageId", UNSET))
 
-        def _parse_object_storage_uid_in_vbr(data: object) -> Union[None, UUID, Unset]:
+        def _parse_object_storage_uid_in_vbr(data: object) -> None | Unset | UUID:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -219,138 +220,138 @@ class ObjectStorageInfo:
                 object_storage_uid_in_vbr_type_0 = UUID(data)
 
                 return object_storage_uid_in_vbr_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, UUID, Unset], data)
+            return cast(None | Unset | UUID, data)
 
         object_storage_uid_in_vbr = _parse_object_storage_uid_in_vbr(d.pop("objectStorageUidInVbr", UNSET))
 
-        def _parse_backup_server_id(data: object) -> Union[None, Unset, int]:
+        def _parse_backup_server_id(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         backup_server_id = _parse_backup_server_id(d.pop("backupServerId", UNSET))
 
-        def _parse_name(data: object) -> Union[None, Unset, str]:
+        def _parse_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         name = _parse_name(d.pop("name", UNSET))
 
         _type_ = d.pop("type", UNSET)
-        type_: Union[Unset, ObjectStorageType]
+        type_: ObjectStorageType | Unset
         if isinstance(_type_, Unset):
             type_ = UNSET
         else:
             type_ = ObjectStorageType(_type_)
 
-        def _parse_running_tasks(data: object) -> Union[None, Unset, int]:
+        def _parse_running_tasks(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         running_tasks = _parse_running_tasks(d.pop("runningTasks", UNSET))
 
-        def _parse_description(data: object) -> Union[None, Unset, str]:
+        def _parse_description(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         description = _parse_description(d.pop("description", UNSET))
 
-        def _parse_region(data: object) -> Union[None, Unset, str]:
+        def _parse_region(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         region = _parse_region(d.pop("region", UNSET))
 
-        def _parse_bucket(data: object) -> Union[None, Unset, str]:
+        def _parse_bucket(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         bucket = _parse_bucket(d.pop("bucket", UNSET))
 
-        def _parse_capacity_bytes(data: object) -> Union[None, Unset, int]:
+        def _parse_capacity_bytes(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         capacity_bytes = _parse_capacity_bytes(d.pop("capacityBytes", UNSET))
 
-        def _parse_used_space_bytes(data: object) -> Union[None, Unset, int]:
+        def _parse_used_space_bytes(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         used_space_bytes = _parse_used_space_bytes(d.pop("usedSpaceBytes", UNSET))
 
-        def _parse_consumption_limit_gb(data: object) -> Union[None, Unset, int]:
+        def _parse_consumption_limit_gb(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         consumption_limit_gb = _parse_consumption_limit_gb(d.pop("consumptionLimitGb", UNSET))
 
-        def _parse_is_immutable(data: object) -> Union[None, Unset, bool]:
+        def _parse_is_immutable(data: object) -> bool | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, bool], data)
+            return cast(bool | None | Unset, data)
 
         is_immutable = _parse_is_immutable(d.pop("isImmutable", UNSET))
 
-        def _parse_immutability_interval_days(data: object) -> Union[None, Unset, int]:
+        def _parse_immutability_interval_days(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         immutability_interval_days = _parse_immutability_interval_days(d.pop("immutabilityIntervalDays", UNSET))
 
-        def _parse_concurrent_jobs_max(data: object) -> Union[None, Unset, int]:
+        def _parse_concurrent_jobs_max(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         concurrent_jobs_max = _parse_concurrent_jobs_max(d.pop("concurrentJobsMax", UNSET))
 
-        def _parse_concurrent_jobs_now(data: object) -> Union[None, Unset, int]:
+        def _parse_concurrent_jobs_now(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         concurrent_jobs_now = _parse_concurrent_jobs_now(d.pop("concurrentJobsNow", UNSET))
 
         _infrequent_access_storage = d.pop("infrequentAccessStorage", UNSET)
-        infrequent_access_storage: Union[Unset, InfrequentAccess]
+        infrequent_access_storage: InfrequentAccess | Unset
         if isinstance(_infrequent_access_storage, Unset):
             infrequent_access_storage = UNSET
         else:

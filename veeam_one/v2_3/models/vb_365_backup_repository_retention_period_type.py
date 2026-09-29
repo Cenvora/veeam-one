@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class Vb365BackupRepositoryRetentionPeriodType(str, Enum):
+class Vb365BackupRepositoryRetentionPeriodType(StrEnum):
     DAILY = "Daily"
     MONTHLY = "Monthly"
     UNKNOWN = "Unknown"

@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 
@@ -12,23 +14,23 @@ T = TypeVar("T", bound="VeeamOneLicenseUsageCommonWorkload")
 class VeeamOneLicenseUsageCommonWorkload:
     """
     Attributes:
-        workload_type (Union[None, Unset, str]): Type of licensed objects. Example: Virtual Machines.
-        used_objects (Union[Unset, int]): Number of licensed objects. Example: 376.
-        new_objects (Union[None, Unset, int]): Number of new objects. Example: 2.
-        used_units (Union[Unset, float]): Number of consumed license units. Example: 376.
-        new_units (Union[None, Unset, float]): Number of license units that new objects will consume. Example: 2.
-        multiplier (Union[Unset, int]): License unit multiplier. Example: 1.
+        workload_type (None | str | Unset): Type of licensed objects. Example: Virtual Machines.
+        used_objects (int | Unset): Number of licensed objects. Example: 376.
+        new_objects (int | None | Unset): Number of new objects. Example: 2.
+        used_units (float | Unset): Number of consumed license units. Example: 376.
+        new_units (float | None | Unset): Number of license units that new objects will consume. Example: 2.
+        multiplier (int | Unset): License unit multiplier. Example: 1.
     """
 
-    workload_type: Union[None, Unset, str] = UNSET
-    used_objects: Union[Unset, int] = UNSET
-    new_objects: Union[None, Unset, int] = UNSET
-    used_units: Union[Unset, float] = UNSET
-    new_units: Union[None, Unset, float] = UNSET
-    multiplier: Union[Unset, int] = UNSET
+    workload_type: None | str | Unset = UNSET
+    used_objects: int | Unset = UNSET
+    new_objects: int | None | Unset = UNSET
+    used_units: float | Unset = UNSET
+    new_units: float | None | Unset = UNSET
+    multiplier: int | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
-        workload_type: Union[None, Unset, str]
+        workload_type: None | str | Unset
         if isinstance(self.workload_type, Unset):
             workload_type = UNSET
         else:
@@ -36,7 +38,7 @@ class VeeamOneLicenseUsageCommonWorkload:
 
         used_objects = self.used_objects
 
-        new_objects: Union[None, Unset, int]
+        new_objects: int | None | Unset
         if isinstance(self.new_objects, Unset):
             new_objects = UNSET
         else:
@@ -44,7 +46,7 @@ class VeeamOneLicenseUsageCommonWorkload:
 
         used_units = self.used_units
 
-        new_units: Union[None, Unset, float]
+        new_units: float | None | Unset
         if isinstance(self.new_units, Unset):
             new_units = UNSET
         else:
@@ -74,34 +76,34 @@ class VeeamOneLicenseUsageCommonWorkload:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
 
-        def _parse_workload_type(data: object) -> Union[None, Unset, str]:
+        def _parse_workload_type(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         workload_type = _parse_workload_type(d.pop("workloadType", UNSET))
 
         used_objects = d.pop("usedObjects", UNSET)
 
-        def _parse_new_objects(data: object) -> Union[None, Unset, int]:
+        def _parse_new_objects(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         new_objects = _parse_new_objects(d.pop("newObjects", UNSET))
 
         used_units = d.pop("usedUnits", UNSET)
 
-        def _parse_new_units(data: object) -> Union[None, Unset, float]:
+        def _parse_new_units(data: object) -> float | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, float], data)
+            return cast(float | None | Unset, data)
 
         new_units = _parse_new_units(d.pop("newUnits", UNSET))
 

@@ -1,5 +1,5 @@
 from http import HTTPStatus
-from typing import Any, Optional, Union
+from typing import Any
 
 import httpx
 
@@ -8,12 +8,12 @@ from ...client import AuthenticatedClient, Client
 from ...models.credential_info import CredentialInfo
 from ...models.credential_save_request import CredentialSaveRequest
 from ...models.problem_details import ProblemDetails
-from ...types import Response
+from ...types import UNSET, Response, Unset
 
 
 def _get_kwargs(
     *,
-    body: CredentialSaveRequest,
+    body: CredentialSaveRequest | Unset = UNSET,
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
 
@@ -22,7 +22,8 @@ def _get_kwargs(
         "url": "/api/v2.3/credentials",
     }
 
-    _kwargs["json"] = body.to_dict()
+    if not isinstance(body, Unset):
+        _kwargs["json"] = body.to_dict()
 
     headers["Content-Type"] = "application/json"
 
@@ -31,8 +32,8 @@ def _get_kwargs(
 
 
 def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[CredentialInfo, ProblemDetails]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> CredentialInfo | ProblemDetails | None:
     if response.status_code == 200:
         response_200 = CredentialInfo.from_dict(response.json())
 
@@ -50,8 +51,8 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[CredentialInfo, ProblemDetails]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[CredentialInfo | ProblemDetails]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -62,22 +63,22 @@ def _build_response(
 
 def sync_detailed(
     *,
-    client: Union[AuthenticatedClient, Client],
-    body: CredentialSaveRequest,
-) -> Response[Union[CredentialInfo, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+    body: CredentialSaveRequest | Unset = UNSET,
+) -> Response[CredentialInfo | ProblemDetails]:
     """Create Credential Set
 
      Creates a new credential set.
 
     Args:
-        body (CredentialSaveRequest):
+        body (CredentialSaveRequest | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[CredentialInfo, ProblemDetails]]
+        Response[CredentialInfo | ProblemDetails]
     """
 
     kwargs = _get_kwargs(
@@ -93,22 +94,22 @@ def sync_detailed(
 
 def sync(
     *,
-    client: Union[AuthenticatedClient, Client],
-    body: CredentialSaveRequest,
-) -> Optional[Union[CredentialInfo, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+    body: CredentialSaveRequest | Unset = UNSET,
+) -> CredentialInfo | ProblemDetails | None:
     """Create Credential Set
 
      Creates a new credential set.
 
     Args:
-        body (CredentialSaveRequest):
+        body (CredentialSaveRequest | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[CredentialInfo, ProblemDetails]
+        CredentialInfo | ProblemDetails
     """
 
     return sync_detailed(
@@ -119,22 +120,22 @@ def sync(
 
 async def asyncio_detailed(
     *,
-    client: Union[AuthenticatedClient, Client],
-    body: CredentialSaveRequest,
-) -> Response[Union[CredentialInfo, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+    body: CredentialSaveRequest | Unset = UNSET,
+) -> Response[CredentialInfo | ProblemDetails]:
     """Create Credential Set
 
      Creates a new credential set.
 
     Args:
-        body (CredentialSaveRequest):
+        body (CredentialSaveRequest | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[CredentialInfo, ProblemDetails]]
+        Response[CredentialInfo | ProblemDetails]
     """
 
     kwargs = _get_kwargs(
@@ -148,22 +149,22 @@ async def asyncio_detailed(
 
 async def asyncio(
     *,
-    client: Union[AuthenticatedClient, Client],
-    body: CredentialSaveRequest,
-) -> Optional[Union[CredentialInfo, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+    body: CredentialSaveRequest | Unset = UNSET,
+) -> CredentialInfo | ProblemDetails | None:
     """Create Credential Set
 
      Creates a new credential set.
 
     Args:
-        body (CredentialSaveRequest):
+        body (CredentialSaveRequest | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[CredentialInfo, ProblemDetails]
+        CredentialInfo | ProblemDetails
     """
 
     return (

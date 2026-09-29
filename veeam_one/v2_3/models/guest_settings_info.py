@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 
@@ -12,12 +14,12 @@ T = TypeVar("T", bound="GuestSettingsInfo")
 class GuestSettingsInfo:
     """
     Attributes:
-        ssh_port (Union[Unset, int]): SSH port.
-        ssh_skip_verification (Union[Unset, bool]): Indicates whether SSH fingerprint check is skipped.
+        ssh_port (int | Unset): SSH port.
+        ssh_skip_verification (bool | Unset): Indicates whether SSH fingerprint check is skipped.
     """
 
-    ssh_port: Union[Unset, int] = UNSET
-    ssh_skip_verification: Union[Unset, bool] = UNSET
+    ssh_port: int | Unset = UNSET
+    ssh_skip_verification: bool | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
         ssh_port = self.ssh_port

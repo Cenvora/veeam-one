@@ -1,5 +1,6 @@
 from http import HTTPStatus
-from typing import Any, Optional, Union
+from typing import Any
+from urllib.parse import quote
 from uuid import UUID
 
 import httpx
@@ -15,17 +16,21 @@ def _get_kwargs(
     organization_uid: UUID,
     group_uid: UUID,
 ) -> dict[str, Any]:
+
     _kwargs: dict[str, Any] = {
         "method": "get",
-        "url": f"/api/v2.3/protectedData/vb365/organizations/{organization_uid}/groups/{group_uid}/restorePoints",
+        "url": "/api/v2.3/protectedData/vb365/organizations/{organization_uid}/groups/{group_uid}/restorePoints".format(
+            organization_uid=quote(str(organization_uid), safe=""),
+            group_uid=quote(str(group_uid), safe=""),
+        ),
     }
 
     return _kwargs
 
 
 def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[ProblemDetails, Vb365ProtectedGroupRestorePointInfoIPage]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> ProblemDetails | Vb365ProtectedGroupRestorePointInfoIPage | None:
     if response.status_code == 200:
         response_200 = Vb365ProtectedGroupRestorePointInfoIPage.from_dict(response.json())
 
@@ -43,8 +48,8 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[ProblemDetails, Vb365ProtectedGroupRestorePointInfoIPage]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[ProblemDetails | Vb365ProtectedGroupRestorePointInfoIPage]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -57,8 +62,8 @@ def sync_detailed(
     organization_uid: UUID,
     group_uid: UUID,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[ProblemDetails, Vb365ProtectedGroupRestorePointInfoIPage]]:
+    client: AuthenticatedClient | Client,
+) -> Response[ProblemDetails | Vb365ProtectedGroupRestorePointInfoIPage]:
     """Get All Microsoft 365 Group Restore Points
 
      Returns a collection resource representation of all restore points of a Microsoft 365 group with the
@@ -73,7 +78,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[ProblemDetails, Vb365ProtectedGroupRestorePointInfoIPage]]
+        Response[ProblemDetails | Vb365ProtectedGroupRestorePointInfoIPage]
     """
 
     kwargs = _get_kwargs(
@@ -92,8 +97,8 @@ def sync(
     organization_uid: UUID,
     group_uid: UUID,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[ProblemDetails, Vb365ProtectedGroupRestorePointInfoIPage]]:
+    client: AuthenticatedClient | Client,
+) -> ProblemDetails | Vb365ProtectedGroupRestorePointInfoIPage | None:
     """Get All Microsoft 365 Group Restore Points
 
      Returns a collection resource representation of all restore points of a Microsoft 365 group with the
@@ -108,7 +113,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[ProblemDetails, Vb365ProtectedGroupRestorePointInfoIPage]
+        ProblemDetails | Vb365ProtectedGroupRestorePointInfoIPage
     """
 
     return sync_detailed(
@@ -122,8 +127,8 @@ async def asyncio_detailed(
     organization_uid: UUID,
     group_uid: UUID,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[ProblemDetails, Vb365ProtectedGroupRestorePointInfoIPage]]:
+    client: AuthenticatedClient | Client,
+) -> Response[ProblemDetails | Vb365ProtectedGroupRestorePointInfoIPage]:
     """Get All Microsoft 365 Group Restore Points
 
      Returns a collection resource representation of all restore points of a Microsoft 365 group with the
@@ -138,7 +143,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[ProblemDetails, Vb365ProtectedGroupRestorePointInfoIPage]]
+        Response[ProblemDetails | Vb365ProtectedGroupRestorePointInfoIPage]
     """
 
     kwargs = _get_kwargs(
@@ -155,8 +160,8 @@ async def asyncio(
     organization_uid: UUID,
     group_uid: UUID,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[ProblemDetails, Vb365ProtectedGroupRestorePointInfoIPage]]:
+    client: AuthenticatedClient | Client,
+) -> ProblemDetails | Vb365ProtectedGroupRestorePointInfoIPage | None:
     """Get All Microsoft 365 Group Restore Points
 
      Returns a collection resource representation of all restore points of a Microsoft 365 group with the
@@ -171,7 +176,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[ProblemDetails, Vb365ProtectedGroupRestorePointInfoIPage]
+        ProblemDetails | Vb365ProtectedGroupRestorePointInfoIPage
     """
 
     return (

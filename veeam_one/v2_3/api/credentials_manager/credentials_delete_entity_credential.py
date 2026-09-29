@@ -1,5 +1,6 @@
 from http import HTTPStatus
-from typing import Any, Optional, Union, cast
+from typing import Any, cast
+from urllib.parse import quote
 
 import httpx
 
@@ -12,8 +13,9 @@ from ...types import UNSET, Response, Unset
 def _get_kwargs(
     object_id: int,
     *,
-    propagate: Union[Unset, bool] = UNSET,
+    propagate: bool | Unset = UNSET,
 ) -> dict[str, Any]:
+
     params: dict[str, Any] = {}
 
     params["propagate"] = propagate
@@ -22,16 +24,16 @@ def _get_kwargs(
 
     _kwargs: dict[str, Any] = {
         "method": "delete",
-        "url": f"/api/v2.3/credentials/object/{object_id}",
+        "url": "/api/v2.3/credentials/object/{object_id}".format(
+            object_id=quote(str(object_id), safe=""),
+        ),
         "params": params,
     }
 
     return _kwargs
 
 
-def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[Any, ProblemDetails]]:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Any | ProblemDetails | None:
     if response.status_code == 200:
         response_200 = cast(Any, None)
         return response_200
@@ -48,8 +50,8 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[Any, ProblemDetails]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[Any | ProblemDetails]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -61,23 +63,23 @@ def _build_response(
 def sync_detailed(
     object_id: int,
     *,
-    client: Union[AuthenticatedClient, Client],
-    propagate: Union[Unset, bool] = UNSET,
-) -> Response[Union[Any, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+    propagate: bool | Unset = UNSET,
+) -> Response[Any | ProblemDetails]:
     """Delete Credentials Assigned to Object
 
      Deletes credential set that is used to access an object with the specified ID.
 
     Args:
         object_id (int):
-        propagate (Union[Unset, bool]):
+        propagate (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Any, ProblemDetails]]
+        Response[Any | ProblemDetails]
     """
 
     kwargs = _get_kwargs(
@@ -95,23 +97,23 @@ def sync_detailed(
 def sync(
     object_id: int,
     *,
-    client: Union[AuthenticatedClient, Client],
-    propagate: Union[Unset, bool] = UNSET,
-) -> Optional[Union[Any, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+    propagate: bool | Unset = UNSET,
+) -> Any | ProblemDetails | None:
     """Delete Credentials Assigned to Object
 
      Deletes credential set that is used to access an object with the specified ID.
 
     Args:
         object_id (int):
-        propagate (Union[Unset, bool]):
+        propagate (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Any, ProblemDetails]
+        Any | ProblemDetails
     """
 
     return sync_detailed(
@@ -124,23 +126,23 @@ def sync(
 async def asyncio_detailed(
     object_id: int,
     *,
-    client: Union[AuthenticatedClient, Client],
-    propagate: Union[Unset, bool] = UNSET,
-) -> Response[Union[Any, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+    propagate: bool | Unset = UNSET,
+) -> Response[Any | ProblemDetails]:
     """Delete Credentials Assigned to Object
 
      Deletes credential set that is used to access an object with the specified ID.
 
     Args:
         object_id (int):
-        propagate (Union[Unset, bool]):
+        propagate (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Any, ProblemDetails]]
+        Response[Any | ProblemDetails]
     """
 
     kwargs = _get_kwargs(
@@ -156,23 +158,23 @@ async def asyncio_detailed(
 async def asyncio(
     object_id: int,
     *,
-    client: Union[AuthenticatedClient, Client],
-    propagate: Union[Unset, bool] = UNSET,
-) -> Optional[Union[Any, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+    propagate: bool | Unset = UNSET,
+) -> Any | ProblemDetails | None:
     """Delete Credentials Assigned to Object
 
      Deletes credential set that is used to access an object with the specified ID.
 
     Args:
         object_id (int):
-        propagate (Union[Unset, bool]):
+        propagate (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Any, ProblemDetails]
+        Any | ProblemDetails
     """
 
     return (

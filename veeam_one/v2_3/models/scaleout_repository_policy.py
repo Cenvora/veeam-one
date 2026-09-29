@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class ScaleoutRepositoryPolicy(str, Enum):
+class ScaleoutRepositoryPolicy(StrEnum):
     DATALOCALITY = "DataLocality"
     PERFORMANCE = "Performance"
     UNKNOWN = "Unknown"

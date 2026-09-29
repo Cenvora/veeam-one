@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class ScheduleIntervalType(str, Enum):
+class ScheduleIntervalType(StrEnum):
     HOURS = "Hours"
     MINUTES = "Minutes"
 

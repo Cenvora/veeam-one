@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class VmPlatform(str, Enum):
+class VmPlatform(StrEnum):
     CLOUDDIRECTOR = "CloudDirector"
     HPEVME = "HpeVme"
     HYPERV = "HyperV"

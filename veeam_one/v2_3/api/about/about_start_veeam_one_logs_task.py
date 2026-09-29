@@ -1,5 +1,5 @@
 from http import HTTPStatus
-from typing import Any, Optional, Union
+from typing import Any
 
 import httpx
 
@@ -8,12 +8,12 @@ from ...client import AuthenticatedClient, Client
 from ...models.async_task_status import AsyncTaskStatus
 from ...models.problem_details import ProblemDetails
 from ...models.veeam_one_logs_request import VeeamOneLogsRequest
-from ...types import Response
+from ...types import UNSET, Response, Unset
 
 
 def _get_kwargs(
     *,
-    body: VeeamOneLogsRequest,
+    body: VeeamOneLogsRequest | Unset = UNSET,
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
 
@@ -22,7 +22,8 @@ def _get_kwargs(
         "url": "/api/v2.3/about/logs",
     }
 
-    _kwargs["json"] = body.to_dict()
+    if not isinstance(body, Unset):
+        _kwargs["json"] = body.to_dict()
 
     headers["Content-Type"] = "application/json"
 
@@ -31,8 +32,8 @@ def _get_kwargs(
 
 
 def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[AsyncTaskStatus, ProblemDetails]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> AsyncTaskStatus | ProblemDetails | None:
     if response.status_code == 200:
         response_200 = AsyncTaskStatus.from_dict(response.json())
 
@@ -50,8 +51,8 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[AsyncTaskStatus, ProblemDetails]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[AsyncTaskStatus | ProblemDetails]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -62,22 +63,22 @@ def _build_response(
 
 def sync_detailed(
     *,
-    client: Union[AuthenticatedClient, Client],
-    body: VeeamOneLogsRequest,
-) -> Response[Union[AsyncTaskStatus, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+    body: VeeamOneLogsRequest | Unset = UNSET,
+) -> Response[AsyncTaskStatus | ProblemDetails]:
     """Collect Log Archive
 
      Initiates a log archive collection task.
 
     Args:
-        body (VeeamOneLogsRequest):
+        body (VeeamOneLogsRequest | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[AsyncTaskStatus, ProblemDetails]]
+        Response[AsyncTaskStatus | ProblemDetails]
     """
 
     kwargs = _get_kwargs(
@@ -93,22 +94,22 @@ def sync_detailed(
 
 def sync(
     *,
-    client: Union[AuthenticatedClient, Client],
-    body: VeeamOneLogsRequest,
-) -> Optional[Union[AsyncTaskStatus, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+    body: VeeamOneLogsRequest | Unset = UNSET,
+) -> AsyncTaskStatus | ProblemDetails | None:
     """Collect Log Archive
 
      Initiates a log archive collection task.
 
     Args:
-        body (VeeamOneLogsRequest):
+        body (VeeamOneLogsRequest | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[AsyncTaskStatus, ProblemDetails]
+        AsyncTaskStatus | ProblemDetails
     """
 
     return sync_detailed(
@@ -119,22 +120,22 @@ def sync(
 
 async def asyncio_detailed(
     *,
-    client: Union[AuthenticatedClient, Client],
-    body: VeeamOneLogsRequest,
-) -> Response[Union[AsyncTaskStatus, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+    body: VeeamOneLogsRequest | Unset = UNSET,
+) -> Response[AsyncTaskStatus | ProblemDetails]:
     """Collect Log Archive
 
      Initiates a log archive collection task.
 
     Args:
-        body (VeeamOneLogsRequest):
+        body (VeeamOneLogsRequest | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[AsyncTaskStatus, ProblemDetails]]
+        Response[AsyncTaskStatus | ProblemDetails]
     """
 
     kwargs = _get_kwargs(
@@ -148,22 +149,22 @@ async def asyncio_detailed(
 
 async def asyncio(
     *,
-    client: Union[AuthenticatedClient, Client],
-    body: VeeamOneLogsRequest,
-) -> Optional[Union[AsyncTaskStatus, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+    body: VeeamOneLogsRequest | Unset = UNSET,
+) -> AsyncTaskStatus | ProblemDetails | None:
     """Collect Log Archive
 
      Initiates a log archive collection task.
 
     Args:
-        body (VeeamOneLogsRequest):
+        body (VeeamOneLogsRequest | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[AsyncTaskStatus, ProblemDetails]
+        AsyncTaskStatus | ProblemDetails
     """
 
     return (

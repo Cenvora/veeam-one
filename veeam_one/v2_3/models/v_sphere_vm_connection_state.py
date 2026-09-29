@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class VSphereVmConnectionState(str, Enum):
+class VSphereVmConnectionState(StrEnum):
     CONNECTED = "Connected"
     DISCONNECTED = "Disconnected"
     INACCESSIBLE = "Inaccessible"

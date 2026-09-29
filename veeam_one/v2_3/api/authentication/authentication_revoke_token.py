@@ -1,5 +1,5 @@
 from http import HTTPStatus
-from typing import Any, Optional, Union, cast
+from typing import Any, cast
 
 import httpx
 
@@ -8,15 +8,12 @@ from ...client import AuthenticatedClient, Client
 from ...models.authentication_revoke_token_data_body import AuthenticationRevokeTokenDataBody
 from ...models.authentication_revoke_token_files_body import AuthenticationRevokeTokenFilesBody
 from ...models.problem_details import ProblemDetails
-from ...types import Response
+from ...types import UNSET, Response, Unset
 
 
 def _get_kwargs(
     *,
-    body: Union[
-        AuthenticationRevokeTokenDataBody,
-        AuthenticationRevokeTokenFilesBody,
-    ],
+    body: AuthenticationRevokeTokenDataBody | AuthenticationRevokeTokenFilesBody | Unset = UNSET,
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
 
@@ -26,21 +23,20 @@ def _get_kwargs(
     }
 
     if isinstance(body, AuthenticationRevokeTokenDataBody):
-        _kwargs["data"] = body.to_dict()
-
+        if not isinstance(body, Unset):
+            _kwargs["data"] = body.to_dict()
         headers["Content-Type"] = "application/x-www-form-urlencoded"
     if isinstance(body, AuthenticationRevokeTokenFilesBody):
-        _kwargs["files"] = body.to_multipart()
+        if not isinstance(body, Unset):
+            _kwargs["files"] = body.to_multipart()
 
-        headers["Content-Type"] = "multipart/form-data"
+        headers["Content-Type"] = "multipart/form-data; boundary=+++"
 
     _kwargs["headers"] = headers
     return _kwargs
 
 
-def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[Any, ProblemDetails]]:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Any | ProblemDetails | None:
     if response.status_code == 200:
         response_200 = cast(Any, None)
         return response_200
@@ -57,8 +53,8 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[Any, ProblemDetails]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[Any | ProblemDetails]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -69,26 +65,23 @@ def _build_response(
 
 def sync_detailed(
     *,
-    client: Union[AuthenticatedClient, Client],
-    body: Union[
-        AuthenticationRevokeTokenDataBody,
-        AuthenticationRevokeTokenFilesBody,
-    ],
-) -> Response[Union[Any, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+    body: AuthenticationRevokeTokenDataBody | AuthenticationRevokeTokenFilesBody | Unset = UNSET,
+) -> Response[Any | ProblemDetails]:
     """Revoke Authorization Tokens
 
      Revokes the specified access JWT token or performs logout operation for the specified user.
 
     Args:
-        body (AuthenticationRevokeTokenDataBody):
-        body (AuthenticationRevokeTokenFilesBody):
+        body (AuthenticationRevokeTokenDataBody | Unset):
+        body (AuthenticationRevokeTokenFilesBody | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Any, ProblemDetails]]
+        Response[Any | ProblemDetails]
     """
 
     kwargs = _get_kwargs(
@@ -104,26 +97,23 @@ def sync_detailed(
 
 def sync(
     *,
-    client: Union[AuthenticatedClient, Client],
-    body: Union[
-        AuthenticationRevokeTokenDataBody,
-        AuthenticationRevokeTokenFilesBody,
-    ],
-) -> Optional[Union[Any, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+    body: AuthenticationRevokeTokenDataBody | AuthenticationRevokeTokenFilesBody | Unset = UNSET,
+) -> Any | ProblemDetails | None:
     """Revoke Authorization Tokens
 
      Revokes the specified access JWT token or performs logout operation for the specified user.
 
     Args:
-        body (AuthenticationRevokeTokenDataBody):
-        body (AuthenticationRevokeTokenFilesBody):
+        body (AuthenticationRevokeTokenDataBody | Unset):
+        body (AuthenticationRevokeTokenFilesBody | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Any, ProblemDetails]
+        Any | ProblemDetails
     """
 
     return sync_detailed(
@@ -134,26 +124,23 @@ def sync(
 
 async def asyncio_detailed(
     *,
-    client: Union[AuthenticatedClient, Client],
-    body: Union[
-        AuthenticationRevokeTokenDataBody,
-        AuthenticationRevokeTokenFilesBody,
-    ],
-) -> Response[Union[Any, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+    body: AuthenticationRevokeTokenDataBody | AuthenticationRevokeTokenFilesBody | Unset = UNSET,
+) -> Response[Any | ProblemDetails]:
     """Revoke Authorization Tokens
 
      Revokes the specified access JWT token or performs logout operation for the specified user.
 
     Args:
-        body (AuthenticationRevokeTokenDataBody):
-        body (AuthenticationRevokeTokenFilesBody):
+        body (AuthenticationRevokeTokenDataBody | Unset):
+        body (AuthenticationRevokeTokenFilesBody | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Any, ProblemDetails]]
+        Response[Any | ProblemDetails]
     """
 
     kwargs = _get_kwargs(
@@ -167,26 +154,23 @@ async def asyncio_detailed(
 
 async def asyncio(
     *,
-    client: Union[AuthenticatedClient, Client],
-    body: Union[
-        AuthenticationRevokeTokenDataBody,
-        AuthenticationRevokeTokenFilesBody,
-    ],
-) -> Optional[Union[Any, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+    body: AuthenticationRevokeTokenDataBody | AuthenticationRevokeTokenFilesBody | Unset = UNSET,
+) -> Any | ProblemDetails | None:
     """Revoke Authorization Tokens
 
      Revokes the specified access JWT token or performs logout operation for the specified user.
 
     Args:
-        body (AuthenticationRevokeTokenDataBody):
-        body (AuthenticationRevokeTokenFilesBody):
+        body (AuthenticationRevokeTokenDataBody | Unset):
+        body (AuthenticationRevokeTokenFilesBody | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Any, ProblemDetails]
+        Any | ProblemDetails
     """
 
     return (

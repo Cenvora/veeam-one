@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class ObjectStorageType(str, Enum):
+class ObjectStorageType(StrEnum):
     AMAZONS3 = "AmazonS3"
     AMAZONS3GLACIER = "AmazonS3Glacier"
     CLOUDOBJECTSTORAGE_11_11 = "CloudObjectStorage_11_11"

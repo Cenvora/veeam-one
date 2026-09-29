@@ -1,5 +1,6 @@
 from http import HTTPStatus
-from typing import Any, Optional, Union
+from typing import Any
+from urllib.parse import quote
 
 import httpx
 
@@ -13,17 +14,20 @@ from ...types import Response
 def _get_kwargs(
     host_cluster_id: int,
 ) -> dict[str, Any]:
+
     _kwargs: dict[str, Any] = {
         "method": "get",
-        "url": f"/api/v2.3/hyperV/hostClusters/{host_cluster_id}",
+        "url": "/api/v2.3/hyperV/hostClusters/{host_cluster_id}".format(
+            host_cluster_id=quote(str(host_cluster_id), safe=""),
+        ),
     }
 
     return _kwargs
 
 
 def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[HyperVClusterInfo, ProblemDetails]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> HyperVClusterInfo | ProblemDetails | None:
     if response.status_code == 200:
         response_200 = HyperVClusterInfo.from_dict(response.json())
 
@@ -41,8 +45,8 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[HyperVClusterInfo, ProblemDetails]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[HyperVClusterInfo | ProblemDetails]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -54,8 +58,8 @@ def _build_response(
 def sync_detailed(
     host_cluster_id: int,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[HyperVClusterInfo, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+) -> Response[HyperVClusterInfo | ProblemDetails]:
     """Get Microsoft Hyper-V Host Cluster
 
      Returns a resource representation of a connected Microsoft Hyper-V host cluster with the specified
@@ -69,7 +73,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[HyperVClusterInfo, ProblemDetails]]
+        Response[HyperVClusterInfo | ProblemDetails]
     """
 
     kwargs = _get_kwargs(
@@ -86,8 +90,8 @@ def sync_detailed(
 def sync(
     host_cluster_id: int,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[HyperVClusterInfo, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+) -> HyperVClusterInfo | ProblemDetails | None:
     """Get Microsoft Hyper-V Host Cluster
 
      Returns a resource representation of a connected Microsoft Hyper-V host cluster with the specified
@@ -101,7 +105,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[HyperVClusterInfo, ProblemDetails]
+        HyperVClusterInfo | ProblemDetails
     """
 
     return sync_detailed(
@@ -113,8 +117,8 @@ def sync(
 async def asyncio_detailed(
     host_cluster_id: int,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[HyperVClusterInfo, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+) -> Response[HyperVClusterInfo | ProblemDetails]:
     """Get Microsoft Hyper-V Host Cluster
 
      Returns a resource representation of a connected Microsoft Hyper-V host cluster with the specified
@@ -128,7 +132,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[HyperVClusterInfo, ProblemDetails]]
+        Response[HyperVClusterInfo | ProblemDetails]
     """
 
     kwargs = _get_kwargs(
@@ -143,8 +147,8 @@ async def asyncio_detailed(
 async def asyncio(
     host_cluster_id: int,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[HyperVClusterInfo, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+) -> HyperVClusterInfo | ProblemDetails | None:
     """Get Microsoft Hyper-V Host Cluster
 
      Returns a resource representation of a connected Microsoft Hyper-V host cluster with the specified
@@ -158,7 +162,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[HyperVClusterInfo, ProblemDetails]
+        HyperVClusterInfo | ProblemDetails
     """
 
     return (

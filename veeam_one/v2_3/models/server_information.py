@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 
@@ -10,40 +12,40 @@ T = TypeVar("T", bound="ServerInformation")
 
 @_attrs_define
 class ServerInformation:
-    r"""
+    """
     Attributes:
-        name (Union[None, Unset, str]): Name of the service. Example: Veeam ONE Reporting Service.
-        version (Union[None, Unset, str]): Veeam ONE version. Example: 11.0.0.1325.
-        machine (Union[None, Unset, str]): Name of a machine that runs Veeam ONE Reporting Service. Example: one-srv.
-        log_path (Union[None, Unset, str]): Path to a folder where log files are stored. Example:
-            C:\ProgramData\Veeam\Veeam ONE\Logs\Reporter.
+        name (None | str | Unset): Name of the service. Example: Veeam ONE Reporting Service.
+        version (None | str | Unset): Veeam ONE version. Example: 11.0.0.1325.
+        machine (None | str | Unset): Name of a machine that runs Veeam ONE Reporting Service. Example: one-srv.
+        log_path (None | str | Unset): Path to a folder where log files are stored. Example:
+            C:\\ProgramData\\Veeam\\Veeam ONE\\Logs\\Reporter.
     """
 
-    name: Union[None, Unset, str] = UNSET
-    version: Union[None, Unset, str] = UNSET
-    machine: Union[None, Unset, str] = UNSET
-    log_path: Union[None, Unset, str] = UNSET
+    name: None | str | Unset = UNSET
+    version: None | str | Unset = UNSET
+    machine: None | str | Unset = UNSET
+    log_path: None | str | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
-        name: Union[None, Unset, str]
+        name: None | str | Unset
         if isinstance(self.name, Unset):
             name = UNSET
         else:
             name = self.name
 
-        version: Union[None, Unset, str]
+        version: None | str | Unset
         if isinstance(self.version, Unset):
             version = UNSET
         else:
             version = self.version
 
-        machine: Union[None, Unset, str]
+        machine: None | str | Unset
         if isinstance(self.machine, Unset):
             machine = UNSET
         else:
             machine = self.machine
 
-        log_path: Union[None, Unset, str]
+        log_path: None | str | Unset
         if isinstance(self.log_path, Unset):
             log_path = UNSET
         else:
@@ -67,39 +69,39 @@ class ServerInformation:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
 
-        def _parse_name(data: object) -> Union[None, Unset, str]:
+        def _parse_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         name = _parse_name(d.pop("name", UNSET))
 
-        def _parse_version(data: object) -> Union[None, Unset, str]:
+        def _parse_version(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         version = _parse_version(d.pop("version", UNSET))
 
-        def _parse_machine(data: object) -> Union[None, Unset, str]:
+        def _parse_machine(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         machine = _parse_machine(d.pop("machine", UNSET))
 
-        def _parse_log_path(data: object) -> Union[None, Unset, str]:
+        def _parse_log_path(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         log_path = _parse_log_path(d.pop("logPath", UNSET))
 

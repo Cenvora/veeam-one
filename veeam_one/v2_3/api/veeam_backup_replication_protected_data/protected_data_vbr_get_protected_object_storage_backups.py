@@ -1,5 +1,6 @@
 from http import HTTPStatus
-from typing import Any, Optional, Union
+from typing import Any
+from urllib.parse import quote
 from uuid import UUID
 
 import httpx
@@ -14,12 +15,13 @@ from ...types import UNSET, Response, Unset
 def _get_kwargs(
     object_storage_uid_in_vbr: UUID,
     *,
-    offset: Union[Unset, int] = 0,
-    limit: Union[Unset, int] = 100,
-    filter_: Union[Unset, str] = UNSET,
-    sort: Union[Unset, str] = UNSET,
-    select: Union[Unset, str] = UNSET,
+    offset: int | Unset = 0,
+    limit: int | Unset = 100,
+    filter_: str | Unset = UNSET,
+    sort: str | Unset = UNSET,
+    select: str | Unset = UNSET,
 ) -> dict[str, Any]:
+
     params: dict[str, Any] = {}
 
     params["Offset"] = offset
@@ -36,7 +38,9 @@ def _get_kwargs(
 
     _kwargs: dict[str, Any] = {
         "method": "get",
-        "url": f"/api/v2.3/protectedData/unstructuredData/objectStorages/{object_storage_uid_in_vbr}/backups",
+        "url": "/api/v2.3/protectedData/unstructuredData/objectStorages/{object_storage_uid_in_vbr}/backups".format(
+            object_storage_uid_in_vbr=quote(str(object_storage_uid_in_vbr), safe=""),
+        ),
         "params": params,
     }
 
@@ -44,8 +48,8 @@ def _get_kwargs(
 
 
 def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[ProblemDetails, ProtectedObjectStorageBackupInfoPage]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> ProblemDetails | ProtectedObjectStorageBackupInfoPage | None:
     if response.status_code == 200:
         response_200 = ProtectedObjectStorageBackupInfoPage.from_dict(response.json())
 
@@ -63,8 +67,8 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[ProblemDetails, ProtectedObjectStorageBackupInfoPage]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[ProblemDetails | ProtectedObjectStorageBackupInfoPage]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -76,13 +80,13 @@ def _build_response(
 def sync_detailed(
     object_storage_uid_in_vbr: UUID,
     *,
-    client: Union[AuthenticatedClient, Client],
-    offset: Union[Unset, int] = 0,
-    limit: Union[Unset, int] = 100,
-    filter_: Union[Unset, str] = UNSET,
-    sort: Union[Unset, str] = UNSET,
-    select: Union[Unset, str] = UNSET,
-) -> Response[Union[ProblemDetails, ProtectedObjectStorageBackupInfoPage]]:
+    client: AuthenticatedClient | Client,
+    offset: int | Unset = 0,
+    limit: int | Unset = 100,
+    filter_: str | Unset = UNSET,
+    sort: str | Unset = UNSET,
+    select: str | Unset = UNSET,
+) -> Response[ProblemDetails | ProtectedObjectStorageBackupInfoPage]:
     """Get Backups of Protected Object Storage
 
      Returns a collection resource representation of all backups of a protected object storage with the
@@ -90,18 +94,18 @@ def sync_detailed(
 
     Args:
         object_storage_uid_in_vbr (UUID):
-        offset (Union[Unset, int]):  Default: 0.
-        limit (Union[Unset, int]):  Default: 100.
-        filter_ (Union[Unset, str]):
-        sort (Union[Unset, str]):
-        select (Union[Unset, str]):
+        offset (int | Unset):  Default: 0.
+        limit (int | Unset):  Default: 100.
+        filter_ (str | Unset):
+        sort (str | Unset):
+        select (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[ProblemDetails, ProtectedObjectStorageBackupInfoPage]]
+        Response[ProblemDetails | ProtectedObjectStorageBackupInfoPage]
     """
 
     kwargs = _get_kwargs(
@@ -123,13 +127,13 @@ def sync_detailed(
 def sync(
     object_storage_uid_in_vbr: UUID,
     *,
-    client: Union[AuthenticatedClient, Client],
-    offset: Union[Unset, int] = 0,
-    limit: Union[Unset, int] = 100,
-    filter_: Union[Unset, str] = UNSET,
-    sort: Union[Unset, str] = UNSET,
-    select: Union[Unset, str] = UNSET,
-) -> Optional[Union[ProblemDetails, ProtectedObjectStorageBackupInfoPage]]:
+    client: AuthenticatedClient | Client,
+    offset: int | Unset = 0,
+    limit: int | Unset = 100,
+    filter_: str | Unset = UNSET,
+    sort: str | Unset = UNSET,
+    select: str | Unset = UNSET,
+) -> ProblemDetails | ProtectedObjectStorageBackupInfoPage | None:
     """Get Backups of Protected Object Storage
 
      Returns a collection resource representation of all backups of a protected object storage with the
@@ -137,18 +141,18 @@ def sync(
 
     Args:
         object_storage_uid_in_vbr (UUID):
-        offset (Union[Unset, int]):  Default: 0.
-        limit (Union[Unset, int]):  Default: 100.
-        filter_ (Union[Unset, str]):
-        sort (Union[Unset, str]):
-        select (Union[Unset, str]):
+        offset (int | Unset):  Default: 0.
+        limit (int | Unset):  Default: 100.
+        filter_ (str | Unset):
+        sort (str | Unset):
+        select (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[ProblemDetails, ProtectedObjectStorageBackupInfoPage]
+        ProblemDetails | ProtectedObjectStorageBackupInfoPage
     """
 
     return sync_detailed(
@@ -165,13 +169,13 @@ def sync(
 async def asyncio_detailed(
     object_storage_uid_in_vbr: UUID,
     *,
-    client: Union[AuthenticatedClient, Client],
-    offset: Union[Unset, int] = 0,
-    limit: Union[Unset, int] = 100,
-    filter_: Union[Unset, str] = UNSET,
-    sort: Union[Unset, str] = UNSET,
-    select: Union[Unset, str] = UNSET,
-) -> Response[Union[ProblemDetails, ProtectedObjectStorageBackupInfoPage]]:
+    client: AuthenticatedClient | Client,
+    offset: int | Unset = 0,
+    limit: int | Unset = 100,
+    filter_: str | Unset = UNSET,
+    sort: str | Unset = UNSET,
+    select: str | Unset = UNSET,
+) -> Response[ProblemDetails | ProtectedObjectStorageBackupInfoPage]:
     """Get Backups of Protected Object Storage
 
      Returns a collection resource representation of all backups of a protected object storage with the
@@ -179,18 +183,18 @@ async def asyncio_detailed(
 
     Args:
         object_storage_uid_in_vbr (UUID):
-        offset (Union[Unset, int]):  Default: 0.
-        limit (Union[Unset, int]):  Default: 100.
-        filter_ (Union[Unset, str]):
-        sort (Union[Unset, str]):
-        select (Union[Unset, str]):
+        offset (int | Unset):  Default: 0.
+        limit (int | Unset):  Default: 100.
+        filter_ (str | Unset):
+        sort (str | Unset):
+        select (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[ProblemDetails, ProtectedObjectStorageBackupInfoPage]]
+        Response[ProblemDetails | ProtectedObjectStorageBackupInfoPage]
     """
 
     kwargs = _get_kwargs(
@@ -210,13 +214,13 @@ async def asyncio_detailed(
 async def asyncio(
     object_storage_uid_in_vbr: UUID,
     *,
-    client: Union[AuthenticatedClient, Client],
-    offset: Union[Unset, int] = 0,
-    limit: Union[Unset, int] = 100,
-    filter_: Union[Unset, str] = UNSET,
-    sort: Union[Unset, str] = UNSET,
-    select: Union[Unset, str] = UNSET,
-) -> Optional[Union[ProblemDetails, ProtectedObjectStorageBackupInfoPage]]:
+    client: AuthenticatedClient | Client,
+    offset: int | Unset = 0,
+    limit: int | Unset = 100,
+    filter_: str | Unset = UNSET,
+    sort: str | Unset = UNSET,
+    select: str | Unset = UNSET,
+) -> ProblemDetails | ProtectedObjectStorageBackupInfoPage | None:
     """Get Backups of Protected Object Storage
 
      Returns a collection resource representation of all backups of a protected object storage with the
@@ -224,18 +228,18 @@ async def asyncio(
 
     Args:
         object_storage_uid_in_vbr (UUID):
-        offset (Union[Unset, int]):  Default: 0.
-        limit (Union[Unset, int]):  Default: 100.
-        filter_ (Union[Unset, str]):
-        sort (Union[Unset, str]):
-        select (Union[Unset, str]):
+        offset (int | Unset):  Default: 0.
+        limit (int | Unset):  Default: 100.
+        filter_ (str | Unset):
+        sort (str | Unset):
+        select (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[ProblemDetails, ProtectedObjectStorageBackupInfoPage]
+        ProblemDetails | ProtectedObjectStorageBackupInfoPage
     """
 
     return (

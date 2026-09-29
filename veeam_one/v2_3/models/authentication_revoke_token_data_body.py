@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -13,12 +15,12 @@ T = TypeVar("T", bound="AuthenticationRevokeTokenDataBody")
 class AuthenticationRevokeTokenDataBody:
     """
     Attributes:
-        token (Union[Unset, str]):
-        user_sid (Union[Unset, str]):
+        token (str | Unset):
+        user_sid (str | Unset):
     """
 
-    token: Union[Unset, str] = UNSET
-    user_sid: Union[Unset, str] = UNSET
+    token: str | Unset = UNSET
+    user_sid: str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:

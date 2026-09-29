@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 
@@ -12,48 +14,48 @@ T = TypeVar("T", bound="CertificateAdvancedInfo")
 class CertificateAdvancedInfo:
     """
     Attributes:
-        public_key_algorithm (Union[None, Unset, str]): Public key algorithm.
-        key_usage (Union[None, Unset, str]): Main purpose of the key.
-        key_size_bits (Union[None, Unset, str]): Key size, in bits.
-        curve (Union[None, Unset, str]): Curve used by the elliptic curve public key algorithm.
-        extended_key_usage_oids (Union[None, Unset, list[str]]): Array of object identifiers assigned to the key
-            additional purposes.
-        extended_key_usage_names (Union[None, Unset, list[str]]): Array of the names of the key additional purposes.
+        public_key_algorithm (None | str | Unset): Public key algorithm.
+        key_usage (None | str | Unset): Main purpose of the key.
+        key_size_bits (None | str | Unset): Key size, in bits.
+        curve (None | str | Unset): Curve used by the elliptic curve public key algorithm.
+        extended_key_usage_oids (list[str] | None | Unset): Array of object identifiers assigned to the key additional
+            purposes.
+        extended_key_usage_names (list[str] | None | Unset): Array of the names of the key additional purposes.
     """
 
-    public_key_algorithm: Union[None, Unset, str] = UNSET
-    key_usage: Union[None, Unset, str] = UNSET
-    key_size_bits: Union[None, Unset, str] = UNSET
-    curve: Union[None, Unset, str] = UNSET
-    extended_key_usage_oids: Union[None, Unset, list[str]] = UNSET
-    extended_key_usage_names: Union[None, Unset, list[str]] = UNSET
+    public_key_algorithm: None | str | Unset = UNSET
+    key_usage: None | str | Unset = UNSET
+    key_size_bits: None | str | Unset = UNSET
+    curve: None | str | Unset = UNSET
+    extended_key_usage_oids: list[str] | None | Unset = UNSET
+    extended_key_usage_names: list[str] | None | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
-        public_key_algorithm: Union[None, Unset, str]
+        public_key_algorithm: None | str | Unset
         if isinstance(self.public_key_algorithm, Unset):
             public_key_algorithm = UNSET
         else:
             public_key_algorithm = self.public_key_algorithm
 
-        key_usage: Union[None, Unset, str]
+        key_usage: None | str | Unset
         if isinstance(self.key_usage, Unset):
             key_usage = UNSET
         else:
             key_usage = self.key_usage
 
-        key_size_bits: Union[None, Unset, str]
+        key_size_bits: None | str | Unset
         if isinstance(self.key_size_bits, Unset):
             key_size_bits = UNSET
         else:
             key_size_bits = self.key_size_bits
 
-        curve: Union[None, Unset, str]
+        curve: None | str | Unset
         if isinstance(self.curve, Unset):
             curve = UNSET
         else:
             curve = self.curve
 
-        extended_key_usage_oids: Union[None, Unset, list[str]]
+        extended_key_usage_oids: list[str] | None | Unset
         if isinstance(self.extended_key_usage_oids, Unset):
             extended_key_usage_oids = UNSET
         elif isinstance(self.extended_key_usage_oids, list):
@@ -62,7 +64,7 @@ class CertificateAdvancedInfo:
         else:
             extended_key_usage_oids = self.extended_key_usage_oids
 
-        extended_key_usage_names: Union[None, Unset, list[str]]
+        extended_key_usage_names: list[str] | None | Unset
         if isinstance(self.extended_key_usage_names, Unset):
             extended_key_usage_names = UNSET
         elif isinstance(self.extended_key_usage_names, list):
@@ -93,43 +95,43 @@ class CertificateAdvancedInfo:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
 
-        def _parse_public_key_algorithm(data: object) -> Union[None, Unset, str]:
+        def _parse_public_key_algorithm(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         public_key_algorithm = _parse_public_key_algorithm(d.pop("publicKeyAlgorithm", UNSET))
 
-        def _parse_key_usage(data: object) -> Union[None, Unset, str]:
+        def _parse_key_usage(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         key_usage = _parse_key_usage(d.pop("keyUsage", UNSET))
 
-        def _parse_key_size_bits(data: object) -> Union[None, Unset, str]:
+        def _parse_key_size_bits(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         key_size_bits = _parse_key_size_bits(d.pop("keySizeBits", UNSET))
 
-        def _parse_curve(data: object) -> Union[None, Unset, str]:
+        def _parse_curve(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         curve = _parse_curve(d.pop("curve", UNSET))
 
-        def _parse_extended_key_usage_oids(data: object) -> Union[None, Unset, list[str]]:
+        def _parse_extended_key_usage_oids(data: object) -> list[str] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -140,13 +142,13 @@ class CertificateAdvancedInfo:
                 extended_key_usage_oids_type_0 = cast(list[str], data)
 
                 return extended_key_usage_oids_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, list[str]], data)
+            return cast(list[str] | None | Unset, data)
 
         extended_key_usage_oids = _parse_extended_key_usage_oids(d.pop("extendedKeyUsageOids", UNSET))
 
-        def _parse_extended_key_usage_names(data: object) -> Union[None, Unset, list[str]]:
+        def _parse_extended_key_usage_names(data: object) -> list[str] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -157,9 +159,9 @@ class CertificateAdvancedInfo:
                 extended_key_usage_names_type_0 = cast(list[str], data)
 
                 return extended_key_usage_names_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, list[str]], data)
+            return cast(list[str] | None | Unset, data)
 
         extended_key_usage_names = _parse_extended_key_usage_names(d.pop("extendedKeyUsageNames", UNSET))
 

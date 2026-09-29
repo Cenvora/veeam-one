@@ -1,5 +1,6 @@
 from http import HTTPStatus
-from typing import Any, Optional, Union
+from typing import Any
+from urllib.parse import quote
 from uuid import UUID
 
 import httpx
@@ -14,17 +15,20 @@ from ...types import Response
 def _get_kwargs(
     task_id: UUID,
 ) -> dict[str, Any]:
+
     _kwargs: dict[str, Any] = {
         "method": "post",
-        "url": f"/api/v2.3/about/logs/tasks/{task_id}/status",
+        "url": "/api/v2.3/about/logs/tasks/{task_id}/status".format(
+            task_id=quote(str(task_id), safe=""),
+        ),
     }
 
     return _kwargs
 
 
 def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[AsyncTaskStatus, ProblemDetails]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> AsyncTaskStatus | ProblemDetails | None:
     if response.status_code == 200:
         response_200 = AsyncTaskStatus.from_dict(response.json())
 
@@ -42,8 +46,8 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[AsyncTaskStatus, ProblemDetails]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[AsyncTaskStatus | ProblemDetails]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -55,8 +59,8 @@ def _build_response(
 def sync_detailed(
     task_id: UUID,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[AsyncTaskStatus, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+) -> Response[AsyncTaskStatus | ProblemDetails]:
     """Get Log Archive Collection Task
 
      Returns a resource representation of status and result of a log archive collection task with the
@@ -70,7 +74,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[AsyncTaskStatus, ProblemDetails]]
+        Response[AsyncTaskStatus | ProblemDetails]
     """
 
     kwargs = _get_kwargs(
@@ -87,8 +91,8 @@ def sync_detailed(
 def sync(
     task_id: UUID,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[AsyncTaskStatus, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+) -> AsyncTaskStatus | ProblemDetails | None:
     """Get Log Archive Collection Task
 
      Returns a resource representation of status and result of a log archive collection task with the
@@ -102,7 +106,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[AsyncTaskStatus, ProblemDetails]
+        AsyncTaskStatus | ProblemDetails
     """
 
     return sync_detailed(
@@ -114,8 +118,8 @@ def sync(
 async def asyncio_detailed(
     task_id: UUID,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[AsyncTaskStatus, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+) -> Response[AsyncTaskStatus | ProblemDetails]:
     """Get Log Archive Collection Task
 
      Returns a resource representation of status and result of a log archive collection task with the
@@ -129,7 +133,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[AsyncTaskStatus, ProblemDetails]]
+        Response[AsyncTaskStatus | ProblemDetails]
     """
 
     kwargs = _get_kwargs(
@@ -144,8 +148,8 @@ async def asyncio_detailed(
 async def asyncio(
     task_id: UUID,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[AsyncTaskStatus, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+) -> AsyncTaskStatus | ProblemDetails | None:
     """Get Log Archive Collection Task
 
      Returns a resource representation of status and result of a log archive collection task with the
@@ -159,7 +163,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[AsyncTaskStatus, ProblemDetails]
+        AsyncTaskStatus | ProblemDetails
     """
 
     return (

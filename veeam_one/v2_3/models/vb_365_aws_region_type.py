@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class Vb365AwsRegionType(str, Enum):
+class Vb365AwsRegionType(StrEnum):
     CHINA = "China"
     GLOBAL = "Global"
     UNKNOWN = "Unknown"

@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 
@@ -13,41 +15,41 @@ T = TypeVar("T", bound="VSphereHostAndClusterFolderInfo")
 class VSphereHostAndClusterFolderInfo:
     """
     Attributes:
-        folder_id (Union[Unset, int]): ID assigned to a Host and Cluster folder.
-        name (Union[None, Unset, str]): Name of a Host and Cluster folder.
-        mo_ref (Union[None, Unset, str]): MoRef ID assigned to a Host and Cluster folder.
-        parent_id (Union[None, Unset, int]): ID assigned to a parent object.
-        parent_type (Union[None, Unset, VSphereObjectType]): Type of a parent object.
+        folder_id (int | Unset): ID assigned to a Host and Cluster folder.
+        name (None | str | Unset): Name of a Host and Cluster folder.
+        mo_ref (None | str | Unset): MoRef ID assigned to a Host and Cluster folder.
+        parent_id (int | None | Unset): ID assigned to a parent object.
+        parent_type (None | Unset | VSphereObjectType): Type of a parent object.
     """
 
-    folder_id: Union[Unset, int] = UNSET
-    name: Union[None, Unset, str] = UNSET
-    mo_ref: Union[None, Unset, str] = UNSET
-    parent_id: Union[None, Unset, int] = UNSET
-    parent_type: Union[None, Unset, VSphereObjectType] = UNSET
+    folder_id: int | Unset = UNSET
+    name: None | str | Unset = UNSET
+    mo_ref: None | str | Unset = UNSET
+    parent_id: int | None | Unset = UNSET
+    parent_type: None | Unset | VSphereObjectType = UNSET
 
     def to_dict(self) -> dict[str, Any]:
         folder_id = self.folder_id
 
-        name: Union[None, Unset, str]
+        name: None | str | Unset
         if isinstance(self.name, Unset):
             name = UNSET
         else:
             name = self.name
 
-        mo_ref: Union[None, Unset, str]
+        mo_ref: None | str | Unset
         if isinstance(self.mo_ref, Unset):
             mo_ref = UNSET
         else:
             mo_ref = self.mo_ref
 
-        parent_id: Union[None, Unset, int]
+        parent_id: int | None | Unset
         if isinstance(self.parent_id, Unset):
             parent_id = UNSET
         else:
             parent_id = self.parent_id
 
-        parent_type: Union[None, Unset, str]
+        parent_type: None | str | Unset
         if isinstance(self.parent_type, Unset):
             parent_type = UNSET
         elif isinstance(self.parent_type, VSphereObjectType):
@@ -76,34 +78,34 @@ class VSphereHostAndClusterFolderInfo:
         d = dict(src_dict)
         folder_id = d.pop("folderId", UNSET)
 
-        def _parse_name(data: object) -> Union[None, Unset, str]:
+        def _parse_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         name = _parse_name(d.pop("name", UNSET))
 
-        def _parse_mo_ref(data: object) -> Union[None, Unset, str]:
+        def _parse_mo_ref(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         mo_ref = _parse_mo_ref(d.pop("moRef", UNSET))
 
-        def _parse_parent_id(data: object) -> Union[None, Unset, int]:
+        def _parse_parent_id(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         parent_id = _parse_parent_id(d.pop("parentId", UNSET))
 
-        def _parse_parent_type(data: object) -> Union[None, Unset, VSphereObjectType]:
+        def _parse_parent_type(data: object) -> None | Unset | VSphereObjectType:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -114,9 +116,9 @@ class VSphereHostAndClusterFolderInfo:
                 parent_type_type_1 = VSphereObjectType(data)
 
                 return parent_type_type_1
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, VSphereObjectType], data)
+            return cast(None | Unset | VSphereObjectType, data)
 
         parent_type = _parse_parent_type(d.pop("parentType", UNSET))
 

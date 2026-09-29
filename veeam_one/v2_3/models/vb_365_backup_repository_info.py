@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
@@ -23,66 +25,66 @@ T = TypeVar("T", bound="Vb365BackupRepositoryInfo")
 class Vb365BackupRepositoryInfo:
     """
     Attributes:
-        backup_repository_id (Union[Unset, int]): ID assigned to a backup repository.
-        backup_repository_uid_in_vb_365 (Union[None, UUID, Unset]): UID assigned to a backup repository in Veeam Backup
-            for Microsoft 365.
-        name (Union[None, Unset, str]): Name of a backup repository.
-        vb_365_server_id (Union[None, Unset, int]): ID assigned to a Veeam Backup for Microsoft 365 server.
-        is_out_of_sync (Union[None, Unset, bool]): Indicates whether a backup repository is not synchronized with an
-            object storage.
-        capacity_bytes (Union[None, Unset, int]): Storage capacity of a backup repository, in bytes.
-        free_space_bytes (Union[None, Unset, int]): Available space on a backup repository, in bytes.
-        description (Union[None, Unset, str]): Description of a backup repository.
-        path (Union[None, Unset, str]): Path to a directory where backups are stored.
-        retention_type (Union[Unset, Vb365BackupRepositoryRetentionType]):
-        retention_period_type (Union[Unset, Vb365BackupRepositoryRetentionPeriodType]):
-        retention_daily_period (Union[None, Unset, int]): Daily retention period, in days.
-        retention_monthly_period (Union[None, Unset, int]): Monthly retention period, in months.
-        retention_yearly_period (Union[Unset, Vb365BackupRepositoryRetentionYearlyPeriodType]):
-        retention_frequency_type (Union[Unset, Vb365BackupRepositoryRetentionFrequencyType]):
-        retention_daily_type (Union[Unset, Vb365BackupRepositoryRetentionDailyType]):
-        retention_monthly_day_number (Union[Unset, Vb365MonthlyDayNumber]):
-        retention_monthly_day_of_week (Union[Unset, Vb365DayOfWeek]):
-        proxy_id (Union[None, Unset, int]): ID assigned to a backup proxy server.
-        object_storage_id (Union[None, Unset, int]): ID assigned to an object storage repository.
-        object_storage_type (Union[Unset, Vb365BackupRepositoryObjectStorageType]):
-        object_storage_cache_path (Union[None, Unset, str]): Object storage cache path.
-        is_long_term (Union[None, Unset, bool]): Indicates whether a backup repository is extended with an archive
-            object storage.
-        retention_daily_time (Union[None, Unset, int]): Daily retention time, in seconds.
-        retention_monthly_time (Union[None, Unset, int]): Monthly retention time, in seconds.
+        backup_repository_id (int | Unset): ID assigned to a backup repository.
+        backup_repository_uid_in_vb_365 (None | Unset | UUID): UID assigned to a backup repository in Veeam Backup for
+            Microsoft 365.
+        name (None | str | Unset): Name of a backup repository.
+        vb_365_server_id (int | None | Unset): ID assigned to a Veeam Backup for Microsoft 365 server.
+        is_out_of_sync (bool | None | Unset): Indicates whether a backup repository is not synchronized with an object
+            storage.
+        capacity_bytes (int | None | Unset): Storage capacity of a backup repository, in bytes.
+        free_space_bytes (int | None | Unset): Available space on a backup repository, in bytes.
+        description (None | str | Unset): Description of a backup repository.
+        path (None | str | Unset): Path to a directory where backups are stored.
+        retention_type (Vb365BackupRepositoryRetentionType | Unset):
+        retention_period_type (Vb365BackupRepositoryRetentionPeriodType | Unset):
+        retention_daily_period (int | None | Unset): Daily retention period, in days.
+        retention_monthly_period (int | None | Unset): Monthly retention period, in months.
+        retention_yearly_period (Vb365BackupRepositoryRetentionYearlyPeriodType | Unset):
+        retention_frequency_type (Vb365BackupRepositoryRetentionFrequencyType | Unset):
+        retention_daily_type (Vb365BackupRepositoryRetentionDailyType | Unset):
+        retention_monthly_day_number (Vb365MonthlyDayNumber | Unset):
+        retention_monthly_day_of_week (Vb365DayOfWeek | Unset):
+        proxy_id (int | None | Unset): ID assigned to a backup proxy server.
+        object_storage_id (int | None | Unset): ID assigned to an object storage repository.
+        object_storage_type (Vb365BackupRepositoryObjectStorageType | Unset):
+        object_storage_cache_path (None | str | Unset): Object storage cache path.
+        is_long_term (bool | None | Unset): Indicates whether a backup repository is extended with an archive object
+            storage.
+        retention_daily_time (int | None | Unset): Daily retention time, in seconds.
+        retention_monthly_time (int | None | Unset): Monthly retention time, in seconds.
     """
 
-    backup_repository_id: Union[Unset, int] = UNSET
-    backup_repository_uid_in_vb_365: Union[None, UUID, Unset] = UNSET
-    name: Union[None, Unset, str] = UNSET
-    vb_365_server_id: Union[None, Unset, int] = UNSET
-    is_out_of_sync: Union[None, Unset, bool] = UNSET
-    capacity_bytes: Union[None, Unset, int] = UNSET
-    free_space_bytes: Union[None, Unset, int] = UNSET
-    description: Union[None, Unset, str] = UNSET
-    path: Union[None, Unset, str] = UNSET
-    retention_type: Union[Unset, Vb365BackupRepositoryRetentionType] = UNSET
-    retention_period_type: Union[Unset, Vb365BackupRepositoryRetentionPeriodType] = UNSET
-    retention_daily_period: Union[None, Unset, int] = UNSET
-    retention_monthly_period: Union[None, Unset, int] = UNSET
-    retention_yearly_period: Union[Unset, Vb365BackupRepositoryRetentionYearlyPeriodType] = UNSET
-    retention_frequency_type: Union[Unset, Vb365BackupRepositoryRetentionFrequencyType] = UNSET
-    retention_daily_type: Union[Unset, Vb365BackupRepositoryRetentionDailyType] = UNSET
-    retention_monthly_day_number: Union[Unset, Vb365MonthlyDayNumber] = UNSET
-    retention_monthly_day_of_week: Union[Unset, Vb365DayOfWeek] = UNSET
-    proxy_id: Union[None, Unset, int] = UNSET
-    object_storage_id: Union[None, Unset, int] = UNSET
-    object_storage_type: Union[Unset, Vb365BackupRepositoryObjectStorageType] = UNSET
-    object_storage_cache_path: Union[None, Unset, str] = UNSET
-    is_long_term: Union[None, Unset, bool] = UNSET
-    retention_daily_time: Union[None, Unset, int] = UNSET
-    retention_monthly_time: Union[None, Unset, int] = UNSET
+    backup_repository_id: int | Unset = UNSET
+    backup_repository_uid_in_vb_365: None | Unset | UUID = UNSET
+    name: None | str | Unset = UNSET
+    vb_365_server_id: int | None | Unset = UNSET
+    is_out_of_sync: bool | None | Unset = UNSET
+    capacity_bytes: int | None | Unset = UNSET
+    free_space_bytes: int | None | Unset = UNSET
+    description: None | str | Unset = UNSET
+    path: None | str | Unset = UNSET
+    retention_type: Vb365BackupRepositoryRetentionType | Unset = UNSET
+    retention_period_type: Vb365BackupRepositoryRetentionPeriodType | Unset = UNSET
+    retention_daily_period: int | None | Unset = UNSET
+    retention_monthly_period: int | None | Unset = UNSET
+    retention_yearly_period: Vb365BackupRepositoryRetentionYearlyPeriodType | Unset = UNSET
+    retention_frequency_type: Vb365BackupRepositoryRetentionFrequencyType | Unset = UNSET
+    retention_daily_type: Vb365BackupRepositoryRetentionDailyType | Unset = UNSET
+    retention_monthly_day_number: Vb365MonthlyDayNumber | Unset = UNSET
+    retention_monthly_day_of_week: Vb365DayOfWeek | Unset = UNSET
+    proxy_id: int | None | Unset = UNSET
+    object_storage_id: int | None | Unset = UNSET
+    object_storage_type: Vb365BackupRepositoryObjectStorageType | Unset = UNSET
+    object_storage_cache_path: None | str | Unset = UNSET
+    is_long_term: bool | None | Unset = UNSET
+    retention_daily_time: int | None | Unset = UNSET
+    retention_monthly_time: int | None | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
         backup_repository_id = self.backup_repository_id
 
-        backup_repository_uid_in_vb_365: Union[None, Unset, str]
+        backup_repository_uid_in_vb_365: None | str | Unset
         if isinstance(self.backup_repository_uid_in_vb_365, Unset):
             backup_repository_uid_in_vb_365 = UNSET
         elif isinstance(self.backup_repository_uid_in_vb_365, UUID):
@@ -90,123 +92,123 @@ class Vb365BackupRepositoryInfo:
         else:
             backup_repository_uid_in_vb_365 = self.backup_repository_uid_in_vb_365
 
-        name: Union[None, Unset, str]
+        name: None | str | Unset
         if isinstance(self.name, Unset):
             name = UNSET
         else:
             name = self.name
 
-        vb_365_server_id: Union[None, Unset, int]
+        vb_365_server_id: int | None | Unset
         if isinstance(self.vb_365_server_id, Unset):
             vb_365_server_id = UNSET
         else:
             vb_365_server_id = self.vb_365_server_id
 
-        is_out_of_sync: Union[None, Unset, bool]
+        is_out_of_sync: bool | None | Unset
         if isinstance(self.is_out_of_sync, Unset):
             is_out_of_sync = UNSET
         else:
             is_out_of_sync = self.is_out_of_sync
 
-        capacity_bytes: Union[None, Unset, int]
+        capacity_bytes: int | None | Unset
         if isinstance(self.capacity_bytes, Unset):
             capacity_bytes = UNSET
         else:
             capacity_bytes = self.capacity_bytes
 
-        free_space_bytes: Union[None, Unset, int]
+        free_space_bytes: int | None | Unset
         if isinstance(self.free_space_bytes, Unset):
             free_space_bytes = UNSET
         else:
             free_space_bytes = self.free_space_bytes
 
-        description: Union[None, Unset, str]
+        description: None | str | Unset
         if isinstance(self.description, Unset):
             description = UNSET
         else:
             description = self.description
 
-        path: Union[None, Unset, str]
+        path: None | str | Unset
         if isinstance(self.path, Unset):
             path = UNSET
         else:
             path = self.path
 
-        retention_type: Union[Unset, str] = UNSET
+        retention_type: str | Unset = UNSET
         if not isinstance(self.retention_type, Unset):
             retention_type = self.retention_type.value
 
-        retention_period_type: Union[Unset, str] = UNSET
+        retention_period_type: str | Unset = UNSET
         if not isinstance(self.retention_period_type, Unset):
             retention_period_type = self.retention_period_type.value
 
-        retention_daily_period: Union[None, Unset, int]
+        retention_daily_period: int | None | Unset
         if isinstance(self.retention_daily_period, Unset):
             retention_daily_period = UNSET
         else:
             retention_daily_period = self.retention_daily_period
 
-        retention_monthly_period: Union[None, Unset, int]
+        retention_monthly_period: int | None | Unset
         if isinstance(self.retention_monthly_period, Unset):
             retention_monthly_period = UNSET
         else:
             retention_monthly_period = self.retention_monthly_period
 
-        retention_yearly_period: Union[Unset, str] = UNSET
+        retention_yearly_period: str | Unset = UNSET
         if not isinstance(self.retention_yearly_period, Unset):
             retention_yearly_period = self.retention_yearly_period.value
 
-        retention_frequency_type: Union[Unset, str] = UNSET
+        retention_frequency_type: str | Unset = UNSET
         if not isinstance(self.retention_frequency_type, Unset):
             retention_frequency_type = self.retention_frequency_type.value
 
-        retention_daily_type: Union[Unset, str] = UNSET
+        retention_daily_type: str | Unset = UNSET
         if not isinstance(self.retention_daily_type, Unset):
             retention_daily_type = self.retention_daily_type.value
 
-        retention_monthly_day_number: Union[Unset, str] = UNSET
+        retention_monthly_day_number: str | Unset = UNSET
         if not isinstance(self.retention_monthly_day_number, Unset):
             retention_monthly_day_number = self.retention_monthly_day_number.value
 
-        retention_monthly_day_of_week: Union[Unset, str] = UNSET
+        retention_monthly_day_of_week: str | Unset = UNSET
         if not isinstance(self.retention_monthly_day_of_week, Unset):
             retention_monthly_day_of_week = self.retention_monthly_day_of_week.value
 
-        proxy_id: Union[None, Unset, int]
+        proxy_id: int | None | Unset
         if isinstance(self.proxy_id, Unset):
             proxy_id = UNSET
         else:
             proxy_id = self.proxy_id
 
-        object_storage_id: Union[None, Unset, int]
+        object_storage_id: int | None | Unset
         if isinstance(self.object_storage_id, Unset):
             object_storage_id = UNSET
         else:
             object_storage_id = self.object_storage_id
 
-        object_storage_type: Union[Unset, str] = UNSET
+        object_storage_type: str | Unset = UNSET
         if not isinstance(self.object_storage_type, Unset):
             object_storage_type = self.object_storage_type.value
 
-        object_storage_cache_path: Union[None, Unset, str]
+        object_storage_cache_path: None | str | Unset
         if isinstance(self.object_storage_cache_path, Unset):
             object_storage_cache_path = UNSET
         else:
             object_storage_cache_path = self.object_storage_cache_path
 
-        is_long_term: Union[None, Unset, bool]
+        is_long_term: bool | None | Unset
         if isinstance(self.is_long_term, Unset):
             is_long_term = UNSET
         else:
             is_long_term = self.is_long_term
 
-        retention_daily_time: Union[None, Unset, int]
+        retention_daily_time: int | None | Unset
         if isinstance(self.retention_daily_time, Unset):
             retention_daily_time = UNSET
         else:
             retention_daily_time = self.retention_daily_time
 
-        retention_monthly_time: Union[None, Unset, int]
+        retention_monthly_time: int | None | Unset
         if isinstance(self.retention_monthly_time, Unset):
             retention_monthly_time = UNSET
         else:
@@ -273,7 +275,7 @@ class Vb365BackupRepositoryInfo:
         d = dict(src_dict)
         backup_repository_id = d.pop("backupRepositoryId", UNSET)
 
-        def _parse_backup_repository_uid_in_vb_365(data: object) -> Union[None, UUID, Unset]:
+        def _parse_backup_repository_uid_in_vb_365(data: object) -> None | Unset | UUID:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -284,202 +286,202 @@ class Vb365BackupRepositoryInfo:
                 backup_repository_uid_in_vb_365_type_0 = UUID(data)
 
                 return backup_repository_uid_in_vb_365_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, UUID, Unset], data)
+            return cast(None | Unset | UUID, data)
 
         backup_repository_uid_in_vb_365 = _parse_backup_repository_uid_in_vb_365(
             d.pop("backupRepositoryUidInVb365", UNSET)
         )
 
-        def _parse_name(data: object) -> Union[None, Unset, str]:
+        def _parse_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         name = _parse_name(d.pop("name", UNSET))
 
-        def _parse_vb_365_server_id(data: object) -> Union[None, Unset, int]:
+        def _parse_vb_365_server_id(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         vb_365_server_id = _parse_vb_365_server_id(d.pop("vb365ServerId", UNSET))
 
-        def _parse_is_out_of_sync(data: object) -> Union[None, Unset, bool]:
+        def _parse_is_out_of_sync(data: object) -> bool | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, bool], data)
+            return cast(bool | None | Unset, data)
 
         is_out_of_sync = _parse_is_out_of_sync(d.pop("isOutOfSync", UNSET))
 
-        def _parse_capacity_bytes(data: object) -> Union[None, Unset, int]:
+        def _parse_capacity_bytes(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         capacity_bytes = _parse_capacity_bytes(d.pop("capacityBytes", UNSET))
 
-        def _parse_free_space_bytes(data: object) -> Union[None, Unset, int]:
+        def _parse_free_space_bytes(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         free_space_bytes = _parse_free_space_bytes(d.pop("freeSpaceBytes", UNSET))
 
-        def _parse_description(data: object) -> Union[None, Unset, str]:
+        def _parse_description(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         description = _parse_description(d.pop("description", UNSET))
 
-        def _parse_path(data: object) -> Union[None, Unset, str]:
+        def _parse_path(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         path = _parse_path(d.pop("path", UNSET))
 
         _retention_type = d.pop("retentionType", UNSET)
-        retention_type: Union[Unset, Vb365BackupRepositoryRetentionType]
+        retention_type: Vb365BackupRepositoryRetentionType | Unset
         if isinstance(_retention_type, Unset):
             retention_type = UNSET
         else:
             retention_type = Vb365BackupRepositoryRetentionType(_retention_type)
 
         _retention_period_type = d.pop("retentionPeriodType", UNSET)
-        retention_period_type: Union[Unset, Vb365BackupRepositoryRetentionPeriodType]
+        retention_period_type: Vb365BackupRepositoryRetentionPeriodType | Unset
         if isinstance(_retention_period_type, Unset):
             retention_period_type = UNSET
         else:
             retention_period_type = Vb365BackupRepositoryRetentionPeriodType(_retention_period_type)
 
-        def _parse_retention_daily_period(data: object) -> Union[None, Unset, int]:
+        def _parse_retention_daily_period(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         retention_daily_period = _parse_retention_daily_period(d.pop("retentionDailyPeriod", UNSET))
 
-        def _parse_retention_monthly_period(data: object) -> Union[None, Unset, int]:
+        def _parse_retention_monthly_period(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         retention_monthly_period = _parse_retention_monthly_period(d.pop("retentionMonthlyPeriod", UNSET))
 
         _retention_yearly_period = d.pop("retentionYearlyPeriod", UNSET)
-        retention_yearly_period: Union[Unset, Vb365BackupRepositoryRetentionYearlyPeriodType]
+        retention_yearly_period: Vb365BackupRepositoryRetentionYearlyPeriodType | Unset
         if isinstance(_retention_yearly_period, Unset):
             retention_yearly_period = UNSET
         else:
             retention_yearly_period = Vb365BackupRepositoryRetentionYearlyPeriodType(_retention_yearly_period)
 
         _retention_frequency_type = d.pop("retentionFrequencyType", UNSET)
-        retention_frequency_type: Union[Unset, Vb365BackupRepositoryRetentionFrequencyType]
+        retention_frequency_type: Vb365BackupRepositoryRetentionFrequencyType | Unset
         if isinstance(_retention_frequency_type, Unset):
             retention_frequency_type = UNSET
         else:
             retention_frequency_type = Vb365BackupRepositoryRetentionFrequencyType(_retention_frequency_type)
 
         _retention_daily_type = d.pop("retentionDailyType", UNSET)
-        retention_daily_type: Union[Unset, Vb365BackupRepositoryRetentionDailyType]
+        retention_daily_type: Vb365BackupRepositoryRetentionDailyType | Unset
         if isinstance(_retention_daily_type, Unset):
             retention_daily_type = UNSET
         else:
             retention_daily_type = Vb365BackupRepositoryRetentionDailyType(_retention_daily_type)
 
         _retention_monthly_day_number = d.pop("retentionMonthlyDayNumber", UNSET)
-        retention_monthly_day_number: Union[Unset, Vb365MonthlyDayNumber]
+        retention_monthly_day_number: Vb365MonthlyDayNumber | Unset
         if isinstance(_retention_monthly_day_number, Unset):
             retention_monthly_day_number = UNSET
         else:
             retention_monthly_day_number = Vb365MonthlyDayNumber(_retention_monthly_day_number)
 
         _retention_monthly_day_of_week = d.pop("retentionMonthlyDayOfWeek", UNSET)
-        retention_monthly_day_of_week: Union[Unset, Vb365DayOfWeek]
+        retention_monthly_day_of_week: Vb365DayOfWeek | Unset
         if isinstance(_retention_monthly_day_of_week, Unset):
             retention_monthly_day_of_week = UNSET
         else:
             retention_monthly_day_of_week = Vb365DayOfWeek(_retention_monthly_day_of_week)
 
-        def _parse_proxy_id(data: object) -> Union[None, Unset, int]:
+        def _parse_proxy_id(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         proxy_id = _parse_proxy_id(d.pop("proxyId", UNSET))
 
-        def _parse_object_storage_id(data: object) -> Union[None, Unset, int]:
+        def _parse_object_storage_id(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         object_storage_id = _parse_object_storage_id(d.pop("objectStorageId", UNSET))
 
         _object_storage_type = d.pop("objectStorageType", UNSET)
-        object_storage_type: Union[Unset, Vb365BackupRepositoryObjectStorageType]
+        object_storage_type: Vb365BackupRepositoryObjectStorageType | Unset
         if isinstance(_object_storage_type, Unset):
             object_storage_type = UNSET
         else:
             object_storage_type = Vb365BackupRepositoryObjectStorageType(_object_storage_type)
 
-        def _parse_object_storage_cache_path(data: object) -> Union[None, Unset, str]:
+        def _parse_object_storage_cache_path(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         object_storage_cache_path = _parse_object_storage_cache_path(d.pop("objectStorageCachePath", UNSET))
 
-        def _parse_is_long_term(data: object) -> Union[None, Unset, bool]:
+        def _parse_is_long_term(data: object) -> bool | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, bool], data)
+            return cast(bool | None | Unset, data)
 
         is_long_term = _parse_is_long_term(d.pop("isLongTerm", UNSET))
 
-        def _parse_retention_daily_time(data: object) -> Union[None, Unset, int]:
+        def _parse_retention_daily_time(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         retention_daily_time = _parse_retention_daily_time(d.pop("retentionDailyTime", UNSET))
 
-        def _parse_retention_monthly_time(data: object) -> Union[None, Unset, int]:
+        def _parse_retention_monthly_time(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         retention_monthly_time = _parse_retention_monthly_time(d.pop("retentionMonthlyTime", UNSET))
 

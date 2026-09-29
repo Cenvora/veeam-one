@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, Union, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 
@@ -16,15 +18,15 @@ T = TypeVar("T", bound="ProtectedVmBackupInfoPage")
 class ProtectedVmBackupInfoPage:
     """
     Attributes:
-        items (Union[None, Unset, list['ProtectedVmBackupInfo']]):
-        total_count (Union[Unset, int]):
+        items (list[ProtectedVmBackupInfo] | None | Unset):
+        total_count (int | Unset):
     """
 
-    items: Union[None, Unset, list["ProtectedVmBackupInfo"]] = UNSET
-    total_count: Union[Unset, int] = UNSET
+    items: list[ProtectedVmBackupInfo] | None | Unset = UNSET
+    total_count: int | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
-        items: Union[None, Unset, list[dict[str, Any]]]
+        items: list[dict[str, Any]] | None | Unset
         if isinstance(self.items, Unset):
             items = UNSET
         elif isinstance(self.items, list):
@@ -50,11 +52,11 @@ class ProtectedVmBackupInfoPage:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.protected_vm_backup_info import ProtectedVmBackupInfo
+        from ..models.protected_vm_backup_info import ProtectedVmBackupInfo  # noqa: PLC0415
 
         d = dict(src_dict)
 
-        def _parse_items(data: object) -> Union[None, Unset, list["ProtectedVmBackupInfo"]]:
+        def _parse_items(data: object) -> list[ProtectedVmBackupInfo] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -70,9 +72,9 @@ class ProtectedVmBackupInfoPage:
                     items_type_0.append(items_type_0_item)
 
                 return items_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, list["ProtectedVmBackupInfo"]], data)
+            return cast(list[ProtectedVmBackupInfo] | None | Unset, data)
 
         items = _parse_items(d.pop("items", UNSET))
 

@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class ResolveType(str, Enum):
+class ResolveType(StrEnum):
     ACKNOWLEDGE = "Acknowledge"
     ACTION = "Action"
     RESOLVE = "Resolve"

@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class VeeamOneLicenseUsageUnitType(str, Enum):
+class VeeamOneLicenseUsageUnitType(StrEnum):
     INSTANCES = "Instances"
     POINTS = "Points"
     SOCKETS = "Sockets"

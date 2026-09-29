@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 
@@ -12,25 +14,25 @@ T = TypeVar("T", bound="UnstructuredDataSource")
 class UnstructuredDataSource:
     """
     Attributes:
-        path (Union[None, Unset, str]): Path to a file or folder.
-        inclusion_masks (Union[None, Unset, list[str]]): Names and name masks of files that must be included into a
-            backup scope.
-        exclusion_masks (Union[None, Unset, list[str]]): Names and name masks of files that must be excluded from a
-            backup scope.
+        path (None | str | Unset): Path to a file or folder.
+        inclusion_masks (list[str] | None | Unset): Names and name masks of files that must be included into a backup
+            scope.
+        exclusion_masks (list[str] | None | Unset): Names and name masks of files that must be excluded from a backup
+            scope.
     """
 
-    path: Union[None, Unset, str] = UNSET
-    inclusion_masks: Union[None, Unset, list[str]] = UNSET
-    exclusion_masks: Union[None, Unset, list[str]] = UNSET
+    path: None | str | Unset = UNSET
+    inclusion_masks: list[str] | None | Unset = UNSET
+    exclusion_masks: list[str] | None | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
-        path: Union[None, Unset, str]
+        path: None | str | Unset
         if isinstance(self.path, Unset):
             path = UNSET
         else:
             path = self.path
 
-        inclusion_masks: Union[None, Unset, list[str]]
+        inclusion_masks: list[str] | None | Unset
         if isinstance(self.inclusion_masks, Unset):
             inclusion_masks = UNSET
         elif isinstance(self.inclusion_masks, list):
@@ -39,7 +41,7 @@ class UnstructuredDataSource:
         else:
             inclusion_masks = self.inclusion_masks
 
-        exclusion_masks: Union[None, Unset, list[str]]
+        exclusion_masks: list[str] | None | Unset
         if isinstance(self.exclusion_masks, Unset):
             exclusion_masks = UNSET
         elif isinstance(self.exclusion_masks, list):
@@ -64,16 +66,16 @@ class UnstructuredDataSource:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
 
-        def _parse_path(data: object) -> Union[None, Unset, str]:
+        def _parse_path(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         path = _parse_path(d.pop("path", UNSET))
 
-        def _parse_inclusion_masks(data: object) -> Union[None, Unset, list[str]]:
+        def _parse_inclusion_masks(data: object) -> list[str] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -84,13 +86,13 @@ class UnstructuredDataSource:
                 inclusion_masks_type_0 = cast(list[str], data)
 
                 return inclusion_masks_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, list[str]], data)
+            return cast(list[str] | None | Unset, data)
 
         inclusion_masks = _parse_inclusion_masks(d.pop("inclusionMasks", UNSET))
 
-        def _parse_exclusion_masks(data: object) -> Union[None, Unset, list[str]]:
+        def _parse_exclusion_masks(data: object) -> list[str] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -101,9 +103,9 @@ class UnstructuredDataSource:
                 exclusion_masks_type_0 = cast(list[str], data)
 
                 return exclusion_masks_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, list[str]], data)
+            return cast(list[str] | None | Unset, data)
 
         exclusion_masks = _parse_exclusion_masks(d.pop("exclusionMasks", UNSET))
 

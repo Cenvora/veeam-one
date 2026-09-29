@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class ApplicationPlatform(str, Enum):
+class ApplicationPlatform(StrEnum):
     MSSQLPLUGINWINDOWS = "MsSqlPluginWindows"
     ORACLE = "Oracle"
     SAPHANA = "SapHana"

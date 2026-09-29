@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class DayOfWeekAppearance(str, Enum):
+class DayOfWeekAppearance(StrEnum):
     FIRST = "First"
     FOURTH = "Fourth"
     LAST = "Last"

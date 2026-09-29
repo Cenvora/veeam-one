@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class ObjectStorageBackupJobType(str, Enum):
+class ObjectStorageBackupJobType(StrEnum):
     BACKUPCOPY = "BackupCopy"
     OBJECTSTORAGEBACKUP = "ObjectStorageBackup"
     OBJECTSTORAGETOTAPE = "ObjectStorageToTape"

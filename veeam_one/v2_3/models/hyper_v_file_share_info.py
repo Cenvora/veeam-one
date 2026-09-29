@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 
@@ -12,29 +14,29 @@ T = TypeVar("T", bound="HyperVFileShareInfo")
 class HyperVFileShareInfo:
     """
     Attributes:
-        file_share_id (Union[Unset, int]): ID assigned to a file share.
-        name (Union[None, Unset, str]): Name of a file share
-        file_server_id (Union[Unset, int]): ID assigned to a file server.
-        is_ha (Union[None, Unset, bool]): Indicates whether a share is Highly Available.
-        capacity_bytes (Union[None, Unset, int]): Disk capacity of a file share, in bytes.
-        free_space_bytes (Union[None, Unset, int]): Amount of available free space on a file share, in bytes.
-        provisioned_bytes (Union[None, Unset, int]): Amount of provisioned space on a file share, in bytes.
-        business_view_group_ids (Union[None, Unset, list[int]]): Array of Business View groups.
+        file_share_id (int | Unset): ID assigned to a file share.
+        name (None | str | Unset): Name of a file share
+        file_server_id (int | Unset): ID assigned to a file server.
+        is_ha (bool | None | Unset): Indicates whether a share is Highly Available.
+        capacity_bytes (int | None | Unset): Disk capacity of a file share, in bytes.
+        free_space_bytes (int | None | Unset): Amount of available free space on a file share, in bytes.
+        provisioned_bytes (int | None | Unset): Amount of provisioned space on a file share, in bytes.
+        business_view_group_ids (list[int] | None | Unset): Array of Business View groups.
     """
 
-    file_share_id: Union[Unset, int] = UNSET
-    name: Union[None, Unset, str] = UNSET
-    file_server_id: Union[Unset, int] = UNSET
-    is_ha: Union[None, Unset, bool] = UNSET
-    capacity_bytes: Union[None, Unset, int] = UNSET
-    free_space_bytes: Union[None, Unset, int] = UNSET
-    provisioned_bytes: Union[None, Unset, int] = UNSET
-    business_view_group_ids: Union[None, Unset, list[int]] = UNSET
+    file_share_id: int | Unset = UNSET
+    name: None | str | Unset = UNSET
+    file_server_id: int | Unset = UNSET
+    is_ha: bool | None | Unset = UNSET
+    capacity_bytes: int | None | Unset = UNSET
+    free_space_bytes: int | None | Unset = UNSET
+    provisioned_bytes: int | None | Unset = UNSET
+    business_view_group_ids: list[int] | None | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
         file_share_id = self.file_share_id
 
-        name: Union[None, Unset, str]
+        name: None | str | Unset
         if isinstance(self.name, Unset):
             name = UNSET
         else:
@@ -42,31 +44,31 @@ class HyperVFileShareInfo:
 
         file_server_id = self.file_server_id
 
-        is_ha: Union[None, Unset, bool]
+        is_ha: bool | None | Unset
         if isinstance(self.is_ha, Unset):
             is_ha = UNSET
         else:
             is_ha = self.is_ha
 
-        capacity_bytes: Union[None, Unset, int]
+        capacity_bytes: int | None | Unset
         if isinstance(self.capacity_bytes, Unset):
             capacity_bytes = UNSET
         else:
             capacity_bytes = self.capacity_bytes
 
-        free_space_bytes: Union[None, Unset, int]
+        free_space_bytes: int | None | Unset
         if isinstance(self.free_space_bytes, Unset):
             free_space_bytes = UNSET
         else:
             free_space_bytes = self.free_space_bytes
 
-        provisioned_bytes: Union[None, Unset, int]
+        provisioned_bytes: int | None | Unset
         if isinstance(self.provisioned_bytes, Unset):
             provisioned_bytes = UNSET
         else:
             provisioned_bytes = self.provisioned_bytes
 
-        business_view_group_ids: Union[None, Unset, list[int]]
+        business_view_group_ids: list[int] | None | Unset
         if isinstance(self.business_view_group_ids, Unset):
             business_view_group_ids = UNSET
         elif isinstance(self.business_view_group_ids, list):
@@ -102,54 +104,54 @@ class HyperVFileShareInfo:
         d = dict(src_dict)
         file_share_id = d.pop("fileShareId", UNSET)
 
-        def _parse_name(data: object) -> Union[None, Unset, str]:
+        def _parse_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         name = _parse_name(d.pop("name", UNSET))
 
         file_server_id = d.pop("fileServerId", UNSET)
 
-        def _parse_is_ha(data: object) -> Union[None, Unset, bool]:
+        def _parse_is_ha(data: object) -> bool | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, bool], data)
+            return cast(bool | None | Unset, data)
 
         is_ha = _parse_is_ha(d.pop("isHa", UNSET))
 
-        def _parse_capacity_bytes(data: object) -> Union[None, Unset, int]:
+        def _parse_capacity_bytes(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         capacity_bytes = _parse_capacity_bytes(d.pop("capacityBytes", UNSET))
 
-        def _parse_free_space_bytes(data: object) -> Union[None, Unset, int]:
+        def _parse_free_space_bytes(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         free_space_bytes = _parse_free_space_bytes(d.pop("freeSpaceBytes", UNSET))
 
-        def _parse_provisioned_bytes(data: object) -> Union[None, Unset, int]:
+        def _parse_provisioned_bytes(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         provisioned_bytes = _parse_provisioned_bytes(d.pop("provisionedBytes", UNSET))
 
-        def _parse_business_view_group_ids(data: object) -> Union[None, Unset, list[int]]:
+        def _parse_business_view_group_ids(data: object) -> list[int] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -160,9 +162,9 @@ class HyperVFileShareInfo:
                 business_view_group_ids_type_0 = cast(list[int], data)
 
                 return business_view_group_ids_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, list[int]], data)
+            return cast(list[int] | None | Unset, data)
 
         business_view_group_ids = _parse_business_view_group_ids(d.pop("businessViewGroupIds", UNSET))
 

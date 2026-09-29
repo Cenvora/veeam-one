@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 
@@ -13,48 +15,48 @@ class CredentialSaveRequest:
     """
     Attributes:
         type_ (str): Type of credentials. Default: 'Password'.
-        user_name (Union[None, Unset, str]): User name.
-        password (Union[None, Unset, str]): Password.
-        description (Union[None, Unset, str]): Description.
-        ssh_key (Union[None, Unset, str]): SSH key.
-        ssh_key_password (Union[None, Unset, str]): SSH key password.
+        user_name (None | str | Unset): User name.
+        password (None | str | Unset): Password.
+        description (None | str | Unset): Description.
+        ssh_key (None | str | Unset): SSH key.
+        ssh_key_password (None | str | Unset): SSH key password.
     """
 
     type_: str = "Password"
-    user_name: Union[None, Unset, str] = UNSET
-    password: Union[None, Unset, str] = UNSET
-    description: Union[None, Unset, str] = UNSET
-    ssh_key: Union[None, Unset, str] = UNSET
-    ssh_key_password: Union[None, Unset, str] = UNSET
+    user_name: None | str | Unset = UNSET
+    password: None | str | Unset = UNSET
+    description: None | str | Unset = UNSET
+    ssh_key: None | str | Unset = UNSET
+    ssh_key_password: None | str | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
         type_ = self.type_
 
-        user_name: Union[None, Unset, str]
+        user_name: None | str | Unset
         if isinstance(self.user_name, Unset):
             user_name = UNSET
         else:
             user_name = self.user_name
 
-        password: Union[None, Unset, str]
+        password: None | str | Unset
         if isinstance(self.password, Unset):
             password = UNSET
         else:
             password = self.password
 
-        description: Union[None, Unset, str]
+        description: None | str | Unset
         if isinstance(self.description, Unset):
             description = UNSET
         else:
             description = self.description
 
-        ssh_key: Union[None, Unset, str]
+        ssh_key: None | str | Unset
         if isinstance(self.ssh_key, Unset):
             ssh_key = UNSET
         else:
             ssh_key = self.ssh_key
 
-        ssh_key_password: Union[None, Unset, str]
+        ssh_key_password: None | str | Unset
         if isinstance(self.ssh_key_password, Unset):
             ssh_key_password = UNSET
         else:
@@ -85,48 +87,48 @@ class CredentialSaveRequest:
         d = dict(src_dict)
         type_ = d.pop("type")
 
-        def _parse_user_name(data: object) -> Union[None, Unset, str]:
+        def _parse_user_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         user_name = _parse_user_name(d.pop("userName", UNSET))
 
-        def _parse_password(data: object) -> Union[None, Unset, str]:
+        def _parse_password(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         password = _parse_password(d.pop("password", UNSET))
 
-        def _parse_description(data: object) -> Union[None, Unset, str]:
+        def _parse_description(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         description = _parse_description(d.pop("description", UNSET))
 
-        def _parse_ssh_key(data: object) -> Union[None, Unset, str]:
+        def _parse_ssh_key(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         ssh_key = _parse_ssh_key(d.pop("sshKey", UNSET))
 
-        def _parse_ssh_key_password(data: object) -> Union[None, Unset, str]:
+        def _parse_ssh_key_password(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         ssh_key_password = _parse_ssh_key_password(d.pop("sshKeyPassword", UNSET))
 

@@ -1,10 +1,11 @@
+from __future__ import annotations
+
 import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
-from dateutil.parser import isoparse
 
 from ..models.cloud_file_share_instance_type import CloudFileShareInstanceType
 from ..models.cloud_file_shares_platform import CloudFileSharesPlatform
@@ -17,69 +18,68 @@ T = TypeVar("T", bound="ProtectedCloudFileShareInfo")
 class ProtectedCloudFileShareInfo:
     """
     Attributes:
-        cloud_file_share_uid_in_vbr (Union[Unset, UUID]): UID assigned to a cloud file share in Veeam Backup &
-            Replication.
-        instance_id (Union[None, Unset, str]): Resource ID of a cloud file share.
-        name (Union[None, Unset, str]): Name of a cloud file share.
-        platform (Union[Unset, CloudFileSharesPlatform]):
-        instance_type (Union[Unset, CloudFileShareInstanceType]):
-        region (Union[None, Unset, str]): Region where a cloud file share is located.
-        size_bytes (Union[None, Unset, int]): Cloud file share storage capacity, in bytes.
-        last_protection_date (Union[None, Unset, datetime.datetime]): Date and time when the latest restore point was
-            created for a cloud file share.
-        backup_server_id (Union[Unset, int]): ID assigned to a Veeam Backup & Replication server.
-        backup_server_name (Union[None, Unset, str]): Name of a Veeam Backup & Replication server.
+        cloud_file_share_uid_in_vbr (UUID | Unset): UID assigned to a cloud file share in Veeam Backup & Replication.
+        instance_id (None | str | Unset): Resource ID of a cloud file share.
+        name (None | str | Unset): Name of a cloud file share.
+        platform (CloudFileSharesPlatform | Unset):
+        instance_type (CloudFileShareInstanceType | Unset):
+        region (None | str | Unset): Region where a cloud file share is located.
+        size_bytes (int | None | Unset): Cloud file share storage capacity, in bytes.
+        last_protection_date (datetime.datetime | None | Unset): Date and time when the latest restore point was created
+            for a cloud file share.
+        backup_server_id (int | Unset): ID assigned to a Veeam Backup & Replication server.
+        backup_server_name (None | str | Unset): Name of a Veeam Backup & Replication server.
     """
 
-    cloud_file_share_uid_in_vbr: Union[Unset, UUID] = UNSET
-    instance_id: Union[None, Unset, str] = UNSET
-    name: Union[None, Unset, str] = UNSET
-    platform: Union[Unset, CloudFileSharesPlatform] = UNSET
-    instance_type: Union[Unset, CloudFileShareInstanceType] = UNSET
-    region: Union[None, Unset, str] = UNSET
-    size_bytes: Union[None, Unset, int] = UNSET
-    last_protection_date: Union[None, Unset, datetime.datetime] = UNSET
-    backup_server_id: Union[Unset, int] = UNSET
-    backup_server_name: Union[None, Unset, str] = UNSET
+    cloud_file_share_uid_in_vbr: UUID | Unset = UNSET
+    instance_id: None | str | Unset = UNSET
+    name: None | str | Unset = UNSET
+    platform: CloudFileSharesPlatform | Unset = UNSET
+    instance_type: CloudFileShareInstanceType | Unset = UNSET
+    region: None | str | Unset = UNSET
+    size_bytes: int | None | Unset = UNSET
+    last_protection_date: datetime.datetime | None | Unset = UNSET
+    backup_server_id: int | Unset = UNSET
+    backup_server_name: None | str | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
-        cloud_file_share_uid_in_vbr: Union[Unset, str] = UNSET
+        cloud_file_share_uid_in_vbr: str | Unset = UNSET
         if not isinstance(self.cloud_file_share_uid_in_vbr, Unset):
             cloud_file_share_uid_in_vbr = str(self.cloud_file_share_uid_in_vbr)
 
-        instance_id: Union[None, Unset, str]
+        instance_id: None | str | Unset
         if isinstance(self.instance_id, Unset):
             instance_id = UNSET
         else:
             instance_id = self.instance_id
 
-        name: Union[None, Unset, str]
+        name: None | str | Unset
         if isinstance(self.name, Unset):
             name = UNSET
         else:
             name = self.name
 
-        platform: Union[Unset, str] = UNSET
+        platform: str | Unset = UNSET
         if not isinstance(self.platform, Unset):
             platform = self.platform.value
 
-        instance_type: Union[Unset, str] = UNSET
+        instance_type: str | Unset = UNSET
         if not isinstance(self.instance_type, Unset):
             instance_type = self.instance_type.value
 
-        region: Union[None, Unset, str]
+        region: None | str | Unset
         if isinstance(self.region, Unset):
             region = UNSET
         else:
             region = self.region
 
-        size_bytes: Union[None, Unset, int]
+        size_bytes: int | None | Unset
         if isinstance(self.size_bytes, Unset):
             size_bytes = UNSET
         else:
             size_bytes = self.size_bytes
 
-        last_protection_date: Union[None, Unset, str]
+        last_protection_date: None | str | Unset
         if isinstance(self.last_protection_date, Unset):
             last_protection_date = UNSET
         elif isinstance(self.last_protection_date, datetime.datetime):
@@ -89,7 +89,7 @@ class ProtectedCloudFileShareInfo:
 
         backup_server_id = self.backup_server_id
 
-        backup_server_name: Union[None, Unset, str]
+        backup_server_name: None | str | Unset
         if isinstance(self.backup_server_name, Unset):
             backup_server_name = UNSET
         else:
@@ -125,63 +125,63 @@ class ProtectedCloudFileShareInfo:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
         _cloud_file_share_uid_in_vbr = d.pop("cloudFileShareUidInVbr", UNSET)
-        cloud_file_share_uid_in_vbr: Union[Unset, UUID]
+        cloud_file_share_uid_in_vbr: UUID | Unset
         if isinstance(_cloud_file_share_uid_in_vbr, Unset):
             cloud_file_share_uid_in_vbr = UNSET
         else:
             cloud_file_share_uid_in_vbr = UUID(_cloud_file_share_uid_in_vbr)
 
-        def _parse_instance_id(data: object) -> Union[None, Unset, str]:
+        def _parse_instance_id(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         instance_id = _parse_instance_id(d.pop("instanceId", UNSET))
 
-        def _parse_name(data: object) -> Union[None, Unset, str]:
+        def _parse_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         name = _parse_name(d.pop("name", UNSET))
 
         _platform = d.pop("platform", UNSET)
-        platform: Union[Unset, CloudFileSharesPlatform]
+        platform: CloudFileSharesPlatform | Unset
         if isinstance(_platform, Unset):
             platform = UNSET
         else:
             platform = CloudFileSharesPlatform(_platform)
 
         _instance_type = d.pop("instanceType", UNSET)
-        instance_type: Union[Unset, CloudFileShareInstanceType]
+        instance_type: CloudFileShareInstanceType | Unset
         if isinstance(_instance_type, Unset):
             instance_type = UNSET
         else:
             instance_type = CloudFileShareInstanceType(_instance_type)
 
-        def _parse_region(data: object) -> Union[None, Unset, str]:
+        def _parse_region(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         region = _parse_region(d.pop("region", UNSET))
 
-        def _parse_size_bytes(data: object) -> Union[None, Unset, int]:
+        def _parse_size_bytes(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         size_bytes = _parse_size_bytes(d.pop("sizeBytes", UNSET))
 
-        def _parse_last_protection_date(data: object) -> Union[None, Unset, datetime.datetime]:
+        def _parse_last_protection_date(data: object) -> datetime.datetime | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -189,23 +189,23 @@ class ProtectedCloudFileShareInfo:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                last_protection_date_type_0 = isoparse(data)
+                last_protection_date_type_0 = datetime.datetime.fromisoformat(data)
 
                 return last_protection_date_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, datetime.datetime], data)
+            return cast(datetime.datetime | None | Unset, data)
 
         last_protection_date = _parse_last_protection_date(d.pop("lastProtectionDate", UNSET))
 
         backup_server_id = d.pop("backupServerId", UNSET)
 
-        def _parse_backup_server_name(data: object) -> Union[None, Unset, str]:
+        def _parse_backup_server_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         backup_server_name = _parse_backup_server_name(d.pop("backupServerName", UNSET))
 

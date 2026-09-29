@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class ScheduleType(str, Enum):
+class ScheduleType(StrEnum):
     DAILY = "Daily"
     MANUALLY = "Manually"
     MONTHLYDAYS = "MonthlyDays"

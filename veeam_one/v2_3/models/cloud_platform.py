@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class CloudPlatform(str, Enum):
+class CloudPlatform(StrEnum):
     AWS = "AWS"
     GCP = "GCP"
     MICROSOFTAZURE = "MicrosoftAzure"

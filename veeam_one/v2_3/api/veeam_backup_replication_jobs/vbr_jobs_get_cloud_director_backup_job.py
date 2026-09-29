@@ -1,5 +1,6 @@
 from http import HTTPStatus
-from typing import Any, Optional, Union
+from typing import Any
+from urllib.parse import quote
 from uuid import UUID
 
 import httpx
@@ -14,17 +15,20 @@ from ...types import Response
 def _get_kwargs(
     cloud_director_backup_job_uid: UUID,
 ) -> dict[str, Any]:
+
     _kwargs: dict[str, Any] = {
         "method": "get",
-        "url": f"/api/v2.3/vbrJobs/cloudDirectorBackupJobs/{cloud_director_backup_job_uid}",
+        "url": "/api/v2.3/vbrJobs/cloudDirectorBackupJobs/{cloud_director_backup_job_uid}".format(
+            cloud_director_backup_job_uid=quote(str(cloud_director_backup_job_uid), safe=""),
+        ),
     }
 
     return _kwargs
 
 
 def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[CloudDirectorBackupJobInfo, ProblemDetails]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> CloudDirectorBackupJobInfo | ProblemDetails | None:
     if response.status_code == 200:
         response_200 = CloudDirectorBackupJobInfo.from_dict(response.json())
 
@@ -42,8 +46,8 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[CloudDirectorBackupJobInfo, ProblemDetails]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[CloudDirectorBackupJobInfo | ProblemDetails]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -55,8 +59,8 @@ def _build_response(
 def sync_detailed(
     cloud_director_backup_job_uid: UUID,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[CloudDirectorBackupJobInfo, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+) -> Response[CloudDirectorBackupJobInfo | ProblemDetails]:
     """Get VMware Cloud Director Backup Job
 
      Returns a resource representation of a VMware Cloud Director job with the specified UID.
@@ -69,7 +73,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[CloudDirectorBackupJobInfo, ProblemDetails]]
+        Response[CloudDirectorBackupJobInfo | ProblemDetails]
     """
 
     kwargs = _get_kwargs(
@@ -86,8 +90,8 @@ def sync_detailed(
 def sync(
     cloud_director_backup_job_uid: UUID,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[CloudDirectorBackupJobInfo, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+) -> CloudDirectorBackupJobInfo | ProblemDetails | None:
     """Get VMware Cloud Director Backup Job
 
      Returns a resource representation of a VMware Cloud Director job with the specified UID.
@@ -100,7 +104,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[CloudDirectorBackupJobInfo, ProblemDetails]
+        CloudDirectorBackupJobInfo | ProblemDetails
     """
 
     return sync_detailed(
@@ -112,8 +116,8 @@ def sync(
 async def asyncio_detailed(
     cloud_director_backup_job_uid: UUID,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[CloudDirectorBackupJobInfo, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+) -> Response[CloudDirectorBackupJobInfo | ProblemDetails]:
     """Get VMware Cloud Director Backup Job
 
      Returns a resource representation of a VMware Cloud Director job with the specified UID.
@@ -126,7 +130,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[CloudDirectorBackupJobInfo, ProblemDetails]]
+        Response[CloudDirectorBackupJobInfo | ProblemDetails]
     """
 
     kwargs = _get_kwargs(
@@ -141,8 +145,8 @@ async def asyncio_detailed(
 async def asyncio(
     cloud_director_backup_job_uid: UUID,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[CloudDirectorBackupJobInfo, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+) -> CloudDirectorBackupJobInfo | ProblemDetails | None:
     """Get VMware Cloud Director Backup Job
 
      Returns a resource representation of a VMware Cloud Director job with the specified UID.
@@ -155,7 +159,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[CloudDirectorBackupJobInfo, ProblemDetails]
+        CloudDirectorBackupJobInfo | ProblemDetails
     """
 
     return (

@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class ProtectedApplicationPlatform(str, Enum):
+class ProtectedApplicationPlatform(StrEnum):
     MSSQLPLUGINWINDOWS = "MsSqlPluginWindows"
     ORACLE = "Oracle"
     SAPHANA = "SapHana"

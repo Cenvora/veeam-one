@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class VSphereDatastoreType(str, Enum):
+class VSphereDatastoreType(StrEnum):
     CIFS = "Cifs"
     NAS = "Nas"
     NFS = "Nfs"

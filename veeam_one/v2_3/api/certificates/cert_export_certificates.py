@@ -1,6 +1,6 @@
 from http import HTTPStatus
 from io import BytesIO
-from typing import Any, Optional, Union
+from typing import Any
 
 import httpx
 
@@ -15,6 +15,7 @@ def _get_kwargs(
     *,
     export_type: CertificateExportType,
 ) -> dict[str, Any]:
+
     params: dict[str, Any] = {}
 
     json_export_type = export_type.value
@@ -31,9 +32,7 @@ def _get_kwargs(
     return _kwargs
 
 
-def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[File, ProblemDetails]]:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> File | ProblemDetails | None:
     if response.status_code == 200:
         response_200 = File(payload=BytesIO(response.text))
 
@@ -51,8 +50,8 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[File, ProblemDetails]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[File | ProblemDetails]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -63,9 +62,9 @@ def _build_response(
 
 def sync_detailed(
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     export_type: CertificateExportType,
-) -> Response[Union[File, ProblemDetails]]:
+) -> Response[File | ProblemDetails]:
     """Export Certificates
 
      Exports certificates into a file with the specified format.
@@ -78,7 +77,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[File, ProblemDetails]]
+        Response[File | ProblemDetails]
     """
 
     kwargs = _get_kwargs(
@@ -94,9 +93,9 @@ def sync_detailed(
 
 def sync(
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     export_type: CertificateExportType,
-) -> Optional[Union[File, ProblemDetails]]:
+) -> File | ProblemDetails | None:
     """Export Certificates
 
      Exports certificates into a file with the specified format.
@@ -109,7 +108,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[File, ProblemDetails]
+        File | ProblemDetails
     """
 
     return sync_detailed(
@@ -120,9 +119,9 @@ def sync(
 
 async def asyncio_detailed(
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     export_type: CertificateExportType,
-) -> Response[Union[File, ProblemDetails]]:
+) -> Response[File | ProblemDetails]:
     """Export Certificates
 
      Exports certificates into a file with the specified format.
@@ -135,7 +134,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[File, ProblemDetails]]
+        Response[File | ProblemDetails]
     """
 
     kwargs = _get_kwargs(
@@ -149,9 +148,9 @@ async def asyncio_detailed(
 
 async def asyncio(
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     export_type: CertificateExportType,
-) -> Optional[Union[File, ProblemDetails]]:
+) -> File | ProblemDetails | None:
     """Export Certificates
 
      Exports certificates into a file with the specified format.
@@ -164,7 +163,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[File, ProblemDetails]
+        File | ProblemDetails
     """
 
     return (

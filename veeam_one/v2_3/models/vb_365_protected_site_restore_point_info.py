@@ -1,10 +1,11 @@
+from __future__ import annotations
+
 import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
-from dateutil.parser import isoparse
 
 from ..models.vb_365_job_type import Vb365JobType
 from ..types import UNSET, Unset
@@ -16,55 +17,55 @@ T = TypeVar("T", bound="Vb365ProtectedSiteRestorePointInfo")
 class Vb365ProtectedSiteRestorePointInfo:
     """
     Attributes:
-        uid (Union[Unset, UUID]): UID assigned to a restore point.
-        site_uid (Union[Unset, UUID]): UID assigned to a site.
-        site_name (Union[None, Unset, str]): Name of a site.
-        organization_uid (Union[Unset, UUID]): UID assigned to a Microsoft organization.
-        organization_name (Union[None, Unset, str]): Name of a Microsoft organization.
-        vb_365_server_id (Union[Unset, int]): ID assigned to a Veeam Backup for Microsoft 365 server.
-        vb_365_server_name (Union[None, Unset, str]): Name of a Veeam Backup for Microsoft 365 server.
-        repository_uid (Union[None, UUID, Unset]): UID assigned to a backup repository.
-        repository_name (Union[None, Unset, str]): Name of a backup repository.
-        job_uid (Union[None, UUID, Unset]): UID assigned to a backup job.
-        job_name (Union[None, Unset, str]): Name of a backup job.
-        job_type (Union[Unset, Vb365JobType]):
-        protection_date (Union[None, Unset, datetime.datetime]): Date and time when the restore point was created.
+        uid (UUID | Unset): UID assigned to a restore point.
+        site_uid (UUID | Unset): UID assigned to a site.
+        site_name (None | str | Unset): Name of a site.
+        organization_uid (UUID | Unset): UID assigned to a Microsoft organization.
+        organization_name (None | str | Unset): Name of a Microsoft organization.
+        vb_365_server_id (int | Unset): ID assigned to a Veeam Backup for Microsoft 365 server.
+        vb_365_server_name (None | str | Unset): Name of a Veeam Backup for Microsoft 365 server.
+        repository_uid (None | Unset | UUID): UID assigned to a backup repository.
+        repository_name (None | str | Unset): Name of a backup repository.
+        job_uid (None | Unset | UUID): UID assigned to a backup job.
+        job_name (None | str | Unset): Name of a backup job.
+        job_type (Vb365JobType | Unset):
+        protection_date (datetime.datetime | None | Unset): Date and time when the restore point was created.
     """
 
-    uid: Union[Unset, UUID] = UNSET
-    site_uid: Union[Unset, UUID] = UNSET
-    site_name: Union[None, Unset, str] = UNSET
-    organization_uid: Union[Unset, UUID] = UNSET
-    organization_name: Union[None, Unset, str] = UNSET
-    vb_365_server_id: Union[Unset, int] = UNSET
-    vb_365_server_name: Union[None, Unset, str] = UNSET
-    repository_uid: Union[None, UUID, Unset] = UNSET
-    repository_name: Union[None, Unset, str] = UNSET
-    job_uid: Union[None, UUID, Unset] = UNSET
-    job_name: Union[None, Unset, str] = UNSET
-    job_type: Union[Unset, Vb365JobType] = UNSET
-    protection_date: Union[None, Unset, datetime.datetime] = UNSET
+    uid: UUID | Unset = UNSET
+    site_uid: UUID | Unset = UNSET
+    site_name: None | str | Unset = UNSET
+    organization_uid: UUID | Unset = UNSET
+    organization_name: None | str | Unset = UNSET
+    vb_365_server_id: int | Unset = UNSET
+    vb_365_server_name: None | str | Unset = UNSET
+    repository_uid: None | Unset | UUID = UNSET
+    repository_name: None | str | Unset = UNSET
+    job_uid: None | Unset | UUID = UNSET
+    job_name: None | str | Unset = UNSET
+    job_type: Vb365JobType | Unset = UNSET
+    protection_date: datetime.datetime | None | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
-        uid: Union[Unset, str] = UNSET
+        uid: str | Unset = UNSET
         if not isinstance(self.uid, Unset):
             uid = str(self.uid)
 
-        site_uid: Union[Unset, str] = UNSET
+        site_uid: str | Unset = UNSET
         if not isinstance(self.site_uid, Unset):
             site_uid = str(self.site_uid)
 
-        site_name: Union[None, Unset, str]
+        site_name: None | str | Unset
         if isinstance(self.site_name, Unset):
             site_name = UNSET
         else:
             site_name = self.site_name
 
-        organization_uid: Union[Unset, str] = UNSET
+        organization_uid: str | Unset = UNSET
         if not isinstance(self.organization_uid, Unset):
             organization_uid = str(self.organization_uid)
 
-        organization_name: Union[None, Unset, str]
+        organization_name: None | str | Unset
         if isinstance(self.organization_name, Unset):
             organization_name = UNSET
         else:
@@ -72,13 +73,13 @@ class Vb365ProtectedSiteRestorePointInfo:
 
         vb_365_server_id = self.vb_365_server_id
 
-        vb_365_server_name: Union[None, Unset, str]
+        vb_365_server_name: None | str | Unset
         if isinstance(self.vb_365_server_name, Unset):
             vb_365_server_name = UNSET
         else:
             vb_365_server_name = self.vb_365_server_name
 
-        repository_uid: Union[None, Unset, str]
+        repository_uid: None | str | Unset
         if isinstance(self.repository_uid, Unset):
             repository_uid = UNSET
         elif isinstance(self.repository_uid, UUID):
@@ -86,13 +87,13 @@ class Vb365ProtectedSiteRestorePointInfo:
         else:
             repository_uid = self.repository_uid
 
-        repository_name: Union[None, Unset, str]
+        repository_name: None | str | Unset
         if isinstance(self.repository_name, Unset):
             repository_name = UNSET
         else:
             repository_name = self.repository_name
 
-        job_uid: Union[None, Unset, str]
+        job_uid: None | str | Unset
         if isinstance(self.job_uid, Unset):
             job_uid = UNSET
         elif isinstance(self.job_uid, UUID):
@@ -100,17 +101,17 @@ class Vb365ProtectedSiteRestorePointInfo:
         else:
             job_uid = self.job_uid
 
-        job_name: Union[None, Unset, str]
+        job_name: None | str | Unset
         if isinstance(self.job_name, Unset):
             job_name = UNSET
         else:
             job_name = self.job_name
 
-        job_type: Union[Unset, str] = UNSET
+        job_type: str | Unset = UNSET
         if not isinstance(self.job_type, Unset):
             job_type = self.job_type.value
 
-        protection_date: Union[None, Unset, str]
+        protection_date: None | str | Unset
         if isinstance(self.protection_date, Unset):
             protection_date = UNSET
         elif isinstance(self.protection_date, datetime.datetime):
@@ -154,56 +155,56 @@ class Vb365ProtectedSiteRestorePointInfo:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
         _uid = d.pop("uid", UNSET)
-        uid: Union[Unset, UUID]
+        uid: UUID | Unset
         if isinstance(_uid, Unset):
             uid = UNSET
         else:
             uid = UUID(_uid)
 
         _site_uid = d.pop("siteUid", UNSET)
-        site_uid: Union[Unset, UUID]
+        site_uid: UUID | Unset
         if isinstance(_site_uid, Unset):
             site_uid = UNSET
         else:
             site_uid = UUID(_site_uid)
 
-        def _parse_site_name(data: object) -> Union[None, Unset, str]:
+        def _parse_site_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         site_name = _parse_site_name(d.pop("siteName", UNSET))
 
         _organization_uid = d.pop("organizationUid", UNSET)
-        organization_uid: Union[Unset, UUID]
+        organization_uid: UUID | Unset
         if isinstance(_organization_uid, Unset):
             organization_uid = UNSET
         else:
             organization_uid = UUID(_organization_uid)
 
-        def _parse_organization_name(data: object) -> Union[None, Unset, str]:
+        def _parse_organization_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         organization_name = _parse_organization_name(d.pop("organizationName", UNSET))
 
         vb_365_server_id = d.pop("vb365ServerId", UNSET)
 
-        def _parse_vb_365_server_name(data: object) -> Union[None, Unset, str]:
+        def _parse_vb_365_server_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         vb_365_server_name = _parse_vb_365_server_name(d.pop("vb365ServerName", UNSET))
 
-        def _parse_repository_uid(data: object) -> Union[None, UUID, Unset]:
+        def _parse_repository_uid(data: object) -> None | Unset | UUID:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -214,22 +215,22 @@ class Vb365ProtectedSiteRestorePointInfo:
                 repository_uid_type_0 = UUID(data)
 
                 return repository_uid_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, UUID, Unset], data)
+            return cast(None | Unset | UUID, data)
 
         repository_uid = _parse_repository_uid(d.pop("repositoryUid", UNSET))
 
-        def _parse_repository_name(data: object) -> Union[None, Unset, str]:
+        def _parse_repository_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         repository_name = _parse_repository_name(d.pop("repositoryName", UNSET))
 
-        def _parse_job_uid(data: object) -> Union[None, UUID, Unset]:
+        def _parse_job_uid(data: object) -> None | Unset | UUID:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -240,29 +241,29 @@ class Vb365ProtectedSiteRestorePointInfo:
                 job_uid_type_0 = UUID(data)
 
                 return job_uid_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, UUID, Unset], data)
+            return cast(None | Unset | UUID, data)
 
         job_uid = _parse_job_uid(d.pop("jobUid", UNSET))
 
-        def _parse_job_name(data: object) -> Union[None, Unset, str]:
+        def _parse_job_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         job_name = _parse_job_name(d.pop("jobName", UNSET))
 
         _job_type = d.pop("jobType", UNSET)
-        job_type: Union[Unset, Vb365JobType]
+        job_type: Vb365JobType | Unset
         if isinstance(_job_type, Unset):
             job_type = UNSET
         else:
             job_type = Vb365JobType(_job_type)
 
-        def _parse_protection_date(data: object) -> Union[None, Unset, datetime.datetime]:
+        def _parse_protection_date(data: object) -> datetime.datetime | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -270,12 +271,12 @@ class Vb365ProtectedSiteRestorePointInfo:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                protection_date_type_0 = isoparse(data)
+                protection_date_type_0 = datetime.datetime.fromisoformat(data)
 
                 return protection_date_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, datetime.datetime], data)
+            return cast(datetime.datetime | None | Unset, data)
 
         protection_date = _parse_protection_date(d.pop("protectionDate", UNSET))
 

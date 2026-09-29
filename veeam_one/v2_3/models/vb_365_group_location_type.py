@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class Vb365GroupLocationType(str, Enum):
+class Vb365GroupLocationType(StrEnum):
     CLOUD = "Cloud"
     HYBRID = "Hybrid"
     ONPREMISES = "OnPremises"

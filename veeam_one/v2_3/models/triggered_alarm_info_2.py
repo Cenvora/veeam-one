@@ -1,9 +1,10 @@
+from __future__ import annotations
+
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, Union, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
-from dateutil.parser import isoparse
 
 from ..models.alarm_status import AlarmStatus
 from ..types import UNSET, Unset
@@ -20,40 +21,40 @@ T = TypeVar("T", bound="TriggeredAlarmInfo2")
 class TriggeredAlarmInfo2:
     """
     Attributes:
-        triggered_alarm_id (Union[Unset, int]): ID assigned to a triggered alarm.
-        name (Union[None, Unset, str]): Name of an alarm template.
-        alarm_template_id (Union[Unset, int]): ID assigned to an alarm template.
-        predefined_alarm_id (Union[None, Unset, int]): Internal ID assigned to a predefined alarm template.
-        triggered_time (Union[Unset, datetime.datetime]): Date and time when an alarm triggered.
-        status (Union[Unset, AlarmStatus]):
-        description (Union[None, Unset, str]): Message containing alarm details.
-        comment (Union[None, Unset, str]): Comment on a triggered alarm.
-        repeat_count (Union[Unset, int]): Number of times an alarm was triggered.
-        alarm_source (Union['AlarmSource', None, Unset]): Object for which an alarm was triggered.
-        child_alarms_count (Union[Unset, int]): Number of alarm child objects.
-        remediation (Union['Remediations', None, Unset]): Array of the remediation actions.
+        triggered_alarm_id (int | Unset): ID assigned to a triggered alarm.
+        name (None | str | Unset): Name of an alarm template.
+        alarm_template_id (int | Unset): ID assigned to an alarm template.
+        predefined_alarm_id (int | None | Unset): Internal ID assigned to a predefined alarm template.
+        triggered_time (datetime.datetime | Unset): Date and time when an alarm triggered.
+        status (AlarmStatus | Unset):
+        description (None | str | Unset): Message containing alarm details.
+        comment (None | str | Unset): Comment on a triggered alarm.
+        repeat_count (int | Unset): Number of times an alarm was triggered.
+        alarm_source (AlarmSource | None | Unset): Object for which an alarm was triggered.
+        child_alarms_count (int | Unset): Number of alarm child objects.
+        remediation (None | Remediations | Unset): Array of the remediation actions.
     """
 
-    triggered_alarm_id: Union[Unset, int] = UNSET
-    name: Union[None, Unset, str] = UNSET
-    alarm_template_id: Union[Unset, int] = UNSET
-    predefined_alarm_id: Union[None, Unset, int] = UNSET
-    triggered_time: Union[Unset, datetime.datetime] = UNSET
-    status: Union[Unset, AlarmStatus] = UNSET
-    description: Union[None, Unset, str] = UNSET
-    comment: Union[None, Unset, str] = UNSET
-    repeat_count: Union[Unset, int] = UNSET
-    alarm_source: Union["AlarmSource", None, Unset] = UNSET
-    child_alarms_count: Union[Unset, int] = UNSET
-    remediation: Union["Remediations", None, Unset] = UNSET
+    triggered_alarm_id: int | Unset = UNSET
+    name: None | str | Unset = UNSET
+    alarm_template_id: int | Unset = UNSET
+    predefined_alarm_id: int | None | Unset = UNSET
+    triggered_time: datetime.datetime | Unset = UNSET
+    status: AlarmStatus | Unset = UNSET
+    description: None | str | Unset = UNSET
+    comment: None | str | Unset = UNSET
+    repeat_count: int | Unset = UNSET
+    alarm_source: AlarmSource | None | Unset = UNSET
+    child_alarms_count: int | Unset = UNSET
+    remediation: None | Remediations | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.alarm_source import AlarmSource
-        from ..models.remediations import Remediations
+        from ..models.alarm_source import AlarmSource  # noqa: PLC0415
+        from ..models.remediations import Remediations  # noqa: PLC0415
 
         triggered_alarm_id = self.triggered_alarm_id
 
-        name: Union[None, Unset, str]
+        name: None | str | Unset
         if isinstance(self.name, Unset):
             name = UNSET
         else:
@@ -61,27 +62,27 @@ class TriggeredAlarmInfo2:
 
         alarm_template_id = self.alarm_template_id
 
-        predefined_alarm_id: Union[None, Unset, int]
+        predefined_alarm_id: int | None | Unset
         if isinstance(self.predefined_alarm_id, Unset):
             predefined_alarm_id = UNSET
         else:
             predefined_alarm_id = self.predefined_alarm_id
 
-        triggered_time: Union[Unset, str] = UNSET
+        triggered_time: str | Unset = UNSET
         if not isinstance(self.triggered_time, Unset):
             triggered_time = self.triggered_time.isoformat()
 
-        status: Union[Unset, str] = UNSET
+        status: str | Unset = UNSET
         if not isinstance(self.status, Unset):
             status = self.status.value
 
-        description: Union[None, Unset, str]
+        description: None | str | Unset
         if isinstance(self.description, Unset):
             description = UNSET
         else:
             description = self.description
 
-        comment: Union[None, Unset, str]
+        comment: None | str | Unset
         if isinstance(self.comment, Unset):
             comment = UNSET
         else:
@@ -89,7 +90,7 @@ class TriggeredAlarmInfo2:
 
         repeat_count = self.repeat_count
 
-        alarm_source: Union[None, Unset, dict[str, Any]]
+        alarm_source: dict[str, Any] | None | Unset
         if isinstance(self.alarm_source, Unset):
             alarm_source = UNSET
         elif isinstance(self.alarm_source, AlarmSource):
@@ -99,7 +100,7 @@ class TriggeredAlarmInfo2:
 
         child_alarms_count = self.child_alarms_count
 
-        remediation: Union[None, Unset, dict[str, Any]]
+        remediation: dict[str, Any] | None | Unset
         if isinstance(self.remediation, Unset):
             remediation = UNSET
         elif isinstance(self.remediation, Remediations):
@@ -139,67 +140,67 @@ class TriggeredAlarmInfo2:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.alarm_source import AlarmSource
-        from ..models.remediations import Remediations
+        from ..models.alarm_source import AlarmSource  # noqa: PLC0415
+        from ..models.remediations import Remediations  # noqa: PLC0415
 
         d = dict(src_dict)
         triggered_alarm_id = d.pop("triggeredAlarmId", UNSET)
 
-        def _parse_name(data: object) -> Union[None, Unset, str]:
+        def _parse_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         name = _parse_name(d.pop("name", UNSET))
 
         alarm_template_id = d.pop("alarmTemplateId", UNSET)
 
-        def _parse_predefined_alarm_id(data: object) -> Union[None, Unset, int]:
+        def _parse_predefined_alarm_id(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         predefined_alarm_id = _parse_predefined_alarm_id(d.pop("predefinedAlarmId", UNSET))
 
         _triggered_time = d.pop("triggeredTime", UNSET)
-        triggered_time: Union[Unset, datetime.datetime]
+        triggered_time: datetime.datetime | Unset
         if isinstance(_triggered_time, Unset):
             triggered_time = UNSET
         else:
-            triggered_time = isoparse(_triggered_time)
+            triggered_time = datetime.datetime.fromisoformat(_triggered_time)
 
         _status = d.pop("status", UNSET)
-        status: Union[Unset, AlarmStatus]
+        status: AlarmStatus | Unset
         if isinstance(_status, Unset):
             status = UNSET
         else:
             status = AlarmStatus(_status)
 
-        def _parse_description(data: object) -> Union[None, Unset, str]:
+        def _parse_description(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         description = _parse_description(d.pop("description", UNSET))
 
-        def _parse_comment(data: object) -> Union[None, Unset, str]:
+        def _parse_comment(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         comment = _parse_comment(d.pop("comment", UNSET))
 
         repeat_count = d.pop("repeatCount", UNSET)
 
-        def _parse_alarm_source(data: object) -> Union["AlarmSource", None, Unset]:
+        def _parse_alarm_source(data: object) -> AlarmSource | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -210,15 +211,15 @@ class TriggeredAlarmInfo2:
                 alarm_source_type_1 = AlarmSource.from_dict(data)
 
                 return alarm_source_type_1
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union["AlarmSource", None, Unset], data)
+            return cast(AlarmSource | None | Unset, data)
 
         alarm_source = _parse_alarm_source(d.pop("alarmSource", UNSET))
 
         child_alarms_count = d.pop("childAlarmsCount", UNSET)
 
-        def _parse_remediation(data: object) -> Union["Remediations", None, Unset]:
+        def _parse_remediation(data: object) -> None | Remediations | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -229,9 +230,9 @@ class TriggeredAlarmInfo2:
                 remediation_type_1 = Remediations.from_dict(data)
 
                 return remediation_type_1
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union["Remediations", None, Unset], data)
+            return cast(None | Remediations | Unset, data)
 
         remediation = _parse_remediation(d.pop("remediation", UNSET))
 

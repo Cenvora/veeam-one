@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
@@ -13,30 +15,30 @@ T = TypeVar("T", bound="VeeamOneServiceInfo")
 class VeeamOneServiceInfo:
     """
     Attributes:
-        product (Union[None, Unset, str]): Name of an installed product. Example: Veeam ONE.
-        version (Union[None, Unset, str]): Version of an installed product. Example: 11.0.0.1325.
-        installation_uid (Union[Unset, UUID]): UID assigned to product installation. Example:
+        product (None | str | Unset): Name of an installed product. Example: Veeam ONE.
+        version (None | str | Unset): Version of an installed product. Example: 11.0.0.1325.
+        installation_uid (UUID | Unset): UID assigned to product installation. Example:
             8a6626ad-16ce-482b-ae27-30c0966c1bd2.
     """
 
-    product: Union[None, Unset, str] = UNSET
-    version: Union[None, Unset, str] = UNSET
-    installation_uid: Union[Unset, UUID] = UNSET
+    product: None | str | Unset = UNSET
+    version: None | str | Unset = UNSET
+    installation_uid: UUID | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
-        product: Union[None, Unset, str]
+        product: None | str | Unset
         if isinstance(self.product, Unset):
             product = UNSET
         else:
             product = self.product
 
-        version: Union[None, Unset, str]
+        version: None | str | Unset
         if isinstance(self.version, Unset):
             version = UNSET
         else:
             version = self.version
 
-        installation_uid: Union[Unset, str] = UNSET
+        installation_uid: str | Unset = UNSET
         if not isinstance(self.installation_uid, Unset):
             installation_uid = str(self.installation_uid)
 
@@ -56,26 +58,26 @@ class VeeamOneServiceInfo:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
 
-        def _parse_product(data: object) -> Union[None, Unset, str]:
+        def _parse_product(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         product = _parse_product(d.pop("product", UNSET))
 
-        def _parse_version(data: object) -> Union[None, Unset, str]:
+        def _parse_version(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         version = _parse_version(d.pop("version", UNSET))
 
         _installation_uid = d.pop("installationUid", UNSET)
-        installation_uid: Union[Unset, UUID]
+        installation_uid: UUID | Unset
         if isinstance(_installation_uid, Unset):
             installation_uid = UNSET
         else:

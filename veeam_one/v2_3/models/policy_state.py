@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class PolicyState(str, Enum):
+class PolicyState(StrEnum):
     DISABLED = "Disabled"
     ENABLED = "Enabled"
     RUNNING = "Running"

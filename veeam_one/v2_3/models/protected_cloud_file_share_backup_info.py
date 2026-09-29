@@ -1,10 +1,11 @@
+from __future__ import annotations
+
 import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
-from dateutil.parser import isoparse
 
 from ..models.cloud_file_share_backup_type import CloudFileShareBackupType
 from ..types import UNSET, Unset
@@ -16,37 +17,37 @@ T = TypeVar("T", bound="ProtectedCloudFileShareBackupInfo")
 class ProtectedCloudFileShareBackupInfo:
     """
     Attributes:
-        backup_uid (Union[Unset, UUID]): UID assigned to a backup chain.
-        cloud_file_share_uid_in_vbr (Union[None, UUID, Unset]): UID assigned to a cloud file share in Veeam Backup &
+        backup_uid (UUID | Unset): UID assigned to a backup chain.
+        cloud_file_share_uid_in_vbr (None | Unset | UUID): UID assigned to a cloud file share in Veeam Backup &
             Replication.
-        job_uid (Union[None, UUID, Unset]): UID assigned to a job.
-        job_name (Union[None, Unset, str]): Name of a job.
-        type_ (Union[Unset, CloudFileShareBackupType]):
-        restore_points (Union[Unset, int]): Number of restore points in a backup chain.
-        last_protection_date (Union[None, Unset, datetime.datetime]): Date and time when the latest restore point was
+        job_uid (None | Unset | UUID): UID assigned to a job.
+        job_name (None | str | Unset): Name of a job.
+        type_ (CloudFileShareBackupType | Unset):
+        restore_points (int | Unset): Number of restore points in a backup chain.
+        last_protection_date (datetime.datetime | None | Unset): Date and time when the latest restore point was
             created.
-        target (Union[None, Unset, str]): Name of a backup repository.
-        backup_server_id (Union[Unset, int]): ID assigned to a Veeam Backup & Replication server.
-        backup_server_name (Union[None, Unset, str]): Name of a Veeam Backup & Replication.
+        target (None | str | Unset): Name of a backup repository.
+        backup_server_id (int | Unset): ID assigned to a Veeam Backup & Replication server.
+        backup_server_name (None | str | Unset): Name of a Veeam Backup & Replication.
     """
 
-    backup_uid: Union[Unset, UUID] = UNSET
-    cloud_file_share_uid_in_vbr: Union[None, UUID, Unset] = UNSET
-    job_uid: Union[None, UUID, Unset] = UNSET
-    job_name: Union[None, Unset, str] = UNSET
-    type_: Union[Unset, CloudFileShareBackupType] = UNSET
-    restore_points: Union[Unset, int] = UNSET
-    last_protection_date: Union[None, Unset, datetime.datetime] = UNSET
-    target: Union[None, Unset, str] = UNSET
-    backup_server_id: Union[Unset, int] = UNSET
-    backup_server_name: Union[None, Unset, str] = UNSET
+    backup_uid: UUID | Unset = UNSET
+    cloud_file_share_uid_in_vbr: None | Unset | UUID = UNSET
+    job_uid: None | Unset | UUID = UNSET
+    job_name: None | str | Unset = UNSET
+    type_: CloudFileShareBackupType | Unset = UNSET
+    restore_points: int | Unset = UNSET
+    last_protection_date: datetime.datetime | None | Unset = UNSET
+    target: None | str | Unset = UNSET
+    backup_server_id: int | Unset = UNSET
+    backup_server_name: None | str | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
-        backup_uid: Union[Unset, str] = UNSET
+        backup_uid: str | Unset = UNSET
         if not isinstance(self.backup_uid, Unset):
             backup_uid = str(self.backup_uid)
 
-        cloud_file_share_uid_in_vbr: Union[None, Unset, str]
+        cloud_file_share_uid_in_vbr: None | str | Unset
         if isinstance(self.cloud_file_share_uid_in_vbr, Unset):
             cloud_file_share_uid_in_vbr = UNSET
         elif isinstance(self.cloud_file_share_uid_in_vbr, UUID):
@@ -54,7 +55,7 @@ class ProtectedCloudFileShareBackupInfo:
         else:
             cloud_file_share_uid_in_vbr = self.cloud_file_share_uid_in_vbr
 
-        job_uid: Union[None, Unset, str]
+        job_uid: None | str | Unset
         if isinstance(self.job_uid, Unset):
             job_uid = UNSET
         elif isinstance(self.job_uid, UUID):
@@ -62,19 +63,19 @@ class ProtectedCloudFileShareBackupInfo:
         else:
             job_uid = self.job_uid
 
-        job_name: Union[None, Unset, str]
+        job_name: None | str | Unset
         if isinstance(self.job_name, Unset):
             job_name = UNSET
         else:
             job_name = self.job_name
 
-        type_: Union[Unset, str] = UNSET
+        type_: str | Unset = UNSET
         if not isinstance(self.type_, Unset):
             type_ = self.type_.value
 
         restore_points = self.restore_points
 
-        last_protection_date: Union[None, Unset, str]
+        last_protection_date: None | str | Unset
         if isinstance(self.last_protection_date, Unset):
             last_protection_date = UNSET
         elif isinstance(self.last_protection_date, datetime.datetime):
@@ -82,7 +83,7 @@ class ProtectedCloudFileShareBackupInfo:
         else:
             last_protection_date = self.last_protection_date
 
-        target: Union[None, Unset, str]
+        target: None | str | Unset
         if isinstance(self.target, Unset):
             target = UNSET
         else:
@@ -90,7 +91,7 @@ class ProtectedCloudFileShareBackupInfo:
 
         backup_server_id = self.backup_server_id
 
-        backup_server_name: Union[None, Unset, str]
+        backup_server_name: None | str | Unset
         if isinstance(self.backup_server_name, Unset):
             backup_server_name = UNSET
         else:
@@ -126,13 +127,13 @@ class ProtectedCloudFileShareBackupInfo:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
         _backup_uid = d.pop("backupUid", UNSET)
-        backup_uid: Union[Unset, UUID]
+        backup_uid: UUID | Unset
         if isinstance(_backup_uid, Unset):
             backup_uid = UNSET
         else:
             backup_uid = UUID(_backup_uid)
 
-        def _parse_cloud_file_share_uid_in_vbr(data: object) -> Union[None, UUID, Unset]:
+        def _parse_cloud_file_share_uid_in_vbr(data: object) -> None | Unset | UUID:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -143,13 +144,13 @@ class ProtectedCloudFileShareBackupInfo:
                 cloud_file_share_uid_in_vbr_type_0 = UUID(data)
 
                 return cloud_file_share_uid_in_vbr_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, UUID, Unset], data)
+            return cast(None | Unset | UUID, data)
 
         cloud_file_share_uid_in_vbr = _parse_cloud_file_share_uid_in_vbr(d.pop("cloudFileShareUidInVbr", UNSET))
 
-        def _parse_job_uid(data: object) -> Union[None, UUID, Unset]:
+        def _parse_job_uid(data: object) -> None | Unset | UUID:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -160,23 +161,23 @@ class ProtectedCloudFileShareBackupInfo:
                 job_uid_type_0 = UUID(data)
 
                 return job_uid_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, UUID, Unset], data)
+            return cast(None | Unset | UUID, data)
 
         job_uid = _parse_job_uid(d.pop("jobUid", UNSET))
 
-        def _parse_job_name(data: object) -> Union[None, Unset, str]:
+        def _parse_job_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         job_name = _parse_job_name(d.pop("jobName", UNSET))
 
         _type_ = d.pop("type", UNSET)
-        type_: Union[Unset, CloudFileShareBackupType]
+        type_: CloudFileShareBackupType | Unset
         if isinstance(_type_, Unset):
             type_ = UNSET
         else:
@@ -184,7 +185,7 @@ class ProtectedCloudFileShareBackupInfo:
 
         restore_points = d.pop("restorePoints", UNSET)
 
-        def _parse_last_protection_date(data: object) -> Union[None, Unset, datetime.datetime]:
+        def _parse_last_protection_date(data: object) -> datetime.datetime | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -192,32 +193,32 @@ class ProtectedCloudFileShareBackupInfo:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                last_protection_date_type_0 = isoparse(data)
+                last_protection_date_type_0 = datetime.datetime.fromisoformat(data)
 
                 return last_protection_date_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, datetime.datetime], data)
+            return cast(datetime.datetime | None | Unset, data)
 
         last_protection_date = _parse_last_protection_date(d.pop("lastProtectionDate", UNSET))
 
-        def _parse_target(data: object) -> Union[None, Unset, str]:
+        def _parse_target(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         target = _parse_target(d.pop("target", UNSET))
 
         backup_server_id = d.pop("backupServerId", UNSET)
 
-        def _parse_backup_server_name(data: object) -> Union[None, Unset, str]:
+        def _parse_backup_server_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         backup_server_name = _parse_backup_server_name(d.pop("backupServerName", UNSET))
 

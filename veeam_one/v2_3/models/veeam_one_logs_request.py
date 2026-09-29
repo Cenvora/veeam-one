@@ -1,9 +1,10 @@
+from __future__ import annotations
+
 import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
-from dateutil.parser import isoparse
 
 from ..types import UNSET, Unset
 
@@ -14,14 +15,14 @@ T = TypeVar("T", bound="VeeamOneLogsRequest")
 class VeeamOneLogsRequest:
     """
     Attributes:
-        from_date (Union[None, Unset, datetime.datetime]): Start date and time of the period for which a log archive
-            must be collected.
+        from_date (datetime.datetime | None | Unset): Start date and time of the period for which a log archive must be
+            collected.
     """
 
-    from_date: Union[None, Unset, datetime.datetime] = UNSET
+    from_date: datetime.datetime | None | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
-        from_date: Union[None, Unset, str]
+        from_date: None | str | Unset
         if isinstance(self.from_date, Unset):
             from_date = UNSET
         elif isinstance(self.from_date, datetime.datetime):
@@ -41,7 +42,7 @@ class VeeamOneLogsRequest:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
 
-        def _parse_from_date(data: object) -> Union[None, Unset, datetime.datetime]:
+        def _parse_from_date(data: object) -> datetime.datetime | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -49,12 +50,12 @@ class VeeamOneLogsRequest:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                from_date_type_0 = isoparse(data)
+                from_date_type_0 = datetime.datetime.fromisoformat(data)
 
                 return from_date_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, datetime.datetime], data)
+            return cast(datetime.datetime | None | Unset, data)
 
         from_date = _parse_from_date(d.pop("fromDate", UNSET))
 

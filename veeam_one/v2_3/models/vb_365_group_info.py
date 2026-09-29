@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
@@ -15,70 +17,70 @@ T = TypeVar("T", bound="Vb365GroupInfo")
 class Vb365GroupInfo:
     """
     Attributes:
-        group_uid (Union[Unset, UUID]): UID assigned to a Microsoft 365 group.
-        group_uid_in_vb_365 (Union[None, Unset, str]): UID assigned to a Microsoft 365 group in Veeam Backup for
-            Microsoft 365.
-        name (Union[None, Unset, str]): Name of a Microsoft 365 group.
-        email (Union[None, Unset, str]): Email address of the Microsoft 365 group inbox.
-        type_ (Union[Unset, Vb365GroupType]):
-        location_type (Union[Unset, Vb365GroupLocationType]):
-        managed_by (Union[None, Unset, str]): Name of a user that manages a Microsoft 365 group.
-        site (Union[None, Unset, str]): URL of a Microsoft 365 organization SharePoint site.
-        vb_365_server_id (Union[Unset, int]): ID assigned to a Veeam Backup for Microsoft 365 server.
-        organization_uid (Union[Unset, UUID]): UID assigned to a Microsoft 365 organization.
-        organization_name (Union[None, Unset, str]): Name of a Microsoft 365 organization.
+        group_uid (UUID | Unset): UID assigned to a Microsoft 365 group.
+        group_uid_in_vb_365 (None | str | Unset): UID assigned to a Microsoft 365 group in Veeam Backup for Microsoft
+            365.
+        name (None | str | Unset): Name of a Microsoft 365 group.
+        email (None | str | Unset): Email address of the Microsoft 365 group inbox.
+        type_ (Vb365GroupType | Unset):
+        location_type (Vb365GroupLocationType | Unset):
+        managed_by (None | str | Unset): Name of a user that manages a Microsoft 365 group.
+        site (None | str | Unset): URL of a Microsoft 365 organization SharePoint site.
+        vb_365_server_id (int | Unset): ID assigned to a Veeam Backup for Microsoft 365 server.
+        organization_uid (UUID | Unset): UID assigned to a Microsoft 365 organization.
+        organization_name (None | str | Unset): Name of a Microsoft 365 organization.
     """
 
-    group_uid: Union[Unset, UUID] = UNSET
-    group_uid_in_vb_365: Union[None, Unset, str] = UNSET
-    name: Union[None, Unset, str] = UNSET
-    email: Union[None, Unset, str] = UNSET
-    type_: Union[Unset, Vb365GroupType] = UNSET
-    location_type: Union[Unset, Vb365GroupLocationType] = UNSET
-    managed_by: Union[None, Unset, str] = UNSET
-    site: Union[None, Unset, str] = UNSET
-    vb_365_server_id: Union[Unset, int] = UNSET
-    organization_uid: Union[Unset, UUID] = UNSET
-    organization_name: Union[None, Unset, str] = UNSET
+    group_uid: UUID | Unset = UNSET
+    group_uid_in_vb_365: None | str | Unset = UNSET
+    name: None | str | Unset = UNSET
+    email: None | str | Unset = UNSET
+    type_: Vb365GroupType | Unset = UNSET
+    location_type: Vb365GroupLocationType | Unset = UNSET
+    managed_by: None | str | Unset = UNSET
+    site: None | str | Unset = UNSET
+    vb_365_server_id: int | Unset = UNSET
+    organization_uid: UUID | Unset = UNSET
+    organization_name: None | str | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
-        group_uid: Union[Unset, str] = UNSET
+        group_uid: str | Unset = UNSET
         if not isinstance(self.group_uid, Unset):
             group_uid = str(self.group_uid)
 
-        group_uid_in_vb_365: Union[None, Unset, str]
+        group_uid_in_vb_365: None | str | Unset
         if isinstance(self.group_uid_in_vb_365, Unset):
             group_uid_in_vb_365 = UNSET
         else:
             group_uid_in_vb_365 = self.group_uid_in_vb_365
 
-        name: Union[None, Unset, str]
+        name: None | str | Unset
         if isinstance(self.name, Unset):
             name = UNSET
         else:
             name = self.name
 
-        email: Union[None, Unset, str]
+        email: None | str | Unset
         if isinstance(self.email, Unset):
             email = UNSET
         else:
             email = self.email
 
-        type_: Union[Unset, str] = UNSET
+        type_: str | Unset = UNSET
         if not isinstance(self.type_, Unset):
             type_ = self.type_.value
 
-        location_type: Union[Unset, str] = UNSET
+        location_type: str | Unset = UNSET
         if not isinstance(self.location_type, Unset):
             location_type = self.location_type.value
 
-        managed_by: Union[None, Unset, str]
+        managed_by: None | str | Unset
         if isinstance(self.managed_by, Unset):
             managed_by = UNSET
         else:
             managed_by = self.managed_by
 
-        site: Union[None, Unset, str]
+        site: None | str | Unset
         if isinstance(self.site, Unset):
             site = UNSET
         else:
@@ -86,11 +88,11 @@ class Vb365GroupInfo:
 
         vb_365_server_id = self.vb_365_server_id
 
-        organization_uid: Union[Unset, str] = UNSET
+        organization_uid: str | Unset = UNSET
         if not isinstance(self.organization_uid, Unset):
             organization_uid = str(self.organization_uid)
 
-        organization_name: Union[None, Unset, str]
+        organization_name: None | str | Unset
         if isinstance(self.organization_name, Unset):
             organization_name = UNSET
         else:
@@ -128,86 +130,86 @@ class Vb365GroupInfo:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
         _group_uid = d.pop("groupUid", UNSET)
-        group_uid: Union[Unset, UUID]
+        group_uid: UUID | Unset
         if isinstance(_group_uid, Unset):
             group_uid = UNSET
         else:
             group_uid = UUID(_group_uid)
 
-        def _parse_group_uid_in_vb_365(data: object) -> Union[None, Unset, str]:
+        def _parse_group_uid_in_vb_365(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         group_uid_in_vb_365 = _parse_group_uid_in_vb_365(d.pop("groupUidInVb365", UNSET))
 
-        def _parse_name(data: object) -> Union[None, Unset, str]:
+        def _parse_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         name = _parse_name(d.pop("name", UNSET))
 
-        def _parse_email(data: object) -> Union[None, Unset, str]:
+        def _parse_email(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         email = _parse_email(d.pop("email", UNSET))
 
         _type_ = d.pop("type", UNSET)
-        type_: Union[Unset, Vb365GroupType]
+        type_: Vb365GroupType | Unset
         if isinstance(_type_, Unset):
             type_ = UNSET
         else:
             type_ = Vb365GroupType(_type_)
 
         _location_type = d.pop("locationType", UNSET)
-        location_type: Union[Unset, Vb365GroupLocationType]
+        location_type: Vb365GroupLocationType | Unset
         if isinstance(_location_type, Unset):
             location_type = UNSET
         else:
             location_type = Vb365GroupLocationType(_location_type)
 
-        def _parse_managed_by(data: object) -> Union[None, Unset, str]:
+        def _parse_managed_by(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         managed_by = _parse_managed_by(d.pop("managedBy", UNSET))
 
-        def _parse_site(data: object) -> Union[None, Unset, str]:
+        def _parse_site(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         site = _parse_site(d.pop("site", UNSET))
 
         vb_365_server_id = d.pop("vb365ServerId", UNSET)
 
         _organization_uid = d.pop("organizationUid", UNSET)
-        organization_uid: Union[Unset, UUID]
+        organization_uid: UUID | Unset
         if isinstance(_organization_uid, Unset):
             organization_uid = UNSET
         else:
             organization_uid = UUID(_organization_uid)
 
-        def _parse_organization_name(data: object) -> Union[None, Unset, str]:
+        def _parse_organization_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         organization_name = _parse_organization_name(d.pop("organizationName", UNSET))
 

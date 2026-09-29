@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
@@ -14,33 +16,33 @@ T = TypeVar("T", bound="ExternalRepositoryInfo")
 class ExternalRepositoryInfo:
     """
     Attributes:
-        external_repository_id (Union[Unset, int]): ID assigned to an external repository.
-        external_repository_uid_in_vbr (Union[None, UUID, Unset]): UID assigned to an external repository in Veeam
-            Backup & Replication.
-        backup_server_id (Union[None, Unset, int]): ID assigned to a Veeam Backup & Replication server.
-        name (Union[None, Unset, str]): Name of an external repository.
-        is_decryption_enabled (Union[None, Unset, bool]): Indicates whether backups located on an external repository
-            are decrypted.
-        region (Union[None, Unset, str]): Location type of an external repository.
-        bucket (Union[None, Unset, str]): Name of a bucket or container.
-        type_ (Union[Unset, ExternalRepositoryType]):
-        description (Union[None, Unset, str]): Description of an external repository.
+        external_repository_id (int | Unset): ID assigned to an external repository.
+        external_repository_uid_in_vbr (None | Unset | UUID): UID assigned to an external repository in Veeam Backup &
+            Replication.
+        backup_server_id (int | None | Unset): ID assigned to a Veeam Backup & Replication server.
+        name (None | str | Unset): Name of an external repository.
+        is_decryption_enabled (bool | None | Unset): Indicates whether backups located on an external repository are
+            decrypted.
+        region (None | str | Unset): Location type of an external repository.
+        bucket (None | str | Unset): Name of a bucket or container.
+        type_ (ExternalRepositoryType | Unset):
+        description (None | str | Unset): Description of an external repository.
     """
 
-    external_repository_id: Union[Unset, int] = UNSET
-    external_repository_uid_in_vbr: Union[None, UUID, Unset] = UNSET
-    backup_server_id: Union[None, Unset, int] = UNSET
-    name: Union[None, Unset, str] = UNSET
-    is_decryption_enabled: Union[None, Unset, bool] = UNSET
-    region: Union[None, Unset, str] = UNSET
-    bucket: Union[None, Unset, str] = UNSET
-    type_: Union[Unset, ExternalRepositoryType] = UNSET
-    description: Union[None, Unset, str] = UNSET
+    external_repository_id: int | Unset = UNSET
+    external_repository_uid_in_vbr: None | Unset | UUID = UNSET
+    backup_server_id: int | None | Unset = UNSET
+    name: None | str | Unset = UNSET
+    is_decryption_enabled: bool | None | Unset = UNSET
+    region: None | str | Unset = UNSET
+    bucket: None | str | Unset = UNSET
+    type_: ExternalRepositoryType | Unset = UNSET
+    description: None | str | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
         external_repository_id = self.external_repository_id
 
-        external_repository_uid_in_vbr: Union[None, Unset, str]
+        external_repository_uid_in_vbr: None | str | Unset
         if isinstance(self.external_repository_uid_in_vbr, Unset):
             external_repository_uid_in_vbr = UNSET
         elif isinstance(self.external_repository_uid_in_vbr, UUID):
@@ -48,41 +50,41 @@ class ExternalRepositoryInfo:
         else:
             external_repository_uid_in_vbr = self.external_repository_uid_in_vbr
 
-        backup_server_id: Union[None, Unset, int]
+        backup_server_id: int | None | Unset
         if isinstance(self.backup_server_id, Unset):
             backup_server_id = UNSET
         else:
             backup_server_id = self.backup_server_id
 
-        name: Union[None, Unset, str]
+        name: None | str | Unset
         if isinstance(self.name, Unset):
             name = UNSET
         else:
             name = self.name
 
-        is_decryption_enabled: Union[None, Unset, bool]
+        is_decryption_enabled: bool | None | Unset
         if isinstance(self.is_decryption_enabled, Unset):
             is_decryption_enabled = UNSET
         else:
             is_decryption_enabled = self.is_decryption_enabled
 
-        region: Union[None, Unset, str]
+        region: None | str | Unset
         if isinstance(self.region, Unset):
             region = UNSET
         else:
             region = self.region
 
-        bucket: Union[None, Unset, str]
+        bucket: None | str | Unset
         if isinstance(self.bucket, Unset):
             bucket = UNSET
         else:
             bucket = self.bucket
 
-        type_: Union[Unset, str] = UNSET
+        type_: str | Unset = UNSET
         if not isinstance(self.type_, Unset):
             type_ = self.type_.value
 
-        description: Union[None, Unset, str]
+        description: None | str | Unset
         if isinstance(self.description, Unset):
             description = UNSET
         else:
@@ -117,7 +119,7 @@ class ExternalRepositoryInfo:
         d = dict(src_dict)
         external_repository_id = d.pop("externalRepositoryId", UNSET)
 
-        def _parse_external_repository_uid_in_vbr(data: object) -> Union[None, UUID, Unset]:
+        def _parse_external_repository_uid_in_vbr(data: object) -> None | Unset | UUID:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -128,72 +130,72 @@ class ExternalRepositoryInfo:
                 external_repository_uid_in_vbr_type_0 = UUID(data)
 
                 return external_repository_uid_in_vbr_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, UUID, Unset], data)
+            return cast(None | Unset | UUID, data)
 
         external_repository_uid_in_vbr = _parse_external_repository_uid_in_vbr(
             d.pop("externalRepositoryUidInVbr", UNSET)
         )
 
-        def _parse_backup_server_id(data: object) -> Union[None, Unset, int]:
+        def _parse_backup_server_id(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         backup_server_id = _parse_backup_server_id(d.pop("backupServerId", UNSET))
 
-        def _parse_name(data: object) -> Union[None, Unset, str]:
+        def _parse_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         name = _parse_name(d.pop("name", UNSET))
 
-        def _parse_is_decryption_enabled(data: object) -> Union[None, Unset, bool]:
+        def _parse_is_decryption_enabled(data: object) -> bool | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, bool], data)
+            return cast(bool | None | Unset, data)
 
         is_decryption_enabled = _parse_is_decryption_enabled(d.pop("isDecryptionEnabled", UNSET))
 
-        def _parse_region(data: object) -> Union[None, Unset, str]:
+        def _parse_region(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         region = _parse_region(d.pop("region", UNSET))
 
-        def _parse_bucket(data: object) -> Union[None, Unset, str]:
+        def _parse_bucket(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         bucket = _parse_bucket(d.pop("bucket", UNSET))
 
         _type_ = d.pop("type", UNSET)
-        type_: Union[Unset, ExternalRepositoryType]
+        type_: ExternalRepositoryType | Unset
         if isinstance(_type_, Unset):
             type_ = UNSET
         else:
             type_ = ExternalRepositoryType(_type_)
 
-        def _parse_description(data: object) -> Union[None, Unset, str]:
+        def _parse_description(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         description = _parse_description(d.pop("description", UNSET))
 

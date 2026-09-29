@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class TransactionLogBackupParentJobType(str, Enum):
+class TransactionLogBackupParentJobType(StrEnum):
     AGENTBACKUP = "AgentBackup"
     AGENTPOLICY = "AgentPolicy"
     UNKNOWN = "Unknown"

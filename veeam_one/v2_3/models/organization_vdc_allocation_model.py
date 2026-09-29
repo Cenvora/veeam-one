@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class OrganizationVdcAllocationModel(str, Enum):
+class OrganizationVdcAllocationModel(StrEnum):
     ALLOCATIONPOOL = "AllocationPool"
     FLEX = "Flex"
     PAYASYOUGO = "PayAsYouGo"

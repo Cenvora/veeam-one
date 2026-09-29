@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class Vb365JobStatus(str, Enum):
+class Vb365JobStatus(StrEnum):
     DISCONNECTED = "Disconnected"
     FAILED = "Failed"
     NOTCONFIGURED = "NotConfigured"

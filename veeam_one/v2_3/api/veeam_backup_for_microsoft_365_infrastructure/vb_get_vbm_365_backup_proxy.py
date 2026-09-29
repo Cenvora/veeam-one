@@ -1,5 +1,6 @@
 from http import HTTPStatus
-from typing import Any, Optional, Union
+from typing import Any
+from urllib.parse import quote
 
 import httpx
 
@@ -13,17 +14,20 @@ from ...types import Response
 def _get_kwargs(
     backup_proxy_id: int,
 ) -> dict[str, Any]:
+
     _kwargs: dict[str, Any] = {
         "method": "get",
-        "url": f"/api/v2.3/vb365/backupProxies/{backup_proxy_id}",
+        "url": "/api/v2.3/vb365/backupProxies/{backup_proxy_id}".format(
+            backup_proxy_id=quote(str(backup_proxy_id), safe=""),
+        ),
     }
 
     return _kwargs
 
 
 def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[ProblemDetails, Vb365BackupProxyInfo]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> ProblemDetails | Vb365BackupProxyInfo | None:
     if response.status_code == 200:
         response_200 = Vb365BackupProxyInfo.from_dict(response.json())
 
@@ -41,8 +45,8 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[ProblemDetails, Vb365BackupProxyInfo]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[ProblemDetails | Vb365BackupProxyInfo]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -54,8 +58,8 @@ def _build_response(
 def sync_detailed(
     backup_proxy_id: int,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[ProblemDetails, Vb365BackupProxyInfo]]:
+    client: AuthenticatedClient | Client,
+) -> Response[ProblemDetails | Vb365BackupProxyInfo]:
     """Get Veeam Backup for Microsoft 365 Backup Proxy Server
 
      Returns a resource representation of a Veeam Backup for Microsoft 365 backup proxy server with the
@@ -69,7 +73,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[ProblemDetails, Vb365BackupProxyInfo]]
+        Response[ProblemDetails | Vb365BackupProxyInfo]
     """
 
     kwargs = _get_kwargs(
@@ -86,8 +90,8 @@ def sync_detailed(
 def sync(
     backup_proxy_id: int,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[ProblemDetails, Vb365BackupProxyInfo]]:
+    client: AuthenticatedClient | Client,
+) -> ProblemDetails | Vb365BackupProxyInfo | None:
     """Get Veeam Backup for Microsoft 365 Backup Proxy Server
 
      Returns a resource representation of a Veeam Backup for Microsoft 365 backup proxy server with the
@@ -101,7 +105,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[ProblemDetails, Vb365BackupProxyInfo]
+        ProblemDetails | Vb365BackupProxyInfo
     """
 
     return sync_detailed(
@@ -113,8 +117,8 @@ def sync(
 async def asyncio_detailed(
     backup_proxy_id: int,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[ProblemDetails, Vb365BackupProxyInfo]]:
+    client: AuthenticatedClient | Client,
+) -> Response[ProblemDetails | Vb365BackupProxyInfo]:
     """Get Veeam Backup for Microsoft 365 Backup Proxy Server
 
      Returns a resource representation of a Veeam Backup for Microsoft 365 backup proxy server with the
@@ -128,7 +132,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[ProblemDetails, Vb365BackupProxyInfo]]
+        Response[ProblemDetails | Vb365BackupProxyInfo]
     """
 
     kwargs = _get_kwargs(
@@ -143,8 +147,8 @@ async def asyncio_detailed(
 async def asyncio(
     backup_proxy_id: int,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[ProblemDetails, Vb365BackupProxyInfo]]:
+    client: AuthenticatedClient | Client,
+) -> ProblemDetails | Vb365BackupProxyInfo | None:
     """Get Veeam Backup for Microsoft 365 Backup Proxy Server
 
      Returns a resource representation of a Veeam Backup for Microsoft 365 backup proxy server with the
@@ -158,7 +162,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[ProblemDetails, Vb365BackupProxyInfo]
+        ProblemDetails | Vb365BackupProxyInfo
     """
 
     return (

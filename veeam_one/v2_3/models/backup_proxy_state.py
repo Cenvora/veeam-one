@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class BackupProxyState(str, Enum):
+class BackupProxyState(StrEnum):
     DISCONNECTED = "Disconnected"
     INACCESSIBLE = "Inaccessible"
     OK = "Ok"

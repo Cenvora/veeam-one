@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
@@ -13,19 +15,19 @@ T = TypeVar("T", bound="ProtectionGroup")
 class ProtectionGroup:
     """
     Attributes:
-        group_uid (Union[Unset, UUID]): UID assigned to a protection group in Veeam Backup & Replication.
-        group_name (Union[None, Unset, str]): Name of a protection group.
+        group_uid (UUID | Unset): UID assigned to a protection group in Veeam Backup & Replication.
+        group_name (None | str | Unset): Name of a protection group.
     """
 
-    group_uid: Union[Unset, UUID] = UNSET
-    group_name: Union[None, Unset, str] = UNSET
+    group_uid: UUID | Unset = UNSET
+    group_name: None | str | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
-        group_uid: Union[Unset, str] = UNSET
+        group_uid: str | Unset = UNSET
         if not isinstance(self.group_uid, Unset):
             group_uid = str(self.group_uid)
 
-        group_name: Union[None, Unset, str]
+        group_name: None | str | Unset
         if isinstance(self.group_name, Unset):
             group_name = UNSET
         else:
@@ -45,18 +47,18 @@ class ProtectionGroup:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
         _group_uid = d.pop("groupUid", UNSET)
-        group_uid: Union[Unset, UUID]
+        group_uid: UUID | Unset
         if isinstance(_group_uid, Unset):
             group_uid = UNSET
         else:
             group_uid = UUID(_group_uid)
 
-        def _parse_group_name(data: object) -> Union[None, Unset, str]:
+        def _parse_group_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         group_name = _parse_group_name(d.pop("groupName", UNSET))
 

@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class CloudVmInstanceType(str, Enum):
+class CloudVmInstanceType(StrEnum):
     COMPUTEENGINE = "ComputeEngine"
     EC2 = "EC2"
     UNKNOWN = "Unknown"

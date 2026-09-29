@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
@@ -14,44 +16,44 @@ T = TypeVar("T", bound="CdpPolicyInfo")
 class CdpPolicyInfo:
     """
     Attributes:
-        cdp_policy_uid (Union[None, UUID, Unset]): UID assigned to a job in Veeam Backup & Replication.
-        backup_server_id (Union[Unset, int]): ID assigned to a Veeam Backup & Replication server.
-        status (Union[Unset, CdpPolicyStatus]):
-        name (Union[None, Unset, str]): Name of a job.
-        description (Union[None, Unset, str]): Job description.
-        rpo_sec (Union[Unset, int]): Recovery point objective, in seconds.
-        short_term_retention_sec (Union[Unset, int]): Short-term retention, in seconds.
-        long_term_retention_sec (Union[Unset, int]): Long-term retention, in seconds.
-        keep_restore_points_in_days (Union[Unset, int]): Period for which the long-term restore points must be retained,
-            in days.
-        cluster_reference (Union[None, Unset, str]): Cluster where replicas must be stored.
-        host_reference (Union[None, Unset, str]): Host where replicas must be stored.
-        replica_name_suffix (Union[None, Unset, str]): Suffix that is added to names of replicas.
-        source_proxy_auto_detect (Union[Unset, bool]): Indicates whether Veeam Backup & Replication selects source
-            VMware CDP proxy automatically.
-        target_proxy_auto_detect (Union[Unset, bool]): Indicates whether Veeam Backup & Replication selects target
-            VMware CDP proxy automatically.
-        is_application_aware_enabled (Union[Unset, bool]): Indicates whether application-aware processing is enabled.
+        cdp_policy_uid (None | Unset | UUID): UID assigned to a job in Veeam Backup & Replication.
+        backup_server_id (int | Unset): ID assigned to a Veeam Backup & Replication server.
+        status (CdpPolicyStatus | Unset):
+        name (None | str | Unset): Name of a job.
+        description (None | str | Unset): Job description.
+        rpo_sec (int | Unset): Recovery point objective, in seconds.
+        short_term_retention_sec (int | Unset): Short-term retention, in seconds.
+        long_term_retention_sec (int | Unset): Long-term retention, in seconds.
+        keep_restore_points_in_days (int | Unset): Period for which the long-term restore points must be retained, in
+            days.
+        cluster_reference (None | str | Unset): Cluster where replicas must be stored.
+        host_reference (None | str | Unset): Host where replicas must be stored.
+        replica_name_suffix (None | str | Unset): Suffix that is added to names of replicas.
+        source_proxy_auto_detect (bool | Unset): Indicates whether Veeam Backup & Replication selects source VMware CDP
+            proxy automatically.
+        target_proxy_auto_detect (bool | Unset): Indicates whether Veeam Backup & Replication selects target VMware CDP
+            proxy automatically.
+        is_application_aware_enabled (bool | Unset): Indicates whether application-aware processing is enabled.
     """
 
-    cdp_policy_uid: Union[None, UUID, Unset] = UNSET
-    backup_server_id: Union[Unset, int] = UNSET
-    status: Union[Unset, CdpPolicyStatus] = UNSET
-    name: Union[None, Unset, str] = UNSET
-    description: Union[None, Unset, str] = UNSET
-    rpo_sec: Union[Unset, int] = UNSET
-    short_term_retention_sec: Union[Unset, int] = UNSET
-    long_term_retention_sec: Union[Unset, int] = UNSET
-    keep_restore_points_in_days: Union[Unset, int] = UNSET
-    cluster_reference: Union[None, Unset, str] = UNSET
-    host_reference: Union[None, Unset, str] = UNSET
-    replica_name_suffix: Union[None, Unset, str] = UNSET
-    source_proxy_auto_detect: Union[Unset, bool] = UNSET
-    target_proxy_auto_detect: Union[Unset, bool] = UNSET
-    is_application_aware_enabled: Union[Unset, bool] = UNSET
+    cdp_policy_uid: None | Unset | UUID = UNSET
+    backup_server_id: int | Unset = UNSET
+    status: CdpPolicyStatus | Unset = UNSET
+    name: None | str | Unset = UNSET
+    description: None | str | Unset = UNSET
+    rpo_sec: int | Unset = UNSET
+    short_term_retention_sec: int | Unset = UNSET
+    long_term_retention_sec: int | Unset = UNSET
+    keep_restore_points_in_days: int | Unset = UNSET
+    cluster_reference: None | str | Unset = UNSET
+    host_reference: None | str | Unset = UNSET
+    replica_name_suffix: None | str | Unset = UNSET
+    source_proxy_auto_detect: bool | Unset = UNSET
+    target_proxy_auto_detect: bool | Unset = UNSET
+    is_application_aware_enabled: bool | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
-        cdp_policy_uid: Union[None, Unset, str]
+        cdp_policy_uid: None | str | Unset
         if isinstance(self.cdp_policy_uid, Unset):
             cdp_policy_uid = UNSET
         elif isinstance(self.cdp_policy_uid, UUID):
@@ -61,17 +63,17 @@ class CdpPolicyInfo:
 
         backup_server_id = self.backup_server_id
 
-        status: Union[Unset, str] = UNSET
+        status: str | Unset = UNSET
         if not isinstance(self.status, Unset):
             status = self.status.value
 
-        name: Union[None, Unset, str]
+        name: None | str | Unset
         if isinstance(self.name, Unset):
             name = UNSET
         else:
             name = self.name
 
-        description: Union[None, Unset, str]
+        description: None | str | Unset
         if isinstance(self.description, Unset):
             description = UNSET
         else:
@@ -85,19 +87,19 @@ class CdpPolicyInfo:
 
         keep_restore_points_in_days = self.keep_restore_points_in_days
 
-        cluster_reference: Union[None, Unset, str]
+        cluster_reference: None | str | Unset
         if isinstance(self.cluster_reference, Unset):
             cluster_reference = UNSET
         else:
             cluster_reference = self.cluster_reference
 
-        host_reference: Union[None, Unset, str]
+        host_reference: None | str | Unset
         if isinstance(self.host_reference, Unset):
             host_reference = UNSET
         else:
             host_reference = self.host_reference
 
-        replica_name_suffix: Union[None, Unset, str]
+        replica_name_suffix: None | str | Unset
         if isinstance(self.replica_name_suffix, Unset):
             replica_name_suffix = UNSET
         else:
@@ -149,7 +151,7 @@ class CdpPolicyInfo:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
 
-        def _parse_cdp_policy_uid(data: object) -> Union[None, UUID, Unset]:
+        def _parse_cdp_policy_uid(data: object) -> None | Unset | UUID:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -160,36 +162,36 @@ class CdpPolicyInfo:
                 cdp_policy_uid_type_0 = UUID(data)
 
                 return cdp_policy_uid_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, UUID, Unset], data)
+            return cast(None | Unset | UUID, data)
 
         cdp_policy_uid = _parse_cdp_policy_uid(d.pop("cdpPolicyUid", UNSET))
 
         backup_server_id = d.pop("backupServerId", UNSET)
 
         _status = d.pop("status", UNSET)
-        status: Union[Unset, CdpPolicyStatus]
+        status: CdpPolicyStatus | Unset
         if isinstance(_status, Unset):
             status = UNSET
         else:
             status = CdpPolicyStatus(_status)
 
-        def _parse_name(data: object) -> Union[None, Unset, str]:
+        def _parse_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         name = _parse_name(d.pop("name", UNSET))
 
-        def _parse_description(data: object) -> Union[None, Unset, str]:
+        def _parse_description(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         description = _parse_description(d.pop("description", UNSET))
 
@@ -201,30 +203,30 @@ class CdpPolicyInfo:
 
         keep_restore_points_in_days = d.pop("keepRestorePointsInDays", UNSET)
 
-        def _parse_cluster_reference(data: object) -> Union[None, Unset, str]:
+        def _parse_cluster_reference(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         cluster_reference = _parse_cluster_reference(d.pop("clusterReference", UNSET))
 
-        def _parse_host_reference(data: object) -> Union[None, Unset, str]:
+        def _parse_host_reference(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         host_reference = _parse_host_reference(d.pop("hostReference", UNSET))
 
-        def _parse_replica_name_suffix(data: object) -> Union[None, Unset, str]:
+        def _parse_replica_name_suffix(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         replica_name_suffix = _parse_replica_name_suffix(d.pop("replicaNameSuffix", UNSET))
 

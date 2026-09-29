@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, Union, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 
@@ -16,15 +18,15 @@ T = TypeVar("T", bound="ProtectedObjectStorageInfoPage")
 class ProtectedObjectStorageInfoPage:
     """
     Attributes:
-        items (Union[None, Unset, list['ProtectedObjectStorageInfo']]):
-        total_count (Union[Unset, int]):
+        items (list[ProtectedObjectStorageInfo] | None | Unset):
+        total_count (int | Unset):
     """
 
-    items: Union[None, Unset, list["ProtectedObjectStorageInfo"]] = UNSET
-    total_count: Union[Unset, int] = UNSET
+    items: list[ProtectedObjectStorageInfo] | None | Unset = UNSET
+    total_count: int | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
-        items: Union[None, Unset, list[dict[str, Any]]]
+        items: list[dict[str, Any]] | None | Unset
         if isinstance(self.items, Unset):
             items = UNSET
         elif isinstance(self.items, list):
@@ -50,11 +52,11 @@ class ProtectedObjectStorageInfoPage:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.protected_object_storage_info import ProtectedObjectStorageInfo
+        from ..models.protected_object_storage_info import ProtectedObjectStorageInfo  # noqa: PLC0415
 
         d = dict(src_dict)
 
-        def _parse_items(data: object) -> Union[None, Unset, list["ProtectedObjectStorageInfo"]]:
+        def _parse_items(data: object) -> list[ProtectedObjectStorageInfo] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -70,9 +72,9 @@ class ProtectedObjectStorageInfoPage:
                     items_type_0.append(items_type_0_item)
 
                 return items_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, list["ProtectedObjectStorageInfo"]], data)
+            return cast(list[ProtectedObjectStorageInfo] | None | Unset, data)
 
         items = _parse_items(d.pop("items", UNSET))
 

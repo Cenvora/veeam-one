@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class BackupServerConnectionState(str, Enum):
+class BackupServerConnectionState(StrEnum):
     CONNECTED = "Connected"
     NOTRESPONDING = "NotResponding"
     UNKNOWN = "Unknown"

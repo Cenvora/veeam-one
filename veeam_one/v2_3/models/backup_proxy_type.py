@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class BackupProxyType(str, Enum):
+class BackupProxyType(StrEnum):
     CDP = "Cdp"
     GENERALPURPOSE = "GeneralPurpose"
     HYPERV = "HyperV"

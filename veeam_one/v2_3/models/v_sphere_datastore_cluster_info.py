@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 
@@ -15,64 +17,62 @@ T = TypeVar("T", bound="VSphereDatastoreClusterInfo")
 class VSphereDatastoreClusterInfo:
     """
     Attributes:
-        datastore_cluster_id (Union[Unset, int]): ID assigned to a datastore cluster.
-        mo_ref (Union[None, Unset, str]): MoRef ID assigned to a datastore cluster in VMware vSphere.
-        name (Union[None, Unset, str]): Name of a datastore cluster.
-        parent_id (Union[None, Unset, int]): ID assigned to a parent object.
-        parent_type (Union[None, Unset, VSphereObjectType]): Type of a parent object.
-        capacity_bytes (Union[None, Unset, int]): Total capacity of a datastore cluster, in bytes.
-        free_space_bytes (Union[None, Unset, int]): Amount of available free space on a datastore cluster, in bytes.
-        largest_datastore_free_space_bytes (Union[None, Unset, int]): Amount of available free space on the largest
-            datastore in a cluster, in bytes.
-        datastores_type (Union[Unset, VSphereDatastoreType]):
-        io_metrics_enabled (Union[None, Unset, bool]): Indicates whether the IO Metric function is enabled for a
-            datastore cluster.
-        storage_drs_enabled (Union[None, Unset, bool]): Indicates whether Storage DRS is enabled for a datastore
+        datastore_cluster_id (int | Unset): ID assigned to a datastore cluster.
+        mo_ref (None | str | Unset): MoRef ID assigned to a datastore cluster in VMware vSphere.
+        name (None | str | Unset): Name of a datastore cluster.
+        parent_id (int | None | Unset): ID assigned to a parent object.
+        parent_type (None | Unset | VSphereObjectType): Type of a parent object.
+        capacity_bytes (int | None | Unset): Total capacity of a datastore cluster, in bytes.
+        free_space_bytes (int | None | Unset): Amount of available free space on a datastore cluster, in bytes.
+        largest_datastore_free_space_bytes (int | None | Unset): Amount of available free space on the largest datastore
+            in a cluster, in bytes.
+        datastores_type (VSphereDatastoreType | Unset):
+        io_metrics_enabled (bool | None | Unset): Indicates whether the IO Metric function is enabled for a datastore
             cluster.
-        drs_automation_level (Union[Unset, VSphereDrsAutomationLevel]):
-        used_space_threshold_percentage (Union[None, Unset, int]): Used space threshold configured for a datastore
-            cluster.
-        io_latency_threshold_ms (Union[None, Unset, int]): IO latency threshold configured for a datastore cluster, in
+        storage_drs_enabled (bool | None | Unset): Indicates whether Storage DRS is enabled for a datastore cluster.
+        drs_automation_level (VSphereDrsAutomationLevel | Unset):
+        used_space_threshold_percentage (int | None | Unset): Used space threshold configured for a datastore cluster.
+        io_latency_threshold_ms (int | None | Unset): IO latency threshold configured for a datastore cluster, in
             milliseconds.
     """
 
-    datastore_cluster_id: Union[Unset, int] = UNSET
-    mo_ref: Union[None, Unset, str] = UNSET
-    name: Union[None, Unset, str] = UNSET
-    parent_id: Union[None, Unset, int] = UNSET
-    parent_type: Union[None, Unset, VSphereObjectType] = UNSET
-    capacity_bytes: Union[None, Unset, int] = UNSET
-    free_space_bytes: Union[None, Unset, int] = UNSET
-    largest_datastore_free_space_bytes: Union[None, Unset, int] = UNSET
-    datastores_type: Union[Unset, VSphereDatastoreType] = UNSET
-    io_metrics_enabled: Union[None, Unset, bool] = UNSET
-    storage_drs_enabled: Union[None, Unset, bool] = UNSET
-    drs_automation_level: Union[Unset, VSphereDrsAutomationLevel] = UNSET
-    used_space_threshold_percentage: Union[None, Unset, int] = UNSET
-    io_latency_threshold_ms: Union[None, Unset, int] = UNSET
+    datastore_cluster_id: int | Unset = UNSET
+    mo_ref: None | str | Unset = UNSET
+    name: None | str | Unset = UNSET
+    parent_id: int | None | Unset = UNSET
+    parent_type: None | Unset | VSphereObjectType = UNSET
+    capacity_bytes: int | None | Unset = UNSET
+    free_space_bytes: int | None | Unset = UNSET
+    largest_datastore_free_space_bytes: int | None | Unset = UNSET
+    datastores_type: VSphereDatastoreType | Unset = UNSET
+    io_metrics_enabled: bool | None | Unset = UNSET
+    storage_drs_enabled: bool | None | Unset = UNSET
+    drs_automation_level: VSphereDrsAutomationLevel | Unset = UNSET
+    used_space_threshold_percentage: int | None | Unset = UNSET
+    io_latency_threshold_ms: int | None | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
         datastore_cluster_id = self.datastore_cluster_id
 
-        mo_ref: Union[None, Unset, str]
+        mo_ref: None | str | Unset
         if isinstance(self.mo_ref, Unset):
             mo_ref = UNSET
         else:
             mo_ref = self.mo_ref
 
-        name: Union[None, Unset, str]
+        name: None | str | Unset
         if isinstance(self.name, Unset):
             name = UNSET
         else:
             name = self.name
 
-        parent_id: Union[None, Unset, int]
+        parent_id: int | None | Unset
         if isinstance(self.parent_id, Unset):
             parent_id = UNSET
         else:
             parent_id = self.parent_id
 
-        parent_type: Union[None, Unset, str]
+        parent_type: None | str | Unset
         if isinstance(self.parent_type, Unset):
             parent_type = UNSET
         elif isinstance(self.parent_type, VSphereObjectType):
@@ -80,51 +80,51 @@ class VSphereDatastoreClusterInfo:
         else:
             parent_type = self.parent_type
 
-        capacity_bytes: Union[None, Unset, int]
+        capacity_bytes: int | None | Unset
         if isinstance(self.capacity_bytes, Unset):
             capacity_bytes = UNSET
         else:
             capacity_bytes = self.capacity_bytes
 
-        free_space_bytes: Union[None, Unset, int]
+        free_space_bytes: int | None | Unset
         if isinstance(self.free_space_bytes, Unset):
             free_space_bytes = UNSET
         else:
             free_space_bytes = self.free_space_bytes
 
-        largest_datastore_free_space_bytes: Union[None, Unset, int]
+        largest_datastore_free_space_bytes: int | None | Unset
         if isinstance(self.largest_datastore_free_space_bytes, Unset):
             largest_datastore_free_space_bytes = UNSET
         else:
             largest_datastore_free_space_bytes = self.largest_datastore_free_space_bytes
 
-        datastores_type: Union[Unset, str] = UNSET
+        datastores_type: str | Unset = UNSET
         if not isinstance(self.datastores_type, Unset):
             datastores_type = self.datastores_type.value
 
-        io_metrics_enabled: Union[None, Unset, bool]
+        io_metrics_enabled: bool | None | Unset
         if isinstance(self.io_metrics_enabled, Unset):
             io_metrics_enabled = UNSET
         else:
             io_metrics_enabled = self.io_metrics_enabled
 
-        storage_drs_enabled: Union[None, Unset, bool]
+        storage_drs_enabled: bool | None | Unset
         if isinstance(self.storage_drs_enabled, Unset):
             storage_drs_enabled = UNSET
         else:
             storage_drs_enabled = self.storage_drs_enabled
 
-        drs_automation_level: Union[Unset, str] = UNSET
+        drs_automation_level: str | Unset = UNSET
         if not isinstance(self.drs_automation_level, Unset):
             drs_automation_level = self.drs_automation_level.value
 
-        used_space_threshold_percentage: Union[None, Unset, int]
+        used_space_threshold_percentage: int | None | Unset
         if isinstance(self.used_space_threshold_percentage, Unset):
             used_space_threshold_percentage = UNSET
         else:
             used_space_threshold_percentage = self.used_space_threshold_percentage
 
-        io_latency_threshold_ms: Union[None, Unset, int]
+        io_latency_threshold_ms: int | None | Unset
         if isinstance(self.io_latency_threshold_ms, Unset):
             io_latency_threshold_ms = UNSET
         else:
@@ -169,34 +169,34 @@ class VSphereDatastoreClusterInfo:
         d = dict(src_dict)
         datastore_cluster_id = d.pop("datastoreClusterId", UNSET)
 
-        def _parse_mo_ref(data: object) -> Union[None, Unset, str]:
+        def _parse_mo_ref(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         mo_ref = _parse_mo_ref(d.pop("moRef", UNSET))
 
-        def _parse_name(data: object) -> Union[None, Unset, str]:
+        def _parse_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         name = _parse_name(d.pop("name", UNSET))
 
-        def _parse_parent_id(data: object) -> Union[None, Unset, int]:
+        def _parse_parent_id(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         parent_id = _parse_parent_id(d.pop("parentId", UNSET))
 
-        def _parse_parent_type(data: object) -> Union[None, Unset, VSphereObjectType]:
+        def _parse_parent_type(data: object) -> None | Unset | VSphereObjectType:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -207,90 +207,90 @@ class VSphereDatastoreClusterInfo:
                 parent_type_type_1 = VSphereObjectType(data)
 
                 return parent_type_type_1
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, VSphereObjectType], data)
+            return cast(None | Unset | VSphereObjectType, data)
 
         parent_type = _parse_parent_type(d.pop("parentType", UNSET))
 
-        def _parse_capacity_bytes(data: object) -> Union[None, Unset, int]:
+        def _parse_capacity_bytes(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         capacity_bytes = _parse_capacity_bytes(d.pop("capacityBytes", UNSET))
 
-        def _parse_free_space_bytes(data: object) -> Union[None, Unset, int]:
+        def _parse_free_space_bytes(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         free_space_bytes = _parse_free_space_bytes(d.pop("freeSpaceBytes", UNSET))
 
-        def _parse_largest_datastore_free_space_bytes(data: object) -> Union[None, Unset, int]:
+        def _parse_largest_datastore_free_space_bytes(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         largest_datastore_free_space_bytes = _parse_largest_datastore_free_space_bytes(
             d.pop("largestDatastoreFreeSpaceBytes", UNSET)
         )
 
         _datastores_type = d.pop("datastoresType", UNSET)
-        datastores_type: Union[Unset, VSphereDatastoreType]
+        datastores_type: VSphereDatastoreType | Unset
         if isinstance(_datastores_type, Unset):
             datastores_type = UNSET
         else:
             datastores_type = VSphereDatastoreType(_datastores_type)
 
-        def _parse_io_metrics_enabled(data: object) -> Union[None, Unset, bool]:
+        def _parse_io_metrics_enabled(data: object) -> bool | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, bool], data)
+            return cast(bool | None | Unset, data)
 
         io_metrics_enabled = _parse_io_metrics_enabled(d.pop("ioMetricsEnabled", UNSET))
 
-        def _parse_storage_drs_enabled(data: object) -> Union[None, Unset, bool]:
+        def _parse_storage_drs_enabled(data: object) -> bool | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, bool], data)
+            return cast(bool | None | Unset, data)
 
         storage_drs_enabled = _parse_storage_drs_enabled(d.pop("storageDrsEnabled", UNSET))
 
         _drs_automation_level = d.pop("drsAutomationLevel", UNSET)
-        drs_automation_level: Union[Unset, VSphereDrsAutomationLevel]
+        drs_automation_level: VSphereDrsAutomationLevel | Unset
         if isinstance(_drs_automation_level, Unset):
             drs_automation_level = UNSET
         else:
             drs_automation_level = VSphereDrsAutomationLevel(_drs_automation_level)
 
-        def _parse_used_space_threshold_percentage(data: object) -> Union[None, Unset, int]:
+        def _parse_used_space_threshold_percentage(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         used_space_threshold_percentage = _parse_used_space_threshold_percentage(
             d.pop("usedSpaceThresholdPercentage", UNSET)
         )
 
-        def _parse_io_latency_threshold_ms(data: object) -> Union[None, Unset, int]:
+        def _parse_io_latency_threshold_ms(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         io_latency_threshold_ms = _parse_io_latency_threshold_ms(d.pop("ioLatencyThresholdMs", UNSET))
 

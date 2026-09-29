@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class CdpPolicyStatus(str, Enum):
+class CdpPolicyStatus(StrEnum):
     DISABLED = "Disabled"
     RUNNING = "Running"
 

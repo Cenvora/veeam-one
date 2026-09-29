@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class Vb365ServerConnectionState(str, Enum):
+class Vb365ServerConnectionState(StrEnum):
     CONNECTED = "Connected"
     NOTRESPONDING = "NotResponding"
     UNKNOWN = "Unknown"

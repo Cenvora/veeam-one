@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 
@@ -12,13 +14,13 @@ T = TypeVar("T", bound="VeeamOneLicenseSettings")
 class VeeamOneLicenseSettings:
     """
     Attributes:
-        auto_update_enabled (Union[Unset, bool]): Indicates whether auto-update is enabled for a license. Example: True.
-        managed_mode (Union[Unset, bool]): Indicates whether some other service provides statistics instead of Veeam
-            ONE.
+        auto_update_enabled (bool | Unset): Indicates whether auto-update is enabled for a license. Example: True.
+        managed_mode (bool | Unset): Indicates whether some other service provides statistics instead of Veeam ONE.
+            Example: False.
     """
 
-    auto_update_enabled: Union[Unset, bool] = UNSET
-    managed_mode: Union[Unset, bool] = UNSET
+    auto_update_enabled: bool | Unset = UNSET
+    managed_mode: bool | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
         auto_update_enabled = self.auto_update_enabled

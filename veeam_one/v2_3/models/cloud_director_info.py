@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 
@@ -13,39 +15,39 @@ T = TypeVar("T", bound="CloudDirectorInfo")
 class CloudDirectorInfo:
     """
     Attributes:
-        cloud_director_server_id (Union[Unset, int]): ID assigned to a VMware Cloud Director server.
-        name (Union[None, Unset, str]): Name of a VMware Cloud Director.
-        connection_state (Union[Unset, CloudDirectorConnectionState]):
-        connection_error (Union[None, Unset, str]): Datails on VMware Cloud Director server connection failure.
-        version (Union[None, Unset, str]): VMware Cloud Director version.
+        cloud_director_server_id (int | Unset): ID assigned to a VMware Cloud Director server.
+        name (None | str | Unset): Name of a VMware Cloud Director.
+        connection_state (CloudDirectorConnectionState | Unset):
+        connection_error (None | str | Unset): Datails on VMware Cloud Director server connection failure.
+        version (None | str | Unset): VMware Cloud Director version.
     """
 
-    cloud_director_server_id: Union[Unset, int] = UNSET
-    name: Union[None, Unset, str] = UNSET
-    connection_state: Union[Unset, CloudDirectorConnectionState] = UNSET
-    connection_error: Union[None, Unset, str] = UNSET
-    version: Union[None, Unset, str] = UNSET
+    cloud_director_server_id: int | Unset = UNSET
+    name: None | str | Unset = UNSET
+    connection_state: CloudDirectorConnectionState | Unset = UNSET
+    connection_error: None | str | Unset = UNSET
+    version: None | str | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
         cloud_director_server_id = self.cloud_director_server_id
 
-        name: Union[None, Unset, str]
+        name: None | str | Unset
         if isinstance(self.name, Unset):
             name = UNSET
         else:
             name = self.name
 
-        connection_state: Union[Unset, str] = UNSET
+        connection_state: str | Unset = UNSET
         if not isinstance(self.connection_state, Unset):
             connection_state = self.connection_state.value
 
-        connection_error: Union[None, Unset, str]
+        connection_error: None | str | Unset
         if isinstance(self.connection_error, Unset):
             connection_error = UNSET
         else:
             connection_error = self.connection_error
 
-        version: Union[None, Unset, str]
+        version: None | str | Unset
         if isinstance(self.version, Unset):
             version = UNSET
         else:
@@ -72,37 +74,37 @@ class CloudDirectorInfo:
         d = dict(src_dict)
         cloud_director_server_id = d.pop("cloudDirectorServerId", UNSET)
 
-        def _parse_name(data: object) -> Union[None, Unset, str]:
+        def _parse_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         name = _parse_name(d.pop("name", UNSET))
 
         _connection_state = d.pop("connectionState", UNSET)
-        connection_state: Union[Unset, CloudDirectorConnectionState]
+        connection_state: CloudDirectorConnectionState | Unset
         if isinstance(_connection_state, Unset):
             connection_state = UNSET
         else:
             connection_state = CloudDirectorConnectionState(_connection_state)
 
-        def _parse_connection_error(data: object) -> Union[None, Unset, str]:
+        def _parse_connection_error(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         connection_error = _parse_connection_error(d.pop("connectionError", UNSET))
 
-        def _parse_version(data: object) -> Union[None, Unset, str]:
+        def _parse_version(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         version = _parse_version(d.pop("version", UNSET))
 

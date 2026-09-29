@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class BusinessViewGroupType(str, Enum):
+class BusinessViewGroupType(StrEnum):
     COMPUTERS = "Computers"
     ENTERPRISEAPPLICATIONS = "EnterpriseApplications"
     HYPERVDATASTORE = "HyperVDatastore"

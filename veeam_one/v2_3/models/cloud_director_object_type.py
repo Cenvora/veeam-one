@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class CloudDirectorObjectType(str, Enum):
+class CloudDirectorObjectType(StrEnum):
     CLOUDDIRECTORINFRASTRUCTURE = "CloudDirectorInfrastructure"
     CLOUDDIRECTORSERVER = "CloudDirectorServer"
     ORGANIZATION = "Organization"

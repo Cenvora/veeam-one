@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, Union, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 
@@ -16,34 +18,34 @@ T = TypeVar("T", bound="CloudDirectorDatastoreInfo")
 class CloudDirectorDatastoreInfo:
     """
     Attributes:
-        datastore_id (Union[Unset, int]): ID assigned to a datastore.
-        cloud_director_id (Union[Unset, int]): ID assigned to a VMware Cloud Director server.
-        v_center_server_id (Union[Unset, int]): ID assigned to a vCenter server.
-        href (Union[None, Unset, str]): Unique datastore identifier in the URL format. Identical to the `href` property
-            in VMware Cloud Director API.
-        name (Union[None, Unset, str]): Name of a datastore.
-        type_ (Union[None, Unset, str]): Type of a datastore.
-        capacity_bytes (Union[Unset, int]): Storage capacity of a datastore, in bytes.
-        used_bytes (Union[Unset, int]): Amount of storage space consumed on a datastore, in bytes.
-        provisioned_bytes (Union[Unset, int]): Amount of storage space allocated to a provider VDC, in bytes.
-        requested_bytes (Union[Unset, int]): Amount of storage space consumed by a provider VDC, in bytes.
-        provider_vdc_count (Union[Unset, int]): Number of provider VDCs to which a datastore provides resources.
-        provider_vdcs (Union[None, Unset, list['ProviderVdc']]): Array of provider VDCs to which a datastore provides
+        datastore_id (int | Unset): ID assigned to a datastore.
+        cloud_director_id (int | Unset): ID assigned to a VMware Cloud Director server.
+        v_center_server_id (int | Unset): ID assigned to a vCenter server.
+        href (None | str | Unset): Unique datastore identifier in the URL format. Identical to the `href` property in
+            VMware Cloud Director API.
+        name (None | str | Unset): Name of a datastore.
+        type_ (None | str | Unset): Type of a datastore.
+        capacity_bytes (int | Unset): Storage capacity of a datastore, in bytes.
+        used_bytes (int | Unset): Amount of storage space consumed on a datastore, in bytes.
+        provisioned_bytes (int | Unset): Amount of storage space allocated to a provider VDC, in bytes.
+        requested_bytes (int | Unset): Amount of storage space consumed by a provider VDC, in bytes.
+        provider_vdc_count (int | Unset): Number of provider VDCs to which a datastore provides resources.
+        provider_vdcs (list[ProviderVdc] | None | Unset): Array of provider VDCs to which a datastore provides
             resources.
     """
 
-    datastore_id: Union[Unset, int] = UNSET
-    cloud_director_id: Union[Unset, int] = UNSET
-    v_center_server_id: Union[Unset, int] = UNSET
-    href: Union[None, Unset, str] = UNSET
-    name: Union[None, Unset, str] = UNSET
-    type_: Union[None, Unset, str] = UNSET
-    capacity_bytes: Union[Unset, int] = UNSET
-    used_bytes: Union[Unset, int] = UNSET
-    provisioned_bytes: Union[Unset, int] = UNSET
-    requested_bytes: Union[Unset, int] = UNSET
-    provider_vdc_count: Union[Unset, int] = UNSET
-    provider_vdcs: Union[None, Unset, list["ProviderVdc"]] = UNSET
+    datastore_id: int | Unset = UNSET
+    cloud_director_id: int | Unset = UNSET
+    v_center_server_id: int | Unset = UNSET
+    href: None | str | Unset = UNSET
+    name: None | str | Unset = UNSET
+    type_: None | str | Unset = UNSET
+    capacity_bytes: int | Unset = UNSET
+    used_bytes: int | Unset = UNSET
+    provisioned_bytes: int | Unset = UNSET
+    requested_bytes: int | Unset = UNSET
+    provider_vdc_count: int | Unset = UNSET
+    provider_vdcs: list[ProviderVdc] | None | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
         datastore_id = self.datastore_id
@@ -52,19 +54,19 @@ class CloudDirectorDatastoreInfo:
 
         v_center_server_id = self.v_center_server_id
 
-        href: Union[None, Unset, str]
+        href: None | str | Unset
         if isinstance(self.href, Unset):
             href = UNSET
         else:
             href = self.href
 
-        name: Union[None, Unset, str]
+        name: None | str | Unset
         if isinstance(self.name, Unset):
             name = UNSET
         else:
             name = self.name
 
-        type_: Union[None, Unset, str]
+        type_: None | str | Unset
         if isinstance(self.type_, Unset):
             type_ = UNSET
         else:
@@ -80,7 +82,7 @@ class CloudDirectorDatastoreInfo:
 
         provider_vdc_count = self.provider_vdc_count
 
-        provider_vdcs: Union[None, Unset, list[dict[str, Any]]]
+        provider_vdcs: list[dict[str, Any]] | None | Unset
         if isinstance(self.provider_vdcs, Unset):
             provider_vdcs = UNSET
         elif isinstance(self.provider_vdcs, list):
@@ -124,7 +126,7 @@ class CloudDirectorDatastoreInfo:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.provider_vdc import ProviderVdc
+        from ..models.provider_vdc import ProviderVdc  # noqa: PLC0415
 
         d = dict(src_dict)
         datastore_id = d.pop("datastoreId", UNSET)
@@ -133,30 +135,30 @@ class CloudDirectorDatastoreInfo:
 
         v_center_server_id = d.pop("vCenterServerId", UNSET)
 
-        def _parse_href(data: object) -> Union[None, Unset, str]:
+        def _parse_href(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         href = _parse_href(d.pop("href", UNSET))
 
-        def _parse_name(data: object) -> Union[None, Unset, str]:
+        def _parse_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         name = _parse_name(d.pop("name", UNSET))
 
-        def _parse_type_(data: object) -> Union[None, Unset, str]:
+        def _parse_type_(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         type_ = _parse_type_(d.pop("type", UNSET))
 
@@ -170,7 +172,7 @@ class CloudDirectorDatastoreInfo:
 
         provider_vdc_count = d.pop("providerVdcCount", UNSET)
 
-        def _parse_provider_vdcs(data: object) -> Union[None, Unset, list["ProviderVdc"]]:
+        def _parse_provider_vdcs(data: object) -> list[ProviderVdc] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -186,9 +188,9 @@ class CloudDirectorDatastoreInfo:
                     provider_vdcs_type_0.append(provider_vdcs_type_0_item)
 
                 return provider_vdcs_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, list["ProviderVdc"]], data)
+            return cast(list[ProviderVdc] | None | Unset, data)
 
         provider_vdcs = _parse_provider_vdcs(d.pop("providerVdcs", UNSET))
 

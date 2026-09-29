@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class BackupRepositoryType(str, Enum):
+class BackupRepositoryType(StrEnum):
     AMAZONS3 = "AmazonS3"
     AMAZONS3GLACIER = "AmazonS3Glacier"
     CLOUD = "Cloud"

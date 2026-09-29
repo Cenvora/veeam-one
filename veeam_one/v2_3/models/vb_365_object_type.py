@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class Vb365ObjectType(str, Enum):
+class Vb365ObjectType(StrEnum):
     BACKUPPROXY = "BackupProxy"
     BACKUPPROXYFOLDER = "BackupProxyFolder"
     BACKUPREPOSITORY = "BackupRepository"

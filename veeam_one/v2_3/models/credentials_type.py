@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class CredentialsType(str, Enum):
+class CredentialsType(StrEnum):
     INVALID = "Invalid"
     PASSWORD = "Password"
     SSHKEY = "SshKey"

@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class Month(str, Enum):
+class Month(StrEnum):
     APRIL = "April"
     AUGUST = "August"
     DECEMBER = "December"

@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
@@ -13,25 +15,25 @@ T = TypeVar("T", bound="ArchiveTierExtentInfo")
 class ArchiveTierExtentInfo:
     """
     Attributes:
-        extent_uid (Union[Unset, UUID]): UID assigned to an archive extent in Veeam Backup & Replication.
-        scaleout_repository_id (Union[None, Unset, int]): ID assigned to a parent scale-out backup repository.
-        underlying_repository_id (Union[Unset, int]): ID assigned to an archive extent.
-        deep_archive (Union[None, Unset, bool]): Indicates whether the data is stored in a deep archive class storage.
-        is_immutable (Union[None, Unset, bool]): Indicates whether immutability is enabled for an archive extent.
+        extent_uid (UUID | Unset): UID assigned to an archive extent in Veeam Backup & Replication.
+        scaleout_repository_id (int | None | Unset): ID assigned to a parent scale-out backup repository.
+        underlying_repository_id (int | Unset): ID assigned to an archive extent.
+        deep_archive (bool | None | Unset): Indicates whether the data is stored in a deep archive class storage.
+        is_immutable (bool | None | Unset): Indicates whether immutability is enabled for an archive extent.
     """
 
-    extent_uid: Union[Unset, UUID] = UNSET
-    scaleout_repository_id: Union[None, Unset, int] = UNSET
-    underlying_repository_id: Union[Unset, int] = UNSET
-    deep_archive: Union[None, Unset, bool] = UNSET
-    is_immutable: Union[None, Unset, bool] = UNSET
+    extent_uid: UUID | Unset = UNSET
+    scaleout_repository_id: int | None | Unset = UNSET
+    underlying_repository_id: int | Unset = UNSET
+    deep_archive: bool | None | Unset = UNSET
+    is_immutable: bool | None | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
-        extent_uid: Union[Unset, str] = UNSET
+        extent_uid: str | Unset = UNSET
         if not isinstance(self.extent_uid, Unset):
             extent_uid = str(self.extent_uid)
 
-        scaleout_repository_id: Union[None, Unset, int]
+        scaleout_repository_id: int | None | Unset
         if isinstance(self.scaleout_repository_id, Unset):
             scaleout_repository_id = UNSET
         else:
@@ -39,13 +41,13 @@ class ArchiveTierExtentInfo:
 
         underlying_repository_id = self.underlying_repository_id
 
-        deep_archive: Union[None, Unset, bool]
+        deep_archive: bool | None | Unset
         if isinstance(self.deep_archive, Unset):
             deep_archive = UNSET
         else:
             deep_archive = self.deep_archive
 
-        is_immutable: Union[None, Unset, bool]
+        is_immutable: bool | None | Unset
         if isinstance(self.is_immutable, Unset):
             is_immutable = UNSET
         else:
@@ -71,38 +73,38 @@ class ArchiveTierExtentInfo:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
         _extent_uid = d.pop("extentUid", UNSET)
-        extent_uid: Union[Unset, UUID]
+        extent_uid: UUID | Unset
         if isinstance(_extent_uid, Unset):
             extent_uid = UNSET
         else:
             extent_uid = UUID(_extent_uid)
 
-        def _parse_scaleout_repository_id(data: object) -> Union[None, Unset, int]:
+        def _parse_scaleout_repository_id(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         scaleout_repository_id = _parse_scaleout_repository_id(d.pop("scaleoutRepositoryId", UNSET))
 
         underlying_repository_id = d.pop("underlyingRepositoryId", UNSET)
 
-        def _parse_deep_archive(data: object) -> Union[None, Unset, bool]:
+        def _parse_deep_archive(data: object) -> bool | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, bool], data)
+            return cast(bool | None | Unset, data)
 
         deep_archive = _parse_deep_archive(d.pop("deepArchive", UNSET))
 
-        def _parse_is_immutable(data: object) -> Union[None, Unset, bool]:
+        def _parse_is_immutable(data: object) -> bool | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, bool], data)
+            return cast(bool | None | Unset, data)
 
         is_immutable = _parse_is_immutable(d.pop("isImmutable", UNSET))
 

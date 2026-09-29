@@ -1,5 +1,6 @@
 from http import HTTPStatus
-from typing import Any, Optional, Union, cast
+from typing import Any, cast
+from urllib.parse import quote
 
 import httpx
 
@@ -13,17 +14,20 @@ from ...types import Response
 def _get_kwargs(
     session_id: int,
 ) -> dict[str, Any]:
+
     _kwargs: dict[str, Any] = {
         "method": "get",
-        "url": f"/api/v2.3/sessions/{session_id}",
+        "url": "/api/v2.3/sessions/{session_id}".format(
+            session_id=quote(str(session_id), safe=""),
+        ),
     }
 
     return _kwargs
 
 
 def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[Any, JobSessionInfo, ProblemDetails]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Any | JobSessionInfo | ProblemDetails | None:
     if response.status_code == 200:
         response_200 = JobSessionInfo.from_dict(response.json())
 
@@ -55,8 +59,8 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[Any, JobSessionInfo, ProblemDetails]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[Any | JobSessionInfo | ProblemDetails]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -68,8 +72,8 @@ def _build_response(
 def sync_detailed(
     session_id: int,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[Any, JobSessionInfo, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+) -> Response[Any | JobSessionInfo | ProblemDetails]:
     """Get Task Session
 
      Returns a resource representation of a task session with the specified ID.
@@ -82,7 +86,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Any, JobSessionInfo, ProblemDetails]]
+        Response[Any | JobSessionInfo | ProblemDetails]
     """
 
     kwargs = _get_kwargs(
@@ -99,8 +103,8 @@ def sync_detailed(
 def sync(
     session_id: int,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[Any, JobSessionInfo, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+) -> Any | JobSessionInfo | ProblemDetails | None:
     """Get Task Session
 
      Returns a resource representation of a task session with the specified ID.
@@ -113,7 +117,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Any, JobSessionInfo, ProblemDetails]
+        Any | JobSessionInfo | ProblemDetails
     """
 
     return sync_detailed(
@@ -125,8 +129,8 @@ def sync(
 async def asyncio_detailed(
     session_id: int,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[Any, JobSessionInfo, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+) -> Response[Any | JobSessionInfo | ProblemDetails]:
     """Get Task Session
 
      Returns a resource representation of a task session with the specified ID.
@@ -139,7 +143,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Any, JobSessionInfo, ProblemDetails]]
+        Response[Any | JobSessionInfo | ProblemDetails]
     """
 
     kwargs = _get_kwargs(
@@ -154,8 +158,8 @@ async def asyncio_detailed(
 async def asyncio(
     session_id: int,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[Any, JobSessionInfo, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+) -> Any | JobSessionInfo | ProblemDetails | None:
     """Get Task Session
 
      Returns a resource representation of a task session with the specified ID.
@@ -168,7 +172,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Any, JobSessionInfo, ProblemDetails]
+        Any | JobSessionInfo | ProblemDetails
     """
 
     return (

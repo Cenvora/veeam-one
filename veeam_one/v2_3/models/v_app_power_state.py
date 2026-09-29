@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class VAppPowerState(str, Enum):
+class VAppPowerState(StrEnum):
     INCONSISTENTSTATE = "InconsistentState"
     PARTIALLYRUNNING = "PartiallyRunning"
     POWEREDOFF = "PoweredOff"

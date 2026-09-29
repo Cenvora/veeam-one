@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class ProtectedObjectStorageType(str, Enum):
+class ProtectedObjectStorageType(StrEnum):
     AMAZONS3 = "AmazonS3"
     AZUREBLOBCONTAINER = "AzureBlobContainer"
     AZUREDATALAKE = "AzureDataLake"

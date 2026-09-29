@@ -1,10 +1,11 @@
+from __future__ import annotations
+
 import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
-from dateutil.parser import isoparse
 
 from ..types import UNSET, Unset
 
@@ -15,54 +16,54 @@ T = TypeVar("T", bound="ProtectedCloudNetworkBackupInfo")
 class ProtectedCloudNetworkBackupInfo:
     """
     Attributes:
-        backup_uid (Union[Unset, UUID]): UID assigned to a backup chain.
-        cloud_network_uid_in_vbr (Union[Unset, UUID]): UID assigned to a cloud network.
-        job_uid (Union[Unset, UUID]): UID assigned to a job.
-        job_name (Union[None, Unset, str]): Name of a job.
-        restore_points (Union[None, Unset, int]): Number of restore points.
-        last_protection_date (Union[None, Unset, datetime.datetime]): Date and time when the latest restore point was
+        backup_uid (UUID | Unset): UID assigned to a backup chain.
+        cloud_network_uid_in_vbr (UUID | Unset): UID assigned to a cloud network.
+        job_uid (UUID | Unset): UID assigned to a job.
+        job_name (None | str | Unset): Name of a job.
+        restore_points (int | None | Unset): Number of restore points.
+        last_protection_date (datetime.datetime | None | Unset): Date and time when the latest restore point was
             created.
-        target (Union[None, Unset, str]): Name of a backup repository.
-        backup_server_id (Union[Unset, int]): ID assigned to a Veeam Backup & Replication server.
-        backup_server_name (Union[None, Unset, str]): Name of a Veeam Backup & Replication server.
+        target (None | str | Unset): Name of a backup repository.
+        backup_server_id (int | Unset): ID assigned to a Veeam Backup & Replication server.
+        backup_server_name (None | str | Unset): Name of a Veeam Backup & Replication server.
     """
 
-    backup_uid: Union[Unset, UUID] = UNSET
-    cloud_network_uid_in_vbr: Union[Unset, UUID] = UNSET
-    job_uid: Union[Unset, UUID] = UNSET
-    job_name: Union[None, Unset, str] = UNSET
-    restore_points: Union[None, Unset, int] = UNSET
-    last_protection_date: Union[None, Unset, datetime.datetime] = UNSET
-    target: Union[None, Unset, str] = UNSET
-    backup_server_id: Union[Unset, int] = UNSET
-    backup_server_name: Union[None, Unset, str] = UNSET
+    backup_uid: UUID | Unset = UNSET
+    cloud_network_uid_in_vbr: UUID | Unset = UNSET
+    job_uid: UUID | Unset = UNSET
+    job_name: None | str | Unset = UNSET
+    restore_points: int | None | Unset = UNSET
+    last_protection_date: datetime.datetime | None | Unset = UNSET
+    target: None | str | Unset = UNSET
+    backup_server_id: int | Unset = UNSET
+    backup_server_name: None | str | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
-        backup_uid: Union[Unset, str] = UNSET
+        backup_uid: str | Unset = UNSET
         if not isinstance(self.backup_uid, Unset):
             backup_uid = str(self.backup_uid)
 
-        cloud_network_uid_in_vbr: Union[Unset, str] = UNSET
+        cloud_network_uid_in_vbr: str | Unset = UNSET
         if not isinstance(self.cloud_network_uid_in_vbr, Unset):
             cloud_network_uid_in_vbr = str(self.cloud_network_uid_in_vbr)
 
-        job_uid: Union[Unset, str] = UNSET
+        job_uid: str | Unset = UNSET
         if not isinstance(self.job_uid, Unset):
             job_uid = str(self.job_uid)
 
-        job_name: Union[None, Unset, str]
+        job_name: None | str | Unset
         if isinstance(self.job_name, Unset):
             job_name = UNSET
         else:
             job_name = self.job_name
 
-        restore_points: Union[None, Unset, int]
+        restore_points: int | None | Unset
         if isinstance(self.restore_points, Unset):
             restore_points = UNSET
         else:
             restore_points = self.restore_points
 
-        last_protection_date: Union[None, Unset, str]
+        last_protection_date: None | str | Unset
         if isinstance(self.last_protection_date, Unset):
             last_protection_date = UNSET
         elif isinstance(self.last_protection_date, datetime.datetime):
@@ -70,7 +71,7 @@ class ProtectedCloudNetworkBackupInfo:
         else:
             last_protection_date = self.last_protection_date
 
-        target: Union[None, Unset, str]
+        target: None | str | Unset
         if isinstance(self.target, Unset):
             target = UNSET
         else:
@@ -78,7 +79,7 @@ class ProtectedCloudNetworkBackupInfo:
 
         backup_server_id = self.backup_server_id
 
-        backup_server_name: Union[None, Unset, str]
+        backup_server_name: None | str | Unset
         if isinstance(self.backup_server_name, Unset):
             backup_server_name = UNSET
         else:
@@ -112,45 +113,45 @@ class ProtectedCloudNetworkBackupInfo:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
         _backup_uid = d.pop("backupUid", UNSET)
-        backup_uid: Union[Unset, UUID]
+        backup_uid: UUID | Unset
         if isinstance(_backup_uid, Unset):
             backup_uid = UNSET
         else:
             backup_uid = UUID(_backup_uid)
 
         _cloud_network_uid_in_vbr = d.pop("cloudNetworkUidInVbr", UNSET)
-        cloud_network_uid_in_vbr: Union[Unset, UUID]
+        cloud_network_uid_in_vbr: UUID | Unset
         if isinstance(_cloud_network_uid_in_vbr, Unset):
             cloud_network_uid_in_vbr = UNSET
         else:
             cloud_network_uid_in_vbr = UUID(_cloud_network_uid_in_vbr)
 
         _job_uid = d.pop("jobUid", UNSET)
-        job_uid: Union[Unset, UUID]
+        job_uid: UUID | Unset
         if isinstance(_job_uid, Unset):
             job_uid = UNSET
         else:
             job_uid = UUID(_job_uid)
 
-        def _parse_job_name(data: object) -> Union[None, Unset, str]:
+        def _parse_job_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         job_name = _parse_job_name(d.pop("jobName", UNSET))
 
-        def _parse_restore_points(data: object) -> Union[None, Unset, int]:
+        def _parse_restore_points(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         restore_points = _parse_restore_points(d.pop("restorePoints", UNSET))
 
-        def _parse_last_protection_date(data: object) -> Union[None, Unset, datetime.datetime]:
+        def _parse_last_protection_date(data: object) -> datetime.datetime | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -158,32 +159,32 @@ class ProtectedCloudNetworkBackupInfo:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                last_protection_date_type_0 = isoparse(data)
+                last_protection_date_type_0 = datetime.datetime.fromisoformat(data)
 
                 return last_protection_date_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, datetime.datetime], data)
+            return cast(datetime.datetime | None | Unset, data)
 
         last_protection_date = _parse_last_protection_date(d.pop("lastProtectionDate", UNSET))
 
-        def _parse_target(data: object) -> Union[None, Unset, str]:
+        def _parse_target(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         target = _parse_target(d.pop("target", UNSET))
 
         backup_server_id = d.pop("backupServerId", UNSET)
 
-        def _parse_backup_server_name(data: object) -> Union[None, Unset, str]:
+        def _parse_backup_server_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         backup_server_name = _parse_backup_server_name(d.pop("backupServerName", UNSET))
 

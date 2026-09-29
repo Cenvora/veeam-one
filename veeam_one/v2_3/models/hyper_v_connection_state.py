@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class HyperVConnectionState(str, Enum):
+class HyperVConnectionState(StrEnum):
     CONNECTED = "Connected"
     NOTRESPONDING = "NotResponding"
     UNKNOWN = "Unknown"

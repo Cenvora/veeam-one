@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 
@@ -13,71 +15,71 @@ T = TypeVar("T", bound="VCenterServerInfo")
 class VCenterServerInfo:
     """
     Attributes:
-        v_center_server_id (Union[Unset, int]): ID assigned to a vCenter server.
-        name (Union[None, Unset, str]): Name of a vCenter server.
-        connection_state (Union[Unset, VCenterConnectionState]):
-        port (Union[None, Unset, int]): Connection port of a vCenter server.
-        connection_error (Union[None, Unset, str]): Datails on vCenter server connection failure.
-        product_name (Union[None, Unset, str]): Product name.
-        version (Union[None, Unset, str]): Version of a vCenter server.
-        os_type (Union[None, Unset, str]): Type of OS installed on a vCenter server.
-        cloud_director_id (Union[None, Unset, int]): ID asigned to a VMware Cloud Director.
+        v_center_server_id (int | Unset): ID assigned to a vCenter server.
+        name (None | str | Unset): Name of a vCenter server.
+        connection_state (VCenterConnectionState | Unset):
+        port (int | None | Unset): Connection port of a vCenter server.
+        connection_error (None | str | Unset): Datails on vCenter server connection failure.
+        product_name (None | str | Unset): Product name.
+        version (None | str | Unset): Version of a vCenter server.
+        os_type (None | str | Unset): Type of OS installed on a vCenter server.
+        cloud_director_id (int | None | Unset): ID asigned to a VMware Cloud Director.
     """
 
-    v_center_server_id: Union[Unset, int] = UNSET
-    name: Union[None, Unset, str] = UNSET
-    connection_state: Union[Unset, VCenterConnectionState] = UNSET
-    port: Union[None, Unset, int] = UNSET
-    connection_error: Union[None, Unset, str] = UNSET
-    product_name: Union[None, Unset, str] = UNSET
-    version: Union[None, Unset, str] = UNSET
-    os_type: Union[None, Unset, str] = UNSET
-    cloud_director_id: Union[None, Unset, int] = UNSET
+    v_center_server_id: int | Unset = UNSET
+    name: None | str | Unset = UNSET
+    connection_state: VCenterConnectionState | Unset = UNSET
+    port: int | None | Unset = UNSET
+    connection_error: None | str | Unset = UNSET
+    product_name: None | str | Unset = UNSET
+    version: None | str | Unset = UNSET
+    os_type: None | str | Unset = UNSET
+    cloud_director_id: int | None | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
         v_center_server_id = self.v_center_server_id
 
-        name: Union[None, Unset, str]
+        name: None | str | Unset
         if isinstance(self.name, Unset):
             name = UNSET
         else:
             name = self.name
 
-        connection_state: Union[Unset, str] = UNSET
+        connection_state: str | Unset = UNSET
         if not isinstance(self.connection_state, Unset):
             connection_state = self.connection_state.value
 
-        port: Union[None, Unset, int]
+        port: int | None | Unset
         if isinstance(self.port, Unset):
             port = UNSET
         else:
             port = self.port
 
-        connection_error: Union[None, Unset, str]
+        connection_error: None | str | Unset
         if isinstance(self.connection_error, Unset):
             connection_error = UNSET
         else:
             connection_error = self.connection_error
 
-        product_name: Union[None, Unset, str]
+        product_name: None | str | Unset
         if isinstance(self.product_name, Unset):
             product_name = UNSET
         else:
             product_name = self.product_name
 
-        version: Union[None, Unset, str]
+        version: None | str | Unset
         if isinstance(self.version, Unset):
             version = UNSET
         else:
             version = self.version
 
-        os_type: Union[None, Unset, str]
+        os_type: None | str | Unset
         if isinstance(self.os_type, Unset):
             os_type = UNSET
         else:
             os_type = self.os_type
 
-        cloud_director_id: Union[None, Unset, int]
+        cloud_director_id: int | None | Unset
         if isinstance(self.cloud_director_id, Unset):
             cloud_director_id = UNSET
         else:
@@ -112,73 +114,73 @@ class VCenterServerInfo:
         d = dict(src_dict)
         v_center_server_id = d.pop("vCenterServerId", UNSET)
 
-        def _parse_name(data: object) -> Union[None, Unset, str]:
+        def _parse_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         name = _parse_name(d.pop("name", UNSET))
 
         _connection_state = d.pop("connectionState", UNSET)
-        connection_state: Union[Unset, VCenterConnectionState]
+        connection_state: VCenterConnectionState | Unset
         if isinstance(_connection_state, Unset):
             connection_state = UNSET
         else:
             connection_state = VCenterConnectionState(_connection_state)
 
-        def _parse_port(data: object) -> Union[None, Unset, int]:
+        def _parse_port(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         port = _parse_port(d.pop("port", UNSET))
 
-        def _parse_connection_error(data: object) -> Union[None, Unset, str]:
+        def _parse_connection_error(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         connection_error = _parse_connection_error(d.pop("connectionError", UNSET))
 
-        def _parse_product_name(data: object) -> Union[None, Unset, str]:
+        def _parse_product_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         product_name = _parse_product_name(d.pop("productName", UNSET))
 
-        def _parse_version(data: object) -> Union[None, Unset, str]:
+        def _parse_version(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         version = _parse_version(d.pop("version", UNSET))
 
-        def _parse_os_type(data: object) -> Union[None, Unset, str]:
+        def _parse_os_type(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         os_type = _parse_os_type(d.pop("osType", UNSET))
 
-        def _parse_cloud_director_id(data: object) -> Union[None, Unset, int]:
+        def _parse_cloud_director_id(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         cloud_director_id = _parse_cloud_director_id(d.pop("cloudDirectorId", UNSET))
 

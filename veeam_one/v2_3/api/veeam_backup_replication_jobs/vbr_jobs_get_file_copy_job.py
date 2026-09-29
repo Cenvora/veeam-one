@@ -1,5 +1,6 @@
 from http import HTTPStatus
-from typing import Any, Optional, Union
+from typing import Any
+from urllib.parse import quote
 from uuid import UUID
 
 import httpx
@@ -14,17 +15,20 @@ from ...types import Response
 def _get_kwargs(
     file_copy_job_uid: UUID,
 ) -> dict[str, Any]:
+
     _kwargs: dict[str, Any] = {
         "method": "get",
-        "url": f"/api/v2.3/vbrJobs/fileCopyJobs/{file_copy_job_uid}",
+        "url": "/api/v2.3/vbrJobs/fileCopyJobs/{file_copy_job_uid}".format(
+            file_copy_job_uid=quote(str(file_copy_job_uid), safe=""),
+        ),
     }
 
     return _kwargs
 
 
 def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[FileCopyJobInfo, ProblemDetails]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> FileCopyJobInfo | ProblemDetails | None:
     if response.status_code == 200:
         response_200 = FileCopyJobInfo.from_dict(response.json())
 
@@ -42,8 +46,8 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[FileCopyJobInfo, ProblemDetails]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[FileCopyJobInfo | ProblemDetails]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -55,8 +59,8 @@ def _build_response(
 def sync_detailed(
     file_copy_job_uid: UUID,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[FileCopyJobInfo, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+) -> Response[FileCopyJobInfo | ProblemDetails]:
     """Get File Copy Job
 
      Returns a resource representation of a file copy job with the specified UID.
@@ -69,7 +73,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[FileCopyJobInfo, ProblemDetails]]
+        Response[FileCopyJobInfo | ProblemDetails]
     """
 
     kwargs = _get_kwargs(
@@ -86,8 +90,8 @@ def sync_detailed(
 def sync(
     file_copy_job_uid: UUID,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[FileCopyJobInfo, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+) -> FileCopyJobInfo | ProblemDetails | None:
     """Get File Copy Job
 
      Returns a resource representation of a file copy job with the specified UID.
@@ -100,7 +104,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[FileCopyJobInfo, ProblemDetails]
+        FileCopyJobInfo | ProblemDetails
     """
 
     return sync_detailed(
@@ -112,8 +116,8 @@ def sync(
 async def asyncio_detailed(
     file_copy_job_uid: UUID,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[FileCopyJobInfo, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+) -> Response[FileCopyJobInfo | ProblemDetails]:
     """Get File Copy Job
 
      Returns a resource representation of a file copy job with the specified UID.
@@ -126,7 +130,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[FileCopyJobInfo, ProblemDetails]]
+        Response[FileCopyJobInfo | ProblemDetails]
     """
 
     kwargs = _get_kwargs(
@@ -141,8 +145,8 @@ async def asyncio_detailed(
 async def asyncio(
     file_copy_job_uid: UUID,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[FileCopyJobInfo, ProblemDetails]]:
+    client: AuthenticatedClient | Client,
+) -> FileCopyJobInfo | ProblemDetails | None:
     """Get File Copy Job
 
      Returns a resource representation of a file copy job with the specified UID.
@@ -155,7 +159,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[FileCopyJobInfo, ProblemDetails]
+        FileCopyJobInfo | ProblemDetails
     """
 
     return (

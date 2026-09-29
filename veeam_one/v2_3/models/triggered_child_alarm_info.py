@@ -1,9 +1,10 @@
+from __future__ import annotations
+
 import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
-from dateutil.parser import isoparse
 
 from ..models.child_alarm_status import ChildAlarmStatus
 from ..types import UNSET, Unset
@@ -15,45 +16,45 @@ T = TypeVar("T", bound="TriggeredChildAlarmInfo")
 class TriggeredChildAlarmInfo:
     """
     Attributes:
-        child_alarm_id (Union[Unset, int]): ID assigned to an alarm that triggered for a child object.
-        triggered_alarm_id (Union[Unset, int]): ID assigned to a triggered alarm.
-        triggered_time (Union[Unset, datetime.datetime]): Date and time when an alarm triggered.
-        status (Union[Unset, ChildAlarmStatus]):
-        source (Union[None, Unset, str]): Name of the infrastructure object that caused the alarm.
-        description (Union[None, Unset, str]): Message containing alarm details.
-        repeat_count (Union[Unset, int]): Number of times an alarm was triggered.
-        comment (Union[None, Unset, str]): Alarm comment.
+        child_alarm_id (int | Unset): ID assigned to an alarm that triggered for a child object.
+        triggered_alarm_id (int | Unset): ID assigned to a triggered alarm.
+        triggered_time (datetime.datetime | Unset): Date and time when an alarm triggered.
+        status (ChildAlarmStatus | Unset):
+        source (None | str | Unset): Name of the infrastructure object that caused the alarm.
+        description (None | str | Unset): Message containing alarm details.
+        repeat_count (int | Unset): Number of times an alarm was triggered.
+        comment (None | str | Unset): Alarm comment.
     """
 
-    child_alarm_id: Union[Unset, int] = UNSET
-    triggered_alarm_id: Union[Unset, int] = UNSET
-    triggered_time: Union[Unset, datetime.datetime] = UNSET
-    status: Union[Unset, ChildAlarmStatus] = UNSET
-    source: Union[None, Unset, str] = UNSET
-    description: Union[None, Unset, str] = UNSET
-    repeat_count: Union[Unset, int] = UNSET
-    comment: Union[None, Unset, str] = UNSET
+    child_alarm_id: int | Unset = UNSET
+    triggered_alarm_id: int | Unset = UNSET
+    triggered_time: datetime.datetime | Unset = UNSET
+    status: ChildAlarmStatus | Unset = UNSET
+    source: None | str | Unset = UNSET
+    description: None | str | Unset = UNSET
+    repeat_count: int | Unset = UNSET
+    comment: None | str | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
         child_alarm_id = self.child_alarm_id
 
         triggered_alarm_id = self.triggered_alarm_id
 
-        triggered_time: Union[Unset, str] = UNSET
+        triggered_time: str | Unset = UNSET
         if not isinstance(self.triggered_time, Unset):
             triggered_time = self.triggered_time.isoformat()
 
-        status: Union[Unset, str] = UNSET
+        status: str | Unset = UNSET
         if not isinstance(self.status, Unset):
             status = self.status.value
 
-        source: Union[None, Unset, str]
+        source: None | str | Unset
         if isinstance(self.source, Unset):
             source = UNSET
         else:
             source = self.source
 
-        description: Union[None, Unset, str]
+        description: None | str | Unset
         if isinstance(self.description, Unset):
             description = UNSET
         else:
@@ -61,7 +62,7 @@ class TriggeredChildAlarmInfo:
 
         repeat_count = self.repeat_count
 
-        comment: Union[None, Unset, str]
+        comment: None | str | Unset
         if isinstance(self.comment, Unset):
             comment = UNSET
         else:
@@ -97,45 +98,45 @@ class TriggeredChildAlarmInfo:
         triggered_alarm_id = d.pop("triggeredAlarmId", UNSET)
 
         _triggered_time = d.pop("triggeredTime", UNSET)
-        triggered_time: Union[Unset, datetime.datetime]
+        triggered_time: datetime.datetime | Unset
         if isinstance(_triggered_time, Unset):
             triggered_time = UNSET
         else:
-            triggered_time = isoparse(_triggered_time)
+            triggered_time = datetime.datetime.fromisoformat(_triggered_time)
 
         _status = d.pop("status", UNSET)
-        status: Union[Unset, ChildAlarmStatus]
+        status: ChildAlarmStatus | Unset
         if isinstance(_status, Unset):
             status = UNSET
         else:
             status = ChildAlarmStatus(_status)
 
-        def _parse_source(data: object) -> Union[None, Unset, str]:
+        def _parse_source(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         source = _parse_source(d.pop("source", UNSET))
 
-        def _parse_description(data: object) -> Union[None, Unset, str]:
+        def _parse_description(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         description = _parse_description(d.pop("description", UNSET))
 
         repeat_count = d.pop("repeatCount", UNSET)
 
-        def _parse_comment(data: object) -> Union[None, Unset, str]:
+        def _parse_comment(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         comment = _parse_comment(d.pop("comment", UNSET))
 

@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class AccessTokenRole(str, Enum):
+class AccessTokenRole(StrEnum):
     ADMIN = "Admin"
     BACKUPADMINISTRATOR = "BackupAdministrator"
     CHATBOTADVANCED = "ChatBotAdvanced"

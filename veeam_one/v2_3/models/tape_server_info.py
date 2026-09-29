@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
@@ -13,25 +15,25 @@ T = TypeVar("T", bound="TapeServerInfo")
 class TapeServerInfo:
     """
     Attributes:
-        tape_server_id (Union[Unset, int]): ID assigned to a tape server.
-        tape_server_uid_in_vbr (Union[None, UUID, Unset]): UID assigned to a tape server in Veeam Backup & Replication.
-        backup_server_id (Union[None, Unset, int]): ID assigned to a Veeam Backup & Replication server.
-        name (Union[None, Unset, str]): Name of a tape server.
-        version (Union[None, Unset, str]): Tape server version.
-        upgrade_required (Union[None, Unset, bool]): Indicates whether a tape server must be updated.
+        tape_server_id (int | Unset): ID assigned to a tape server.
+        tape_server_uid_in_vbr (None | Unset | UUID): UID assigned to a tape server in Veeam Backup & Replication.
+        backup_server_id (int | None | Unset): ID assigned to a Veeam Backup & Replication server.
+        name (None | str | Unset): Name of a tape server.
+        version (None | str | Unset): Tape server version.
+        upgrade_required (bool | None | Unset): Indicates whether a tape server must be updated.
     """
 
-    tape_server_id: Union[Unset, int] = UNSET
-    tape_server_uid_in_vbr: Union[None, UUID, Unset] = UNSET
-    backup_server_id: Union[None, Unset, int] = UNSET
-    name: Union[None, Unset, str] = UNSET
-    version: Union[None, Unset, str] = UNSET
-    upgrade_required: Union[None, Unset, bool] = UNSET
+    tape_server_id: int | Unset = UNSET
+    tape_server_uid_in_vbr: None | Unset | UUID = UNSET
+    backup_server_id: int | None | Unset = UNSET
+    name: None | str | Unset = UNSET
+    version: None | str | Unset = UNSET
+    upgrade_required: bool | None | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
         tape_server_id = self.tape_server_id
 
-        tape_server_uid_in_vbr: Union[None, Unset, str]
+        tape_server_uid_in_vbr: None | str | Unset
         if isinstance(self.tape_server_uid_in_vbr, Unset):
             tape_server_uid_in_vbr = UNSET
         elif isinstance(self.tape_server_uid_in_vbr, UUID):
@@ -39,25 +41,25 @@ class TapeServerInfo:
         else:
             tape_server_uid_in_vbr = self.tape_server_uid_in_vbr
 
-        backup_server_id: Union[None, Unset, int]
+        backup_server_id: int | None | Unset
         if isinstance(self.backup_server_id, Unset):
             backup_server_id = UNSET
         else:
             backup_server_id = self.backup_server_id
 
-        name: Union[None, Unset, str]
+        name: None | str | Unset
         if isinstance(self.name, Unset):
             name = UNSET
         else:
             name = self.name
 
-        version: Union[None, Unset, str]
+        version: None | str | Unset
         if isinstance(self.version, Unset):
             version = UNSET
         else:
             version = self.version
 
-        upgrade_required: Union[None, Unset, bool]
+        upgrade_required: bool | None | Unset
         if isinstance(self.upgrade_required, Unset):
             upgrade_required = UNSET
         else:
@@ -86,7 +88,7 @@ class TapeServerInfo:
         d = dict(src_dict)
         tape_server_id = d.pop("tapeServerId", UNSET)
 
-        def _parse_tape_server_uid_in_vbr(data: object) -> Union[None, UUID, Unset]:
+        def _parse_tape_server_uid_in_vbr(data: object) -> None | Unset | UUID:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -97,45 +99,45 @@ class TapeServerInfo:
                 tape_server_uid_in_vbr_type_0 = UUID(data)
 
                 return tape_server_uid_in_vbr_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, UUID, Unset], data)
+            return cast(None | Unset | UUID, data)
 
         tape_server_uid_in_vbr = _parse_tape_server_uid_in_vbr(d.pop("tapeServerUidInVbr", UNSET))
 
-        def _parse_backup_server_id(data: object) -> Union[None, Unset, int]:
+        def _parse_backup_server_id(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         backup_server_id = _parse_backup_server_id(d.pop("backupServerId", UNSET))
 
-        def _parse_name(data: object) -> Union[None, Unset, str]:
+        def _parse_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         name = _parse_name(d.pop("name", UNSET))
 
-        def _parse_version(data: object) -> Union[None, Unset, str]:
+        def _parse_version(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         version = _parse_version(d.pop("version", UNSET))
 
-        def _parse_upgrade_required(data: object) -> Union[None, Unset, bool]:
+        def _parse_upgrade_required(data: object) -> bool | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, bool], data)
+            return cast(bool | None | Unset, data)
 
         upgrade_required = _parse_upgrade_required(d.pop("upgradeRequired", UNSET))
 

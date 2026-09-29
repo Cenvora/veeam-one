@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 
@@ -15,115 +17,115 @@ T = TypeVar("T", bound="HyperVHostInfo")
 class HyperVHostInfo:
     """
     Attributes:
-        host_id (Union[Unset, int]): ID assigned to a host.
-        name (Union[None, Unset, str]): Name of a host.
-        connection_error (Union[None, Unset, str]): Datails on host connection failure.
-        connection_state (Union[Unset, HyperVConnectionState]):
-        power_state (Union[Unset, HyperVHostPowerState]):
-        memory_size_bytes (Union[None, Unset, int]): Amount of memory available on a host, in bytes.
-        cpu_count (Union[None, Unset, int]): Number of CPU cores on a host.
-        cpu_frequency_mhz (Union[None, Unset, int]): Host CPU frequency, in MHz.
-        cpu_model (Union[None, Unset, str]): Host CPU model.
-        socket_count (Union[None, Unset, int]): Number of CPU sockets on a host.
-        memory_reserve_mb (Union[None, Unset, int]): Size of memory reserve, in MB.
-        version (Union[None, Unset, str]): Version of OS installed on a host.
-        parent_id (Union[None, Unset, int]): ID assigned to a parent object.
-        parent_type (Union[Unset, HyperVObjectType]):
-        business_view_group_ids (Union[None, Unset, list[int]]): Array of IDs assigned to the Business View groups.
+        host_id (int | Unset): ID assigned to a host.
+        name (None | str | Unset): Name of a host.
+        connection_error (None | str | Unset): Datails on host connection failure.
+        connection_state (HyperVConnectionState | Unset):
+        power_state (HyperVHostPowerState | Unset):
+        memory_size_bytes (int | None | Unset): Amount of memory available on a host, in bytes.
+        cpu_count (int | None | Unset): Number of CPU cores on a host.
+        cpu_frequency_mhz (int | None | Unset): Host CPU frequency, in MHz.
+        cpu_model (None | str | Unset): Host CPU model.
+        socket_count (int | None | Unset): Number of CPU sockets on a host.
+        memory_reserve_mb (int | None | Unset): Size of memory reserve, in MB.
+        version (None | str | Unset): Version of OS installed on a host.
+        parent_id (int | None | Unset): ID assigned to a parent object.
+        parent_type (HyperVObjectType | Unset):
+        business_view_group_ids (list[int] | None | Unset): Array of IDs assigned to the Business View groups.
     """
 
-    host_id: Union[Unset, int] = UNSET
-    name: Union[None, Unset, str] = UNSET
-    connection_error: Union[None, Unset, str] = UNSET
-    connection_state: Union[Unset, HyperVConnectionState] = UNSET
-    power_state: Union[Unset, HyperVHostPowerState] = UNSET
-    memory_size_bytes: Union[None, Unset, int] = UNSET
-    cpu_count: Union[None, Unset, int] = UNSET
-    cpu_frequency_mhz: Union[None, Unset, int] = UNSET
-    cpu_model: Union[None, Unset, str] = UNSET
-    socket_count: Union[None, Unset, int] = UNSET
-    memory_reserve_mb: Union[None, Unset, int] = UNSET
-    version: Union[None, Unset, str] = UNSET
-    parent_id: Union[None, Unset, int] = UNSET
-    parent_type: Union[Unset, HyperVObjectType] = UNSET
-    business_view_group_ids: Union[None, Unset, list[int]] = UNSET
+    host_id: int | Unset = UNSET
+    name: None | str | Unset = UNSET
+    connection_error: None | str | Unset = UNSET
+    connection_state: HyperVConnectionState | Unset = UNSET
+    power_state: HyperVHostPowerState | Unset = UNSET
+    memory_size_bytes: int | None | Unset = UNSET
+    cpu_count: int | None | Unset = UNSET
+    cpu_frequency_mhz: int | None | Unset = UNSET
+    cpu_model: None | str | Unset = UNSET
+    socket_count: int | None | Unset = UNSET
+    memory_reserve_mb: int | None | Unset = UNSET
+    version: None | str | Unset = UNSET
+    parent_id: int | None | Unset = UNSET
+    parent_type: HyperVObjectType | Unset = UNSET
+    business_view_group_ids: list[int] | None | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
         host_id = self.host_id
 
-        name: Union[None, Unset, str]
+        name: None | str | Unset
         if isinstance(self.name, Unset):
             name = UNSET
         else:
             name = self.name
 
-        connection_error: Union[None, Unset, str]
+        connection_error: None | str | Unset
         if isinstance(self.connection_error, Unset):
             connection_error = UNSET
         else:
             connection_error = self.connection_error
 
-        connection_state: Union[Unset, str] = UNSET
+        connection_state: str | Unset = UNSET
         if not isinstance(self.connection_state, Unset):
             connection_state = self.connection_state.value
 
-        power_state: Union[Unset, str] = UNSET
+        power_state: str | Unset = UNSET
         if not isinstance(self.power_state, Unset):
             power_state = self.power_state.value
 
-        memory_size_bytes: Union[None, Unset, int]
+        memory_size_bytes: int | None | Unset
         if isinstance(self.memory_size_bytes, Unset):
             memory_size_bytes = UNSET
         else:
             memory_size_bytes = self.memory_size_bytes
 
-        cpu_count: Union[None, Unset, int]
+        cpu_count: int | None | Unset
         if isinstance(self.cpu_count, Unset):
             cpu_count = UNSET
         else:
             cpu_count = self.cpu_count
 
-        cpu_frequency_mhz: Union[None, Unset, int]
+        cpu_frequency_mhz: int | None | Unset
         if isinstance(self.cpu_frequency_mhz, Unset):
             cpu_frequency_mhz = UNSET
         else:
             cpu_frequency_mhz = self.cpu_frequency_mhz
 
-        cpu_model: Union[None, Unset, str]
+        cpu_model: None | str | Unset
         if isinstance(self.cpu_model, Unset):
             cpu_model = UNSET
         else:
             cpu_model = self.cpu_model
 
-        socket_count: Union[None, Unset, int]
+        socket_count: int | None | Unset
         if isinstance(self.socket_count, Unset):
             socket_count = UNSET
         else:
             socket_count = self.socket_count
 
-        memory_reserve_mb: Union[None, Unset, int]
+        memory_reserve_mb: int | None | Unset
         if isinstance(self.memory_reserve_mb, Unset):
             memory_reserve_mb = UNSET
         else:
             memory_reserve_mb = self.memory_reserve_mb
 
-        version: Union[None, Unset, str]
+        version: None | str | Unset
         if isinstance(self.version, Unset):
             version = UNSET
         else:
             version = self.version
 
-        parent_id: Union[None, Unset, int]
+        parent_id: int | None | Unset
         if isinstance(self.parent_id, Unset):
             parent_id = UNSET
         else:
             parent_id = self.parent_id
 
-        parent_type: Union[Unset, str] = UNSET
+        parent_type: str | Unset = UNSET
         if not isinstance(self.parent_type, Unset):
             parent_type = self.parent_type.value
 
-        business_view_group_ids: Union[None, Unset, list[int]]
+        business_view_group_ids: list[int] | None | Unset
         if isinstance(self.business_view_group_ids, Unset):
             business_view_group_ids = UNSET
         elif isinstance(self.business_view_group_ids, list):
@@ -173,118 +175,118 @@ class HyperVHostInfo:
         d = dict(src_dict)
         host_id = d.pop("hostId", UNSET)
 
-        def _parse_name(data: object) -> Union[None, Unset, str]:
+        def _parse_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         name = _parse_name(d.pop("name", UNSET))
 
-        def _parse_connection_error(data: object) -> Union[None, Unset, str]:
+        def _parse_connection_error(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         connection_error = _parse_connection_error(d.pop("connectionError", UNSET))
 
         _connection_state = d.pop("connectionState", UNSET)
-        connection_state: Union[Unset, HyperVConnectionState]
+        connection_state: HyperVConnectionState | Unset
         if isinstance(_connection_state, Unset):
             connection_state = UNSET
         else:
             connection_state = HyperVConnectionState(_connection_state)
 
         _power_state = d.pop("powerState", UNSET)
-        power_state: Union[Unset, HyperVHostPowerState]
+        power_state: HyperVHostPowerState | Unset
         if isinstance(_power_state, Unset):
             power_state = UNSET
         else:
             power_state = HyperVHostPowerState(_power_state)
 
-        def _parse_memory_size_bytes(data: object) -> Union[None, Unset, int]:
+        def _parse_memory_size_bytes(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         memory_size_bytes = _parse_memory_size_bytes(d.pop("memorySizeBytes", UNSET))
 
-        def _parse_cpu_count(data: object) -> Union[None, Unset, int]:
+        def _parse_cpu_count(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         cpu_count = _parse_cpu_count(d.pop("cpuCount", UNSET))
 
-        def _parse_cpu_frequency_mhz(data: object) -> Union[None, Unset, int]:
+        def _parse_cpu_frequency_mhz(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         cpu_frequency_mhz = _parse_cpu_frequency_mhz(d.pop("cpuFrequencyMhz", UNSET))
 
-        def _parse_cpu_model(data: object) -> Union[None, Unset, str]:
+        def _parse_cpu_model(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         cpu_model = _parse_cpu_model(d.pop("cpuModel", UNSET))
 
-        def _parse_socket_count(data: object) -> Union[None, Unset, int]:
+        def _parse_socket_count(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         socket_count = _parse_socket_count(d.pop("socketCount", UNSET))
 
-        def _parse_memory_reserve_mb(data: object) -> Union[None, Unset, int]:
+        def _parse_memory_reserve_mb(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         memory_reserve_mb = _parse_memory_reserve_mb(d.pop("memoryReserveMb", UNSET))
 
-        def _parse_version(data: object) -> Union[None, Unset, str]:
+        def _parse_version(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         version = _parse_version(d.pop("version", UNSET))
 
-        def _parse_parent_id(data: object) -> Union[None, Unset, int]:
+        def _parse_parent_id(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         parent_id = _parse_parent_id(d.pop("parentId", UNSET))
 
         _parent_type = d.pop("parentType", UNSET)
-        parent_type: Union[Unset, HyperVObjectType]
+        parent_type: HyperVObjectType | Unset
         if isinstance(_parent_type, Unset):
             parent_type = UNSET
         else:
             parent_type = HyperVObjectType(_parent_type)
 
-        def _parse_business_view_group_ids(data: object) -> Union[None, Unset, list[int]]:
+        def _parse_business_view_group_ids(data: object) -> list[int] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -295,9 +297,9 @@ class HyperVHostInfo:
                 business_view_group_ids_type_0 = cast(list[int], data)
 
                 return business_view_group_ids_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, list[int]], data)
+            return cast(list[int] | None | Unset, data)
 
         business_view_group_ids = _parse_business_view_group_ids(d.pop("businessViewGroupIds", UNSET))
 

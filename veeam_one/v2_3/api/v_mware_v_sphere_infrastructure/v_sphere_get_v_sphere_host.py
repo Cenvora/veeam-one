@@ -1,5 +1,6 @@
 from http import HTTPStatus
-from typing import Any, Optional, Union
+from typing import Any
+from urllib.parse import quote
 
 import httpx
 
@@ -13,17 +14,20 @@ from ...types import Response
 def _get_kwargs(
     host_id: int,
 ) -> dict[str, Any]:
+
     _kwargs: dict[str, Any] = {
         "method": "get",
-        "url": f"/api/v2.3/vSphere/hosts/{host_id}",
+        "url": "/api/v2.3/vSphere/hosts/{host_id}".format(
+            host_id=quote(str(host_id), safe=""),
+        ),
     }
 
     return _kwargs
 
 
 def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[ProblemDetails, VSphereHostInfo]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> ProblemDetails | VSphereHostInfo | None:
     if response.status_code == 200:
         response_200 = VSphereHostInfo.from_dict(response.json())
 
@@ -41,8 +45,8 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[ProblemDetails, VSphereHostInfo]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[ProblemDetails | VSphereHostInfo]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -54,8 +58,8 @@ def _build_response(
 def sync_detailed(
     host_id: int,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[ProblemDetails, VSphereHostInfo]]:
+    client: AuthenticatedClient | Client,
+) -> Response[ProblemDetails | VSphereHostInfo]:
     """Get VMware vSphere Host
 
      Returns a resource representation of a VMware vSphere host with the specified ID.
@@ -68,7 +72,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[ProblemDetails, VSphereHostInfo]]
+        Response[ProblemDetails | VSphereHostInfo]
     """
 
     kwargs = _get_kwargs(
@@ -85,8 +89,8 @@ def sync_detailed(
 def sync(
     host_id: int,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[ProblemDetails, VSphereHostInfo]]:
+    client: AuthenticatedClient | Client,
+) -> ProblemDetails | VSphereHostInfo | None:
     """Get VMware vSphere Host
 
      Returns a resource representation of a VMware vSphere host with the specified ID.
@@ -99,7 +103,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[ProblemDetails, VSphereHostInfo]
+        ProblemDetails | VSphereHostInfo
     """
 
     return sync_detailed(
@@ -111,8 +115,8 @@ def sync(
 async def asyncio_detailed(
     host_id: int,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[ProblemDetails, VSphereHostInfo]]:
+    client: AuthenticatedClient | Client,
+) -> Response[ProblemDetails | VSphereHostInfo]:
     """Get VMware vSphere Host
 
      Returns a resource representation of a VMware vSphere host with the specified ID.
@@ -125,7 +129,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[ProblemDetails, VSphereHostInfo]]
+        Response[ProblemDetails | VSphereHostInfo]
     """
 
     kwargs = _get_kwargs(
@@ -140,8 +144,8 @@ async def asyncio_detailed(
 async def asyncio(
     host_id: int,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[ProblemDetails, VSphereHostInfo]]:
+    client: AuthenticatedClient | Client,
+) -> ProblemDetails | VSphereHostInfo | None:
     """Get VMware vSphere Host
 
      Returns a resource representation of a VMware vSphere host with the specified ID.
@@ -154,7 +158,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[ProblemDetails, VSphereHostInfo]
+        ProblemDetails | VSphereHostInfo
     """
 
     return (

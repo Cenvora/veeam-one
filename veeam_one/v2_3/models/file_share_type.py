@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class FileShareType(str, Enum):
+class FileShareType(StrEnum):
     CIFS = "Cifs"
     CIFSSERVER = "CifsServer"
     CIFSSHARE = "CifsShare"

@@ -1,5 +1,6 @@
 from http import HTTPStatus
-from typing import Any, Optional, Union
+from typing import Any
+from urllib.parse import quote
 from uuid import UUID
 
 import httpx
@@ -14,17 +15,20 @@ from ...types import Response
 def _get_kwargs(
     computer_uid_in_vbr: UUID,
 ) -> dict[str, Any]:
+
     _kwargs: dict[str, Any] = {
         "method": "get",
-        "url": f"/api/v2.3/protectedData/computers/{computer_uid_in_vbr}",
+        "url": "/api/v2.3/protectedData/computers/{computer_uid_in_vbr}".format(
+            computer_uid_in_vbr=quote(str(computer_uid_in_vbr), safe=""),
+        ),
     }
 
     return _kwargs
 
 
 def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[ProblemDetails, ProtectedComputerInfo]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> ProblemDetails | ProtectedComputerInfo | None:
     if response.status_code == 200:
         response_200 = ProtectedComputerInfo.from_dict(response.json())
 
@@ -42,8 +46,8 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[ProblemDetails, ProtectedComputerInfo]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[ProblemDetails | ProtectedComputerInfo]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -55,8 +59,8 @@ def _build_response(
 def sync_detailed(
     computer_uid_in_vbr: UUID,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[ProblemDetails, ProtectedComputerInfo]]:
+    client: AuthenticatedClient | Client,
+) -> Response[ProblemDetails | ProtectedComputerInfo]:
     """Get Protected Computer
 
      Returns a resource representation of a protected computer with the specified UID.
@@ -69,7 +73,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[ProblemDetails, ProtectedComputerInfo]]
+        Response[ProblemDetails | ProtectedComputerInfo]
     """
 
     kwargs = _get_kwargs(
@@ -86,8 +90,8 @@ def sync_detailed(
 def sync(
     computer_uid_in_vbr: UUID,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[ProblemDetails, ProtectedComputerInfo]]:
+    client: AuthenticatedClient | Client,
+) -> ProblemDetails | ProtectedComputerInfo | None:
     """Get Protected Computer
 
      Returns a resource representation of a protected computer with the specified UID.
@@ -100,7 +104,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[ProblemDetails, ProtectedComputerInfo]
+        ProblemDetails | ProtectedComputerInfo
     """
 
     return sync_detailed(
@@ -112,8 +116,8 @@ def sync(
 async def asyncio_detailed(
     computer_uid_in_vbr: UUID,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[ProblemDetails, ProtectedComputerInfo]]:
+    client: AuthenticatedClient | Client,
+) -> Response[ProblemDetails | ProtectedComputerInfo]:
     """Get Protected Computer
 
      Returns a resource representation of a protected computer with the specified UID.
@@ -126,7 +130,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[ProblemDetails, ProtectedComputerInfo]]
+        Response[ProblemDetails | ProtectedComputerInfo]
     """
 
     kwargs = _get_kwargs(
@@ -141,8 +145,8 @@ async def asyncio_detailed(
 async def asyncio(
     computer_uid_in_vbr: UUID,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[ProblemDetails, ProtectedComputerInfo]]:
+    client: AuthenticatedClient | Client,
+) -> ProblemDetails | ProtectedComputerInfo | None:
     """Get Protected Computer
 
      Returns a resource representation of a protected computer with the specified UID.
@@ -155,7 +159,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[ProblemDetails, ProtectedComputerInfo]
+        ProblemDetails | ProtectedComputerInfo
     """
 
     return (

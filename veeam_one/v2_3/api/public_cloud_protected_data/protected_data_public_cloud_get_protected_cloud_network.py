@@ -1,5 +1,6 @@
 from http import HTTPStatus
-from typing import Any, Optional, Union
+from typing import Any
+from urllib.parse import quote
 from uuid import UUID
 
 import httpx
@@ -14,12 +15,13 @@ from ...types import UNSET, Response, Unset
 def _get_kwargs(
     cloud_network_uid_in_vbr: UUID,
     *,
-    offset: Union[Unset, int] = 0,
-    limit: Union[Unset, int] = 100,
-    filter_: Union[Unset, str] = UNSET,
-    sort: Union[Unset, str] = UNSET,
-    select: Union[Unset, str] = UNSET,
+    offset: int | Unset = 0,
+    limit: int | Unset = 100,
+    filter_: str | Unset = UNSET,
+    sort: str | Unset = UNSET,
+    select: str | Unset = UNSET,
 ) -> dict[str, Any]:
+
     params: dict[str, Any] = {}
 
     params["Offset"] = offset
@@ -36,7 +38,9 @@ def _get_kwargs(
 
     _kwargs: dict[str, Any] = {
         "method": "get",
-        "url": f"/api/v2.3/protectedData/publicCloud/networks/{cloud_network_uid_in_vbr}",
+        "url": "/api/v2.3/protectedData/publicCloud/networks/{cloud_network_uid_in_vbr}".format(
+            cloud_network_uid_in_vbr=quote(str(cloud_network_uid_in_vbr), safe=""),
+        ),
         "params": params,
     }
 
@@ -44,8 +48,8 @@ def _get_kwargs(
 
 
 def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[ProblemDetails, ProtectedCloudNetworkInfoPage]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> ProblemDetails | ProtectedCloudNetworkInfoPage | None:
     if response.status_code == 200:
         response_200 = ProtectedCloudNetworkInfoPage.from_dict(response.json())
 
@@ -63,8 +67,8 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[ProblemDetails, ProtectedCloudNetworkInfoPage]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[ProblemDetails | ProtectedCloudNetworkInfoPage]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -76,31 +80,31 @@ def _build_response(
 def sync_detailed(
     cloud_network_uid_in_vbr: UUID,
     *,
-    client: Union[AuthenticatedClient, Client],
-    offset: Union[Unset, int] = 0,
-    limit: Union[Unset, int] = 100,
-    filter_: Union[Unset, str] = UNSET,
-    sort: Union[Unset, str] = UNSET,
-    select: Union[Unset, str] = UNSET,
-) -> Response[Union[ProblemDetails, ProtectedCloudNetworkInfoPage]]:
+    client: AuthenticatedClient | Client,
+    offset: int | Unset = 0,
+    limit: int | Unset = 100,
+    filter_: str | Unset = UNSET,
+    sort: str | Unset = UNSET,
+    select: str | Unset = UNSET,
+) -> Response[ProblemDetails | ProtectedCloudNetworkInfoPage]:
     """Get Protected Cloud Network
 
      Returns a resource representation of a protected cloud network with the specified UID.
 
     Args:
         cloud_network_uid_in_vbr (UUID):
-        offset (Union[Unset, int]):  Default: 0.
-        limit (Union[Unset, int]):  Default: 100.
-        filter_ (Union[Unset, str]):
-        sort (Union[Unset, str]):
-        select (Union[Unset, str]):
+        offset (int | Unset):  Default: 0.
+        limit (int | Unset):  Default: 100.
+        filter_ (str | Unset):
+        sort (str | Unset):
+        select (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[ProblemDetails, ProtectedCloudNetworkInfoPage]]
+        Response[ProblemDetails | ProtectedCloudNetworkInfoPage]
     """
 
     kwargs = _get_kwargs(
@@ -122,31 +126,31 @@ def sync_detailed(
 def sync(
     cloud_network_uid_in_vbr: UUID,
     *,
-    client: Union[AuthenticatedClient, Client],
-    offset: Union[Unset, int] = 0,
-    limit: Union[Unset, int] = 100,
-    filter_: Union[Unset, str] = UNSET,
-    sort: Union[Unset, str] = UNSET,
-    select: Union[Unset, str] = UNSET,
-) -> Optional[Union[ProblemDetails, ProtectedCloudNetworkInfoPage]]:
+    client: AuthenticatedClient | Client,
+    offset: int | Unset = 0,
+    limit: int | Unset = 100,
+    filter_: str | Unset = UNSET,
+    sort: str | Unset = UNSET,
+    select: str | Unset = UNSET,
+) -> ProblemDetails | ProtectedCloudNetworkInfoPage | None:
     """Get Protected Cloud Network
 
      Returns a resource representation of a protected cloud network with the specified UID.
 
     Args:
         cloud_network_uid_in_vbr (UUID):
-        offset (Union[Unset, int]):  Default: 0.
-        limit (Union[Unset, int]):  Default: 100.
-        filter_ (Union[Unset, str]):
-        sort (Union[Unset, str]):
-        select (Union[Unset, str]):
+        offset (int | Unset):  Default: 0.
+        limit (int | Unset):  Default: 100.
+        filter_ (str | Unset):
+        sort (str | Unset):
+        select (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[ProblemDetails, ProtectedCloudNetworkInfoPage]
+        ProblemDetails | ProtectedCloudNetworkInfoPage
     """
 
     return sync_detailed(
@@ -163,31 +167,31 @@ def sync(
 async def asyncio_detailed(
     cloud_network_uid_in_vbr: UUID,
     *,
-    client: Union[AuthenticatedClient, Client],
-    offset: Union[Unset, int] = 0,
-    limit: Union[Unset, int] = 100,
-    filter_: Union[Unset, str] = UNSET,
-    sort: Union[Unset, str] = UNSET,
-    select: Union[Unset, str] = UNSET,
-) -> Response[Union[ProblemDetails, ProtectedCloudNetworkInfoPage]]:
+    client: AuthenticatedClient | Client,
+    offset: int | Unset = 0,
+    limit: int | Unset = 100,
+    filter_: str | Unset = UNSET,
+    sort: str | Unset = UNSET,
+    select: str | Unset = UNSET,
+) -> Response[ProblemDetails | ProtectedCloudNetworkInfoPage]:
     """Get Protected Cloud Network
 
      Returns a resource representation of a protected cloud network with the specified UID.
 
     Args:
         cloud_network_uid_in_vbr (UUID):
-        offset (Union[Unset, int]):  Default: 0.
-        limit (Union[Unset, int]):  Default: 100.
-        filter_ (Union[Unset, str]):
-        sort (Union[Unset, str]):
-        select (Union[Unset, str]):
+        offset (int | Unset):  Default: 0.
+        limit (int | Unset):  Default: 100.
+        filter_ (str | Unset):
+        sort (str | Unset):
+        select (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[ProblemDetails, ProtectedCloudNetworkInfoPage]]
+        Response[ProblemDetails | ProtectedCloudNetworkInfoPage]
     """
 
     kwargs = _get_kwargs(
@@ -207,31 +211,31 @@ async def asyncio_detailed(
 async def asyncio(
     cloud_network_uid_in_vbr: UUID,
     *,
-    client: Union[AuthenticatedClient, Client],
-    offset: Union[Unset, int] = 0,
-    limit: Union[Unset, int] = 100,
-    filter_: Union[Unset, str] = UNSET,
-    sort: Union[Unset, str] = UNSET,
-    select: Union[Unset, str] = UNSET,
-) -> Optional[Union[ProblemDetails, ProtectedCloudNetworkInfoPage]]:
+    client: AuthenticatedClient | Client,
+    offset: int | Unset = 0,
+    limit: int | Unset = 100,
+    filter_: str | Unset = UNSET,
+    sort: str | Unset = UNSET,
+    select: str | Unset = UNSET,
+) -> ProblemDetails | ProtectedCloudNetworkInfoPage | None:
     """Get Protected Cloud Network
 
      Returns a resource representation of a protected cloud network with the specified UID.
 
     Args:
         cloud_network_uid_in_vbr (UUID):
-        offset (Union[Unset, int]):  Default: 0.
-        limit (Union[Unset, int]):  Default: 100.
-        filter_ (Union[Unset, str]):
-        sort (Union[Unset, str]):
-        select (Union[Unset, str]):
+        offset (int | Unset):  Default: 0.
+        limit (int | Unset):  Default: 100.
+        filter_ (str | Unset):
+        sort (str | Unset):
+        select (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[ProblemDetails, ProtectedCloudNetworkInfoPage]
+        ProblemDetails | ProtectedCloudNetworkInfoPage
     """
 
     return (

@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class ComputerOperationMode(str, Enum):
+class ComputerOperationMode(StrEnum):
     SERVER = "Server"
     UNKNOWN = "Unknown"
     WORKSTATION = "Workstation"

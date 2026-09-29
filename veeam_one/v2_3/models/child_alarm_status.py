@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class ChildAlarmStatus(str, Enum):
+class ChildAlarmStatus(StrEnum):
     ACKNOWLEDGED = "Acknowledged"
     ERROR = "Error"
     INFORMATION = "Information"

@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class AuthenticationCreateTokenDataBodyGrantType(str, Enum):
+class AuthenticationCreateTokenDataBodyGrantType(StrEnum):
     PASSWORD = "password"
     REFRESH_TOKEN = "refresh_token"
 

@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class WanAcceleratorState(str, Enum):
+class WanAcceleratorState(StrEnum):
     DISCONNECTED = "Disconnected"
     INACCESSIBLE = "Inaccessible"
     OK = "Ok"

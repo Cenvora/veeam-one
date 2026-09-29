@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class VSphereHostConnectionState(str, Enum):
+class VSphereHostConnectionState(StrEnum):
     CONNECTED = "Connected"
     DISCONNECTED = "Disconnected"
     NOTRESPONDING = "NotResponding"

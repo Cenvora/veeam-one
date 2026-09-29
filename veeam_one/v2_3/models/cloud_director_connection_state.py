@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class CloudDirectorConnectionState(str, Enum):
+class CloudDirectorConnectionState(StrEnum):
     CONNECTED = "Connected"
     INACCESSIBLE = "Inaccessible"
     UNKNOWN = "Unknown"

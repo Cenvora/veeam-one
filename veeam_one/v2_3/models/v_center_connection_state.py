@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class VCenterConnectionState(str, Enum):
+class VCenterConnectionState(StrEnum):
     CONNECTED = "Connected"
     NOTRESPONDING = "NotResponding"
     UNKNOWN = "Unknown"

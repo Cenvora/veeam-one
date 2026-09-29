@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class ApplicationJobPlatform(str, Enum):
+class ApplicationJobPlatform(StrEnum):
     KASTEN = "Kasten"
     MSSQLPLUGINBASE = "MsSqlPluginBase"
     MSSQLPLUGINWINDOWS = "MsSqlPluginWindows"

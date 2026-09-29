@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 
@@ -12,64 +14,63 @@ T = TypeVar("T", bound="CertificateIssuerInfo")
 class CertificateIssuerInfo:
     """
     Attributes:
-        issuer_name (Union[None, Unset, str]): Issuer name.
-        organization (Union[None, Unset, str]): Name of an issuer organization.
-        organizational_unit (Union[None, Unset, str]): Name of an issuer organizational unit.
-        locality (Union[None, Unset, str]): City, town or municipality where the issuer organization is located.
-        state_or_province (Union[None, Unset, str]): Major administrative region where the issuer organization is
-            located.
-        country (Union[None, Unset, str]): ISO of a country where the issuer organization is located.
-        serial_number (Union[None, Unset, str]): Serial number.
-        version (Union[Unset, int]): Version number.
+        issuer_name (None | str | Unset): Issuer name.
+        organization (None | str | Unset): Name of an issuer organization.
+        organizational_unit (None | str | Unset): Name of an issuer organizational unit.
+        locality (None | str | Unset): City, town or municipality where the issuer organization is located.
+        state_or_province (None | str | Unset): Major administrative region where the issuer organization is located.
+        country (None | str | Unset): ISO of a country where the issuer organization is located.
+        serial_number (None | str | Unset): Serial number.
+        version (int | Unset): Version number.
     """
 
-    issuer_name: Union[None, Unset, str] = UNSET
-    organization: Union[None, Unset, str] = UNSET
-    organizational_unit: Union[None, Unset, str] = UNSET
-    locality: Union[None, Unset, str] = UNSET
-    state_or_province: Union[None, Unset, str] = UNSET
-    country: Union[None, Unset, str] = UNSET
-    serial_number: Union[None, Unset, str] = UNSET
-    version: Union[Unset, int] = UNSET
+    issuer_name: None | str | Unset = UNSET
+    organization: None | str | Unset = UNSET
+    organizational_unit: None | str | Unset = UNSET
+    locality: None | str | Unset = UNSET
+    state_or_province: None | str | Unset = UNSET
+    country: None | str | Unset = UNSET
+    serial_number: None | str | Unset = UNSET
+    version: int | Unset = UNSET
 
     def to_dict(self) -> dict[str, Any]:
-        issuer_name: Union[None, Unset, str]
+        issuer_name: None | str | Unset
         if isinstance(self.issuer_name, Unset):
             issuer_name = UNSET
         else:
             issuer_name = self.issuer_name
 
-        organization: Union[None, Unset, str]
+        organization: None | str | Unset
         if isinstance(self.organization, Unset):
             organization = UNSET
         else:
             organization = self.organization
 
-        organizational_unit: Union[None, Unset, str]
+        organizational_unit: None | str | Unset
         if isinstance(self.organizational_unit, Unset):
             organizational_unit = UNSET
         else:
             organizational_unit = self.organizational_unit
 
-        locality: Union[None, Unset, str]
+        locality: None | str | Unset
         if isinstance(self.locality, Unset):
             locality = UNSET
         else:
             locality = self.locality
 
-        state_or_province: Union[None, Unset, str]
+        state_or_province: None | str | Unset
         if isinstance(self.state_or_province, Unset):
             state_or_province = UNSET
         else:
             state_or_province = self.state_or_province
 
-        country: Union[None, Unset, str]
+        country: None | str | Unset
         if isinstance(self.country, Unset):
             country = UNSET
         else:
             country = self.country
 
-        serial_number: Union[None, Unset, str]
+        serial_number: None | str | Unset
         if isinstance(self.serial_number, Unset):
             serial_number = UNSET
         else:
@@ -103,66 +104,66 @@ class CertificateIssuerInfo:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
 
-        def _parse_issuer_name(data: object) -> Union[None, Unset, str]:
+        def _parse_issuer_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         issuer_name = _parse_issuer_name(d.pop("issuerName", UNSET))
 
-        def _parse_organization(data: object) -> Union[None, Unset, str]:
+        def _parse_organization(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         organization = _parse_organization(d.pop("organization", UNSET))
 
-        def _parse_organizational_unit(data: object) -> Union[None, Unset, str]:
+        def _parse_organizational_unit(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         organizational_unit = _parse_organizational_unit(d.pop("organizationalUnit", UNSET))
 
-        def _parse_locality(data: object) -> Union[None, Unset, str]:
+        def _parse_locality(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         locality = _parse_locality(d.pop("locality", UNSET))
 
-        def _parse_state_or_province(data: object) -> Union[None, Unset, str]:
+        def _parse_state_or_province(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         state_or_province = _parse_state_or_province(d.pop("stateOrProvince", UNSET))
 
-        def _parse_country(data: object) -> Union[None, Unset, str]:
+        def _parse_country(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         country = _parse_country(d.pop("country", UNSET))
 
-        def _parse_serial_number(data: object) -> Union[None, Unset, str]:
+        def _parse_serial_number(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         serial_number = _parse_serial_number(d.pop("serialNumber", UNSET))
 
