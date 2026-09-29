@@ -1,0 +1,787 @@
+        },
+        "additionalProperties": false
+      },
+      "VeeamOneLicenseUsageTotalUnit": {
+        "type": "object",
+        "properties": {
+          "licenseUnit": {
+            "type": "string",
+            "description": "Type of license units (Points, Sockets or Instances).",
+            "nullable": true,
+            "example": "Instances"
+          },
+          "used": {
+            "type": "string",
+            "description": "Number of consumed license units.",
+            "nullable": true,
+            "example": "379"
+          },
+          "available": {
+            "type": "string",
+            "description": "Number of available license units.",
+            "nullable": true,
+            "example": "9621"
+          },
+          "licensed": {
+            "type": "string",
+            "description": "Total number of license units.",
+            "nullable": true,
+            "example": "10000"
+          }
+        },
+        "additionalProperties": false
+      },
+      "VeeamOneLicenseUsageUnitType": {
+        "enum": [
+          "Points",
+          "Instances",
+          "Sockets"
+        ],
+        "type": "string",
+        "description": "Type of license units."
+      },
+      "VeeamOneLogsRequest": {
+        "type": "object",
+        "properties": {
+          "fromDate": {
+            "type": "string",
+            "description": "Start date and time of the period for which a log archive must be collected.",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VeeamOneServiceInfo": {
+        "type": "object",
+        "properties": {
+          "product": {
+            "type": "string",
+            "description": "Name of an installed product.",
+            "nullable": true,
+            "example": "Veeam ONE"
+          },
+          "version": {
+            "type": "string",
+            "description": "Version of an installed product.",
+            "nullable": true,
+            "example": "11.0.0.1325"
+          },
+          "installationUid": {
+            "type": "string",
+            "description": "UID assigned to product installation.",
+            "format": "uuid",
+            "example": "8a6626ad-16ce-482b-ae27-30c0966c1bd2"
+          }
+        },
+        "additionalProperties": false
+      },
+      "VmBackupJobInfo": {
+        "type": "object",
+        "properties": {
+          "vmBackupJobUid": {
+            "type": "string",
+            "description": "UID assigned to a job in Veeam Backup & Replication.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "backupServerId": {
+            "type": "integer",
+            "description": "ID assigned to a Veeam Backup & Replication server.",
+            "format": "int64"
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BackupJobStatus"
+              }
+            ],
+            "description": "Job status."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Job details.",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of a job.",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "Job description.",
+            "nullable": true
+          },
+          "platform": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/VmBackupJobPlatform"
+              }
+            ],
+            "description": "Platform of VMs protected by a job."
+          },
+          "lastRun": {
+            "type": "string",
+            "description": "Date and time of the latest job session.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastRunDurationSec": {
+            "type": "integer",
+            "description": "Duration of the latest job session, in seconds.",
+            "format": "int32",
+            "nullable": true
+          },
+          "avgDurationSec": {
+            "type": "integer",
+            "description": "Average job session duration, in seconds.",
+            "format": "int32",
+            "nullable": true
+          },
+          "lastTransferredDataBytes": {
+            "type": "integer",
+            "description": "Amount of data transferred during the latest job session, in bytes.",
+            "format": "int64",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VmBackupJobInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VmBackupJobInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VmBackupJobPlatform": {
+        "enum": [
+          "Unknown",
+          "VSphere",
+          "HyperV",
+          "Nutanix",
+          "Proxmox",
+          "OVirtKVM",
+          "HpeVme",
+          "Sangfor",
+          "XCPng"
+        ],
+        "type": "string"
+      },
+      "VmBackupType": {
+        "enum": [
+          "Unknown",
+          "VMBackup",
+          "Replication",
+          "BackupToTape",
+          "BackupCopyPeriodic",
+          "BackupCopyImmediateWorker",
+          "BackupCopyImmediate",
+          "ProxmoxVeBackup",
+          "NutanixAhvBackup",
+          "BackupCopyImmediateParentWorker",
+          "CDPPolicy",
+          "XCPing",
+          "Sangfor",
+          "HpeVme",
+          "ScaleComputing",
+          "KvmBackup"
+        ],
+        "type": "string"
+      },
+      "VmCopyJobInfo": {
+        "type": "object",
+        "properties": {
+          "vmCopyJobUid": {
+            "type": "string",
+            "description": "UID assigned to a job in Veeam Backup & Replication.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "backupServerId": {
+            "type": "integer",
+            "description": "ID assigned to a Veeam Backup & Replication server.",
+            "format": "int64"
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BackupJobStatus"
+              }
+            ],
+            "description": "Job status."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Job details.",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of a job.",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "Job description.",
+            "nullable": true
+          },
+          "lastRun": {
+            "type": "string",
+            "description": "Date and time of the latest job session.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastRunDurationSec": {
+            "type": "integer",
+            "description": "Duration of the latest job session, in seconds.",
+            "format": "int32",
+            "nullable": true
+          },
+          "avgDurationSec": {
+            "type": "integer",
+            "description": "Average job session duration, in seconds.",
+            "format": "int32",
+            "nullable": true
+          },
+          "lastTransferredDataBytes": {
+            "type": "integer",
+            "description": "Amount of data transferred during the latest job session, in bytes.",
+            "format": "int64",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VmCopyJobInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VmCopyJobInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VmDatastoreUsage": {
+        "type": "object",
+        "properties": {
+          "datastoreMoRef": {
+            "type": "string",
+            "description": "MoRef ID assigned to a datastore.",
+            "nullable": true
+          },
+          "commitedBytes": {
+            "type": "integer",
+            "description": "Datastore storage space that is used by a VM, in bytes.",
+            "format": "int64"
+          },
+          "uncommitedBytes": {
+            "type": "integer",
+            "description": "Datastore storage space that can be used by a VM, in bytes.",
+            "format": "int64"
+          },
+          "unsharedBytes": {
+            "type": "integer",
+            "description": "Datastore storage space that is used by a VM and is not shared with other VMs, in bytes.",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false
+      },
+      "VmGuestDisk": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of a guest disk.",
+            "nullable": true
+          },
+          "capacityBytes": {
+            "type": "integer",
+            "description": "Storage capacity of a guest disk, in bytes.",
+            "format": "int64"
+          },
+          "freeSpaceBytes": {
+            "type": "integer",
+            "description": "Free storage space of a guest disk, in bytes.",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false
+      },
+      "VmPlatform": {
+        "enum": [
+          "Unknown",
+          "VSphere",
+          "HyperV",
+          "CloudDirector",
+          "NutanixAhv",
+          "Proxmox",
+          "OVirtKVM",
+          "ScaleComputing",
+          "HpeVme",
+          "Sangfor",
+          "XCPng"
+        ],
+        "type": "string"
+      },
+      "VmReplicationJobInfo": {
+        "type": "object",
+        "properties": {
+          "vmReplicationJobUid": {
+            "type": "string",
+            "description": "UID assigned to a job in Veeam Backup & Replication.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "backupServerId": {
+            "type": "integer",
+            "description": "ID assigned to a Veeam Backup & Replication server.",
+            "format": "int64"
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BackupJobStatus"
+              }
+            ],
+            "description": "Job status."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Job details.",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of a job.",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "Job description.",
+            "nullable": true
+          },
+          "platform": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/VmReplicationJobPlatform"
+              }
+            ],
+            "description": "Platform of VMs protected by a job."
+          },
+          "lastRun": {
+            "type": "string",
+            "description": "Date and time of the latest job session.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastRunDurationSec": {
+            "type": "integer",
+            "description": "Duration of the latest job session, in seconds.",
+            "format": "int32",
+            "nullable": true
+          },
+          "avgDurationSec": {
+            "type": "integer",
+            "description": "Average job session duration, in seconds.",
+            "format": "int32",
+            "nullable": true
+          },
+          "lastTransferredDataBytes": {
+            "type": "integer",
+            "description": "Amount of data transferred during the latest job session, in bytes.",
+            "format": "int64",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VmReplicationJobInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VmReplicationJobInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VmReplicationJobPlatform": {
+        "enum": [
+          "Unknown",
+          "VSphere",
+          "HyperV"
+        ],
+        "type": "string"
+      },
+      "VmSnapshotOnlyJobInfo": {
+        "type": "object",
+        "properties": {
+          "vmSnapshotOnlyJobUid": {
+            "type": "string",
+            "description": "UID assigned to a job in Veeam Backup & Replication.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "backupServerId": {
+            "type": "integer",
+            "description": "ID assigned to a Veeam Backup & Replication server.",
+            "format": "int64"
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BackupJobStatus"
+              }
+            ],
+            "description": "Job status."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Job details.",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of a job.",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "Job description.",
+            "nullable": true
+          },
+          "lastRun": {
+            "type": "string",
+            "description": "Date and time of the latest job session.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastRunDurationSec": {
+            "type": "integer",
+            "description": "Duration of the latest job session, in seconds.",
+            "format": "int32",
+            "nullable": true
+          },
+          "avgDurationSec": {
+            "type": "integer",
+            "description": "Average job session duration, in seconds.",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VmSnapshotOnlyJobInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VmSnapshotOnlyJobInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VmVirtualDisk": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of a virtual disk.",
+            "nullable": true
+          },
+          "capacityBytes": {
+            "type": "integer",
+            "description": "Storage capacity of a virtual disk, in bytes.",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false
+      },
+      "WanAcceleratorInfo": {
+        "type": "object",
+        "properties": {
+          "wanAcceleratorId": {
+            "type": "integer",
+            "description": "ID assigned to a WAN accelerator.",
+            "format": "int64"
+          },
+          "wanAcceleratorUidInVbr": {
+            "type": "string",
+            "description": "UID assigned to a WAN accelerator in Veeam Backup & Replication.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "backupServerId": {
+            "type": "integer",
+            "description": "ID assigned to a Veeam Backup & Replication server.",
+            "format": "int64",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of a WAN accelerator.",
+            "nullable": true
+          },
+          "version": {
+            "type": "string",
+            "description": "WAN accelerator version.",
+            "nullable": true
+          },
+          "capacityBytes": {
+            "type": "integer",
+            "description": "WAN accelerator capacity, in bytes.",
+            "format": "int64",
+            "nullable": true
+          },
+          "upgradeRequired": {
+            "type": "boolean",
+            "description": "Indicates whether a WAN accelerator must be updated.",
+            "nullable": true
+          },
+          "state": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/WanAcceleratorState"
+              }
+            ],
+            "description": "WAN accelerator state."
+          },
+          "freeSpaceBytes": {
+            "type": "integer",
+            "description": "WAN accelerator free space, in bytes.",
+            "format": "int64",
+            "nullable": true
+          },
+          "usedSpaceBytes": {
+            "type": "integer",
+            "description": "WAN accelerator used space, in bytes.",
+            "format": "int64",
+            "nullable": true
+          },
+          "cachePath": {
+            "type": "string",
+            "description": "Path to the folder in which service files and global cache data are stored.",
+            "nullable": true
+          },
+          "streams": {
+            "type": "integer",
+            "description": "Number of connections that are used to transmit data between WAN accelerators.",
+            "format": "int32",
+            "nullable": true
+          },
+          "trafficPort": {
+            "type": "integer",
+            "description": "Number of the port over which a WAN accelerator communicates with other WAN accelerators.",
+            "format": "int32",
+            "nullable": true
+          },
+          "highBandwidthMode": {
+            "type": "boolean",
+            "description": "Indicates whether the high bandwith mode is enabled.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "WanAcceleratorInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WanAcceleratorInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "WanAcceleratorState": {
+        "enum": [
+          "Unknown",
+          "Ok",
+          "Inaccessible",
+          "Disconnected",
+          "OutOfDate",
+          "Warning"
+        ],
+        "type": "string"
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "apiKey",
+        "description": "JWT authorization header using the bearer scheme. Example: \"Authorization: Bearer {token}\"",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": []
+    }
+  ],
+  "tags": [
+    {
+      "x-displayName": "About Veeam ONE REST API",
+      "description": "Veeam ONE exposes its entities through an application programming interface (API) based on the Representational State Transfer (REST) architecture style. The Veeam ONE REST API allows developers to query information about Veeam ONE entities and perform basic operations with these entities using HTTP requests and standard [HTTP methods](SectionOverview#section/HTTP-Methods).\n\nAll individual resources have a JSON representation and system resource identifiers, which help to locate a resource by its URL. Resources of the same entity type comprise a collection. A collection is modeled as an array of objects.\n\nVeeam ONE REST API relies on the client-server model. The client makes a request to the server. The server processes the request and returns a response with a conventional [HTTP response code](https://www.iana.org/protocols), HTTP response headers and a response body in JSON format.\n\n<div class=\"note\"><strong>NOTE</strong><br>\n\nBefore you start working with REST API, we recommend you to get familiar with Veeam ONE functionality. For details, see [Veeam ONE User Guide](https://helpcenter.veeam.com/docs/one/userguide/about_one.html?ver=13).\n</div>\n\n\n### Required Privileges\n\nTo perform REST API operations, a user must have one of the following roles assigned:\n\n*Veeam ONE Administrator* can execute all operations.\n*Veeam ONE Read-Only User* and *Veeam ONE Power User* can execute all operations except the ones marked with the `Licensing`, `Task Sessions` and `About` tags, and the HTTP POST operations marked with the `Alarms` tag.\n\n\n### REST API Reference Map\n\nFor visual representation of all operations available in REST API, see [Veeam ONE REST API v13 Reference Map](https://www.veeam.com/veeam_one_13_rest_api_reference_map_ot.pdf), [Veeam ONE REST API v13.0.1 Reference Map](https://www.veeam.com/veeam_one_13_0_1_rest_api_reference_map_ot.pdf) and [Veeam ONE REST API v13.1 Reference Map](https://www.veeam.com/veeam_one_13_1_rest_api_reference_map_ot.pdf).\n",
+      "name": "SectionAbout"
+    },
+    {
+      "x-displayName": "Overview",
+      "description": "The following topics will help you learn how to connect to Veeam ONE REST API and authorize your access. You will also learn what method-implemented operations you can perform with Veeam ONE entities, and how to control and sort the data that Veeam ONE REST API returns.\n\n\n# Resource URLs\n\nEach Veeam ONE REST API-exposed entity has a resource representing it. To get a resource representation, request its URL. Most of Veeam ONE REST API URLs have the following base:\n\n```sh\nhttps://<hostname>:<port>/api/<version>\n```\n\nwhere:\n\n- `<hostname>` is a public IPv4 address or DNS hostname of the machine where Veeam ONE Web Services is installed.\n- `<port>` is the REST API port number you specified during the Veeam ONE Web Services component installation.\n\n  The default port number is **1239**.\n\n- `<version>` is an API version.\n\n  The current version is **2.3**.\n\nTo get a collection of Veeam ONE REST API resources, request a base URL followed by a resource collection path. For example:\n\n```sh\nhttps://one-srv:1239/api/v2.3/sessions\n```\n\nTo get a representation of an individual resource, enter a resource identifier after a resource collection path. For example:\n\n```sh\nhttps://one-srv:1239/api/v2.3/sessions/1000\n```\n\nIn the following example, the resource identifier is represented by the jobSessionId property of the resource from the collection.\n\n```sh\n{\n  \"jobSessionId\": 1000,\n  \"name\": \"Object properties data collection\",\n  \"type\": \"AggregateProperties\",\n  \"status\": \"Success\",\n  \"statusPriority\": 0,\n  \"start\": \"2023-11-15T12:32:02.7Z\",\n  \"end\": \"2023-11-15T12:32:02.7Z\"\n}\n```\n\n\n# Authorization and Security\n\nTo start working with Veeam ONE REST API, clients must first authenticate themselves. Veeam ONE REST API authorization process is based on the [OAuth 2.0 Authorization Framework](https://datatracker.ietf.org/doc/html/rfc6749) and involves obtaining an access token and a refresh token.\n\n- **Access token** is a string that represents authorization issued to the client and must be used in all requests during the current logon session.\n- **Refresh token** is a string that represents authorization granted to the client and can be used to obtain a new access token when the current access token expires.\n\nVeeam ONE REST API authorization process involves the following procedures:\n\n1. [Requesting authorization](SectionOverview#section/Authorization-and-Security/Requesting-Authorization).\n2. [Using refresh token](SectionOverview#section/Authorization-and-Security/Using-Refresh-Token).\n3. [Performing logout](SectionOverview#section/Authorization-and-Security/Performing-Logout).\n\n\n## Requesting Authorization\n\nTo obtain a pair of tokens, the client sends the HTTP POST request to the `/api/token` path.\n\n<div class=\"note\"><strong>NOTE</strong><br>\n\nSimultaneous sessions initiated in different client applications under the same user credentials may interfere with each other. To avoid unexpected logout, use a different user account for every application.\n</div>\n\nA successfully completed operation returns the *200 Success* response code and an access and a refresh token in the response body. The client inserts the access token in headers of further requests to Veeam ONE REST API. The refresh token must be saved locally.\n\n<div class=\"tip\"><strong>TIP</strong><br>\n\nTo learn how to authorize your access using a client application, you can review the [Example Requests and Responses](SectionOverview#section/Authorization-and-Security/Example-Requests-and-Responses) section. Alternatively, you can use [Swagger UI](SectionOverview#section/Evaluation-with-Swagger-UI).\n</div>\n\n\n## Using Refresh Token\n\nTo obtain a new pair of tokens in case the access token expires or becomes invalid, the client sends the POST HTTP request with the refresh token in the request body to the /`api/token` path. A successfully completed operation returns the *200 Success* response code and a new pair of tokens in the response body.\n\n\n## Performing Logout\n\nWhen the client finishes working with Veeam ONE REST API, he logs out by sending the POST HTTP request with the access token to the `/api/revoke` path. A successfully completed operation returns the *200 Success* response code.\n\n\n## Example Requests and Responses\n\nThe following example illustrates how the client and server communicate using requests and responses.\n\n1. To obtain an access and a refresh token, send the HTTP POST request to the `/api/token` path.\n\n   In the body of the request, specify the following parameters in the `application/x-www-form-urlencoded` or `multipart/form-data` format:\n\n   - `grant_type` — the authorization process requires that the password value must be specified for this parameter.\n   - `username` and `password` — credentials used to access the server; in this example, `one-srv\\administrator` and `Password1` are used.\n\n   ```yaml\n   Request:\n   POST https://one-srv:1239/api/token\n\n   Request Header:\n   Content-Type: application/x-www-form-urlencoded\n\n   Request Body:\n   grant_type : password\n   username : one-srv\\administrator\n   password : Password1\n   ```\n\n   The server sends a response in the following format.\n\n   ```yaml\n   Response Code:\n\n   200 Success\n   Response Body:\n   \n   {\n      \"access_token\": \"eyJhbGciOiJIUzI1NiIsImtpZCI6IldlYkFwaVNlY3VyaXR5S2V5IiwidHlwIjoiSldUIn0.eyJ1bmlxdWVfbmFtZSI6IklJLVYwMTEtMlxcQWRtaW5pc3RyYXRvciIsInJvbGUiOiJBZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL3NpZCI6IlMtMS01LTIxLTQyOTA5MTM0ODQtMTAzNDIyNjA4Ny03MzA0MjcyODQtNTAwIiwiQWNjZXNzVG9rZW5JZCI6IAFhYjkzYjllLWRhMWYtNDQxOC1hOWUzLTJlOGQxZDU4NDJlZiIsIlVzZXJJZCI6IjIiLCJuYmYiOjE2MDgyMTM1NTQsImV4cCI6MTYwODIxNDQ1MywiaWF0IjoxNjA4MjEzNTUzfQ.9ctZVlohJHJXx_XnF7VhzX_lMoZMCKahC_8cRKlYCQc\",\n      \"refresh_token\": \"523cf7a168ac46b3bc4f884570f7bb5c\",\n      \"token_type\": \"Bearer\",\n      \"expires_in\": 899,\n      \"user\": \"ONE-SRV\\\\Administrator\",\n      \"user_role\": \"Admin\"\n   }\n   ```\n\n2. To refresh a pair of tokens, send the HTTP POST request to the `/api/token` path.\n\n   In the body of the request, specify the following parameters in the `application/x-www-form-urlencoded` or `multipart/form-data` format:\n\n   - `grant_type` — to refresh the token, it is required that the `refresh_token` value must be specified for this parameter.\n   - `refresh_token` — the previously saved refresh token.\n\n   ```yaml\n   Request:\n   POST https://one-srv:1239/api/token\n\n   Request Header:\n   Content-Type: application/x-www-form-urlencoded\n\n   Request Body:\n   grant_type : refresh_token\n   refresh_token : 523cf7a168ac46b3bc4f884570f7bb5c\n   ```\n\n3. To log out, send the HTTP POST request to the `/api/revoke` path.\n\n   In the `Authorization` header, specify currently valid access token in the Bearer `<access_token>` format.\n\n   In the body of the request, specify either of the following parameters in the `application/x-www-form-urlencoded` or `multipart/form-data` format:\n\n   - `token` — currently valid access token.\n   - `UserSid` — SID assigned to your user.\n\n  Note that if you choose to log out using the `token` parameter, only the specified token will be revoked. If you have obtained other tokens, they remain active.\n\n  ```yaml\n  Request:\n  POST https://localhost:1239/api/revoke\n\n  Request Header:\n  Content-Type: application/x-www-form-urlencoded\n  Authorization: Bearer\n\n  Request Body:\n  token : eyJhbGciOiJIUzI1NiIsImtpZCI6IldlYkFwaVNlY3VyaXR5S2V5IiwidHlwIjoiSldUIn0.eyJ1bmlxdWVfbmFtZSI6IklJLVYwMTEtMlxcQWRtaW5pc3RyYXRvciIsInJvbGUiOiJBZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL3NpZCI6IlMtMS01LTIxLTQyOTA5MTM0ODQtMTAzNDIyNjA4Ny03MzA0MjcyODQtNTAwIiwiQWNjZXNzVG9rZW5JZCI6IAFhYjkzYjllLWRhMWYtNDQxOC1hOWUzLTJlOGQxZDU4NDJlZiIsIlVzZXJJZCI6IjIiLCJuYmYiOjE2MDgyMTM1NTQsImV4cCI6MTYwODIxNDQ1MywiaWF0IjoxNjA4MjEzNTUzfQ.9ctZVlohJHJXx_XnF7VhzX_lMoZMCKahC_8cRKlYCQc\n  ```\n\n\n# HTTP Methods\n\nTo perform operations with Veeam ONE entities using the REST API, you can use the following standard HTTP methods:\n\n- GET — retrieves information about a resource or collection.\n- POST — creates a new resource in a collection or activates a resource action.\n- PATCH — makes changes to a resource.\n\n\n## PATCH Method\n\nThe HTTP PATCH method can be used in two different ways:\n\n- To change resource property values, for example, modify a data collection schedule.\n- To perform an operation, for example, update a license file.\n\n\n### Modify a Resource\n\nEach HTTP PATCH request that modifies a resource requires a request body. The body must contain properties with modified values. For example, to modify a data collection schedule, send the following request:\n\n```yaml\nRequest:\nPATCH https://one-srv:1239/api/v2.2/dataCollection/schedule\n\nRequest Body:\n{\n  \"startTime\": \"2023-11-18T21:00:00Z\",\n  \"timeZoneId\": \"\",\n  \"scheduleType\": \"Daily\",\n  \"disabled\": false,\n  \"periodically\": {\n    \"period\": 1,\n    \"interval\": \"Hours\"\n  },\n  \"daily\": {\n    \"daysOfWeek\": [\n      \"Monday\",\n      \"Tuesday\",\n      \"Wednesday\",\n      \"Thursday\",\n      \"Friday\"\n    ]\n  },\n  \"monthlyDays\": {\n    \"months\": [],\n    \"days\": []\n  },\n  \"monthlyWeekDays\": {\n    \"months\": [],\n    \"dayOfWeekAppearance\": [],\n    \"daysOfWeek\": [\n      \"Monday\",\n      \"Tuesday\",\n      \"Wednesday\",\n      \"Thursday\",\n      \"Friday\"\n    ]\n  }\n}\n```\n\n\n### Post an Action\n\nFor example, to update a license, send the following request:\n\n```yaml\nRequest:\nPATCH https://one-srv:1239/api/v2.2/license/update\n```\n\nIn case of success, the HTTP PATCH method returns the *200 Success* response code.\n\n\n# Query Parameters\n\nThe Veeam ONE REST API supports query string parameters that you can specify to control the amount and order of data that the Veeam ONE REST API returns for a resource or collection.\n\nThe Veeam ONE REST API supports the following query parameters:\n\n- [Offset Parameter](SectionOverview#section/Query-Parameters/Offset-Parameter)\n- [Limit Parameter](SectionOverview#section/Query-Parameters/Limit-Parameter)\n- [Sort Parameters](SectionOverview#section/Query-Parameters/Sort-Parameters)\n- [Filter Parameter](SectionOverview#section/Query-Parameters/Filter-Parameter)\n- [Select Parameter](SectionOverview#section/Query-Parameters/Select-Parameter)\n\n\n## Offset Parameter\n\nThe `Offset` query parameter is used to exclude from a response the first N items of a resource collection.\n\nFor example, to show in a response all data collection tasks starting from the forth one, send the following request:\n\n```sh\nGET https://one-srv:1239/api/v2.3/dataCollection/tasks?Offset=3\n```\n\nYou can combine the [Limit](SectionOverview#section/Query-Parameters/Limit-Parameter) and the `Offset` parameters to request a particular set of items. Note that the `Offset` option is applied before the `Limit` option, regardless of its position in the request. That is, top results are selected from a collection where a set of items is already excluded.\n\nFor example, to return the second and the third data collection tasks configured in Veeam ONE, send the following request:\n\n```sh\nGET https://one-srv:1239/api/v2.3/dataCollection/tasks?Offset=1&Limit=2\n```\n\nThe Veeam ONE REST API returns resources in the default order based on its own semantics.\n\n\n## Limit Parameter\n\nThe `Limit` query parameter is used to include in a response only the first N items of a resource collection.\n\nFor example, to show in a response only the first three task sessions from the `/sessions` collection, send the following request:\n\n```sh\nGET https://one-srv:1239/api/v2.3/sessions?Limit=3\n```\n\nYou can combine the `Limit` and the [Offset](SectionOverview#section/Query-Parameters/Offset-Parameter) parameter to request a particular set of items. Note that the `Offset` parameter is applied before the `Limit` parameter, regardless of its position in the request. That is, top results are selected from a collection where a set of items is already excluded.\n\nTo return 4 task sessions that follow the first 5 task sessions available in Veeam ONE, send the following request:\n\n```sh\nGET https://one-srv:1239/api/v2.3/sessions?Offset=5&Limit=4\n```\n\nThe Veeam ONE REST API returns resources in the default order based on its own semantics.\n\n\n## Sort Parameters\n\nThe `Sort` query parameter is used to sort items in a resource collection returned in a response.\n\nThe parameter accepts the *array* data type. To sort a resource collection, use the `Sort` query parameter in the following format:\n\n```sh\nGET https://one-srv:1239/api/v2.3/<endpoint>?sort={\"property\":\"<property>\",\"direction\":\"<direction>\",\"collation\":\"<collation>\"}\n```\n\nwhere:\n\n- `endpoint` is a resource collection endpoint.\n- `property` is the searched property name.\n\n  <div class=\"note\"><strong>NOTE</strong><br>\n  To sort a resource collection based on a property of a resource subschema, use the <code>&lt;subschema&gt;.&lt;property&gt;</code> format to specify the resource property name where <code>&lt;subschema&gt;</code> is the subschema name.</div>\n\n- `direction` is a direction specifier. The following values are available:\n\n  - *ascending*\n  - *descending*\n\n- `collation` is the type of rules that determine how sorted values are compared to each other. The following types are available:\n\n  - *ordinal* — compare strings symbol-by-symbol (only for case-sensitive databases)\n  - *ignorecase* — compare strings symbol-by-symbol ignoring character case\n  - *lexicographic* — compare words with words and numbers with numbers\n\n  The default value is *ignorecase*.\n\n\n### Example\n\nTo sort task sessions by status, send the following request:\n\n```sh\nGET https://one-srv:1239/api/v2.3/sessions?sort={\"property\":\"status\",\"direction\":\"descending\",\"collation\":\"lexicographic\"}\n```\n\n\n## Filter Parameter\n\nThe `Filter` query parameter is used to filter items in a resource collection to return a subset of resources in a response. The subset includes only those resources that satisfy parameter value specified in the query.\n\nTo filter a resource collection use the `Filter` query parameter in the following format:\n\n```sh\nGET https://one-srv:1239/api/v2.3/<endpoint>?filter={\"property\":\"<property>\",\"operation\":\"<operation>\",\"collation\":\"<collation>\",\"value\":\"<value>\"}\n```\n\nwhere:\n\n- `endpoint` is a resource collection endpoint.\n- `property` is the searched property name.\n\n  <div class=\"note\"><strong>NOTE</strong><br>\n  To filter a resource collection based on a property of a resource subschema, use the <code>&lt;subschema&gt;.&lt;property&gt;</code> format to specify the resource property name where <code>&lt;subschema&gt;</code> is the subschema name.</div>\n\n  - `operation` is a relational or logical operator.\n  - `collation` is the type of rules that determine how specified values are compared with resource property values. The following types are available:\n  \n    - *ordinal* — compare strings symbol-by-symbol (only for case-sensitive databases)\n    - *ignorecase* — compare strings symbol-by-symbol ignoring character case\n    - *lexicographic* — compare words with words and numbers with numbers\n\n  The default value is *ignorecase*.\n\n  - `value` is a resource property value.\n\nThe Veeam ONE REST API supports the following operators:\n\nOperator | Description\n--- | ---\n**in** | Returns resources that match at least one of the values specified for a property.\n**contains** | Returns resources that contain the value specified for a property.\n**subset** | Returns resources that contain a subset of values specified for a property.\n**superset** | Returns resources that contain a superset of values specified for a property.\n**equals** | Returns resources that match the specified property value.\n**notEquals** | Returns resources that do not match the specified property value.\n**lessThan** | Returns resources with the property value that is less than the specified value.\n**lessThanOrEqual** | Returns resources with the property value that is less than or equal to the specified value.\n**greaterThan** | Returns resources with the property value that is greater than the specified value.\n**greaterThanOrEqual** | Returns resources with the property value that is greater than or equal to the specified value.\n\n\n### Example\n\nTo group multiple filter expressions, you can include them into the `item` property in the following format:\n\n```sh\nGET https://one-srv:1239/api/v2.3/<endpoint>?filter={\"operation\":\"<operation>\",\"items\":[{\"property\":\"<property>\",\"operation\":\"<operation>\",\"collation\":\"<collation>\",\"value\":\"<value>\"},{\"property\":\"<property>\",\"operation\":\"<operation>\",\"collation\":\"<collation>\",\"value\":\"<value>\"}]}\n```\n\nTo combine expressions you can use the following operators:\n\nOperator | Description\n--- | ---\n**exclusiveOr** | Returns resources that match one of the filter expressions.\n**or** | Returns resources that match one or more of the filter expressions.\n**and** | Returns resources that match all filter expressions.\n**not** | Returns resources that do not match all filter expressions.\n\n\n### Example\n\nTo get all data collection tasks with the Failed status, send the following request:\n\n```sh\nGET https://one-srv:1239/api/v2.3/dataCollection/tasks?Filter={\"property\":\"status\",\"operation\":\"equals\",\"collation\":\"ignorecase\",\"value\":\"failed\"}\n```\n\n\n## Select Parameter\n\nThe `Select` parameter is used to return only selected resource properties in a response.\n\nTo return selected properties, use the select parameter in the following format:\n\n```sh\nGET https://one-srv:1239/api/v2.3/<endpoint>?Select=<property>\n```\n\nwhere:\n\n- `endpoint` is a resource collection endpoint.\n- `property` is the searched property name.\n\nTo get multiple properties, specify their names separated with ASCII-encoded commas.\n\n\n### Example\n\nTo return the `/sessions` collection with only task session UID, name and status displayed, send the following request:\n\n```sh\nGET https://one-srv:1239/api/v2.3/<endpoint>?Select=jobSessionId%2Cname%2Cstatus\n```\n\n\n# Evaluation with Swagger UI\n\nTo start working with Veeam ONE REST API, you can use any client application that supports the HTTPS protocol.\n\nVeeam ONE REST API is additionally available through [Swagger UI](https://swagger.io/tools/swagger-ui/), a tool that you can use to evaluate and explore capabilities of Veeam ONE REST API. Swagger UI visually presents API specification files and allows you to work with resources.\n\nAll methods are grouped into tags. You can filter methods by tag name using the **Filter by tag** field. Note, that the field is case-sensitive.\n\nAll tags and methods are expandable. When you expand a method, you get a full description of available parameters and an automatically generated example. You can also send requests and see response messages.\n\nTo access Swagger UI for Veeam ONE REST API, in the web browser, navigate to the following URL:\n\n```sh\nhttps://<hostname>:<port>/swagger/index.html\n```\n\nwhere:\n\n- `<hostname>` is the DNS name or IP address of the machine on which the Veeam ONE Web Services component is installed.\n- `<port>` is the REST API port number you specified during Veeam ONE Web Services installation.\n\n  The default port number is **1239**.\n\nFrom the the **Select a definition** drop-down list, select the version of the Veeam ONE REST API.\n\n\n## Getting Authorization Tokens\n\nVeeam ONE REST API authorization with Swagger UI involves the following procedures:\n\n1. Obtain a pair of tokens:\n\n   1. On the **Veeam ONE REST API** page, expand the **Authentication** tag and click **POST /api/token**.\n   2. In the expanded method window, click **Try it out**.\n   3. In the **username** and **password** fields, specify the user credentials.\n   4. Click **Execute**.\n\n      Wait for the response from the server. A successfully completed operation returns the *200 Success* response code and an access and a refresh token in the response body.\n\n   5. Save the refresh token locally for further use.\n\n   <img src=\"https://helpcenter.veeam.com/references/one/13/rest/images/swagger_login.png\" alt=\"Obtaining Tokens\" />\n\n2. Validate the access token:\n\n   1. At the top right corner of the page, click **Authorize**.\n\n      The **Available authorizations** window will open.\n\n   2. In the **Value** field, provide the access token in the `Bearer <access_token>` format.\n   3. Click **Authorize**.\n\n   <img src=\"https://helpcenter.veeam.com/references/one/13/rest/images/available_authorizations.png\" alt=\"Validating Access Token\" />\n\n3. When the access token expires, use the refresh token:\n\n   1. On the **Veeam ONE REST API** page, expand the **Authentication** tag and click **POST /api/token**.\n   2. In the expanded method window, click **Try it out**.\n   3. From the **grant_type** drop-down list, select *refresh_token*.\n   4. In the **refresh_token** field, insert the refresh token saved locally.\n   5. Click **Execute**.\n\n      Wait for the response from the server. A successfully completed operation returns the *200 Success* response code and a new pair of tokens in the response body.\n\n   <img src=\"https://helpcenter.veeam.com/references/one/13/rest/images/swagger_refresh.png\" alt=\"Using Refresh Token\" />\n\n4. When you finish working with Veeam ONE REST API:\n\n   1. At the top right corner of the page, click **Authorize**.\n\n      The **Available authorizations** window will open.\n\n   2. Click **Logout**.\n\n\n## Sending Requests\n\nAfter you get and validate an access token, you can send HTTPS requests to Veeam ONE REST API collections and resources in Swagger UI.\n\nTo send a request:\n\n1. On the **Veeam ONE REST API page**, select a tag.\n2. In the list of request methods, click the required method.\n3. Click **Try it out**.\n4. In the expanded method window, enter parameter values and click **Execute**.\n\n  <img src=\"https://helpcenter.veeam.com/references/one/13/rest/images/swagger_operation.png\" alt=\"Sending Requests\" />\n\n  Swagger UI returns a response body as well as a response code and response headers. Additionally, Swagger UI generates a [cURL](https://curl.se/) command and a URL for your request.\n\n  <img src=\"https://helpcenter.veeam.com/references/one/13/rest/images/swagger_response.png\" alt=\"Sending Requests\" />\n",
+      "name": "SectionOverview"
+    },
+    {
+      "x-displayName": "Changelog",
+      "description": "\n<aside class=\"mini-toc__container mini-toc-redoc\">\n    <div class=\"mini-toc js-mini-toc\">\n        <div class=\"mini-toc__heading js-mini-toc-heading\">In this article</div>\n        <ul class=\"mini-toc__list js-mini-toc-list\"></ul>\n    </div>\n</aside>\n\nThis section describes changes implemented in Veeam ONE REST API v2.3. \n\n\n# Schema Changes\n\nThe following list contains changes applied to schemas in REST API v2.3:\n\n- Applied the following changes to the `TriggeredAlarmInfo` schema:\n\n  - Changes the name to `TriggeredAlarmInfo2`.\n  - Replaced the `alarmAssignment` property with the `alarmSource` property.\n  - The remediation property now contains the `Remediations` schema instead of the `Remediation` schema.\n\n- Renamed the `TriggeredAlarmInfoPage` schema to `TriggeredAlarmInfo2Page`.\n\n- Added the `objectStorageId` and `objectStorageType` properties to the `Vb365BackupRepositoryInfo` schema.\n\n- Changed the data format to `float` for the `usedUnits` and `newUnits` properties of the `VeeamOneLicenseUsageCommonWorkload` schema.\n\n- Applied the following changes to the `CloudFileSharePolicyInfo` schema:\n\n  - Added the following properties:\n    - `lastSnapshotDate`\n    - `lastSnaphotStatus`\n    - `lastReplicationDate`\n    - `lastReplicationStatus`\n  - Removed the following properties:\n    - `lastBackupDate`\n    - `lastBackupStatus`\n    - `lastBackupCopyDate`\n    - `lastBackupCopyStatus`\n\n- Added the `platform` property to the `BackupServerInfo` and `EnterpriseManagerServerInfo` schemas.\n\n- Added the `backupSizeBytes` property to the `ProtectedCloudVmBackupInfo` schema.\n\n- Added the `awsAccountId` and `awsAccountAlias` properties to the `ProtectedCloudVmInfo` schema.\n\n- Added the `backupSizeBytes` property to the `ProtectedCloudVmRestorePointInfo` schema.\n\n- Added the `clusterName` and `isCluster` properties to the `BackupServerInfo` schema.\n\n- The `vmProtectionJobUids` property of the `CloudDirectorVmInfo` and `VSphereVmInfo` schemas is now nullable.\n\n- The GET `/sessions/{sessionId}/details` operation now returns the `JobSessionDetailsInfoPage` schema.\n\n- Added the `isCluster` property to the `ProtectedApplicationInfo` schema.\n\n- Added the `backupSize` property to the `ProtectedDatabaseBackupInfo` schema.\n\n\n# Enum Changes\n\n- Renamed the following values of the `AlarmTemplateType` enum:\n\n    - `VSphere` => `VSphereAnyObject`\n    - `HyperV` => `HyperVAnyObject`\n\n- Added the `IndexesUpgrade` value to the `SessionsTaskTypes` enum.\n\n- Added the `Redshift` value to the `CloudDatabaseInstanceType` enum.\n\n- Added the `KvmBackup` and `ProxmoxVeBackup` values to the `VmBackupType` enum.\n\n- Added the `MsSqlPluginBase` value to the `ApplicationJobPlatform` enum.\n\n- Added the following values to the `AccessTokenRole` enum:\n\n    - `BackupAdministrator`\n    - `ReportCachingService`\n    - `VdroVspcApplication`\n    - `VspcApplication`\n\n- Added the `AzureDataLake` value to the `ProtectedObjectStorageType` enum.\n\n- Added the following values to the `VmPlatform` enum:\n\n    - `HpeVme`\n    - `Sangfor`\n    - `ScaleComputing`\n    - `XCPng`\n\n- Added the following values to the `VmBackupType` enum:\n\n    - `HpeVme`\n    - `Sangfor`\n    - `ScaleComputing`\n    - `XCPing`\n\n- Added the following values to the `VmBackupJobPlatform` enum:\n\n    - `HpeVme`\n    - `Sangfor`\n    - `XCPng`\n\n\n# New Operations\n\nThe following list contains operations introduced in REST API v2.3.\n\n- POST `/about/logs`\n\n- POST `/about/logs/tasks/{taskId}/status`\n\n- GET `/alarms/triggeredChildAlarms/resolve`\n\n- GET `/vbr/backupClusters`\n\n- GET `/vbr/backupClusters/{backupClusterId}`\n\n- GET `/about/updater`\n\n- GET `/certificates`\n\n- GET `/certificates/{thumbprint}`\n\n- GET `/certificates/export`\n\n- GET `/credentials`\n\n- POST `/credentials`\n\n- PATCH `/credentials/{credentialId}`\n\n- DELETE `/credentials/{credentialId}`\n\n- GET `/credentials/{credentialId}/assign/host`\n\n- POST `/credentials/{credentialId}/assign/host`\n\n- GET `/credentials/{credentialId}/assign/guest`\n\n- POST `/credentials/{credentialId}/assign/guest`\n\n- GET `/credentials/assign/servicenow`\n\n- GET `/credentials/object/{objectId}`\n\n- DELETE `/credentials/object/{objectId}`\n",
+      "name": "SectionChangelog"
+    },
+    {
+      "name": "About",
+      "description": "This resource collection contains information about currently installed Veeam ONE version."
+    },
+    {
+      "name": "Alarms",
+      "description": "This resource collection represents Veeam ONE alarms."
+    },
+    {
+      "name": "Authentication",
+      "description": "This resource collection allows to authenticate to Veeam ONE REST API."
+    },
+    {
+      "name": "Business View",
+      "description": "This resource collection represents Veeam ONE Business View categories and groups."
+    },
+    {
+      "name": "Certificates",
+      "description": "This resource collection represents SSL and TLS certificates used across the monitored infrastructure."
+    },
+    {
+      "name": "Credentials Manager",
+      "description": "This resource collection represents credential sets used to access connected objects."
+    },
+    {
+      "name": "Licensing",
+      "description": "This resource collection represents currently installed license and license usage."
+    },
+    {
+      "name": "Microsoft Hyper-V Infrastructure",
+      "description": "This resource collection represents monitored Microsoft Hyper-V infrastructure."
+    },
+    {
+      "name": "Public Cloud",
+      "description": "This resource collection represents public cloud workloads and policies."
+    },
+    {
+      "name": "Public Cloud Protected Data",
+      "description": "This resource collection represents protected workloads in the monitored public cloud infrastructures."
+    },
+    {
+      "name": "Task Sessions",
+      "description": "This resource collection represents tasks and task sessions."
+    },
+    {
+      "name": "VMware Cloud Director Infrastructure",
+      "description": "This resource collection represents monitored VMware Cloud Director infrastructure."
+    },
+    {
+      "name": "VMware vSphere Infrastructure",
+      "description": "This resource collection represents monitored VMware vSphere infrastructure."
+    },
+    {
+      "name": "Veeam Backup & Replication Failover Plans",
+      "description": "This resource collection represents failover plans configured in monitored Veeam Backup & Replication infrastructure."
+    },
+    {
+      "name": "Veeam Backup & Replication Infrastructure",
+      "description": "This resource collection represents monitored Veeam Backup & Replication infrastructure."
+    },
+    {
+      "name": "Veeam Backup & Replication Jobs",
+      "description": "This resource collection represents all jobs configured in the monitored Veeam Backup & Replication infrastructure."
+    },
+    {
+      "name": "Veeam Backup & Replication Protected Data",
+      "description": "This resource collection represents protected workloads in the monitored Veeam Backup &amp; Replication infrastructures."
+    },
+    {
+      "name": "Veeam Backup for Microsoft 365 Infrastructure",
+      "description": "This resource collection represents monitored Veeam Backup for Microsoft 365 infrastructure."
+    },
+    {
+      "name": "Veeam Backup for Microsoft 365 Jobs",
+      "description": "This resource collection represents all jobs configured in the monitored Veeam Backup for Microsoft 365 infrastructure."
+    },
+    {
+      "name": "Veeam Backup for Microsoft 365 Protected Data",
+      "description": "This resource collection represents protected workloads in monitored Veeam Backup for Microsoft 365 infrastructures."
+    },
+    {
+      "name": "Veeam Cloud Connect",
+      "description": "This resource collection represents monitored Veeam Cloud Connect infrastructure."
+    }
+  ]
+}
