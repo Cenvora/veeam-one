@@ -38,6 +38,7 @@ jobs:
 
       - name: Generate
         run: |
+          mkdir -p veeam_one
           rm -rf veeam_one/v2_3
           openapi-python-client generate             --path openapi_schemas/veeam_one_rest_v2.3_fixed.json             --config openapi-client-config.yaml             --output-path veeam_one/v2_3             --overwrite
 
