@@ -1,0 +1,1000 @@
+              "$ref": "#/components/schemas/ProtectedCloudNetworkRestorePointInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProtectedCloudVmBackupInfo": {
+        "type": "object",
+        "properties": {
+          "backupUid": {
+            "type": "string",
+            "description": "UID assigned to a backup chain.",
+            "format": "uuid"
+          },
+          "cloudVmUidInVbr": {
+            "type": "string",
+            "description": "UID assigned to a cloud VM.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "jobUid": {
+            "type": "string",
+            "description": "UID assigned to a backup policy.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "jobName": {
+            "type": "string",
+            "description": "Name of a backup policy.",
+            "nullable": true
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CloudVmBackupType"
+              }
+            ],
+            "description": "Job type."
+          },
+          "restorePoints": {
+            "type": "integer",
+            "description": "Number of restore points.",
+            "format": "int32"
+          },
+          "backupSizeBytes": {
+            "type": "integer",
+            "description": "Backup size, in bytes.",
+            "format": "int64",
+            "nullable": true
+          },
+          "target": {
+            "type": "string",
+            "description": "Name of a backup repository.",
+            "nullable": true
+          },
+          "lastProtectionDate": {
+            "type": "string",
+            "description": "Date and time of the latest restore point creation.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "backupServerId": {
+            "type": "integer",
+            "description": "ID assigned to a Veeam Backup & Replication server.",
+            "format": "int64",
+            "nullable": true
+          },
+          "backupServerName": {
+            "type": "string",
+            "description": "Name of a Veeam Backup & Replication server.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProtectedCloudVmBackupInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProtectedCloudVmBackupInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProtectedCloudVmInfo": {
+        "type": "object",
+        "properties": {
+          "instanceId": {
+            "type": "string",
+            "description": "Resource of a cloud VM.",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of a cloud VM.",
+            "nullable": true
+          },
+          "cloudVmUidInVbr": {
+            "type": "string",
+            "description": "ID assigned to a cloud VM in Veeam Backup & Replication.",
+            "format": "uuid"
+          },
+          "platform": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CloudPlatform"
+              }
+            ],
+            "description": "Cloud platform on which a VM resides."
+          },
+          "instanceType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CloudVmInstanceType"
+              }
+            ],
+            "description": "Type of a cloud VM."
+          },
+          "region": {
+            "type": "string",
+            "description": "Region of a cloud VM.",
+            "nullable": true
+          },
+          "ipAddresses": {
+            "type": "string",
+            "description": "IP address of a cloud VM.",
+            "nullable": true
+          },
+          "backupServerId": {
+            "type": "integer",
+            "description": "ID assigned to a Veeam Backup & Replication server that manages cloud VM protection.",
+            "format": "int64"
+          },
+          "backupServerName": {
+            "type": "string",
+            "description": "Name of a Veeam Backup & Replication server.",
+            "nullable": true
+          },
+          "lastProtectionDate": {
+            "type": "string",
+            "description": "Date and time when the latest restore point was created.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "sizeBytes": {
+            "type": "integer",
+            "description": "Size of a VM, in bytes.",
+            "format": "int64",
+            "nullable": true
+          },
+          "awsAccountID": {
+            "type": "string",
+            "description": "ID of an AWS account.",
+            "nullable": true
+          },
+          "awsAccountAlias": {
+            "type": "string",
+            "description": "Alias of an AWS account.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProtectedCloudVmInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProtectedCloudVmInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProtectedCloudVmRestorePointInfo": {
+        "type": "object",
+        "properties": {
+          "restorePointUid": {
+            "type": "string",
+            "description": "UID assigned to a restore point.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "backupUid": {
+            "type": "string",
+            "description": "UID assigned to a backup chain.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "cloudVmUidInVbr": {
+            "type": "string",
+            "description": "UID assigned to a protected cloud VM.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "jobUid": {
+            "type": "string",
+            "description": "UID assigned to a job.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "jobName": {
+            "type": "string",
+            "description": "Name of a job.",
+            "nullable": true
+          },
+          "target": {
+            "type": "string",
+            "description": "Name of a backup repository.",
+            "nullable": true
+          },
+          "originalSizeBytes": {
+            "type": "integer",
+            "description": "Used space on protected cloud VM disks, in bytes.",
+            "format": "int64",
+            "nullable": true
+          },
+          "backupSizeBytes": {
+            "type": "integer",
+            "description": "Backup size, in bytes.",
+            "format": "int64",
+            "nullable": true
+          },
+          "creationTime": {
+            "type": "string",
+            "description": "Time and date when a restore point was created.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "immutableTill": {
+            "type": "string",
+            "description": "Date and time till which a restore point remains immutable.",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProtectedCloudVmRestorePointInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProtectedCloudVmRestorePointInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProtectedComputerBackupInfo": {
+        "type": "object",
+        "properties": {
+          "backupUid": {
+            "type": "string",
+            "description": "UID assigned to a backup chain.",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "description": "Host name of a protected computer.",
+            "nullable": true
+          },
+          "computerUidInVbr": {
+            "type": "string",
+            "description": "UID assigned to a protected computer.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "jobUid": {
+            "type": "string",
+            "description": "UID assigned to a backup job.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "jobName": {
+            "type": "string",
+            "description": "Name of a backup job.",
+            "nullable": true
+          },
+          "jobType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AgentBackupJobType"
+              }
+            ],
+            "description": "Type of a backup job."
+          },
+          "usedSourceSizeBytes": {
+            "type": "integer",
+            "description": "Used space on protected computer disks, in bytes.",
+            "format": "int64",
+            "nullable": true
+          },
+          "provisionedSourceSizeBytes": {
+            "type": "integer",
+            "description": "Total space on protected computer disks, in bytes.",
+            "format": "int64",
+            "nullable": true
+          },
+          "totalRestorePointSizeBytes": {
+            "type": "integer",
+            "description": "Total size of all restore points, in bytes.",
+            "format": "int64",
+            "nullable": true
+          },
+          "latestRestorePointSizeBytes": {
+            "type": "integer",
+            "description": "Size of the latest restore point, in bytes.",
+            "format": "int64",
+            "nullable": true
+          },
+          "restorePoints": {
+            "type": "integer",
+            "description": "Number of restore points.",
+            "format": "int32"
+          },
+          "lastProtectedDate": {
+            "type": "string",
+            "description": "Time and date of the latest restore point creation.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "repository": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ProtectedDataRepositoryInfo"
+              }
+            ],
+            "description": "Information on a target backup repository.",
+            "nullable": true
+          },
+          "backupServerId": {
+            "type": "integer",
+            "description": "ID assigned to a Veeam Backup & Replication server.",
+            "format": "int64",
+            "nullable": true
+          },
+          "backupServerName": {
+            "type": "string",
+            "description": "Name of a Veeam Backup & Replication server.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProtectedComputerBackupInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProtectedComputerBackupInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProtectedComputerBackupRestorePointInfo": {
+        "type": "object",
+        "properties": {
+          "restorePointUid": {
+            "type": "string",
+            "description": "UID assigned to a restore point.",
+            "format": "uuid"
+          },
+          "computerUidInVbr": {
+            "type": "string",
+            "description": "UID assigned to a protected computer.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "backupUid": {
+            "type": "string",
+            "description": "UID assigned to a backup chain.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "jobUid": {
+            "type": "string",
+            "description": "UID assigned to a backup job.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "jobName": {
+            "type": "string",
+            "description": "Name of a backup job.",
+            "nullable": true
+          },
+          "repositoryUid": {
+            "type": "string",
+            "description": "UID assigned to a repository on which a restore point resides.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "sizeBytes": {
+            "type": "integer",
+            "description": "Size of a restore point, in bytes.",
+            "format": "int64",
+            "nullable": true
+          },
+          "sourceSizeBytes": {
+            "type": "integer",
+            "description": "Total size of protected computer disks included in a restore point, in bytes.",
+            "format": "int64",
+            "nullable": true
+          },
+          "originalSizeBytes": {
+            "type": "integer",
+            "description": "Initial size of protected data, in bytes.",
+            "format": "int64",
+            "nullable": true
+          },
+          "backupCreationDate": {
+            "type": "string",
+            "description": "Time and date when backup was created.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "isIncremental": {
+            "type": "boolean",
+            "description": "Indicates whether a restore point is an increment.",
+            "nullable": true
+          },
+          "immutableTill": {
+            "type": "string",
+            "description": "Date and time till which a restore point is immutable.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "fileCreationTime": {
+            "type": "string",
+            "description": "Date and time when a restore point was created.",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProtectedComputerBackupRestorePointInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProtectedComputerBackupRestorePointInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProtectedComputerInfo": {
+        "type": "object",
+        "properties": {
+          "computerId": {
+            "type": "integer",
+            "description": "ID assigned to a protected computer.",
+            "format": "int64",
+            "nullable": true
+          },
+          "computerUidInVbr": {
+            "type": "string",
+            "description": "UID assigned to a protected computer in Veeam Backup & Replication.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "backupServerId": {
+            "type": "integer",
+            "description": "UID assigned to a Veeam Backup & Replication server that manages computer protection.",
+            "format": "int64",
+            "nullable": true
+          },
+          "backupServerName": {
+            "type": "string",
+            "description": "Name of a Veeam Backup & Replication server.",
+            "nullable": true
+          },
+          "protectionGroups": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProtectionGroup"
+            },
+            "description": "Array of protection groups that include a protected computer.",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Host name of a protected computer.",
+            "nullable": true
+          },
+          "ipAddresses": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "IP addresses of a protected computer.",
+            "nullable": true
+          },
+          "platform": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ProtectedComputerPlatform"
+              }
+            ],
+            "description": "Platform type of a protected computer."
+          },
+          "operationMode": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ProtectedComputerOperationMode"
+              }
+            ],
+            "description": "Operation mode of Veeam backup agent installed on a computer."
+          },
+          "lastProtectedDate": {
+            "type": "string",
+            "description": "Time and date of the latest restore point creation.",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProtectedComputerInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProtectedComputerInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProtectedComputerOperationMode": {
+        "enum": [
+          "Unknown",
+          "Server",
+          "Workstation"
+        ],
+        "type": "string"
+      },
+      "ProtectedComputerPlatform": {
+        "enum": [
+          "Unknown",
+          "MicrosoftWindows",
+          "Linux",
+          "Custom",
+          "IbmAix",
+          "OracleSolaris",
+          "Unix",
+          "MacOs"
+        ],
+        "type": "string"
+      },
+      "ProtectedDataRepositoryInfo": {
+        "type": "object",
+        "properties": {
+          "repositoryId": {
+            "type": "integer",
+            "description": "ID assigned to a backup repository.",
+            "format": "int64"
+          },
+          "repositoryUidInVbr": {
+            "type": "string",
+            "description": "UID assigned to a backup repository in Veeam Backup & Replication.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BackupRepositoryType"
+              }
+            ],
+            "description": "Type of a backup repository."
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of a backup repository.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProtectedDatabaseBackupInfo": {
+        "type": "object",
+        "properties": {
+          "backupUid": {
+            "type": "string",
+            "description": "UID assigned to an application database backup in Veeam Backup & Replication.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "databaseUidInVbr": {
+            "type": "string",
+            "description": "UID assigned to an application database in Veeam Backup & Replication.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "databaseName": {
+            "type": "string",
+            "description": "Name of an application database.",
+            "nullable": true
+          },
+          "applicationUidInVbr": {
+            "type": "string",
+            "description": "UID assigned to an application in Veeam Backup & Replication.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "applicationName": {
+            "type": "string",
+            "description": "Name of an application.",
+            "nullable": true
+          },
+          "applicationPlatform": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ProtectedApplicationPlatform"
+              }
+            ],
+            "description": "Type of an application platform."
+          },
+          "backupServerId": {
+            "type": "integer",
+            "description": "ID assigned to a Veeam Backup & Replication server.",
+            "format": "int64",
+            "nullable": true
+          },
+          "backupServerName": {
+            "type": "string",
+            "description": "Name of a Veeam Backup & Replication server.",
+            "nullable": true
+          },
+          "jobUid": {
+            "type": "string",
+            "description": "UID assigned to a backup job in Veeam Backup & Replication.",
+            "format": "uuid"
+          },
+          "jobName": {
+            "type": "string",
+            "description": "Name of a backup job.",
+            "nullable": true
+          },
+          "sessionTasks": {
+            "type": "integer",
+            "description": "Total number of backup sessions.",
+            "format": "int32",
+            "nullable": true
+          },
+          "successSessionTasks": {
+            "type": "integer",
+            "description": "Number of successful backup sessions.",
+            "format": "int32",
+            "nullable": true
+          },
+          "failedSessionTasks": {
+            "type": "integer",
+            "description": "Number of failed backup sessions.",
+            "format": "int32",
+            "nullable": true
+          },
+          "warningSessiontasks": {
+            "type": "integer",
+            "description": "Number of backup sessions that completed with warnings.",
+            "format": "int32",
+            "nullable": true
+          },
+          "lastDatabaseProtectionDate": {
+            "type": "string",
+            "description": "Date and time when the latest successful job session protecting application database started.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastLogProtectionDate": {
+            "type": "string",
+            "description": "Date and time when the latest successful job session protecting application database logs started.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "repository": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ProtectedDataRepositoryInfo"
+              }
+            ],
+            "description": "Information on backup repository.",
+            "nullable": true
+          },
+          "backupSize": {
+            "type": "integer",
+            "description": "Size of a backup chain, in bytes.",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProtectedDatabaseBackupInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProtectedDatabaseBackupInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProtectedFileShareBackupInfo": {
+        "type": "object",
+        "properties": {
+          "backupUid": {
+            "type": "string",
+            "description": "UID assigned to a backup chain.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "fileShareUidInVbr": {
+            "type": "string",
+            "description": "UID assigned to a protected file share.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "jobUid": {
+            "type": "string",
+            "description": "UID assigned to a backup job.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "jobName": {
+            "type": "string",
+            "description": "Name of a backup job.",
+            "nullable": true
+          },
+          "jobType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FileShareBackupJobType"
+              }
+            ],
+            "description": "Type of a backup job."
+          },
+          "backupSize": {
+            "type": "integer",
+            "description": "Size of a file backup, in bytes.",
+            "format": "int64",
+            "nullable": true
+          },
+          "archiveSize": {
+            "type": "integer",
+            "description": "Size of an archived file backup, in bytes.",
+            "format": "int64",
+            "nullable": true
+          },
+          "restorePoints": {
+            "type": "integer",
+            "description": "Number of restore points.",
+            "format": "int32"
+          },
+          "lastProtectedDate": {
+            "type": "string",
+            "description": "Time and date of the latest restore point creation.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "repository": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ProtectedDataRepositoryInfo"
+              }
+            ],
+            "description": "Information on a target backup repository.",
+            "nullable": true
+          },
+          "archiveRepository": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ProtectedDataRepositoryInfo"
+              }
+            ],
+            "description": "Information on an archive repository.",
+            "nullable": true
+          },
+          "backupServerId": {
+            "type": "integer",
+            "description": "ID assigned to a Veeam Backup & Replication server.",
+            "format": "int64",
+            "nullable": true
+          },
+          "backupServerName": {
+            "type": "string",
+            "description": "Name of a Veeam Backup & Replication server.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProtectedFileShareBackupInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProtectedFileShareBackupInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProtectedFileShareBackupRestorePointInfo": {
+        "type": "object",
+        "properties": {
+          "restorePointUid": {
+            "type": "string",
+            "description": "UID assigned to a restore point.",
+            "format": "uuid"
+          },
+          "fileShareUidInVbr": {
+            "type": "string",
+            "description": "UID assigned to a protected file share.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "backupUid": {
+            "type": "string",
+            "description": "UID assigned to a backup chain.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "jobUid": {
+            "type": "string",
+            "description": "UID assigned to a backup job.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "jobName": {
+            "type": "string",
+            "description": "Name of a backup job.",
+            "nullable": true
+          },
+          "repositoryUid": {
+            "type": "string",
+            "description": "UID assigned to a repository on which a restore point resides.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "archiveRepositoryUid": {
+            "type": "string",
+            "description": "UID assigned to an archive repository on which a restore point resides.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "sourceSizeBytes": {
+            "type": "integer",
+            "description": "Size of protected data, in bytes.",
+            "format": "int64",
+            "nullable": true
+          },
+          "creationDate": {
+            "type": "string",
+            "description": "Time and date when a restore point was created.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "immutableTill": {
+            "type": "string",
+            "description": "Date and time till which a restore point remains immutable.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "isLongTerm": {
+            "type": "boolean",
+            "description": "Indicates whether protected files are stored in archive repository.",
+            "nullable": true
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UnstructuredDataSource"
+            },
+            "description": "Information on protected files and folders.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProtectedFileShareBackupRestorePointInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProtectedFileShareBackupRestorePointInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProtectedFileShareInfo": {
+        "type": "object",
+        "properties": {
+          "fileShareUidInVbr": {
+            "type": "string",
+            "description": "UID assigned to a file share in Veeam Backup & Replication.",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "description": "Host name of a file share.",
+            "nullable": true
+          },
+          "backupServerId": {
+            "type": "integer",
+            "description": "UID assigned to a Veeam Backup & Replication server that manages file share protection.",
+            "format": "int64"
+          },
+          "backupServerName": {
+            "type": "string",
+            "description": "Name of a Veeam Backup & Replication server.",
+            "nullable": true
+          },
+          "type": {
+            "allOf": [
