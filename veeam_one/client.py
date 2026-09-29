@@ -91,12 +91,14 @@ class VeeamClient:
             ),
             "AuthenticationCreateTokenDataBody",
         )
-        body = body_cls(
-            grant_type=grant_type,
-            username=username if username is not None else body_cls.__attrs_attrs__[1].default,
-            password=password if password is not None else body_cls.__attrs_attrs__[2].default,
-            refresh_token=refresh_token if refresh_token is not None else body_cls.__attrs_attrs__[3].default,
-        )
+        kwargs = {"grant_type": grant_type}
+        if username is not None:
+            kwargs["username"] = username
+        if password is not None:
+            kwargs["password"] = password
+        if refresh_token is not None:
+            kwargs["refresh_token"] = refresh_token
+        body = body_cls(**kwargs)
         result = await module.asyncio(client=self._client, body=body)
         if not hasattr(result, "access_token") or not result.access_token:
             raise VeeamAuthenticationError("Veeam ONE authentication failed")
