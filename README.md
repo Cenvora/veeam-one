@@ -199,25 +199,20 @@ await one.close()
 
 `async with` closes the underlying HTTP connection pool automatically.
 
-## API Documentation
-
-Veeam ONE exposes Swagger UI at `/swagger/index.html` and the v2.3 OpenAPI
-specification at `/swagger/v2.3/swagger.json` on the Web Services endpoint.
-The documented default REST API port is 1239.
-
-The repository keeps the original OpenAPI document and the deterministic
-generator-compatible copy under `openapi_schemas/`.
-
 ## Contributing
+Contributions are welcome! To contribute:
+- Fork the repository
+- Create a feature branch
+- Make your changes and add tests
+- Submit a pull request with a clear description
 
-Contributions are welcome. Please:
+Please follow PEP8 style and include docstrings for new functions/classes.
 
-- fork the repository
-- create a feature branch
-- make changes and add tests
-- submit a pull request with a clear description
+## 🤝 Core Contributors
+This project is made possible thanks to the efforts of our core contributors:
 
-Please follow PEP 8 and include docstrings for new functions and classes.
+- [Jonah May](https://github.com/JonahMMay)  
+- [Maurice Kevenaar](https://github.com/mkevenaar)  
 
 ## License
 
