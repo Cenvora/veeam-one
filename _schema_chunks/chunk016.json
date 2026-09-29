@@ -1,0 +1,1000 @@
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/publicCloud/policies/databases": {
+      "get": {
+        "tags": [
+          "Public Cloud"
+        ],
+        "summary": "Get All Cloud Database Policies",
+        "description": "Returns a collection resource representation of all cloud database policies.",
+        "operationId": "PublicCloud_GetDatabasePolicies",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CloudDatabasePolicyInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "policyUid": "1e7533f8-862a-4c82-9696-b33e6b0b68c4",
+                      "policyName": "mmfsqlgcp19",
+                      "state": "Enabled",
+                      "instances": [
+                        {
+                          "instanceId": "Undefined",
+                          "instanceName": "mmfmysql"
+                        }
+                      ],
+                      "instancesCount": 1,
+                      "platform": "GCP",
+                      "instanceType": "CloudSQL",
+                      "backupServerId": 7843,
+                      "backupServerName": "mmf-win19.tech.local",
+                      "lastSnapshotDate": "2026-01-26T12:18:47.867Z",
+                      "lastSnapshotStatus": "Success",
+                      "lastBackupDate": "2026-01-26T12:27:15.93Z",
+                      "lastBackupStatus": "Failed",
+                      "lastReplicationDate": null,
+                      "lastReplicationStatus": "Unknown",
+                      "lastArchiveDate": null,
+                      "lastArchiveStatus": "Unknown"
+                    },
+                    {
+                      "policyUid": "16755e52-47e2-407f-b76a-e6d404b0603d",
+                      "policyName": "mmfsqlsrv",
+                      "state": "Enabled",
+                      "instances": [
+                        {
+                          "instanceId": "Undefined",
+                          "instanceName": "mmfsqlsrv1"
+                        },
+                        {
+                          "instanceId": "Undefined",
+                          "instanceName": "mmfsqlsrv2"
+                        }
+                      ],
+                      "instancesCount": 2,
+                      "platform": "GCP",
+                      "instanceType": "CloudSQL",
+                      "backupServerId": 7843,
+                      "backupServerName": "mmf-win19.tech.local",
+                      "lastSnapshotDate": "2026-01-26T17:01:51.237Z",
+                      "lastSnapshotStatus": "Success",
+                      "lastBackupDate": "2026-01-26T17:34:56.333Z",
+                      "lastBackupStatus": "Success",
+                      "lastReplicationDate": null,
+                      "lastReplicationStatus": "Unknown",
+                      "lastArchiveDate": null,
+                      "lastArchiveStatus": "Unknown"
+                    }
+                  ],
+                  "totalCount": 2
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/publicCloud/policies/databases/{policyUid}": {
+      "get": {
+        "tags": [
+          "Public Cloud"
+        ],
+        "summary": "Get Cloud Database Policy",
+        "description": "Returns a resource representation of a cloud database policy with the specified UID.",
+        "operationId": "PublicCloud_GetDatabasePolicy",
+        "parameters": [
+          {
+            "name": "policyUid",
+            "in": "path",
+            "description": "Cloud database policy UID.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CloudDatabasePolicyInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "policyUid": "16755e52-47e2-407f-b76a-e6d404b0603d",
+                      "policyName": "mmfsqlsrv",
+                      "state": "Enabled",
+                      "instances": [
+                        {
+                          "instanceId": "Undefined",
+                          "instanceName": "mmfsqlsrv1"
+                        },
+                        {
+                          "instanceId": "Undefined",
+                          "instanceName": "mmfsqlsrv2"
+                        }
+                      ],
+                      "instancesCount": 2,
+                      "platform": "GCP",
+                      "instanceType": "CloudSQL",
+                      "backupServerId": 7843,
+                      "backupServerName": "mmf-win19.tech.local",
+                      "lastSnapshotDate": "2026-01-26T17:01:51.237Z",
+                      "lastSnapshotStatus": "Success",
+                      "lastBackupDate": "2026-01-26T17:34:56.333Z",
+                      "lastBackupStatus": "Success",
+                      "lastReplicationDate": null,
+                      "lastReplicationStatus": "Unknown",
+                      "lastArchiveDate": null,
+                      "lastArchiveStatus": "Unknown"
+                    }
+                  ],
+                  "totalCount": 1
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/publicCloud/policies/networks": {
+      "get": {
+        "tags": [
+          "Public Cloud"
+        ],
+        "summary": "Get All Public Cloud Network Policies",
+        "description": "Returns a collection resource representation of all public cloud network policies.",
+        "operationId": "PublicCloud_GetNetworkPolicies",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CloudNetworkPolicyInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "policyUid": "dded8780-c3d5-4b92-aad1-ba83895c005d",
+                      "policyName": "VPC Configuration Backup",
+                      "state": "Enabled",
+                      "platform": "AWS",
+                      "instanceType": "VPC",
+                      "backupServerId": 7843,
+                      "backupServerName": "mmf-win19.tech.local",
+                      "lastBackupDate": "2026-01-26T20:00:24.713Z",
+                      "lastBackupStatus": "Success"
+                    },
+                    {
+                      "policyUid": "56e01a58-f20c-4455-a075-a15cff94f3fb",
+                      "policyName": "VPC Configuration Backup 2",
+                      "state": "Enabled",
+                      "platform": "AWS",
+                      "instanceType": "VPC",
+                      "backupServerId": 7843,
+                      "backupServerName": "mmf-win19.tech.local",
+                      "lastBackupDate": "2026-01-26T17:01:51.237Z",
+                      "lastBackupStatus": "Success"
+                    }
+                  ],
+                  "totalCount": 2
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/publicCloud/policies/networks/{policyUid}": {
+      "get": {
+        "tags": [
+          "Public Cloud"
+        ],
+        "summary": "Get Public Cloud Network Policy",
+        "description": "Returns a resource representation of a public cloud network policy with the specified UID.",
+        "operationId": "PublicCloud_GetNetworkPolicy",
+        "parameters": [
+          {
+            "name": "policyUid",
+            "in": "path",
+            "description": "Public cloud network policy UID.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CloudNetworkPolicyInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "policyUid": "dded8780-c3d5-4b92-aad1-ba83895c005d",
+                      "policyName": "VPC Configuration Backup",
+                      "state": "Enabled",
+                      "platform": "AWS",
+                      "instanceType": "VPC",
+                      "backupServerId": 7843,
+                      "backupServerName": "mmf-win19.tech.local",
+                      "lastBackupDate": "2026-01-26T20:00:24.713Z",
+                      "lastBackupStatus": "Success"
+                    }
+                  ],
+                  "totalCount": 1
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/publicCloud/cloudVms": {
+      "get": {
+        "tags": [
+          "Public Cloud"
+        ],
+        "summary": "Get All Cloud VMs",
+        "description": "Returns a collection resource representation of all cloud VMs.",
+        "operationId": "PublicCloud_GetPublicCloudVms",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CloudVmInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "resourceId": "/subscriptions/280921a2-330d-45c9-93ed-82b6d6b3a78f/resourcegroups/amroz/providers/microsoft.compute/virtualmachines/amroz-vm04",
+                      "name": "amroz-vm04",
+                      "backupServerId": 11724,
+                      "platform": "MicrosoftAzure",
+                      "region": "West Europe",
+                      "ipAddresses": [
+                        "4.231.44.30",
+                        "172.21.0.5"
+                      ]
+                    },
+                    {
+                      "resourceId": "/subscriptions/280921a2-330d-45c9-93ed-82b6d6b3a78f/resourcegroups/aueast/providers/microsoft.compute/virtualmachines/dbgendata-1-r2",
+                      "name": "alesch-dbgendata-1-r2",
+                      "backupServerId": 11724,
+                      "platform": "MicrosoftAzure",
+                      "region": "West Europe",
+                      "ipAddresses": [
+                        "11.61.0.8"
+                      ]
+                    },
+                    {
+                      "resourceId": "/subscriptions/280921a2-330d-45c9-93ed-82b6d6b3a78f/resourcegroups/aborwest/providers/microsoft.compute/virtualmachines/abor-azure-deb11v2",
+                      "name": "abor-azure-deb11v2",
+                      "backupServerId": 11724,
+                      "platform": "MicrosoftAzure",
+                      "region": "West Europe",
+                      "ipAddresses": [
+                        "52.233.162.4",
+                        "10.5.9.33"
+                      ]
+                    }
+                  ],
+                  "totalCount": 3
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/publicCloud/cloudFileShares": {
+      "get": {
+        "tags": [
+          "Public Cloud"
+        ],
+        "summary": "Get All Cloud File Shares",
+        "description": "Returns a collection resource representation of all cloud file shares.",
+        "operationId": "PublicCloud_GetPublicCloudFileShares",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CloudFileShareInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "resourceId": "fs-023b00283017e379d",
+                      "name": "ritichFSeu1a",
+                      "platform": "AWS",
+                      "instanceType": "EFS",
+                      "backupServerId": 7843,
+                      "backupServerName": "mmf-win19.tech.local",
+                      "region": "Europe (Frankfurt)",
+                      "sizeBytes": 6144
+                    },
+                    {
+                      "resourceId": "fs-087e3fe588b09c3b0",
+                      "name": "ritichFS",
+                      "platform": "AWS",
+                      "instanceType": "EFS",
+                      "backupServerId": 7843,
+                      "backupServerName": "mmf-win19.tech.local",
+                      "region": "Europe (Frankfurt)",
+                      "sizeBytes": 6144
+                    }
+                  ],
+                  "totalCount": 2
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/publicCloud/cloudDatabases": {
+      "get": {
+        "tags": [
+          "Public Cloud"
+        ],
+        "summary": "Get All Cloud Databases",
+        "description": "Returns a collection resource representation of all cloud databases.",
+        "operationId": "PublicCloud_GetPublicCloudDatabases",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CloudDatabaseInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "resourceId": "db-ggycc2esz7j2hfctxmlzbb2gee",
+                      "name": "database-3",
+                      "platform": "AWS",
+                      "instanceType": "RDS",
+                      "engineType": "sqlserver-ex",
+                      "backupServerId": 7843,
+                      "backupServerName": "mmf-win19.tech.local",
+                      "region": "Europe (Frankfurt)",
+                      "sizeBytes": 21474836480
+                    },
+                    {
+                      "resourceId": "db-gh7ky2t2u5fhmrdgiierw2n4xm",
+                      "name": "database-2",
+                      "platform": "AWS",
+                      "instanceType": "RDS",
+                      "engineType": "sqlserver-ex",
+                      "backupServerId": 7843,
+                      "backupServerName": "mmf-win19.tech.local",
+                      "region": "Europe (Frankfurt)",
+                      "sizeBytes": 21474836480
+                    },
+                    {
+                      "resourceId": "cluster-YLGFPRBYXF545P67PRRQC5O6FE",
+                      "name": "mmf-database-5",
+                      "platform": "AWS",
+                      "instanceType": "RDS",
+                      "engineType": "aurora-mysql",
+                      "backupServerId": 7843,
+                      "backupServerName": "mmf-win19.tech.local",
+                      "region": "Europe (Frankfurt)",
+                      "sizeBytes": 0
+                    }
+                  ],
+                  "totalCount": 3
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/dataCollection/status": {
+      "get": {
+        "tags": [
+          "Task Sessions"
+        ],
+        "summary": "Get Data Collection Status",
+        "description": "Returns a resource representation of data collection status.",
+        "operationId": "TaskSessions_GetCollectingStatus",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CollectingStatus"
+                },
+                "example": {
+                  "progress": 84,
+                  "status": "Processing",
+                  "manuallyStart": false,
+                  "nextRun": "2026-01-06T15:07:44.823Z",
+                  "tasksSuccess": 5,
+                  "tasksWarning": 0,
+                  "tasksFailed": 0,
+                  "tasksStopped": 0
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/dataCollection/tasks": {
+      "get": {
+        "tags": [
+          "Task Sessions"
+        ],
+        "summary": "Get All Data Collection Tasks",
+        "description": "Returns a collection resource representation of data collection tasks.",
+        "operationId": "TaskSessions_GetSessions",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CollectingSessionInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "sessionId": 1376,
+                      "taskId": 4,
+                      "name": "vc1.tech.local",
+                      "status": "Processing",
+                      "statusPriority": 6,
+                      "modified": "2026-01-06T05:21:04.01Z",
+                      "lastRun": "2026-01-06T14:41:49.433Z",
+                      "collectingType": "VMwarevCenter"
+                    },
+                    {
+                      "sessionId": 1378,
+                      "taskId": 5,
+                      "name": "repVBR.tech.local",
+                      "status": "Success",
+                      "statusPriority": 0,
+                      "modified": "2026-01-06T04:58:49.96Z",
+                      "lastRun": "2026-01-06T14:41:50.05Z",
+                      "collectingType": "VBR"
+                    },
+                    {
+                      "sessionId": 1375,
+                      "taskId": 6,
+                      "name": "chv2.tech.local",
+                      "status": "Success",
+                      "statusPriority": 0,
+                      "modified": "2026-01-06T04:59:13.327Z",
+                      "lastRun": "2026-01-06T14:41:49.15Z",
+                      "collectingType": "VMwarevCenter"
+                    },
+                    {
+                      "sessionId": 1377,
+                      "taskId": 7,
+                      "name": "hvClusterWin19.tech.local",
+                      "status": "Success",
+                      "statusPriority": 0,
+                      "modified": "2026-01-06T05:20:45.14Z",
+                      "lastRun": "2026-01-06T14:41:49.703Z",
+                      "collectingType": "HyperVFailoverCluster"
+                    }
+                  ],
+                  "totalCount": 4
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/dataCollection/schedule": {
+      "get": {
+        "tags": [
+          "Task Sessions"
+        ],
+        "summary": "Get Data Collection Schedule",
+        "description": "Returns a resource representation of data collection schedule.",
+        "operationId": "TaskSessions_GetSchedule",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SchedulePlan"
+                },
+                "example": {
+                  "startTime": "2026-01-09T02:00:00Z",
+                  "timeZoneId": "",
+                  "scheduleType": "Daily",
+                  "disabled": false,
+                  "periodically": {
+                    "period": 1,
+                    "interval": "Hours"
+                  },
+                  "daily": {
+                    "daysOfWeek": [
+                      "Monday",
+                      "Tuesday",
+                      "Wednesday",
+                      "Thursday",
+                      "Friday"
+                    ]
+                  },
+                  "monthlyDays": {
+                    "months": [],
+                    "days": []
+                  },
+                  "monthlyWeekDays": {
+                    "months": [],
+                    "dayOfWeekAppearance": [],
+                    "daysOfWeek": [
+                      "Monday",
+                      "Tuesday",
+                      "Wednesday",
+                      "Thursday",
+                      "Friday"
+                    ]
+                  }
+                }
+              }
+            }
+          },
