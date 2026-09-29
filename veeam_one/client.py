@@ -13,7 +13,14 @@ class ApiNamespace:
         self._base = base_module
 
     def __getattr__(self, name: str):
-        return importlib.import_module(f"{self._base}.{name}").asyncio
+        try:
+            return importlib.import_module(f"{self._base}.{name}").asyncio
+        except ModuleNotFoundError as exc:
+            prefix = self._base.rsplit(".", 1)[-1]
+            try:
+                return importlib.import_module(f"{self._base}.{prefix}_{name}").asyncio
+            except ModuleNotFoundError:
+                raise exc
 
 
 class VeeamAuthenticationError(PermissionError):
