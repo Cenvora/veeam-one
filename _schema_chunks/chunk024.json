@@ -1,0 +1,1000 @@
+                      "name": "DefaultCopyJob\\DefaultBackupJob",
+                      "parentJobUid": "5d036027-3680-4057-8fe5-004f1c61484d",
+                      "backupServerId": 5,
+                      "status": "Success",
+                      "lastRun": "2026-01-10T06:42:14.477Z",
+                      "lastRunDurationSec": 136,
+                      "avgDurationSec": 136,
+                      "lastTransferredDataBytes": 32
+                    },
+                    {
+                      "childJobUid": "51cc53f0-debd-4c19-ab87-6dd78b6d0705",
+                      "name": "Backup Copy Job 1 vm\\Backup Job 1 vmware",
+                      "parentJobUid": "5d036027-3680-4057-8fe5-004f1c61484d",
+                      "backupServerId": 7843,
+                      "status": "Success",
+                      "details": [],
+                      "lastRun": "2026-01-13T14:05:04.853Z",
+                      "lastRunDurationSec": 103,
+                      "avgDurationSec": 103,
+                      "lastTransferredDataBytes": 640
+                    }
+                  ],
+                  "totalCount": 2
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vbrJobs/sureBackupJobs": {
+      "get": {
+        "tags": [
+          "Veeam Backup & Replication Jobs"
+        ],
+        "summary": "Get All SureBackup Jobs",
+        "description": "Returns a collection resource representation of all SureBackup jobs.",
+        "operationId": "VbrJobs_GetVmSureBackupJobs",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SureBackupJobInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "sureBackupJobUid": "c6868894-5c75-435c-98e6-1b9ea726bca4",
+                      "backupServerId": 7199,
+                      "name": "mssb2",
+                      "status": "Success",
+                      "details": [],
+                      "createdBy": "adm-1qa",
+                      "lastRun": "2026-02-28T07:32:17.86Z",
+                      "lastRunDurationSec": 301,
+                      "avgDurationSec": 259
+                    },
+                    {
+                      "sureBackupJobUid": "b8c5bde2-3a69-4bde-abeb-244d25c53742",
+                      "backupServerId": 7200,
+                      "name": "SureBackup Job 4",
+                      "status": "Failed",
+                      "details": [
+                        "mk-f1 - Publishing"
+                      ],
+                      "createdBy": "VBR\\administrator",
+                      "lastRun": "2026-02-25T12:00:16.537Z",
+                      "lastRunDurationSec": 95,
+                      "avgDurationSec": 507
+                    }
+                  ],
+                  "totalCount": 2
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vbrJobs/sureBackupJobs/{sureBackupJobUid}": {
+      "get": {
+        "tags": [
+          "Veeam Backup & Replication Jobs"
+        ],
+        "summary": "Get SureBackup Job",
+        "description": "Returns a resource representation of a SureBackup job with the specified UID.",
+        "operationId": "VbrJobs_GetVmSureBackupJob",
+        "parameters": [
+          {
+            "name": "sureBackupJobUid",
+            "in": "path",
+            "description": "SureBackup job UID.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SureBackupJobInfo"
+                },
+                "example": {
+                  "sureBackupJobUid": "c6868894-5c75-435c-98e6-1b9ea726bca4",
+                  "backupServerId": 7199,
+                  "name": "mssb2",
+                  "status": "Success",
+                  "details": [],
+                  "createdBy": "adm-1qa",
+                  "lastRun": "2026-02-28T07:32:17.86Z",
+                  "lastRunDurationSec": 301,
+                  "avgDurationSec": 259
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vbrJobs/vmCopyJobs": {
+      "get": {
+        "tags": [
+          "Veeam Backup & Replication Jobs"
+        ],
+        "summary": "Get All VM Copy Jobs",
+        "description": "Returns a collection resource representation of all VM copy jobs.",
+        "operationId": "VbrJobs_GetVmCopyJobs",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VmCopyJobInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "vmCopyJobUid": "b33df490-79af-4475-86bf-29e3e94b181e",
+                      "backupServerId": 11782,
+                      "status": "Failed",
+                      "details": [],
+                      "name": "VM Copy Job 1",
+                      "description": "Created by ALPHA\\administrator at 8/23/2022 22:52.",
+                      "lastRun": null,
+                      "lastRunDurationSec": null,
+                      "avgDurationSec": null,
+                      "lastTransferredDataBytes": null
+                    },
+                    {
+                      "vmCopyJobUid": "45d45fa6-4a19-48ee-b80d-b97e0a2f1225",
+                      "backupServerId": 11782,
+                      "status": "Success",
+                      "details": [],
+                      "name": "VM Copy Job 2",
+                      "description": "Created by ALPHA\\adm-1 at 11/7/2023 4:32 PM.",
+                      "lastRun": "2026-01-17T13:33:19.86Z",
+                      "lastRunDurationSec": 53,
+                      "avgDurationSec": 53,
+                      "lastTransferredDataBytes": 0
+                    }
+                  ],
+                  "totalCount": 2
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vbrJobs/vmCopyJobs/{vmCopyJobUid}": {
+      "get": {
+        "tags": [
+          "Veeam Backup & Replication Jobs"
+        ],
+        "summary": "Get VM Copy Job",
+        "description": "Returns a resource representation of a VM copy job with the specified UID.",
+        "operationId": "VbrJobs_GetVmCopyJob",
+        "parameters": [
+          {
+            "name": "vmCopyJobUid",
+            "in": "path",
+            "description": "VM copy job UID.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VmCopyJobInfo"
+                },
+                "example": {
+                  "vmCopyJobUid": "b33df490-79af-4475-86bf-29e3e94b181e",
+                  "backupServerId": 11782,
+                  "status": "Failed",
+                  "details": [],
+                  "name": "VM Copy Job 1",
+                  "description": "Created by ALPHA\\administrator at 8/23/2022 22:52.",
+                  "lastRun": null,
+                  "lastRunDurationSec": null,
+                  "avgDurationSec": null,
+                  "lastTransferredDataBytes": null
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vbrJobs/vmSnapshotOnlyJobs": {
+      "get": {
+        "tags": [
+          "Veeam Backup & Replication Jobs"
+        ],
+        "summary": "Get All Snapshot-Only Jobs",
+        "description": "Returns a collection resource representation of all snapshot-only jobs.",
+        "operationId": "VbrJobs_GetVmSnapshotJobs",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VmSnapshotOnlyJobInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "vmSnapshotOnlyJobUid": "9a0b5006-24cc-4fd9-ab56-347eb353ad60",
+                      "backupServerId": 11724,
+                      "status": "Success",
+                      "details": [],
+                      "name": "Nutanix snapshot job",
+                      "description": "Created by admin at 10/24/2023 1:36 PM",
+                      "lastRun": null,
+                      "lastRunDurationSec": null,
+                      "avgDurationSec": null
+                    },
+                    {
+                      "vmSnapshotOnlyJobUid": "e842ee4a-65b9-41cf-ab77-7d18b4eacad7",
+                      "backupServerId": 11782,
+                      "status": "Success",
+                      "details": [],
+                      "name": "Nutanix Snapshot Job",
+                      "description": "Created by admin1 (ms-nutanix-proxy) at 10/11/2023 5:41 PM",
+                      "lastRun": "2026-01-07T00:00:01.01Z",
+                      "lastRunDurationSec": 205,
+                      "avgDurationSec": 99
+                    },
+                    {
+                      "vmSnapshotOnlyJobUid": "03708850-ea1d-420c-8d8d-7ddfbe9c8bfa",
+                      "backupServerId": 11782,
+                      "status": "Success",
+                      "details": [],
+                      "name": "AHV Backup Proxy ms-nutanix-proxy Protection",
+                      "description": "Predefined policy",
+                      "lastRun": "2026-01-08T22:00:01.013Z",
+                      "lastRunDurationSec": 91,
+                      "avgDurationSec": 51
+                    }
+                  ],
+                  "totalCount": 3
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vbrJobs/vmSnapshotOnlyJobs/{vmSnapshotOnlyJobUid}": {
+      "get": {
+        "tags": [
+          "Veeam Backup & Replication Jobs"
+        ],
+        "summary": "Get Snapshot-Only Job",
+        "description": "Returns a resource representation of a snapshot-only job with the specified UID.",
+        "operationId": "VbrJobs_GetVmSnapshotJob",
+        "parameters": [
+          {
+            "name": "vmSnapshotOnlyJobUid",
+            "in": "path",
+            "description": "Snapshot-only job UID.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VmSnapshotOnlyJobInfo"
+                },
+                "example": {
+                  "vmSnapshotOnlyJobUid": "03708850-ea1d-420c-8d8d-7ddfbe9c8bfa",
+                  "backupServerId": 11782,
+                  "status": "Success",
+                  "details": [],
+                  "name": "AHV Backup Proxy ms-nutanix-proxy Protection",
+                  "description": "Predefined policy",
+                  "lastRun": "2026-01-08T22:00:01.013Z",
+                  "lastRunDurationSec": 91,
+                  "avgDurationSec": 51
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vbrJobs/cdpPolicies": {
+      "get": {
+        "tags": [
+          "Veeam Backup & Replication Jobs"
+        ],
+        "summary": "Get All CDP Policies",
+        "description": "Returns a collection resource representation of all CDP policies.",
+        "operationId": "VbrJobs_GetCdpPolicies",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CdpPolicyInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "cdpPolicyUid": "d6075fa1-2f33-4cf0-b030-2bc9203155cd",
+                      "backupServerId": 7200,
+                      "status": "Disabled",
+                      "name": "CDP Policy 6 vvg",
+                      "description": "Created by VBR\\Administrator at 10/27/2023 2:35 PM.",
+                      "rpoSec": 15,
+                      "shortTermRetentionSec": 14400,
+                      "longTermRetentionSec": 28800,
+                      "keepRestorePointsInDays": 7,
+                      "clusterReference": "",
+                      "hostReference": "host-148",
+                      "replicaNameSuffix": "_CDPreplica",
+                      "sourceProxyAutoDetect": true,
+                      "targetProxyAutoDetect": true,
+                      "isApplicationAwareEnabled": false
+                    },
+                    {
+                      "cdpPolicyUid": "2626be17-a5e3-468e-9e43-868d616b27cc",
+                      "backupServerId": 7200,
+                      "status": "Disabled",
+                      "name": "CDP Policy 4 vvg",
+                      "description": "Created by VBR\\administrator at 5/16/2023 2:19 PM.",
+                      "rpoSec": 15,
+                      "shortTermRetentionSec": 14400,
+                      "longTermRetentionSec": 28800,
+                      "keepRestorePointsInDays": 7,
+                      "clusterReference": "",
+                      "hostReference": "host-86687",
+                      "replicaNameSuffix": "_CDPreplica",
+                      "sourceProxyAutoDetect": true,
+                      "targetProxyAutoDetect": true,
+                      "isApplicationAwareEnabled": false
+                    },
+                    {
+                      "cdpPolicyUid": "cca4a1cd-795e-4e08-b4ff-98ffc338f818",
+                      "backupServerId": 7200,
+                      "status": "Disabled",
+                      "name": "CDP Policy 7 vvg",
+                      "description": "Created by VBR\\Administrator at 10/27/2023 2:38 PM.",
+                      "rpoSec": 12,
+                      "shortTermRetentionSec": 10800,
+                      "longTermRetentionSec": 21600,
+                      "keepRestorePointsInDays": 6,
+                      "clusterReference": "",
+                      "hostReference": "host-148",
+                      "replicaNameSuffix": "_CDPreplica",
+                      "sourceProxyAutoDetect": true,
+                      "targetProxyAutoDetect": true,
+                      "isApplicationAwareEnabled": true
+                    }
+                  ],
+                  "totalCount": 3
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vbrJobs/cdpPolicies/{cdpPolicyUid}": {
+      "get": {
+        "tags": [
+          "Veeam Backup & Replication Jobs"
+        ],
+        "summary": "Get CDP Policy",
+        "description": "Returns a resource representation of a CDP policy with the specified UID.",
+        "operationId": "VbrJobs_GetCdpPolicy",
+        "parameters": [
+          {
+            "name": "cdpPolicyUid",
+            "in": "path",
+            "description": "CDP policy UID.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CdpPolicyInfo"
+                },
+                "example": {
+                  "cdpPolicyUid": "cca4a1cd-795e-4e08-b4ff-98ffc338f818",
+                  "backupServerId": 7200,
+                  "status": "Disabled",
+                  "name": "CDP Policy 7 vvg",
+                  "description": "Created by VBR\\Administrator at 10/27/2023 2:38 PM.",
+                  "rpoSec": 12,
+                  "shortTermRetentionSec": 10800,
+                  "longTermRetentionSec": 21600,
+                  "keepRestorePointsInDays": 6,
+                  "clusterReference": "",
+                  "hostReference": "host-148",
+                  "replicaNameSuffix": "_CDPreplica",
+                  "sourceProxyAutoDetect": true,
+                  "targetProxyAutoDetect": true,
+                  "isApplicationAwareEnabled": true
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vbrJobs/fileToTapeJobs": {
+      "get": {
+        "tags": [
+          "Veeam Backup & Replication Jobs"
+        ],
+        "summary": "Get All File to Tape Jobs",
+        "description": "Returns a collection resource representation of all file to tape jobs.",
+        "operationId": "VbrJobs_GetFileToTapeJobs",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileToTapeJobInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "fileToTapeJobUid": "061ebecc-99a4-47f2-8cf3-46e8d256e420",
+                      "backupServerId": 11782,
+                      "status": "Warning",
+                      "details": [
+                        "Job finished with warning at 10/18/2023 5:00:46 AM ",
+                        "Failed to enumerate path ms-22-shares.tech.local:/ on ms-22-shares.tech.local:/NFS-Share"
+                      ],
+                      "name": "FTTJ (Lin Srv)",
+                      "description": "Created by adm-1 at 10/28/2022 6:45 PM.",
+                      "lastRun": null,
+                      "lastRunDurationSec": null,
+                      "avgDurationSec": null,
+                      "lastTransferredDataBytes": null
+                    },
+                    {
+                      "fileToTapeJobUid": "7cb8322d-ab72-45c4-b91a-6dfe18044f9c",
+                      "backupServerId": 11724,
+                      "status": "Success",
+                      "details": [],
+                      "name": "File to Tape Job 1",
+                      "description": "Created by administrator at 10/26/2022 12:53 AM.",
+                      "lastRun": "2026-01-01T16:47:51.893Z",
+                      "lastRunDurationSec": 40,
+                      "avgDurationSec": 27,
+                      "lastTransferredDataBytes": 298
+                    },
+                    {
+                      "fileToTapeJobUid": "38e7095f-c3fe-459c-81d1-6ee2461ff03f",
+                      "backupServerId": 11782,
+                      "status": "Success",
+                      "details": [],
+                      "name": "FTTJ (Win Srv)",
+                      "description": "Created by adm-1 at 11/12/2022 12:21 AM.",
+                      "lastRun": "2026-01-10T22:00:34.567Z",
+                      "lastRunDurationSec": 44,
+                      "avgDurationSec": 34,
+                      "lastTransferredDataBytes": 264151040
+                    }
+                  ],
+                  "totalCount": 3
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vbrJobs/fileToTapeJobs/{fileToTapeJobUid}": {
+      "get": {
+        "tags": [
+          "Veeam Backup & Replication Jobs"
+        ],
+        "summary": "Get File to Tape Job",
+        "description": "Returns a resource representation of a file to tape job with the specified UID.",
+        "operationId": "VbrJobs_GetFileToTapeJob",
+        "parameters": [
+          {
+            "name": "fileToTapeJobUid",
+            "in": "path",
+            "description": "File to tape job UID.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileToTapeJobInfo"
+                },
+                "example": {
+                  "fileToTapeJobUid": "38e7095f-c3fe-459c-81d1-6ee2461ff03f",
+                  "backupServerId": 11782,
+                  "status": "Success",
+                  "details": [],
+                  "name": "FTTJ (Win Srv)",
+                  "description": "Created by adm-1 at 11/12/2022 12:21 AM.",
+                  "lastRun": "2026-01-10T22:00:34.567Z",
+                  "lastRunDurationSec": 44,
+                  "avgDurationSec": 34,
+                  "lastTransferredDataBytes": 264151040
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vbrJobs/objectToTapeJobs": {
+      "get": {
+        "tags": [
+          "Veeam Backup & Replication Jobs"
+        ],
+        "summary": "Get All Object to Tape Jobs",
+        "description": "Returns a collection resource representation of all object to tape jobs.",
+        "operationId": "VbrJobs_GetObjectToTapeJobs",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectToTapeJobInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "objectToTapeJobUid": "978f8aed-1962-4039-a34f-3e32f7204969",
+                      "backupServerId": 5,
+                      "status": "Success",
+                      "details": [],
+                      "name": "Object to Tape Job 1",
+                      "description": "Created by VBR\\administrator at 10/4/2023 11:14 PM.",
+                      "lastRun": "2026-02-11T07:42:04.923Z",
+                      "lastRunDurationSec": 19,
+                      "avgDurationSec": 47,
+                      "lastTransferredDataBytes": 0
+                    },
+                    {
+                      "objectToTapeJobUid": "19018cac-8d5e-4942-a416-5e8506f7712b",
+                      "backupServerId": 5,
+                      "status": "Success",
+                      "details": [],
+                      "name": "Object to Tape Job 2",
+                      "description": "Created by VBR\\administrator at 10/5/2023 12:23 AM.",
+                      "lastRun": "2026-02-05T07:24:01.563Z",
+                      "lastRunDurationSec": 35,
+                      "avgDurationSec": 35,
+                      "lastTransferredDataBytes": 12395065
+                    },
+                    {
+                      "objectToTapeJobUid": "fb30c274-bf2b-4b00-985b-65052a394696",
+                      "backupServerId": 7430,
+                      "status": "Warning",
+                      "details": [
+                        "Failed to enumerate path [<ObjectStorageHostPath><Container>isobucket</Container><Delimiter>/</Delimiter><IsObject>False</IsObject><InstanceId>https://172.36.49.6_us-east-1_02d6176db185dc93cb1b899f7c6078f08654445fe8cd2b6ce98d8855f66bcff4</InstanceId></ObjectStorageHostPath>] on host S3 Compatible (Minio)",
+                        "Job finished with warning at 10/24/2023 18:00:17"
+                      ],
+                      "name": "OTT Job - S3 Compatible - Bucket",
+                      "description": "Created by VBR\\administrator at 29/08/2023 18:08.",
+                      "lastRun": "2026-02-24T16:00:09.577Z",
+                      "lastRunDurationSec": 7,
+                      "avgDurationSec": 31,
+                      "lastTransferredDataBytes": 0
+                    }
+                  ],
+                  "totalCount": 3
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
