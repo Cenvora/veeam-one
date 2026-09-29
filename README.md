@@ -119,6 +119,42 @@ async with VeeamClient(
 `verify_ssl` accepts a boolean, an SSL context, or a CA bundle path.
 `timeout` defaults to 30 seconds and can be set to `None` to disable the timeout.
 
+#### Detect the API version and port
+
+The REST API has no endpoint that reports its supported versions; the version is part of
+every path. That path is also what makes detection possible: `/api/v{version}/about` exists
+in every version and requires a token, so an anonymous probe gets 401 where the version is
+served and 400 where it is not. `detect_api_version` returns the newest version that both
+the server serves and this library can speak:
+
+```python
+from veeam_one.client import VeeamClient
+from veeam_one.discovery import detect_api_version
+
+base_url = "https://one.example:1239"
+api_version = await detect_api_version(base_url, verify_ssl=False)
+if api_version is None:
+    # The server may be unreachable or behind a proxy — choose your own default
+    api_version = "2.3"
+
+one = VeeamClient(host=base_url, username="administrator", password="...", api_version=api_version)
+```
+
+Detection needs no credentials, and probes run concurrently, so it costs roughly one round
+trip. If you don't know the port either, `detect_rest_api` finds both at once. Veeam ONE Web
+Services listens on 1239 by default, but the port is set at install time, so pass your own
+candidates when a deployment uses something else:
+
+```python
+from veeam_one.discovery import detect_rest_api
+
+endpoint = await detect_rest_api("one.example", ports=(1239, 443), verify_ssl=False)
+if endpoint:
+    print(endpoint.port, endpoint.api_version)  # e.g. 1239 2.3
+```
+
+Both accept `client=` to reuse an existing `httpx.AsyncClient`.
+
 #### Call an API endpoint
 
 Operations map directly to the OpenAPI tag layout. For example:

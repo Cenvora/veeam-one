@@ -22,3 +22,11 @@ def test_api_namespace():
     client = VeeamClient("https://one.example", token="x")
     operation = client.api("about").get_about
     assert operation.__name__ == "asyncio"
+
+
+def test_accepts_an_ssl_context():
+    import ssl
+
+    context = ssl.create_default_context()
+    client = VeeamClient("https://one.example", token="x", verify_ssl=context)
+    assert client.verify_ssl is context

@@ -1,4 +1,5 @@
 import importlib
+import ssl
 from datetime import datetime, timedelta, timezone
 from typing import Any
 
@@ -34,7 +35,7 @@ class VeeamClient:
         self,
         host: str,
         api_version: str = "2.3",
-        verify_ssl: bool = True,
+        verify_ssl: bool | ssl.SSLContext | str = True,
         username: str | None = None,
         password: str | None = None,
         token: str | None = None,
