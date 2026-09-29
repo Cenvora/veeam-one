@@ -1,5 +1,9 @@
 [build-system]
-requires = ["setuptools>=65.5.0", "wheel", "setuptools-scm>=8.0"]
+requires = [
+    "setuptools>=65.5.0",
+    "wheel",
+    "setuptools-scm>=8.0"
+]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -9,29 +13,45 @@ description = "Veeam ONE REST API wrapper for Python"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "Apache-2.0" }
+
 authors = [
-    { name = "Jonah May", email = "jonah@mayfamily.me" },
+    { name = "Jonah May", email = "jonah@mayfamily.me" }
 ]
 
 dependencies = [
     "httpx>=0.23.0,<0.29.0",
     "attrs>=22.2.0",
-    "python-dateutil>=2.8.0",
+    "python-dateutil>=2.8.0"
+]
+
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Operating System :: OS Independent"
 ]
 
 [project.optional-dependencies]
 dev = [
     "pytest>=7.0.0",
-    "pytest-asyncio>=0.23.0",
+    "pytest-asyncio",
     "pytest-cov",
     "black",
-    "ruff>=0.13,<0.14",
-    "openapi-python-client>=0.29,<0.30",
+    "ruff",
+    "pre-commit",
+    "openapi-python-client>=0.29,<0.30"
 ]
 
 [project.urls]
 Homepage = "https://github.com/Cenvora/veeam-one"
 Repository = "https://github.com/Cenvora/veeam-one"
+Documentation = "https://github.com/Cenvora/veeam-one#readme"
 
 [tool.setuptools_scm]
 version_scheme = "release-branch-semver"
@@ -40,4 +60,9 @@ tag_regex = "^(?:v)?(?P<version>.*)$"
 
 [tool.setuptools.packages.find]
 include = ["veeam_one*"]
-exclude = ["tests*"]
+exclude = ["media*", "openapi_schemas*", "tests*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "strict"
+asyncio_default_fixture_loop_scope = "function"

@@ -25,7 +25,7 @@ jobs:
       - name: Install generator
         run: |
           python -m pip install --upgrade pip
-          python -m pip install "openapi-python-client>=0.26,<0.27" pyyaml
+          python -m pip install "openapi-python-client>=0.29,<0.30" pyyaml
 
       - name: Validate schema
         run: python -m json.tool openapi_schemas/veeam_one_rest_v2.3.json >/dev/null
@@ -45,6 +45,8 @@ jobs:
             --config openapi-client-config.yaml \
             --output-path veeam_one/v2_3 \
             --overwrite
+          cp -a veeam_one/v2_3/veeam_one_v2_3/. veeam_one/v2_3/
+          rm -rf veeam_one/v2_3/veeam_one_v2_3
 
       - name: Remove generated metadata
         run: |

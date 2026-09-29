@@ -5,7 +5,7 @@ from veeam_one.versions import VERSION_TO_PACKAGE
 
 
 def test_version_mapping():
-    assert VERSION_TO_PACKAGE["2.3"] == "veeam_one.v2_3.veeam_one_v2_3"
+    assert VERSION_TO_PACKAGE["2.3"] == "veeam_one.v2_3"
 
 
 def test_requires_credentials():

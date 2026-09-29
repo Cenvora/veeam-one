@@ -63,10 +63,9 @@ class VeeamClient:
         self._expires_at: datetime | None = None
 
     async def connect(self):
-        Client = getattr(importlib.import_module(f"{self.package}.client"), "Client")
-        AuthenticatedClient = getattr(
-            importlib.import_module(f"{self.package}.client"), "AuthenticatedClient"
-        )
+        module = importlib.import_module(f"{self.package}.client")
+        Client = module.Client
+        AuthenticatedClient = module.AuthenticatedClient
 
         if self.token:
             self._access_token = self.token
