@@ -1,0 +1,1000 @@
+            "nullable": true
+          },
+          "productVendor": {
+            "type": "string",
+            "description": "Name of a product vendor.",
+            "nullable": true
+          },
+          "powerState": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/VAppPowerState"
+              }
+            ],
+            "description": "Power status of a vApp."
+          },
+          "cpuReservationMhz": {
+            "type": "integer",
+            "description": "CPU reservation configured for a vApp, in MHz.",
+            "format": "int64",
+            "nullable": true
+          },
+          "cpuUnreservedMhz": {
+            "type": "integer",
+            "description": "Amount of unreserved CPU resources, in MHz.",
+            "format": "int64",
+            "nullable": true
+          },
+          "isCpuExpandable": {
+            "type": "boolean",
+            "description": "Indicates whether a vApp CPU reservation is expandable.",
+            "nullable": true
+          },
+          "cpuLimitMhz": {
+            "type": "integer",
+            "description": "Maximum amount of CPU resources that can be allocated to a vApp, in MHz.",
+            "format": "int64",
+            "nullable": true
+          },
+          "cpuShares": {
+            "type": "integer",
+            "description": "CPU share value.",
+            "format": "int64",
+            "nullable": true
+          },
+          "cpuUsageMhz": {
+            "type": "integer",
+            "description": "Number of actively used CPU resource, in MHz.",
+            "format": "int64",
+            "nullable": true
+          },
+          "memoryReservationMb": {
+            "type": "integer",
+            "description": "Memory reservation configured for a vApp, in MB.",
+            "format": "int64",
+            "nullable": true
+          },
+          "memoryUnreservedBytes": {
+            "type": "integer",
+            "description": "Amount of unreserved memory resources, in bytes.",
+            "format": "int64",
+            "nullable": true
+          },
+          "isMemoryExpandable": {
+            "type": "boolean",
+            "description": "Indicates whether a vApp memory reservation is expandable.",
+            "nullable": true
+          },
+          "memoryLimitMb": {
+            "type": "integer",
+            "description": "Maximum amount of memory resources that can be allocated to a vApp, in MB.",
+            "format": "int64",
+            "nullable": true
+          },
+          "memoryShares": {
+            "type": "integer",
+            "description": "Memory share value.",
+            "format": "int64",
+            "nullable": true
+          },
+          "memoryUsageBytes": {
+            "type": "integer",
+            "description": "Amount of actively used memory resources, in bytes.",
+            "format": "int64",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VSphereVAppInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VSphereVAppInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VSphereVmConnectionState": {
+        "enum": [
+          "Unknown",
+          "Connected",
+          "Disconnected",
+          "Orphaned",
+          "Inaccessible",
+          "Invalid"
+        ],
+        "type": "string"
+      },
+      "VSphereVmInfo": {
+        "type": "object",
+        "properties": {
+          "vmId": {
+            "type": "integer",
+            "description": "ID assigned to a VM.",
+            "format": "int64"
+          },
+          "moRef": {
+            "type": "string",
+            "description": "MoRef ID assigned to a VM in VMware vSphere.",
+            "nullable": true
+          },
+          "parentId": {
+            "type": "integer",
+            "description": "ID assigned to a parent VM.",
+            "format": "int64",
+            "nullable": true
+          },
+          "parentType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/VSphereObjectType"
+              }
+            ],
+            "description": "Type of a parent VM.",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of a VM.",
+            "nullable": true
+          },
+          "powerState": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/VSphereVmPowerState"
+              }
+            ],
+            "description": "Power status of a VM."
+          },
+          "cpuCount": {
+            "type": "integer",
+            "description": "Number of virtual CPUs on a VM.",
+            "format": "int32",
+            "nullable": true
+          },
+          "guestDnsName": {
+            "type": "string",
+            "description": "DNS name of a VM.",
+            "nullable": true
+          },
+          "memorySizeMb": {
+            "type": "integer",
+            "description": "Amount of memory available on a VM.",
+            "format": "int64",
+            "nullable": true
+          },
+          "guestDisks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VmGuestDisk"
+            },
+            "description": "Array of guest disks configured in a VM.",
+            "nullable": true
+          },
+          "guestIpAddresses": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Array of VM IP addresses.",
+            "nullable": true
+          },
+          "guestOs": {
+            "type": "string",
+            "description": "Guest OS installed on a VM.",
+            "nullable": true
+          },
+          "isReplica": {
+            "type": "boolean",
+            "description": "Indicates whether a VM is a replica.",
+            "nullable": true
+          },
+          "virtualDiskCount": {
+            "type": "integer",
+            "description": "Number of virtual disks configured for a VM.",
+            "format": "int32",
+            "nullable": true
+          },
+          "virtualDisks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VmVirtualDisk"
+            },
+            "description": "Array of virtual disks configured for a VM.",
+            "nullable": true
+          },
+          "connectionState": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/VSphereVmConnectionState"
+              }
+            ],
+            "description": "Connection state of a VM."
+          },
+          "notes": {
+            "type": "string",
+            "description": "Additional information on a VM.",
+            "nullable": true
+          },
+          "totalDiskCapacityBytes": {
+            "type": "integer",
+            "description": "Total disk capacity, in bytes.",
+            "format": "int64",
+            "nullable": true
+          },
+          "datastoreUsage": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VmDatastoreUsage"
+            },
+            "description": "Usage of datastore resources allocated to a VM.",
+            "nullable": true
+          },
+          "isCdpReplica": {
+            "type": "boolean",
+            "description": "Indicates whether a VM is a CDP replica.",
+            "nullable": true
+          },
+          "virtualHardwareVersion": {
+            "type": "string",
+            "description": "Version of VM virtual hardware.",
+            "nullable": true
+          },
+          "lastProtectedDate": {
+            "type": "string",
+            "description": "Date and time of the latest successful VM job.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "vmProtectionJobUids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid",
+              "nullable": true
+            },
+            "description": "Array of UIDs assigned to jobs that protect a VM.",
+            "nullable": true
+          },
+          "businessViewGroupIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "description": "Array of Business View groups that a VM is a part of.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VSphereVmInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VSphereVmInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VSphereVmPowerState": {
+        "enum": [
+          "Unknown",
+          "PoweredOff",
+          "PoweredOn",
+          "Suspended"
+        ],
+        "type": "string"
+      },
+      "Vb365AwsRegionType": {
+        "enum": [
+          "Global",
+          "UsGovernment",
+          "China",
+          "Unknown"
+        ],
+        "type": "string"
+      },
+      "Vb365BackupJob": {
+        "type": "object",
+        "properties": {
+          "backupJobUid": {
+            "type": "string",
+            "description": "UID assigned to a backup job.",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of a backup job.",
+            "nullable": true
+          },
+          "vb365ServerId": {
+            "type": "integer",
+            "description": "ID assigned to a Veeam Backup for Microsoft 365.",
+            "format": "int64"
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Vb365JobStatus"
+              }
+            ],
+            "description": "Status of a backup job."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Backup job details.",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of a backup job.",
+            "nullable": true
+          },
+          "backupType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Vb365BackupType"
+              }
+            ],
+            "description": "Backup type."
+          },
+          "isEnabled": {
+            "type": "boolean",
+            "description": "Indicates whether a backup job is enabled."
+          },
+          "organizationUid": {
+            "type": "string",
+            "description": "UID assigned to a Microsoft 365 organization.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "organizationName": {
+            "type": "string",
+            "description": "Name of a Microsoft 365 organization.",
+            "nullable": true
+          },
+          "repositoryUid": {
+            "type": "string",
+            "description": "UID assigned to a backup repository.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "repositoryName": {
+            "type": "string",
+            "description": "Name of a backup repository.",
+            "nullable": true
+          },
+          "proxyUid": {
+            "type": "string",
+            "description": "UID assigned to a backup proxy.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "proxyName": {
+            "type": "string",
+            "description": "Name of a backup proxy.",
+            "nullable": true
+          },
+          "lastRun": {
+            "type": "string",
+            "description": "Date and time when the latest backup job session started.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastRunDurationSec": {
+            "type": "integer",
+            "description": "Duration of the latest backup job session, in seconds.",
+            "format": "int32",
+            "nullable": true
+          },
+          "lastTransferredDataBytes": {
+            "type": "integer",
+            "description": "Size of tha data transferred during the latest backup job session, in bytes.",
+            "format": "int64",
+            "nullable": true
+          },
+          "processedItems": {
+            "type": "integer",
+            "description": "Number of processed items.",
+            "format": "int64",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Vb365BackupJobPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Vb365BackupJob"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Vb365BackupProxyInfo": {
+        "type": "object",
+        "properties": {
+          "backupProxyId": {
+            "type": "integer",
+            "description": "ID assigned to a backup proxy server.",
+            "format": "int64"
+          },
+          "backupProxyUidInVb365": {
+            "type": "string",
+            "description": "UID assigned to a backup proxy server in Veeam Backup for Microsoft 365.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "backupProxyPoolUidInVb365": {
+            "type": "string",
+            "description": "UID assigned to a backup proxy pool.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "vb365ServerId": {
+            "type": "integer",
+            "description": "ID assigned to a Veeam Backup for Microsoft 365 server.",
+            "format": "int64",
+            "nullable": true
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Vb365ProxyType"
+              }
+            ],
+            "description": "Type of a backup proxy."
+          },
+          "useInternetProxy": {
+            "type": "boolean",
+            "description": "Indicates whether Veeam Backup for Microsoft 365 proxy uses an internet proxy server.",
+            "nullable": true
+          },
+          "internetProxyType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Vb365InternetProxyType"
+              }
+            ],
+            "description": "Type of an internet proxy server."
+          },
+          "hostName": {
+            "type": "string",
+            "description": "DNS name or IP address of a backup proxy server.",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of a backup proxy server.",
+            "nullable": true
+          },
+          "port": {
+            "type": "integer",
+            "description": "Port number used to connect to a backup proxy server.",
+            "format": "int32",
+            "nullable": true
+          },
+          "threadsNumber": {
+            "type": "integer",
+            "description": "Number of threads that a backup proxy server can process.",
+            "format": "int32",
+            "nullable": true
+          },
+          "enableNetworkThrottling": {
+            "type": "boolean",
+            "description": "Indicates whether network throttling is enabled for a backup proxy server.",
+            "nullable": true
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Vb365ProxyStatus"
+              }
+            ],
+            "description": "Status of a backup proxy server."
+          },
+          "repositoryIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "description": "Array of IDs assigned to related Veeam Backup for Microsoft 365 repositories.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Vb365BackupProxyInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Vb365BackupProxyInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Vb365BackupProxyPoolInfo": {
+        "type": "object",
+        "properties": {
+          "backupProxyPoolId": {
+            "type": "integer",
+            "description": "ID assigned to a backup proxy pool.",
+            "format": "int64"
+          },
+          "backupProxyPoolUidInVb365": {
+            "type": "string",
+            "description": "UID assigned to a backup proxy pool in Veeam Backup for Microsoft 365.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of a backup proxy pool.",
+            "nullable": true
+          },
+          "vb365ServerId": {
+            "type": "integer",
+            "description": "ID assigned to a Veeam Backup for Microsoft 365 server.",
+            "format": "int64",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Vb365BackupProxyPoolInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Vb365BackupProxyPoolInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Vb365BackupRepositoryInfo": {
+        "type": "object",
+        "properties": {
+          "backupRepositoryId": {
+            "type": "integer",
+            "description": "ID assigned to a backup repository.",
+            "format": "int64"
+          },
+          "backupRepositoryUidInVb365": {
+            "type": "string",
+            "description": "UID assigned to a backup repository in Veeam Backup for Microsoft 365.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of a backup repository.",
+            "nullable": true
+          },
+          "vb365ServerId": {
+            "type": "integer",
+            "description": "ID assigned to a Veeam Backup for Microsoft 365 server.",
+            "format": "int64",
+            "nullable": true
+          },
+          "isOutOfSync": {
+            "type": "boolean",
+            "description": "Indicates whether a backup repository is not synchronized with an object storage.",
+            "nullable": true
+          },
+          "capacityBytes": {
+            "type": "integer",
+            "description": "Storage capacity of a backup repository, in bytes.",
+            "format": "int64",
+            "nullable": true
+          },
+          "freeSpaceBytes": {
+            "type": "integer",
+            "description": "Available space on a backup repository, in bytes.",
+            "format": "int64",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of a backup repository.",
+            "nullable": true
+          },
+          "path": {
+            "type": "string",
+            "description": "Path to a directory where backups are stored.",
+            "nullable": true
+          },
+          "retentionType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Vb365BackupRepositoryRetentionType"
+              }
+            ],
+            "description": "Type of a retention policy."
+          },
+          "retentionPeriodType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Vb365BackupRepositoryRetentionPeriodType"
+              }
+            ],
+            "description": "Type of a retention period."
+          },
+          "retentionDailyPeriod": {
+            "type": "integer",
+            "description": "Daily retention period, in days.",
+            "format": "int32",
+            "nullable": true
+          },
+          "retentionMonthlyPeriod": {
+            "type": "integer",
+            "description": "Monthly retention period, in months.",
+            "format": "int32",
+            "nullable": true
+          },
+          "retentionYearlyPeriod": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Vb365BackupRepositoryRetentionYearlyPeriodType"
+              }
+            ],
+            "description": "Yearly retention period, in years."
+          },
+          "retentionFrequencyType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Vb365BackupRepositoryRetentionFrequencyType"
+              }
+            ],
+            "description": "Type of a clean-up schedule."
+          },
+          "retentionDailyType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Vb365BackupRepositoryRetentionDailyType"
+              }
+            ],
+            "description": "Type of a daily clean-up schedule."
+          },
+          "retentionMonthlyDayNumber": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Vb365MonthlyDayNumber"
+              }
+            ],
+            "description": "Order number of the week when monthly clean-up must be performed."
+          },
+          "retentionMonthlyDayOfWeek": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Vb365DayOfWeek"
+              }
+            ],
+            "description": "Day of the week when clean-up must be performed."
+          },
+          "proxyId": {
+            "type": "integer",
+            "description": "ID assigned to a backup proxy server.",
+            "format": "int64",
+            "nullable": true
+          },
+          "objectStorageId": {
+            "type": "integer",
+            "description": "ID assigned to an object storage repository.",
+            "format": "int64",
+            "nullable": true
+          },
+          "objectStorageType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Vb365BackupRepositoryObjectStorageType"
+              }
+            ],
+            "description": "Type of an object storage repository."
+          },
+          "objectStorageCachePath": {
+            "type": "string",
+            "description": "Object storage cache path.",
+            "nullable": true
+          },
+          "isLongTerm": {
+            "type": "boolean",
+            "description": "Indicates whether a backup repository is extended with an archive object storage.",
+            "nullable": true
+          },
+          "retentionDailyTime": {
+            "type": "integer",
+            "description": "Daily retention time, in seconds.",
+            "format": "int32",
+            "nullable": true
+          },
+          "retentionMonthlyTime": {
+            "type": "integer",
+            "description": "Monthly retention time, in seconds.",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Vb365BackupRepositoryInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Vb365BackupRepositoryInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Vb365BackupRepositoryObjectStorageType": {
+        "enum": [
+          "AzureBlob",
+          "AmazonS3",
+          "AmazonS3Compatible",
+          "AzureBlobArchive",
+          "AmazonS3Glacier",
+          "WasabiCloud",
+          "IbmCloud",
+          "Unknown"
+        ],
+        "type": "string"
+      },
+      "Vb365BackupRepositoryRetentionDailyType": {
+        "enum": [
+          "Everyday",
+          "Workdays",
+          "Weekends",
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday",
+          "Unknown"
+        ],
+        "type": "string"
+      },
+      "Vb365BackupRepositoryRetentionFrequencyType": {
+        "enum": [
+          "Daily",
+          "Monthly",
+          "Unknown"
+        ],
+        "type": "string"
+      },
+      "Vb365BackupRepositoryRetentionPeriodType": {
+        "enum": [
+          "Monthly",
+          "Daily",
+          "Yearly",
+          "Unknown"
+        ],
+        "type": "string"
+      },
+      "Vb365BackupRepositoryRetentionType": {
+        "enum": [
+          "ItemLevel",
+          "SnapshotBased",
+          "Unknown"
+        ],
+        "type": "string"
+      },
+      "Vb365BackupRepositoryRetentionYearlyPeriodType": {
+        "enum": [
+          "Year1",
+          "Years2",
+          "Years3",
+          "Years5",
+          "Years7",
+          "Years10",
+          "Years25",
+          "KeepForever",
+          "Unknown"
+        ],
+        "type": "string"
+      },
+      "Vb365BackupType": {
+        "enum": [
+          "EntireOrganization",
+          "SelectedItems",
+          "Unknown"
+        ],
+        "type": "string"
+      },
+      "Vb365CopyJob": {
+        "type": "object",
+        "properties": {
+          "copyJobUid": {
+            "type": "string",
+            "description": "UID assigned to a backup copy job.",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of a backup copy job.",
+            "nullable": true
+          },
+          "vb365ServerId": {
+            "type": "integer",
+            "description": "ID assigned to a Veeam Backup for Microsoft 365 server.",
+            "format": "int64"
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Vb365JobStatus"
+              }
+            ],
+            "description": "Status of a backup copy job."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Backup copy job details.",
+            "nullable": true
+          },
+          "scheduleType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Vb365CopyJobScheduleType"
+              }
+            ],
+            "description": "Type of a backup copy job schedule."
+          },
+          "isEnabled": {
+            "type": "boolean",
+            "description": "Indicates whether a backup copy job is enabled."
+          },
+          "organizationUid": {
+            "type": "string",
+            "description": "UID assigned to a Microsoft 365 organization.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "organizationName": {
+            "type": "string",
+            "description": "Name of a Microsoft 365 organization.",
+            "nullable": true
+          },
+          "repositoryUid": {
+            "type": "string",
+            "description": "UID assigned to a backup repository.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "repositoryName": {
+            "type": "string",
+            "description": "Name of a backup repository.",
+            "nullable": true
+          },
+          "proxyId": {
+            "type": "string",
+            "description": "UID assigned to a backup proxy.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "proxyName": {
+            "type": "string",
+            "description": "Name of a backup proxy.",
+            "nullable": true
+          },
+          "lastRun": {
+            "type": "string",
+            "description": "Date and time when the latest backup copy job session started.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastRunDurationSec": {
+            "type": "integer",
+            "description": "Duration of the latest backup copy job session, in seconds.",
+            "format": "int32",
+            "nullable": true
+          },
+          "lastTransferredDataBytes": {
+            "type": "integer",
+            "description": "Size of tha data transferred during the latest backup copy job session, in bytes.",
+            "format": "int64",
+            "nullable": true
+          },
+          "processedItems": {
+            "type": "integer",
+            "description": "Number of processed items.",
+            "format": "int64",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Vb365CopyJobPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Vb365CopyJob"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Vb365CopyJobScheduleType": {
+        "enum": [
+          "Immediate",
+          "Periodically",
+          "DailyAtTime",
+          "Unknown"
+        ],
