@@ -46,7 +46,6 @@ jobs:
       - name: Remove generated metadata and temporary chunks
         run: |
           rm -f veeam_one/v2_3/README.md veeam_one/v2_3/pyproject.toml veeam_one/v2_3/.gitignore
-          rm -rf _schema_chunks
           git add .
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
