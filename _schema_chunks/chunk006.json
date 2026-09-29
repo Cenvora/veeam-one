@@ -1,0 +1,1000 @@
+                  },
+                  {
+                    "credentialsId": 15,
+                    "type": "SshKey",
+                    "userName": "root",
+                    "description": "Linux guest OS access",
+                    "lastModified": "2026-01-12T08:15:00Z",
+                    "currentlyAssigned": true,
+                    "isPropagated": true,
+                    "assignType": "GuestLinux"
+                  }
+                ]
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Credentials Manager"
+        ],
+        "summary": "Delete Credentials Assigned to Object",
+        "description": "Deletes credential set that is used to access an object with the specified ID.",
+        "operationId": "Credentials_DeleteEntityCredential",
+        "parameters": [
+          {
+            "name": "objectId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "propagate",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/sessions": {
+      "get": {
+        "tags": [
+          "Task Sessions"
+        ],
+        "summary": "Get All Task Sessions",
+        "description": "Returns a collection resource representation of all task sessions.",
+        "operationId": "EventLog_GetJobSessions",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobSessionInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "jobSessionId": 1466,
+                      "name": "Object properties data collection",
+                      "type": "AggregateProperties",
+                      "status": "Processing",
+                      "statusPriority": 6,
+                      "start": "2026-01-10T09:55:38.64Z",
+                      "end": null
+                    },
+                    {
+                      "jobSessionId": 1000,
+                      "name": "Object properties data collection",
+                      "type": "AggregateProperties",
+                      "status": "Success",
+                      "statusPriority": 0,
+                      "start": "2026-01-10T04:41:07.303Z",
+                      "end": "2026-01-10T04:41:07.303Z"
+                    },
+                    {
+                      "jobSessionId": 1001,
+                      "name": "Business View categories refresh",
+                      "type": "BusinessviewData",
+                      "status": "Success",
+                      "statusPriority": 0,
+                      "start": "2026-01-10T04:41:08.14Z",
+                      "end": "2026-01-10T04:41:15.61Z"
+                    },
+                    {
+                      "jobSessionId": 1002,
+                      "name": "Business View categories refresh",
+                      "type": "BusinessviewData",
+                      "status": "Success",
+                      "statusPriority": 0,
+                      "start": "2026-01-10T04:45:35.927Z",
+                      "end": "2026-01-10T04:45:40.847Z"
+                    }
+                  ],
+                  "totalCount": 4
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/sessions/{sessionId}": {
+      "get": {
+        "tags": [
+          "Task Sessions"
+        ],
+        "summary": "Get Task Session",
+        "description": "Returns a resource representation of a task session with the specified ID.",
+        "operationId": "EventLog_GetJobSession",
+        "parameters": [
+          {
+            "name": "sessionId",
+            "in": "path",
+            "description": "Job session ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobSessionInfo"
+                },
+                "example": {
+                  "jobSessionId": 1466,
+                  "name": "Object properties data collection",
+                  "type": "AggregateProperties",
+                  "status": "Processing",
+                  "statusPriority": 6,
+                  "start": "2026-01-10T09:55:38.64Z",
+                  "end": null
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/sessions/{sessionId}/details": {
+      "get": {
+        "tags": [
+          "Task Sessions"
+        ],
+        "summary": "Get Task Session Details",
+        "description": "Returns a collection resource representation of operations performed during a task session with the specified ID.",
+        "operationId": "EventLog_GetJobSessionDetails",
+        "parameters": [
+          {
+            "name": "sessionId",
+            "in": "path",
+            "description": "Job session ID.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobSessionDetailsInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "sessionRecordId": 122,
+                      "details": "[Info]: Retrieving collection job tasks number",
+                      "logDateTime": "2026-04-29T11:36:09.053Z"
+                    },
+                    {
+                      "sessionRecordId": 123,
+                      "details": "[Info]: Collection task has been started for 'iivbr.n.local'.",
+                      "logDateTime": "2026-04-29T11:36:09.097Z"
+                    },
+                    {
+                      "sessionRecordId": 124,
+                      "details": "[Info]: Collection task has been started for 'ol-win22-em121.n.local'.",
+                      "logDateTime": "2026-04-29T11:36:09.12Z"
+                    },
+                    {
+                      "sessionRecordId": 125,
+                      "details": "[Info]: Waiting for all remaining tasks 2 to complete",
+                      "logDateTime": "2026-04-29T11:36:09.123Z"
+                    }
+                  ],
+                  "totalCount": 4
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vbr/failoverPlans": {
+      "get": {
+        "tags": [
+          "Veeam Backup & Replication Failover Plans"
+        ],
+        "summary": "Get All Failover Plans",
+        "description": "Returns a collection resource representation of all failover plans.",
+        "operationId": "FailoverPlan_GetFailoverPlans",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailoverPlanInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "failoverPlanUid": "91994ea8-c93d-4427-9dab-21188400485e",
+                      "backupServerId": 7200,
+                      "status": "Ready",
+                      "name": "Failover plan 1",
+                      "description": "Created by VBR\\administrator at 12/20/2022 00:10.",
+                      "lastRun": null
+                    },
+                    {
+                      "failoverPlanUid": "dad2ad98-e200-46b5-80da-234744bde13b",
+                      "backupServerId": 7200,
+                      "status": "Ready",
+                      "name": "MK failover plan HV",
+                      "description": "Created by VBR\\administrator at 12/29/2022 9:14 AM.",
+                      "lastRun": null
+                    },
+                    {
+                      "failoverPlanUid": "d24dfc52-fb86-451c-9102-28a25c83fe10",
+                      "backupServerId": 7200,
+                      "status": "Ready",
+                      "name": "Failover plan 3 CDP",
+                      "description": "Created by VBR\\administrator at 11/15/2022 21:30.",
+                      "lastRun": null
+                    },
+                    {
+                      "failoverPlanUid": "42d59f87-83d8-4552-b93b-3911e5196d72",
+                      "backupServerId": 7200,
+                      "status": "Ready",
+                      "name": "MK failover plan VW",
+                      "description": "Created by VBR\\administrator at 12/29/2022 9:15 AM.",
+                      "lastRun": null
+                    }
+                  ],
+                  "totalCount": 4
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vbr/failoverPlans/{failoverPlanUid}": {
+      "get": {
+        "tags": [
+          "Veeam Backup & Replication Failover Plans"
+        ],
+        "summary": "Get Failover Plan",
+        "description": "Returns a resource representation of a failover plan with the specified UID.",
+        "operationId": "FailoverPlan_GetFailoverPlan",
+        "parameters": [
+          {
+            "name": "failoverPlanUid",
+            "in": "path",
+            "description": "Failover plan UID.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailoverPlanInfo"
+                },
+                "example": {
+                  "failoverPlanUid": "dad2ad98-e200-46b5-80da-234744bde13b",
+                  "backupServerId": 11782,
+                  "status": "Ready",
+                  "name": "DR Plan - Production",
+                  "description": "Created by administrator at 12/29/2022 9:14 AM.",
+                  "lastRun": null
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/hyperV/objectRelations": {
+      "get": {
+        "tags": [
+          "Microsoft Hyper-V Infrastructure"
+        ],
+        "summary": "Get Infrastructure Object Relations",
+        "description": "Returns a collection resource representation of all objects in Microsoft Hyper-V infrastructure and their relations.",
+        "operationId": "HyperV_GetAllObjectRelations",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperVObjectRelationsInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "objectId": 1724,
+                      "objectName": "access",
+                      "objectType": "FileShare",
+                      "parentId": 1726,
+                      "parentName": "es-win2019-ws.tech.local",
+                      "parentType": "FileServer"
+                    },
+                    {
+                      "objectId": 98,
+                      "objectName": "az_Ubnt18",
+                      "objectType": "Vm",
+                      "parentId": 76,
+                      "parentName": "azhv.tech.local",
+                      "parentType": "Host"
+                    },
+                    {
+                      "objectId": 76,
+                      "objectName": "azhv.tech.local",
+                      "objectType": "Host",
+                      "parentId": 71,
+                      "parentName": "cluaz.tech.local",
+                      "parentType": "Cluster"
+                    },
+                    {
+                      "objectId": 77,
+                      "objectName": "azhv1.tech.local",
+                      "objectType": "Host",
+                      "parentId": 71,
+                      "parentName": "cluaz.tech.local",
+                      "parentType": "Cluster"
+                    }
+                  ],
+                  "totalCount": 4
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/hyperV/objectRelations/{objectId}": {
+      "get": {
+        "tags": [
+          "Microsoft Hyper-V Infrastructure"
+        ],
+        "summary": "Get Relations of Infrastructure Object",
+        "description": "Returns a resource representation of a Microsoft Hyper-V infrastructure object with the specified ID and its relations.",
+        "operationId": "HyperV_GetObjectRelations",
+        "parameters": [
+          {
+            "name": "objectId",
+            "in": "path",
+            "description": "Microsoft Hyper-V infrastructure ID.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperVObjectRelationsInfo"
+                },
+                "example": {
+                  "objectId": 0,
+                  "objectName": "Virtual Infrastructure",
+                  "objectType": "VirtualInfrastructure",
+                  "parentId": null,
+                  "parentName": null,
+                  "parentType": null
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/hyperV/vms": {
+      "get": {
+        "tags": [
+          "Microsoft Hyper-V Infrastructure"
+        ],
+        "summary": "Get All Microsoft Hyper-V VMs",
+        "description": "Returns a collection resource representation of all VMs in the connected Microsoft Hyper-V environment.",
+        "operationId": "HyperV_GetHyperVVms",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperVVmInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "vmId": 95,
+                      "guid": "D67D87B9-7180-42AC-9A79-700283C525B3",
+                      "name": "az_vm3",
+                      "powerState": "Enabled",
+                      "cpuCount": 1,
+                      "totalDatastoreCommittedBytes": 4194304,
+                      "totalDatastoreUncommitedBytes": 1073741824,
+                      "guestDisks": [],
+                      "ipAddresses": [],
+                      "guestOs": "",
+                      "isReplica": false,
+                      "snapshotFolder": "C:\\ProgramData\\Microsoft\\Windows\\Hyper-V",
+                      "creationTime": "2026-01-10T05:09:56Z",
+                      "hostId": 71,
+                      "dnsName": "",
+                      "dynamicMemoryEnabled": false,
+                      "assignedMemoryMb": 32,
+                      "uptimeMs": 930019871,
+                      "vmAssignedMemoryMb": 32,
+                      "integrationServices": [
+                        {
+                          "wmiClassName": "Msvm_HeartbeatComponentSettingData",
+                          "name": "Heartbeat",
+                          "isLaunched": true
+                        },
+                        {
+                          "wmiClassName": "Msvm_KvpExchangeComponentSettingData",
+                          "name": "Key-Value Pair Exchange",
+                          "isLaunched": true
+                        },
+                        {
+                          "wmiClassName": "Msvm_ShutdownComponentSettingData",
+                          "name": "Shutdown",
+                          "isLaunched": true
+                        },
+                        {
+                          "wmiClassName": "Msvm_TimeSyncComponentSettingData",
+                          "name": "Time Synchronization",
+                          "isLaunched": true
+                        },
+                        {
+                          "wmiClassName": "Msvm_VssComponentSettingData",
+                          "name": "VSS",
+                          "isLaunched": true
+                        },
+                        {
+                          "wmiClassName": "Msvm_GuestServiceInterfaceComponentSettingData",
+                          "name": "Guest Service Interface",
+                          "isLaunched": false
+                        }
+                      ],
+                      "cpuMhz": 2400,
+                      "memoryReservationMb": 32,
+                      "memoryLimitMb": 1048576,
+                      "isShielded": false,
+                      "lastProtectedDate": null,
+                      "businessViewGroupIds": [
+                        1752,
+                        1754,
+                        1756
+                      ]
+                    },
+                    {
+                      "vmId": 86,
+                      "guid": "5C15CBD0-259E-4384-9547-DE9F5122776A",
+                      "name": "az_vm4",
+                      "powerState": "Disabled",
+                      "cpuCount": 1,
+                      "totalDatastoreCommittedBytes": 4194304,
+                      "totalDatastoreUncommitedBytes": 1073741824,
+                      "guestDisks": [],
+                      "ipAddresses": [],
+                      "guestOs": "",
+                      "isReplica": false,
+                      "snapshotFolder": "C:\\Users\\Public\\Documents\\Hyper-V\\Virtual hard disks\\AutoTestsEbVm",
+                      "creationTime": "2026-01-10T05:09:56Z",
+                      "hostId": 71,
+                      "dnsName": "",
+                      "dynamicMemoryEnabled": false,
+                      "assignedMemoryMb": 0,
+                      "uptimeMs": 0,
+                      "vmAssignedMemoryMb": 100,
+                      "integrationServices": [
+                        {
+                          "wmiClassName": "Msvm_HeartbeatComponentSettingData",
+                          "name": "Heartbeat",
+                          "isLaunched": true
+                        },
+                        {
+                          "wmiClassName": "Msvm_KvpExchangeComponentSettingData",
+                          "name": "Key-Value Pair Exchange",
+                          "isLaunched": true
+                        },
+                        {
+                          "wmiClassName": "Msvm_ShutdownComponentSettingData",
+                          "name": "Shutdown",
+                          "isLaunched": true
+                        },
+                        {
+                          "wmiClassName": "Msvm_TimeSyncComponentSettingData",
+                          "name": "Time Synchronization",
+                          "isLaunched": true
+                        },
+                        {
+                          "wmiClassName": "Msvm_VssComponentSettingData",
+                          "name": "VSS",
+                          "isLaunched": true
+                        },
+                        {
+                          "wmiClassName": "Msvm_GuestServiceInterfaceComponentSettingData",
+                          "name": "Guest Service Interface",
+                          "isLaunched": false
+                        }
+                      ],
+                      "cpuMhz": null,
+                      "memoryReservationMb": 100,
+                      "memoryLimitMb": 1048576,
+                      "isShielded": false,
+                      "lastProtectedDate": null,
+                      "businessViewGroupIds": [
+                        1752,
+                        1754,
+                        1756
+                      ]
+                    },
+                    {
+                      "vmId": 80,
+                      "guid": "0204011D-A1AE-48BD-ACF3-845F09BA7D08",
+                      "name": "vvg-azclu",
+                      "powerState": "Enabled",
+                      "cpuCount": 1,
+                      "totalDatastoreCommittedBytes": 4194304,
+                      "totalDatastoreUncommitedBytes": 1073741824,
+                      "guestDisks": [],
+                      "ipAddresses": [],
+                      "guestOs": "",
+                      "isReplica": false,
+                      "snapshotFolder": "C:\\ProgramData\\Microsoft\\Windows\\Hyper-V",
+                      "creationTime": "2026-01-10T05:09:56Z",
+                      "hostId": 71,
+                      "dnsName": "",
+                      "dynamicMemoryEnabled": false,
+                      "assignedMemoryMb": 514,
+                      "uptimeMs": 11522626759,
+                      "vmAssignedMemoryMb": 514,
+                      "integrationServices": [
+                        {
+                          "wmiClassName": "Msvm_HeartbeatComponentSettingData",
+                          "name": "Heartbeat",
+                          "isLaunched": true
+                        },
+                        {
+                          "wmiClassName": "Msvm_KvpExchangeComponentSettingData",
+                          "name": "Key-Value Pair Exchange",
+                          "isLaunched": true
+                        },
+                        {
+                          "wmiClassName": "Msvm_ShutdownComponentSettingData",
+                          "name": "Shutdown",
+                          "isLaunched": true
+                        },
+                        {
+                          "wmiClassName": "Msvm_TimeSyncComponentSettingData",
+                          "name": "Time Synchronization",
+                          "isLaunched": true
+                        },
+                        {
+                          "wmiClassName": "Msvm_VssComponentSettingData",
+                          "name": "VSS",
+                          "isLaunched": true
+                        },
+                        {
+                          "wmiClassName": "Msvm_GuestServiceInterfaceComponentSettingData",
+                          "name": "Guest Service Interface",
+                          "isLaunched": false
+                        }
+                      ],
+                      "cpuMhz": 2400,
+                      "memoryReservationMb": 512,
+                      "memoryLimitMb": 1048576,
+                      "isShielded": false,
+                      "lastProtectedDate": null,
+                      "businessViewGroupIds": [
+                        1752,
+                        1754,
+                        1756
+                      ]
+                    },
+                    {
+                      "vmId": 81,
+                      "guid": "22E019CF-11D1-4E44-8B68-05BFFFAB40CF",
+                      "name": "vvg-dynam-azclu",
+                      "powerState": "Enabled",
+                      "cpuCount": 1,
+                      "totalDatastoreCommittedBytes": 4194304,
+                      "totalDatastoreUncommitedBytes": 2147483648,
+                      "guestDisks": [],
+                      "ipAddresses": [],
+                      "guestOs": "",
+                      "isReplica": false,
+                      "snapshotFolder": "C:\\ProgramData\\Microsoft\\Windows\\Hyper-V",
+                      "creationTime": "2026-01-10T05:09:56Z",
+                      "hostId": 71,
+                      "dnsName": "",
+                      "dynamicMemoryEnabled": true,
+                      "assignedMemoryMb": 512,
+                      "uptimeMs": 11522608161,
+                      "vmAssignedMemoryMb": 512,
+                      "integrationServices": [
+                        {
+                          "wmiClassName": "Msvm_HeartbeatComponentSettingData",
+                          "name": "Heartbeat",
+                          "isLaunched": true
+                        },
+                        {
+                          "wmiClassName": "Msvm_KvpExchangeComponentSettingData",
+                          "name": "Key-Value Pair Exchange",
+                          "isLaunched": true
+                        },
