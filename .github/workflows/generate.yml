@@ -1,5 +1,5 @@
 name: Generate SDK
-# Schema chunks are staged from the supplied v2.3 OpenAPI document.
+# Generate the checked-in SDK from the canonical v2.3 OpenAPI schema.
 
 on:
   push:
@@ -27,23 +27,26 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install "openapi-python-client>=0.26,<0.27" pyyaml
 
-      - name: Reassemble schema
-        run: |
-          mkdir -p openapi_schemas
-          cat _schema_chunks/chunk*.json > openapi_schemas/veeam_one_rest_v2.3.json
-          python -m json.tool openapi_schemas/veeam_one_rest_v2.3.json >/dev/null
+      - name: Validate schema
+        run: python -m json.tool openapi_schemas/veeam_one_rest_v2.3.json >/dev/null
 
       - name: Fix schema
         run: |
-          python fix_openapi.py             openapi_schemas/veeam_one_rest_v2.3.json             openapi_schemas/veeam_one_rest_v2.3_fixed.json
+          python fix_openapi.py \
+            openapi_schemas/veeam_one_rest_v2.3.json \
+            openapi_schemas/veeam_one_rest_v2.3_fixed.json
 
       - name: Generate
         run: |
           mkdir -p veeam_one
           rm -rf veeam_one/v2_3
-          openapi-python-client generate             --path openapi_schemas/veeam_one_rest_v2.3_fixed.json             --config openapi-client-config.yaml             --output-path veeam_one/v2_3             --overwrite
+          openapi-python-client generate \
+            --path openapi_schemas/veeam_one_rest_v2.3_fixed.json \
+            --config openapi-client-config.yaml \
+            --output-path veeam_one/v2_3 \
+            --overwrite
 
-      - name: Remove generated metadata and temporary chunks
+      - name: Remove generated metadata
         run: |
           rm -f veeam_one/v2_3/README.md veeam_one/v2_3/pyproject.toml veeam_one/v2_3/.gitignore
           git add .
