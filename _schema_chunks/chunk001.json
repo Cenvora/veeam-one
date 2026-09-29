@@ -1,0 +1,1000 @@
+{
+  "openapi": "3.0.4",
+  "info": {
+    "title": "Veeam ONE REST API",
+    "version": "2.3"
+  },
+  "servers": [
+    {
+      "url": "https://server:1239/"
+    }
+  ],
+  "paths": {
+    "/api/v2.3/about": {
+      "get": {
+        "tags": [
+          "About"
+        ],
+        "summary": "Get Veeam ONE Server Information",
+        "description": "Returns a resource representation of information on Veeam ONE server and reporting service.",
+        "operationId": "About_GetAbout",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerInformation"
+                },
+                "example": {
+                  "name": "Veeam ONE Reporting Service",
+                  "version": "13.0.1.5848",
+                  "machine": "avonr2.tech.local",
+                  "logPath": "C:\\ProgramData\\Veeam\\Veeam ONE\\Logs\\Reporter"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/about/installationInfo": {
+      "get": {
+        "tags": [
+          "About"
+        ],
+        "summary": "Get Veeam ONE Installation Information",
+        "description": "Returns a resource representation of information on Veeam ONE installation.",
+        "operationId": "About_GetServiceInfo",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VeeamOneServiceInfo"
+                },
+                "example": {
+                  "product": "Veeam ONE",
+                  "version": "13.0.1.584",
+                  "installationUid": "73a0bc96-bee3-4e14-8f53-27625d2adb35"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/about/logs": {
+      "post": {
+        "tags": [
+          "About"
+        ],
+        "summary": "Collect Log Archive",
+        "description": "Initiates a log archive collection task.",
+        "operationId": "About_StartVeeamOneLogsTask",
+        "requestBody": {
+          "description": "Task request.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/VeeamOneLogsRequest"
+                  }
+                ]
+              },
+              "example": {
+                "fromDate": "2026-01-01T00:00:00Z"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AsyncTaskStatus"
+                },
+                "example": {
+                  "id": "9b2e6d41-7c3a-4f8e-a1b0-2f5c8d9e0a71",
+                  "state": "Running",
+                  "result": null
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/about/logs/tasks/{taskId}/status": {
+      "post": {
+        "tags": [
+          "About"
+        ],
+        "summary": "Get Log Archive Collection Task",
+        "description": "Returns a resource representation of status and result of a log archive collection task with the specified ID.",
+        "operationId": "About_GetVeeamOneLogsTaskStatus",
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "path",
+            "description": "Task ID.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AsyncTaskStatus"
+                },
+                "example": {
+                  "id": "9b2e6d41-7c3a-4f8e-a1b0-2f5c8d9e0a71",
+                  "state": "Completed",
+                  "result": "C:\\ProgramData\\Veeam\\Veeam ONE\\Logs\\Reporter\\VeeamOneLogs_20260101.zip"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/about/updater": {
+      "get": {
+        "tags": [
+          "About"
+        ],
+        "summary": "Get Veeam Updater URL",
+        "description": "Returns the Veeam Updater web interface URL with embedded access token for the current server.",
+        "operationId": "About_GetUpdaterUrl",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdaterInfo"
+                },
+                "example": {
+                  "url": "http://avonr2.tech.local:9393/?token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIn0.signature"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/alarms/templates": {
+      "get": {
+        "tags": [
+          "Alarms"
+        ],
+        "summary": "Get All Alarms",
+        "description": "Returns a collection resource representation of all alarms.",
+        "operationId": "Alarms_GetAlarmTemplates",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AlarmTemplateInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "alarmTemplateId": 114,
+                      "name": "Topology collection failure",
+                      "type": "Internal",
+                      "predefinedAlarmId": 114,
+                      "knowledgeSummary": "Veeam ONE Monitoring Server failed to collect infrastructure topology",
+                      "knowledgeCause": "Virtual Server might not be accessible",
+                      "knowledgeResolution": "Make sure Virtual Server is accessible",
+                      "knowledgeCustom": null,
+                      "knowledgeExternal": "See a corresponding event description for more information",
+                      "isEnabled": true,
+                      "isPredefined": true,
+                      "assignments": [
+                        {
+                          "objectId": 0,
+                          "objectName": "Virtual Infrastructure",
+                          "objectType": "VirtualInfrastructure"
+                        },
+                        {
+                          "objectId": 3,
+                          "objectName": "VMware Cloud Director",
+                          "objectType": "CloudDirectorInfrastructure"
+                        },
+                        {
+                          "objectId": 2,
+                          "objectName": "Veeam Backup & Replication",
+                          "objectType": "VbrInfrastructure"
+                        }
+                      ],
+                      "exclusions": []
+                    },
+                    {
+                      "alarmTemplateId": 115,
+                      "name": "Performance data collection failure",
+                      "type": "Internal",
+                      "predefinedAlarmId": 115,
+                      "knowledgeSummary": "Veeam ONE Monitoring Server failed to collect performance data from the objects specified",
+                      "knowledgeCause": "There might be multiple reasons for this:Virtual Server might not be accessibleVirtual Server is under heavy load",
+                      "knowledgeResolution": "Verify that Virtual Server is availableMake sure firewall on Virtual Server allows incoming connectionsCheck account permissions used to connect to Virtual Server specifiedUse native tools to test connection to specified server",
+                      "knowledgeCustom": null,
+                      "knowledgeExternal": "See a corresponding event description for more information",
+                      "isEnabled": true,
+                      "isPredefined": true,
+                      "assignments": [
+                        {
+                          "objectId": 0,
+                          "objectName": "Virtual Infrastructure",
+                          "objectType": "VirtualInfrastructure"
+                        },
+                        {
+                          "objectId": 3,
+                          "objectName": "VMware Cloud Director",
+                          "objectType": "CloudDirectorInfrastructure"
+                        },
+                        {
+                          "objectId": 2,
+                          "objectName": "Veeam Backup & Replication",
+                          "objectType": "VbrInfrastructure"
+                        }
+                      ],
+                      "exclusions": []
+                    },
+                    {
+                      "alarmTemplateId": 116,
+                      "name": "Events data collection failure",
+                      "type": "Internal",
+                      "predefinedAlarmId": 116,
+                      "knowledgeSummary": "Veeam ONE Monitoring Server failed to collect events data from the objects specified",
+                      "knowledgeCause": "There might be multiple reasons for this:Virtual Server might not be accessibleVirtual Server is under heavy load",
+                      "knowledgeResolution": "Verify that Virtual Server is availableMake sure firewall on Virtual Server allows incoming connectionsCheck account permissions used to connect to Virtual Server specifiedUse native tools to test connection to specified server",
+                      "knowledgeCustom": null,
+                      "knowledgeExternal": "See a corresponding event description for more information",
+                      "isEnabled": true,
+                      "isPredefined": true,
+                      "assignments": [
+                        {
+                          "objectId": 0,
+                          "objectName": "Virtual Infrastructure",
+                          "objectType": "VirtualInfrastructure"
+                        },
+                        {
+                          "objectId": 3,
+                          "objectName": "VMware Cloud Director",
+                          "objectType": "CloudDirectorInfrastructure"
+                        },
+                        {
+                          "objectId": 2,
+                          "objectName": "Veeam Backup & Replication",
+                          "objectType": "VbrInfrastructure"
+                        }
+                      ],
+                      "exclusions": []
+                    },
+                    {
+                      "alarmTemplateId": 349,
+                      "name": "Veeam ONE license exceeded",
+                      "type": "Internal",
+                      "predefinedAlarmId": 349,
+                      "knowledgeSummary": "You have exceeded your license limit, and are no longer compliant with your Veeam licensing agreement.",
+                      "knowledgeCause": "The number of monitored workloads from Veeam Backup & Replication or virtual infrastructure or the number of monitored server sockets does not match the value specified in the license file.",
+                      "knowledgeResolution": "To avoid service interruptions from future growth, we recommend you deploy an updated license key to cover the newly monitored workloads.",
+                      "knowledgeCustom": null,
+                      "knowledgeExternal": "",
+                      "isEnabled": true,
+                      "isPredefined": true,
+                      "assignments": [
+                        {
+                          "objectId": 0,
+                          "objectName": "Virtual Infrastructure",
+                          "objectType": "VirtualInfrastructure"
+                        },
+                        {
+                          "objectId": 2,
+                          "objectName": "Veeam Backup & Replication",
+                          "objectType": "VbrInfrastructure"
+                        },
+                        {
+                          "objectId": 4,
+                          "objectName": "Veeam Backup for Microsoft 365",
+                          "objectType": "Vbm365Infrastructure"
+                        }
+                      ],
+                      "exclusions": []
+                    }
+                  ],
+                  "totalCount": 4
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/alarms/templates/{alarmTemplateId}": {
+      "get": {
+        "tags": [
+          "Alarms"
+        ],
+        "summary": "Get Alarm",
+        "description": "Returns a resource representation of an alarm with the specified ID.",
+        "operationId": "Alarms_GetAlarmTemplate",
+        "parameters": [
+          {
+            "name": "alarmTemplateId",
+            "in": "path",
+            "description": "Alarm template ID.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AlarmTemplateInfo"
+                },
+                "example": {
+                  "alarmTemplateId": 349,
+                  "name": "Veeam ONE license exceeded",
+                  "type": "Internal",
+                  "predefinedAlarmId": 349,
+                  "knowledgeSummary": "You have exceeded your license limit, and are no longer compliant with your Veeam licensing agreement.",
+                  "knowledgeCause": "The number of monitored workloads from Veeam Backup & Replication or virtual infrastructure or the number of monitored server sockets does not match the value specified in the license file.",
+                  "knowledgeResolution": "To avoid service interruptions from future growth, we recommend you deploy an updated license key to cover the newly monitored workloads.",
+                  "knowledgeCustom": null,
+                  "knowledgeExternal": "",
+                  "isEnabled": true,
+                  "isPredefined": true,
+                  "assignments": [
+                    {
+                      "objectId": 0,
+                      "objectName": "Virtual Infrastructure",
+                      "objectType": "VirtualInfrastructure"
+                    },
+                    {
+                      "objectId": 2,
+                      "objectName": "Veeam Backup & Replication",
+                      "objectType": "VbrInfrastructure"
+                    },
+                    {
+                      "objectId": 4,
+                      "objectName": "Veeam Backup for Microsoft 365",
+                      "objectType": "Vbm365Infrastructure"
+                    }
+                  ],
+                  "exclusions": []
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/alarms/triggeredAlarms": {
+      "get": {
+        "tags": [
+          "Alarms"
+        ],
+        "summary": "Get All Triggered Alarms",
+        "description": "Returns a collection resource representation of all triggered alarms.",
+        "operationId": "Alarms_GetTriggeredAlarms",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TriggeredAlarmInfo2Page"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "triggeredAlarmId": 1,
+                      "name": "Latest snapshot age",
+                      "alarmTemplateId": 112,
+                      "predefinedAlarmId": 112,
+                      "triggeredTime": "2026-01-06T04:59:34.77Z",
+                      "status": "Warning",
+                      "description": "VM snapshot (VM Snapshot 02.02.2023, 13:20:27s) age (3 days) is older than a defined threshold (2 days)",
+                      "comment": "",
+                      "repeatCount": 1,
+                      "alarmSource": {
+                        "objectId": 40,
+                        "objectName": "avonr4_YK",
+                        "objectType": "VSphereVm"
+                      },
+                      "childAlarmsCount": 0,
+                      "remediation": {
+                        "items": [
+                          {
+                            "description": "Delete snapshot",
+                            "mode": "Manual"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "triggeredAlarmId": 27,
+                      "name": "Too many snapshots on the VM",
+                      "alarmTemplateId": 248,
+                      "predefinedAlarmId": 248,
+                      "triggeredTime": "2026-01-06T05:21:37.143Z",
+                      "status": "Warning",
+                      "description": "VM snapshots number (3) has breached the configured threshold (3)",
+                      "comment": "",
+                      "repeatCount": 1,
+                      "alarmSource": {
+                        "objectId": 1013,
+                        "objectName": "amg-deb9-en",
+                        "objectType": "VSphereVm"
+                      },
+                      "childAlarmsCount": 0,
+                      "remediation": {
+                        "items": [
+                          {
+                            "description": "Delete snapshot",
+                            "mode": "Manual"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "triggeredAlarmId": 26,
+                      "name": "Latest snapshot age",
+                      "alarmTemplateId": 112,
+                      "predefinedAlarmId": 112,
+                      "triggeredTime": "2026-01-06T05:21:37.143Z",
+                      "status": "Warning",
+                      "description": "VM snapshot (v6) age (3 weeks) is older than a defined threshold (2 days)",
+                      "comment": "Low priority",
+                      "repeatCount": 1,
+                      "alarmSource": {
+                        "objectId": 1013,
+                        "objectName": "amg-deb9-en",
+                        "objectType": "VSphereVm"
+                      },
+                      "childAlarmsCount": 0,
+                      "remediation": {
+                        "items": [
+                          {
+                            "description": "Delete snapshot",
+                            "mode": "Manual"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "triggeredAlarmId": 28,
+                      "name": "Latest snapshot age",
+                      "alarmTemplateId": 112,
+                      "predefinedAlarmId": 112,
+                      "triggeredTime": "2026-01-06T05:21:37.143Z",
+                      "status": "Warning",
+                      "description": "VM snapshot (v6) age (3 weeks) is older than a defined threshold (2 days)",
+                      "comment": "High priority",
+                      "repeatCount": 1,
+                      "alarmSource": {
+                        "objectId": 1014,
+                        "objectName": "amg-deb10-jp",
+                        "objectType": "VSphereVm"
+                      },
+                      "childAlarmsCount": 0,
+                      "remediation": {
+                        "items": [
+                          {
+                            "description": "Delete snapshot",
+                            "mode": "Manual"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "totalCount": 4
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/alarms/triggeredAlarms/{triggeredAlarmId}": {
+      "get": {
+        "tags": [
+          "Alarms"
+        ],
+        "summary": "Get Triggered Alarm",
+        "description": "Returns a resource representation of a triggered alarm with the specified ID.",
+        "operationId": "Alarms_GetTriggeredAlarm",
+        "parameters": [
+          {
+            "name": "triggeredAlarmId",
+            "in": "path",
+            "description": "Triggered alarm ID.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TriggeredAlarmInfo2"
+                },
+                "example": {
+                  "triggeredAlarmId": 28,
+                  "name": "Latest snapshot age",
+                  "alarmTemplateId": 112,
+                  "predefinedAlarmId": 112,
+                  "triggeredTime": "2026-01-06T05:21:37.143Z",
+                  "status": "Warning",
+                  "description": "VM snapshot (v6) age (3 weeks) is older than a defined threshold (2 days)",
+                  "comment": "Low priority",
+                  "repeatCount": 1,
+                  "alarmSource": {
+                    "objectId": 1014,
+                    "objectName": "amg-deb10-jp",
+                    "objectType": "VSphereVm"
+                  },
+                  "childAlarmsCount": 0,
+                  "remediation": {
+                    "items": [
+                      {
+                        "description": "Delete snapshot",
+                        "mode": "Manual"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/alarms/triggeredAlarms/{triggeredAlarmId}/triggeredChildAlarms": {
+      "get": {
+        "tags": [
+          "Alarms"
+        ],
+        "summary": "Get All Triggered Alarms for Child Objects",
+        "description": "Returns a collection resource representation of all triggered alarms for child objects.",
+        "operationId": "Alarms_GetTriggeredChildAlarms",
+        "parameters": [
+          {
+            "name": "triggeredAlarmId",
+            "in": "path",
+            "description": "Triggered alarm ID.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TriggeredChildAlarmInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "childAlarmId": 1,
+                      "triggeredAlarmId": 1,
+                      "triggeredTime": "2026-01-19T17:51:45.633Z",
+                      "status": "Warning",
+                      "source": "Job \"Backup Job 6\"",
+                      "description": "Job \"Backup Job 6\" has ended with warning\nThis backup server is using debug module, make sure this is intentional",
+                      "repeatCount": 1,
+                      "comment": ""
+                    },
+                    {
+                      "childAlarmId": 2,
+                      "triggeredAlarmId": 1,
+                      "triggeredTime": "2026-01-12T12:36:22.09Z",
+                      "status": "Error",
+                      "source": "Job \"FF Job will be deleted\"",
+                      "description": "Job \"FF Job will be deleted\" has ended with error\nFF - Task failed. Error: SSH credentials are not set for the host '172.24.186.59'\nProcessing finished with errors at 2/12/2023 4:34:28 AM",
+                      "repeatCount": 5,
+                      "comment": ""
+                    }
+                  ],
+                  "totalCount": 2
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/alarms/triggeredAlarms/resolve": {
+      "post": {
+        "tags": [
+          "Alarms"
+        ],
+        "summary": "Resolve Triggered Alarms",
+        "description": "Resolves triggered alarms with the specified IDs.",
+        "operationId": "Alarms_ResolveTriggeredAlarms",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/ResolveMultipleTriggeredAlarmsRequest"
+                  }
+                ]
+              },
+              "example": {
+                "triggeredAlarmIds": [
+                  1253
+                ],
+                "comment": "Resolved",
+                "resolveType": "Resolve"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/alarms/triggeredAlarms/{triggeredAlarmId}/triggeredChildAlarms/resolve": {
+      "post": {
+        "tags": [
+          "Alarms"
+        ],
+        "summary": "Resolve Child Triggered Alarms of Parent Triggered Alarm",
+        "description": "Resolves all child triggered alarms of a parent triggered alarm with the specified ID.",
+        "operationId": "Alarms_ResolveTriggeredChildAlarmsForParentAlarm",
+        "parameters": [
+          {
+            "name": "triggeredAlarmId",
+            "in": "path",
+            "description": "Triggered alarm ID.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/ResolveMultipleTriggeredChildAlarmsRequest"
+                  }
+                ]
+              },
+              "example": {
+                "triggeredChildAlarmIds": [
+                  1253
+                ],
+                "comment": "Resolved",
+                "resolveType": "Resolve"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/alarms/triggeredChildAlarms/resolve": {
+      "post": {
+        "tags": [
+          "Alarms"
+        ],
+        "summary": "Resolve All Child Triggered Alarms",
+        "description": "Resolves all triggered alarms for child objects.",
+        "operationId": "Alarms_ResolveTriggeredChildAlarms",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/ResolveMultipleTriggeredChildAlarmsRequest"
+                  }
+                ]
+              },
+              "example": {
+                "triggeredChildAlarmIds": [
+                  1253
+                ],
+                "comment": "Resolved",
+                "resolveType": "Resolve"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
