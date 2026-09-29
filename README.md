@@ -2,6 +2,8 @@
 
 Veeam ONE REST API wrapper for Python.
 
+Generated SDK version: 2.3.
+
 The generated v2.3 SDK is produced with openapi-python-client from the Veeam ONE REST API v2.3 OpenAPI specification. The v2.3 API is the current REST API documented for Veeam ONE 13.1.
 
 ## Usage
