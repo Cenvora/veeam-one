@@ -1,0 +1,1000 @@
+          }
+        }
+      }
+    },
+    "/api/token": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Request Authorization Tokens",
+        "description": "Issues access and refresh JWT tokens.",
+        "operationId": "Authentication_CreateToken",
+        "parameters": [
+          {
+            "name": "Veeam-Mfa-Code",
+            "in": "header",
+            "description": "MFA verification code. Include this header when multi-factor authentication is enabled for the account."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "required": [
+                  "grant_type"
+                ],
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string",
+                    "format": "password"
+                  },
+                  "grant_type": {
+                    "enum": [
+                      "refresh_token",
+                      "password"
+                    ],
+                    "type": "string",
+                    "default": "password"
+                  },
+                  "refresh_token": {
+                    "type": "string"
+                  }
+                }
+              },
+              "encoding": {
+                "username": {
+                  "style": "form"
+                },
+                "password": {
+                  "style": "form"
+                },
+                "grant_type": {
+                  "style": "form"
+                },
+                "refresh_token": {
+                  "style": "form"
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "required": [
+                  "grant_type"
+                ],
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string",
+                    "format": "password"
+                  },
+                  "grant_type": {
+                    "enum": [
+                      "refresh_token",
+                      "password"
+                    ],
+                    "type": "string",
+                    "default": "password"
+                  },
+                  "refresh_token": {
+                    "type": "string"
+                  }
+                }
+              },
+              "encoding": {
+                "username": {
+                  "style": "form"
+                },
+                "password": {
+                  "style": "form"
+                },
+                "grant_type": {
+                  "style": "form"
+                },
+                "refresh_token": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenResponse"
+                },
+                "example": {
+                  "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9LjthD9KEdtgfXIsBQWRnWOKmM19kCwgBP40K6TzHNpzqBhMEc3eyh9B0yqhrLgIhz4Xq0TYB4HHohOG2QoOrvk8yHQcoBxtWfmvDF347bQ1OVgE5_Ieh29cglNiT1mXQ5Z9S1a4KTwDkRhfS5tNMlVHLg0vUXQwZvFykKXIuck1cQFfZAHpJq9UhEySG9kx7Q-t09ZfDFFVf8IUT0OrNd9jJ2DQP9snvjNNXeHuHd3HE1Mer_bVg",
+                  "refresh_token": "eyJhbGciOiJIUzI1Ni1BTcPnVzDIyOagiZNuEbPwbEBCe9u_m8l31biXWP1vOyh6_LdbKcDY6gzi6bUopTf02yV6ks4-hhEhhMsq4M6_hd3ZPZJmNLoHUEdDa8reXVBkHdsaLgr6NUGFArVeQ7cy1OdA",
+                  "token_type": "Bearer",
+                  "expires_in": 899,
+                  "user": "onesrv\\administrator",
+                  "user_role": "Admin"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/revoke": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Revoke Authorization Tokens",
+        "description": "Revokes the specified access JWT token or performs logout operation for the specified user.",
+        "operationId": "Authentication_RevokeToken",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "token": {
+                    "type": "string"
+                  },
+                  "UserSid": {
+                    "type": "string"
+                  }
+                }
+              },
+              "encoding": {
+                "token": {
+                  "style": "form"
+                },
+                "UserSid": {
+                  "style": "form"
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "token": {
+                    "type": "string"
+                  },
+                  "UserSid": {
+                    "type": "string"
+                  }
+                }
+              },
+              "encoding": {
+                "token": {
+                  "style": "form"
+                },
+                "UserSid": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/businessview/categories": {
+      "get": {
+        "tags": [
+          "Business View"
+        ],
+        "summary": "Get All Business View Categories",
+        "description": "Returns a collection resource representation of all Business View categories.",
+        "operationId": "BusinessView_GetBusinessViewCategories",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BusinessViewCategoryInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "categoryId": 1,
+                      "name": "Production VMs",
+                      "type": "VSphereVm",
+                      "groupIds": [
+                        1,
+                        2,
+                        3
+                      ]
+                    },
+                    {
+                      "categoryId": 2,
+                      "name": "Dev & Test VMs",
+                      "type": "VSphereVm",
+                      "groupIds": [
+                        4,
+                        5
+                      ]
+                    },
+                    {
+                      "categoryId": 3,
+                      "name": "Hyper-V Hosts",
+                      "type": "HyperVHost",
+                      "groupIds": [
+                        6
+                      ]
+                    },
+                    {
+                      "categoryId": 4,
+                      "name": "Physical Computers",
+                      "type": "Computers",
+                      "groupIds": [
+                        7,
+                        8
+                      ]
+                    }
+                  ],
+                  "totalCount": 4
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/businessview/categories/{categoryId}": {
+      "get": {
+        "tags": [
+          "Business View"
+        ],
+        "summary": "Get Business View Category",
+        "description": "Returns a collection resource representation of a Business View category with the specified ID.",
+        "operationId": "BusinessView_GetBusinessViewCategory",
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "path",
+            "description": "Business View category ID.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BusinessViewCategoryInfo"
+                },
+                "example": {
+                  "categoryId": 1746,
+                  "name": "VMs with Snapshots",
+                  "type": "HyperVVm",
+                  "groupIds": [
+                    1754,
+                    1755,
+                    1756
+                  ]
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/businessview/groups": {
+      "get": {
+        "tags": [
+          "Business View"
+        ],
+        "summary": "Get All Business View Groups",
+        "description": "Returns a collection resource representation of all Business View groups.",
+        "operationId": "BusinessView_GetBusinessViewGroups",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BusinessViewGroupInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "groupId": 65,
+                      "name": "No backup",
+                      "type": "VSphereVm",
+                      "categoryId": 60
+                    },
+                    {
+                      "groupId": 66,
+                      "name": "Mission Critical",
+                      "type": "VSphereVm",
+                      "categoryId": 61
+                    },
+                    {
+                      "groupId": 67,
+                      "name": "Other",
+                      "type": "VSphereVm",
+                      "categoryId": 61
+                    },
+                    {
+                      "groupId": 68,
+                      "name": "datastore1",
+                      "type": "VSphereVm",
+                      "categoryId": 62
+                    }
+                  ],
+                  "totalCount": 4
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/businessview/groups/{groupId}": {
+      "get": {
+        "tags": [
+          "Business View"
+        ],
+        "summary": "Get Business View Group",
+        "description": "Returns a resource representation of a Business View group with the specified ID.",
+        "operationId": "BusinessView_GetBusinessViewGroup",
+        "parameters": [
+          {
+            "name": "groupId",
+            "in": "path",
+            "description": "Business View group ID.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BusinessViewGroupInfo"
+                },
+                "example": {
+                  "groupId": 1,
+                  "name": "VMware ESXi Farm A",
+                  "type": "VSphereVm",
+                  "categoryId": 1
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/certificates": {
+      "get": {
+        "tags": [
+          "Certificates"
+        ],
+        "summary": "Get All Certificates",
+        "description": "Returns a collection resources representation of all certificates.",
+        "operationId": "Cert_GetCertificates",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CertificateFullInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "commonName": "Alpha certificate",
+                      "issuedBy": "ws16vo.tech.local",
+                      "subjectAltName": [
+                        "Alpha"
+                      ],
+                      "friendlyName": "Veeam ONE Monitoring Service communication self-signed certificate",
+                      "validFrom": "2026-04-02T11:23:19+02:00",
+                      "expirationDate": "2036-03-30T11:23:19+02:00",
+                      "signatureAlgorithm": "sha256RSA",
+                      "thumbprint": "AC32BA4765C3648D45D289C6713908F361879C00",
+                      "organization": "",
+                      "organizationalUnit": "",
+                      "locality": "",
+                      "stateOrProvince": "",
+                      "country": "",
+                      "issuerInfo": {
+                        "issuerName": "ws16vo.tech.local",
+                        "organization": "",
+                        "organizationalUnit": "",
+                        "locality": "",
+                        "stateOrProvince": "",
+                        "country": "",
+                        "serialNumber": "765C3648D45D289C6713908F3618",
+                        "version": 3
+                      },
+                      "advancedInfo": {
+                        "publicKeyAlgorithm": "RSA",
+                        "keyUsage": "Digital Signature, Non-Repudiation (c0)",
+                        "keySizeBits": "2048",
+                        "curve": null,
+                        "extendedKeyUsageOids": [
+                          "1.2.3.4.5.6.7.8.9",
+                          "1.2.3.4.5.6.7.8.0"
+                        ],
+                        "extendedKeyUsageNames": [
+                          "Server Authentication",
+                          "Client Authentication"
+                        ]
+                      }
+                    },
+                    {
+                      "commonName": "Beta certificate",
+                      "issuedBy": "ws16vo.tech.local",
+                      "subjectAltName": [
+                        "Beta"
+                      ],
+                      "friendlyName": "Veeam ONE Reporting Service communication self-signed certificate",
+                      "validFrom": "2026-04-02T11:22:58+02:00",
+                      "expirationDate": "2036-04-02T11:22:58+02:00",
+                      "signatureAlgorithm": "sha256RSA",
+                      "thumbprint": "64531072BAF82A22B5B21C6CF90D210A54DD8931",
+                      "organization": "",
+                      "organizationalUnit": "",
+                      "locality": "",
+                      "stateOrProvince": "",
+                      "country": "",
+                      "issuerInfo": {
+                        "issuerName": "iiws16vo.qahv1.veeam.local",
+                        "organization": "",
+                        "organizationalUnit": "",
+                        "locality": "",
+                        "stateOrProvince": "",
+                        "country": "",
+                        "serialNumber": "471195AA754619F1",
+                        "version": 3
+                      },
+                      "advancedInfo": {
+                        "publicKeyAlgorithm": "RSA",
+                        "keyUsage": "Digital Signature, Non-Repudiation, Key Encipherment, Data Encipherment (f0)",
+                        "keySizeBits": "2048",
+                        "curve": null,
+                        "extendedKeyUsageOids": [
+                          "1.2.3.4.5.6.7.8.9",
+                          "1.2.3.4.5.6.7.8.0"
+                        ],
+                        "extendedKeyUsageNames": [
+                          "Server Authentication",
+                          "Client Authentication"
+                        ]
+                      }
+                    }
+                  ],
+                  "totalCount": 2
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/certificates/{thumbprint}": {
+      "get": {
+        "tags": [
+          "Certificates"
+        ],
+        "summary": "Get Certificate",
+        "description": "Returns a resource representation of a certificate with the specified thumbprint.",
+        "operationId": "Cert_GetCertificate",
+        "parameters": [
+          {
+            "name": "thumbprint",
+            "in": "path",
+            "description": "Certificate thumbprint.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CertificateFullInfo"
+                },
+                "example": {
+                  "commonName": "Beta certificate",
+                  "issuedBy": "ws16vo.tech.local",
+                  "subjectAltName": [
+                    "Beta"
+                  ],
+                  "friendlyName": "Veeam ONE Reporting Service communication self-signed certificate",
+                  "validFrom": "2026-04-02T11:22:58+02:00",
+                  "expirationDate": "2036-04-02T11:22:58+02:00",
+                  "signatureAlgorithm": "sha256RSA",
+                  "thumbprint": "64531072BAF82A22B5B21C6CF90D210A54DD8931",
+                  "organization": "",
+                  "organizationalUnit": "",
+                  "locality": "",
+                  "stateOrProvince": "",
+                  "country": "",
+                  "issuerInfo": {
+                    "issuerName": "iiws16vo.qahv1.veeam.local",
+                    "organization": "",
+                    "organizationalUnit": "",
+                    "locality": "",
+                    "stateOrProvince": "",
+                    "country": "",
+                    "serialNumber": "471195AA754619F1",
+                    "version": 3
+                  },
+                  "advancedInfo": {
+                    "publicKeyAlgorithm": "RSA",
+                    "keyUsage": "Digital Signature, Non-Repudiation, Key Encipherment, Data Encipherment (f0)",
+                    "keySizeBits": "2048",
+                    "curve": null,
+                    "extendedKeyUsageOids": [
+                      "1.2.3.4.5.6.7.8.9",
+                      "1.2.3.4.5.6.7.8.0"
+                    ],
+                    "extendedKeyUsageNames": [
+                      "Server Authentication",
+                      "Client Authentication"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/certificates/export": {
+      "get": {
+        "tags": [
+          "Certificates"
+        ],
+        "summary": "Export Certificates",
+        "description": "Exports certificates into a file with the specified format.",
+        "operationId": "Cert_ExportCertificates",
+        "parameters": [
+          {
+            "name": "exportType",
+            "in": "query",
+            "description": "Export format.",
+            "required": true,
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/CertificateExportType"
+                }
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/csv": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                },
+                "example": "commonName,issuedByCommonName,subjectAlternativeName_dnsNames,subjectAlternativeName_ipAddresses,friendlyName,validFrom,expirationDate,signatureAlgorithm,thumbprint,subject_organization,subject_organizationalUnit,subject_locality,subject_stateOrProvince,subject_country,issuerName,issuer_organization,issuer_organizationalUnit,issuer_locality,issuer_stateOrProvince,issuer_country,serialNumber,version,publicKeyAlgorithm_name,publicKeyAlgorithm_keySizeBits,publicKeyAlgorithm_curve,keyUsage,extendedKeyUsage_names,extendedKeyUsage_oids\nAlpha certificate,ws16vo.tech.local,Alpha,,Veeam ONE Monitoring Service communication self-signed certificate,2026-04-02T09:23:19Z,2036-03-30T09:23:19Z,sha256RSA,AC32BA4765C3648D45D289C6713908F361879C00,,,,,,ws16vo.tech.local,,,,,,765C3648D45D289C6713908F3618,3,RSA,2048,,\"Digital Signature, Non-Repudiation (c0)\",\"Server Authentication, Client Authentication\",\"1.2.3.4.5.6.7.8.9, 1.2.3.4.5.6.7.8.0\"\nBeta certificate,ws16vo.tech.local,Beta,,Veeam ONE Reporting Service communication self-signed certificate,2026-04-02T09:22:58Z,2036-04-02T09:22:58Z,sha256RSA,64531072BAF82A22B5B21C6CF90D210A54DD8931,,,,,,iiws16vo.qahv1.veeam.local,,,,,,471195AA754619F1,3,RSA,2048,,\"Digital Signature, Non-Repudiation, Key Encipherment, Data Encipherment (f0)\",\"Server Authentication, Client Authentication\",\"1.2.3.4.5.6.7.8.9, 1.2.3.4.5.6.7.8.0\"\n"
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                },
+                "example": "[\n  {\n    \"CommonName\": \"Beta certificate\",\n    \"IssuedBy\": \"ws16vo.tech.local\",\n    \"SubjectAltName\": [ \"Beta\" ],\n    \"FriendlyName\": \"Veeam ONE Reporting Service communication self-signed certificate\",\n    \"ValidFrom\": \"2026-04-02T11:22:58+02:00\",\n    \"ExpirationDate\": \"2036-04-02T11:22:58+02:00\",\n    \"SignatureAlgorithm\": \"sha256RSA\",\n    \"Thumbprint\": \"64531072BAF82A22B5B21C6CF90D210A54DD8931\",\n    \"Organization\": \"\",\n    \"OrganizationalUnit\": \"\",\n    \"Locality\": \"\",\n    \"StateOrProvince\": \"\",\n    \"Country\": \"\",\n    \"IssuerInfo\": {\n      \"IssuerName\": \"iiws16vo.qahv1.veeam.local\",\n      \"Organization\": \"\",\n      \"OrganizationalUnit\": \"\",\n      \"Locality\": \"\",\n      \"StateOrProvince\": \"\",\n      \"Country\": \"\",\n      \"SerialNumber\": \"471195AA754619F1\",\n      \"Version\": 3\n    },\n    \"AdvancedInfo\": {\n      \"PublicKeyAlgorithm\": \"RSA\",\n      \"KeyUsage\": \"Digital Signature, Non-Repudiation, Key Encipherment, Data Encipherment (f0)\",\n      \"KeySizeBits\": \"2048\",\n      \"Curve\": null,\n      \"ExtendedKeyUsageOids\": [ \"1.2.3.4.5.6.7.8.9\", \"1.2.3.4.5.6.7.8.0\" ],\n      \"ExtendedKeyUsageNames\": [ \"Server Authentication\", \"Client Authentication\" ]\n    }\n  }\n]\n"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/cloudConnect/cloudGateways": {
+      "get": {
+        "tags": [
+          "Veeam Cloud Connect"
+        ],
+        "summary": "Get All Cloud Gateways",
+        "description": "Returns a collection resource representation of all cloud gateways.",
+        "operationId": "CloudConnect_GetCloudGateways",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CloudGatewayInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "cloudGatewayId": 102,
+                      "cloudGatewayUidInVbr": "bab6ca01-e213-45ed-88fd-8f219d81b4cd",
+                      "name": "srv12.tech.local",
+                      "backupServerId": 101,
+                      "gatewayPoolId": null,
+                      "enabled": true,
+                      "port": 6180,
+                      "ip": "srv12.tech.local",
+                      "state": "Healthy",
+                      "upgradeRequired": false
+                    },
+                    {
+                      "cloudGatewayId": 103,
+                      "cloudGatewayUidInVbr": "e22507f6-fc7d-4446-bdeb-e09670d001bc",
+                      "name": "srv13",
+                      "backupServerId": 101,
+                      "gatewayPoolId": null,
+                      "enabled": true,
+                      "port": 6180,
+                      "ip": "srv13.tech.local",
+                      "state": "Healthy",
+                      "upgradeRequired": false
+                    }
+                  ],
+                  "totalCount": 2
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/cloudConnect/cloudGateways/{cloudGatewayId}": {
+      "get": {
+        "tags": [
+          "Veeam Cloud Connect"
+        ],
+        "summary": "Get Cloud Gateway",
+        "description": "Returns a resource representation of a cloud gateway with the specified ID.",
+        "operationId": "CloudConnect_GetCloudGateway",
+        "parameters": [
+          {
+            "name": "cloudGatewayId",
+            "in": "path",
+            "description": "Cloud gateway ID.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CloudGatewayInfo"
+                },
+                "example": {
+                  "cloudGatewayId": 103,
+                  "cloudGatewayUidInVbr": "e22507f6-fc7d-4446-bdeb-e09670d001bc",
+                  "name": "srv13",
+                  "backupServerId": 101,
+                  "gatewayPoolId": null,
+                  "enabled": true,
+                  "port": 6180,
+                  "ip": "srv13.tech.local",
+                  "state": "Healthy",
+                  "upgradeRequired": false
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/cloudConnect/cloudGatewayPools": {
+      "get": {
