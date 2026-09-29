@@ -1,0 +1,1000 @@
+                        {
+                          "wmiClassName": "Msvm_ShutdownComponentSettingData",
+                          "name": "Shutdown",
+                          "isLaunched": true
+                        },
+                        {
+                          "wmiClassName": "Msvm_TimeSyncComponentSettingData",
+                          "name": "Time Synchronization",
+                          "isLaunched": true
+                        },
+                        {
+                          "wmiClassName": "Msvm_VssComponentSettingData",
+                          "name": "VSS",
+                          "isLaunched": true
+                        },
+                        {
+                          "wmiClassName": "Msvm_GuestServiceInterfaceComponentSettingData",
+                          "name": "Guest Service Interface",
+                          "isLaunched": false
+                        }
+                      ],
+                      "cpuMhz": 2400,
+                      "memoryReservationMb": 512,
+                      "memoryLimitMb": 1048576,
+                      "isShielded": false,
+                      "lastProtectedDate": null,
+                      "businessViewGroupIds": [
+                        1752,
+                        1754,
+                        1756
+                      ]
+                    }
+                  ],
+                  "totalCount": 4
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/hyperV/vms/{vmId}": {
+      "get": {
+        "tags": [
+          "Microsoft Hyper-V Infrastructure"
+        ],
+        "summary": "Get Microsoft Hyper-V VM",
+        "description": "Returns a resource representation of a connected Microsoft Hyper-V VM with the specified ID.",
+        "operationId": "HyperV_GetHyperVVm",
+        "parameters": [
+          {
+            "name": "vmId",
+            "in": "path",
+            "description": "Microsoft Hyper-V VM ID.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperVVmInfo"
+                },
+                "example": {
+                  "vmId": 83,
+                  "guid": "0CC951AD-2298-4AFA-AF86-E25C441A5F48",
+                  "name": "hvykw8q1",
+                  "powerState": "Enabled",
+                  "cpuCount": 2,
+                  "totalDatastoreCommittedBytes": 15682502656,
+                  "totalDatastoreUncommitedBytes": 64424509440,
+                  "guestDisks": [],
+                  "ipAddresses": [
+                    "172.25.50.50"
+                  ],
+                  "guestOs": "Windows 8.1 Pro",
+                  "isReplica": false,
+                  "snapshotFolder": "F:\\HyperV\\Virtual Machines\\hvykw8q1",
+                  "creationTime": "2026-01-06T05:20:58Z",
+                  "hostId": 71,
+                  "dnsName": "hvykw8q1",
+                  "dynamicMemoryEnabled": false,
+                  "assignedMemoryMb": 1024,
+                  "uptimeMs": 12063560222,
+                  "vmAssignedMemoryMb": 1024,
+                  "integrationServices": [
+                    {
+                      "wmiClassName": "Msvm_HeartbeatComponentSettingData",
+                      "name": "Heartbeat",
+                      "isLaunched": true
+                    },
+                    {
+                      "wmiClassName": "Msvm_KvpExchangeComponentSettingData",
+                      "name": "Key-Value Pair Exchange",
+                      "isLaunched": true
+                    },
+                    {
+                      "wmiClassName": "Msvm_ShutdownComponentSettingData",
+                      "name": "Shutdown",
+                      "isLaunched": true
+                    },
+                    {
+                      "wmiClassName": "Msvm_TimeSyncComponentSettingData",
+                      "name": "Time Synchronization",
+                      "isLaunched": true
+                    },
+                    {
+                      "wmiClassName": "Msvm_VssComponentSettingData",
+                      "name": "VSS",
+                      "isLaunched": true
+                    },
+                    {
+                      "wmiClassName": "Msvm_GuestServiceInterfaceComponentSettingData",
+                      "name": "Guest Service Interface",
+                      "isLaunched": true
+                    }
+                  ],
+                  "cpuMhz": 2400,
+                  "memoryReservationMb": 512,
+                  "memoryLimitMb": 1048576,
+                  "isShielded": false,
+                  "lastProtectedDate": null,
+                  "businessViewGroupIds": [
+                    1752,
+                    1755,
+                    1757
+                  ]
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/hyperV/hostClusters": {
+      "get": {
+        "tags": [
+          "Microsoft Hyper-V Infrastructure"
+        ],
+        "summary": "Get All Microsoft Hyper-V Host Clusters",
+        "description": "Returns a collection resource representation of all host clusters in the connected Microsoft Hyper-V environment.",
+        "operationId": "HyperV_GetHyperVClusters",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperVClusterInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "hostClusterId": 71,
+                      "name": "cluaz.tech.local",
+                      "scvmmServerId": null,
+                      "connectionError": null,
+                      "connectionState": "Connected",
+                      "businessViewGroupIds": []
+                    },
+                    {
+                      "hostClusterId": 75,
+                      "name": "hvc.tech.local",
+                      "scvmmServerId": null,
+                      "connectionError": null,
+                      "connectionState": "Connected",
+                      "businessViewGroupIds": []
+                    }
+                  ],
+                  "totalCount": 2
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/hyperV/hostClusters/{hostClusterId}": {
+      "get": {
+        "tags": [
+          "Microsoft Hyper-V Infrastructure"
+        ],
+        "summary": "Get Microsoft Hyper-V Host Cluster",
+        "description": "Returns a resource representation of a connected Microsoft Hyper-V host cluster with the specified ID.",
+        "operationId": "HyperV_GetHyperVCluster",
+        "parameters": [
+          {
+            "name": "hostClusterId",
+            "in": "path",
+            "description": "Microsoft Hyper-V host cluster ID.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperVClusterInfo"
+                },
+                "example": {
+                  "hostClusterId": 71,
+                  "name": "cluaz.tech.local",
+                  "scvmmServerId": null,
+                  "connectionError": null,
+                  "connectionState": "Connected",
+                  "businessViewGroupIds": []
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/hyperV/csvDisks": {
+      "get": {
+        "tags": [
+          "Microsoft Hyper-V Infrastructure"
+        ],
+        "summary": "Get All Microsoft Hyper-V CSVs",
+        "description": "Returns a collection resource representation of all CSVs in the connected Microsoft Hyper-V environment.",
+        "operationId": "HyperV_GetHyperVCsvDisks",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperVCsvInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "csvDiskId": 74,
+                      "clusterId": 71,
+                      "name": "Volume1",
+                      "capacityMb": 10221,
+                      "freeSpaceMb": 10165,
+                      "provisionedMb": 56,
+                      "path": "C:\\ClusterStorage\\Volume1",
+                      "businessViewGroupIds": [
+                        1737
+                      ]
+                    },
+                    {
+                      "csvDiskId": 97,
+                      "clusterId": 94,
+                      "name": "CSV",
+                      "capacityMb": 23734742,
+                      "freeSpaceMb": 10563875,
+                      "provisionedMb": 2501699,
+                      "path": "",
+                      "businessViewGroupIds": [
+                        141
+                      ]
+                    }
+                  ],
+                  "totalCount": 2
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/hyperV/csvDisks/{csvDiskId}": {
+      "get": {
+        "tags": [
+          "Microsoft Hyper-V Infrastructure"
+        ],
+        "summary": "Get Microsoft Hyper-V CSV",
+        "description": "Returns a resource representation of a connected Microsoft Hyper-V CSV with the specified ID.",
+        "operationId": "HyperV_GetHyperVCsvDisk",
+        "parameters": [
+          {
+            "name": "csvDiskId",
+            "in": "path",
+            "description": "Microsoft Hyper-V CSV ID.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperVCsvInfo"
+                },
+                "example": {
+                  "csvDiskId": 74,
+                  "clusterId": 71,
+                  "name": "Volume1",
+                  "capacityMb": 10221,
+                  "freeSpaceMb": 10165,
+                  "provisionedMb": 56,
+                  "path": "",
+                  "businessViewGroupIds": [
+                    1737
+                  ]
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/hyperV/hostGroups": {
+      "get": {
+        "tags": [
+          "Microsoft Hyper-V Infrastructure"
+        ],
+        "summary": "Get All Microsoft Hyper-V Host Groups",
+        "description": "Returns a collection resource representation of all host groups in the connected Microsoft Hyper-V environment.",
+        "operationId": "HyperV_GetHyperVHostGroups",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperVHostGroupInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "hostGroupId": 77,
+                      "name": "Atlanta",
+                      "parentId": 71,
+                      "parentType": "Cluster"
+                    },
+                    {
+                      "hostGroupId": 79,
+                      "name": "Texas",
+                      "parentId": 71,
+                      "parentType": "Cluster"
+                    }
+                  ],
+                  "totalCount": 2
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/hyperV/hostGroups/{hostGroupId}": {
+      "get": {
+        "tags": [
+          "Microsoft Hyper-V Infrastructure"
+        ],
+        "summary": "Get Microsoft Hyper-V Host Group",
+        "description": "Returns a resource representation of a connected Microsoft Hyper-V host group with the specified ID.",
+        "operationId": "HyperV_GetHyperVHostGroup",
+        "parameters": [
+          {
+            "name": "hostGroupId",
+            "in": "path",
+            "description": "Microsoft Hyper-V host group ID.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperVHostGroupInfo"
+                },
+                "example": {
+                  "hostGroupId": 77,
+                  "name": "Atlanta",
+                  "parentId": 71,
+                  "parentType": "Cluster"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/hyperV/hosts": {
+      "get": {
+        "tags": [
+          "Microsoft Hyper-V Infrastructure"
+        ],
+        "summary": "Get All Microsoft Hyper-V Hosts",
+        "description": "Returns a collection resource representation of all hosts in the connected Microsoft Hyper-V environment.",
+        "operationId": "HyperV_GetHyperVHosts",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperVHostInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "hostId": 76,
+                      "name": "azhv.tech.local",
+                      "connectionError": null,
+                      "connectionState": "Connected",
+                      "powerState": "PoweredOn",
+                      "memorySizeBytes": 8589398016,
+                      "cpuCount": 4,
+                      "cpuFrequencyMhz": 2400,
+                      "cpuModel": "Intel(R) Xeon(R) Silver 4214R CPU @ 2.40GHz",
+                      "socketCount": 2,
+                      "memoryReserveMb": null,
+                      "version": "6.3.9600",
+                      "parentId": 71,
+                      "parentType": "Cluster",
+                      "businessViewGroupIds": []
+                    },
+                    {
+                      "hostId": 77,
+                      "name": "azhv1.tech.local",
+                      "connectionError": null,
+                      "connectionState": "Connected",
+                      "powerState": "PoweredOn",
+                      "memorySizeBytes": 8589398016,
+                      "cpuCount": 2,
+                      "cpuFrequencyMhz": 2400,
+                      "cpuModel": "Intel(R) Xeon(R) Silver 4214R CPU @ 2.40GHz",
+                      "socketCount": 1,
+                      "memoryReserveMb": null,
+                      "version": "6.3.9600",
+                      "parentId": 71,
+                      "parentType": "Cluster",
+                      "businessViewGroupIds": []
+                    }
+                  ],
+                  "totalCount": 2
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/hyperV/hosts/{hostId}": {
+      "get": {
+        "tags": [
+          "Microsoft Hyper-V Infrastructure"
+        ],
+        "summary": "Get Microsoft Hyper-V Host",
+        "description": "Returns a resource representation of a connected Microsoft Hyper-V host with the specified ID.",
+        "operationId": "HyperV_GetHyperVHost",
+        "parameters": [
+          {
+            "name": "hostId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperVHostInfo"
+                },
+                "example": {
+                  "hostId": 77,
+                  "name": "hv1dmauto.tech.local",
+                  "connectionError": null,
+                  "connectionState": "Connected",
+                  "powerState": "PoweredOn",
+                  "memorySizeBytes": 8588865536,
+                  "cpuCount": 4,
+                  "cpuFrequencyMhz": 2400,
+                  "cpuModel": "Intel(R) Xeon(R) Silver 4214R CPU @ 2.40GHz",
+                  "socketCount": 1,
+                  "memoryReserveMb": null,
+                  "version": "10.0.17763",
+                  "parentId": 71,
+                  "parentType": "Cluster",
+                  "businessViewGroupIds": []
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/hyperV/physicalDisks": {
+      "get": {
+        "tags": [
+          "Microsoft Hyper-V Infrastructure"
+        ],
+        "summary": "Get All Microsoft Hyper-V Physical Disks",
+        "description": "Returns a collection resource representation of all Microsoft Hyper-V physical disks.",
+        "operationId": "HyperV_GetHyperVPhysicalDisks",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperVPhysicalDiskInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "physicalDiskId": 79,
+                      "capacityBytes": 128203091968,
+                      "freeSpaceBytes": 93059784704,
+                      "hostId": 77,
+                      "provisionedBytes": 36212854784,
+                      "path": "C:",
+                      "name": "Disk 0 C:",
+                      "businessViewGroupIds": [
+                        1736
+                      ]
+                    },
+                    {
+                      "physicalDiskId": 80,
+                      "capacityBytes": 42930794496,
+                      "freeSpaceBytes": 42830249984,
+                      "hostId": 77,
+                      "provisionedBytes": 1170092032,
+                      "path": "E:",
+                      "name": "Disk 1 E:",
+                      "businessViewGroupIds": [
+                        1736
+                      ]
+                    },
+                    {
+                      "physicalDiskId": 81,
+                      "capacityBytes": 128203091968,
+                      "freeSpaceBytes": 79830671360,
+                      "hostId": 78,
+                      "provisionedBytes": 48372420608,
+                      "path": "C:",
+                      "name": "Disk 0 C:",
+                      "businessViewGroupIds": [
+                        1736
+                      ]
+                    },
+                    {
+                      "physicalDiskId": 82,
+                      "capacityBytes": 85880467456,
+                      "freeSpaceBytes": 69012443136,
+                      "hostId": 78,
+                      "provisionedBytes": 65610031104,
+                      "path": "F:",
+                      "name": "Disk 1 F:",
+                      "businessViewGroupIds": [
+                        1736
+                      ]
+                    }
+                  ],
+                  "totalCount": 4
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/hyperV/physicalDisks/{physicalDiskId}": {
+      "get": {
+        "tags": [
+          "Microsoft Hyper-V Infrastructure"
+        ],
+        "summary": "Get Microsoft Hyper-V Physical Disk",
+        "description": "Returns a resource representation of a Microsoft Hyper-V physical disk with the specified ID.",
+        "operationId": "HyperV_GetHyperVPhysicalDisk",
+        "parameters": [
+          {
+            "name": "physicalDiskId",
+            "in": "path",
+            "description": "Microsoft Hyper-V physical disk ID.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperVPhysicalDiskInfo"
+                },
+                "example": {
+                  "physicalDiskId": 78,
+                  "capacityBytes": 107005079552,
+                  "freeSpaceBytes": 48214056960,
+                  "hostId": 76,
+                  "provisionedBytes": 58791022592,
+                  "path": "C:",
+                  "name": "Disk 0 C:",
+                  "businessViewGroupIds": [
+                    1737
+                  ]
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/hyperV/scVmmServers": {
+      "get": {
+        "tags": [
+          "Microsoft Hyper-V Infrastructure"
+        ],
+        "summary": "Get All Microsoft Hyper-V SCVMM Servers",
+        "description": "Returns a collection resource representation of all SCVMM servers in the connected Microsoft Hyper-V environment.",
+        "operationId": "HyperV_GetHyperVScVmmServers",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
