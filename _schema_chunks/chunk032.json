@@ -1,0 +1,1000 @@
+          }
+        },
+        "additionalProperties": false
+      },
+      "CloudDirectorBackupJobInfo": {
+        "type": "object",
+        "properties": {
+          "cloudDirectorBackupJobUid": {
+            "type": "string",
+            "description": "UID assigned to a job in Veeam Backup & Replication.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "backupServerId": {
+            "type": "integer",
+            "description": "ID assigned to a Veeam Backup & Replication server.",
+            "format": "int64"
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BackupJobStatus"
+              }
+            ],
+            "description": "Job status."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Job details",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of a job.",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "Job description.",
+            "nullable": true
+          },
+          "lastRun": {
+            "type": "string",
+            "description": "Date and time of the latest job session.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastRunDurationSec": {
+            "type": "integer",
+            "description": "Duration of the latest job session, in seconds.",
+            "format": "int32",
+            "nullable": true
+          },
+          "avgDurationSec": {
+            "type": "integer",
+            "description": "Average job session duration, in seconds.",
+            "format": "int32",
+            "nullable": true
+          },
+          "lastTransferredDataBytes": {
+            "type": "integer",
+            "description": "Amount of data transferred during the latest job session, in bytes.",
+            "format": "int64",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CloudDirectorBackupJobInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CloudDirectorBackupJobInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CloudDirectorConnectionState": {
+        "enum": [
+          "Unknown",
+          "Connected",
+          "Inaccessible"
+        ],
+        "type": "string"
+      },
+      "CloudDirectorDatastoreInfo": {
+        "type": "object",
+        "properties": {
+          "datastoreId": {
+            "type": "integer",
+            "description": "ID assigned to a datastore.",
+            "format": "int64"
+          },
+          "cloudDirectorId": {
+            "type": "integer",
+            "description": "ID assigned to a VMware Cloud Director server.",
+            "format": "int64"
+          },
+          "vCenterServerId": {
+            "type": "integer",
+            "description": "ID assigned to a vCenter server.",
+            "format": "int64"
+          },
+          "href": {
+            "type": "string",
+            "description": "Unique datastore identifier in the URL format. Identical to the `href` property in VMware Cloud Director API.",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of a datastore.",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "description": "Type of a datastore.",
+            "nullable": true
+          },
+          "capacityBytes": {
+            "type": "integer",
+            "description": "Storage capacity of a datastore, in bytes.",
+            "format": "int64"
+          },
+          "usedBytes": {
+            "type": "integer",
+            "description": "Amount of storage space consumed on a datastore, in bytes.",
+            "format": "int64"
+          },
+          "provisionedBytes": {
+            "type": "integer",
+            "description": "Amount of storage space allocated to a provider VDC, in bytes.",
+            "format": "int64"
+          },
+          "requestedBytes": {
+            "type": "integer",
+            "description": "Amount of storage space consumed by a provider VDC, in bytes.",
+            "format": "int64"
+          },
+          "providerVdcCount": {
+            "type": "integer",
+            "description": "Number of provider VDCs to which a datastore provides resources.",
+            "format": "int64"
+          },
+          "providerVdcs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProviderVdc"
+            },
+            "description": "Array of provider VDCs to which a datastore provides resources.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CloudDirectorDatastoreInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CloudDirectorDatastoreInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CloudDirectorInfo": {
+        "type": "object",
+        "properties": {
+          "cloudDirectorServerId": {
+            "type": "integer",
+            "description": "ID assigned to a VMware Cloud Director server.",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of a VMware Cloud Director.",
+            "nullable": true
+          },
+          "connectionState": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CloudDirectorConnectionState"
+              }
+            ],
+            "description": "Connection status of a VMware Cloud Director server."
+          },
+          "connectionError": {
+            "type": "string",
+            "description": "Datails on VMware Cloud Director server connection failure.",
+            "nullable": true
+          },
+          "version": {
+            "type": "string",
+            "description": "VMware Cloud Director version.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CloudDirectorInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CloudDirectorInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CloudDirectorObjectRelationsInfo": {
+        "type": "object",
+        "properties": {
+          "objectId": {
+            "type": "integer",
+            "description": "ID assigned to an object.",
+            "format": "int64"
+          },
+          "objectName": {
+            "type": "string",
+            "description": "Name of an object.",
+            "nullable": true
+          },
+          "objectType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CloudDirectorObjectType"
+              }
+            ],
+            "description": "Type of an object."
+          },
+          "parentId": {
+            "type": "integer",
+            "description": "ID assigned to a parent object.",
+            "format": "int64",
+            "nullable": true
+          },
+          "parentName": {
+            "type": "string",
+            "description": "Name of a parent object.",
+            "nullable": true
+          },
+          "parentType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CloudDirectorObjectType"
+              }
+            ],
+            "description": "Type of a parent object.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CloudDirectorObjectRelationsInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CloudDirectorObjectRelationsInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CloudDirectorObjectType": {
+        "enum": [
+          "CloudDirectorServer",
+          "Organization",
+          "OrganizationVdc",
+          "Vapp",
+          "ProviderVdc",
+          "ProviderVdcFolder",
+          "OrganizationFolder",
+          "CloudDirectorInfrastructure"
+        ],
+        "type": "string"
+      },
+      "CloudDirectorReplicationJobInfo": {
+        "type": "object",
+        "properties": {
+          "cloudDirectorReplicationJobUid": {
+            "type": "string",
+            "description": "UID assigned to a job in Veeam Backup & Replication.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "backupServerId": {
+            "type": "integer",
+            "description": "ID assigned to a Veeam Backup & Replication server.",
+            "format": "int64"
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BackupJobStatus"
+              }
+            ],
+            "description": "Job status."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Job details.",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of a job.",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "Job description.",
+            "nullable": true
+          },
+          "lastRun": {
+            "type": "string",
+            "description": "Date and time of the latest job session.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastRunDurationSec": {
+            "type": "integer",
+            "description": "Duration of the latest job session, in seconds.",
+            "format": "int32",
+            "nullable": true
+          },
+          "avgDurationSec": {
+            "type": "integer",
+            "description": "Average job session duration, in seconds.",
+            "format": "int32",
+            "nullable": true
+          },
+          "lastTransferredDataBytes": {
+            "type": "integer",
+            "description": "Amount of data transferred during the latest job session, in bytes.",
+            "format": "int64",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CloudDirectorReplicationJobInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CloudDirectorReplicationJobInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CloudDirectorVAppInfo": {
+        "type": "object",
+        "properties": {
+          "vAppId": {
+            "type": "integer",
+            "description": "ID assigned to a vApp.",
+            "format": "int64"
+          },
+          "href": {
+            "type": "string",
+            "description": "Unique vApp identifier in the URL format. Identical to the `href` property in VMware Cloud Director API.",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of a vApp.",
+            "nullable": true
+          },
+          "cpuAllocationMhz": {
+            "type": "integer",
+            "description": "Amount of allocated CPU, in MHz.",
+            "format": "int32",
+            "nullable": true
+          },
+          "memoryAllocationMb": {
+            "type": "integer",
+            "description": "Amount of allocated memory, in MB.",
+            "format": "int32",
+            "nullable": true
+          },
+          "storageKb": {
+            "type": "integer",
+            "description": "Amount of storage capacity, in kB.",
+            "format": "int64",
+            "nullable": true
+          },
+          "leaseExpirationDate": {
+            "type": "string",
+            "description": "Date and time when a vApp must be deleted automaticaly.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "powerState": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/VAppPowerState"
+              }
+            ],
+            "description": "Power status of a vApp."
+          },
+          "isExpired": {
+            "type": "boolean",
+            "description": "Indicates whether the vApp lease has expired.",
+            "nullable": true
+          },
+          "autoUndeployTime": {
+            "type": "string",
+            "description": "Date and time when a vApp must be undeployed.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "cloudDirectorId": {
+            "type": "integer",
+            "description": "ID assigned to a VMware Cloud Director.",
+            "format": "int64",
+            "nullable": true
+          },
+          "organizationId": {
+            "type": "integer",
+            "description": "ID assigned to an organization.",
+            "format": "int64",
+            "nullable": true
+          },
+          "organizationVdcId": {
+            "type": "integer",
+            "description": "ID assigned to an organization VDC.",
+            "format": "int64",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CloudDirectorVAppInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CloudDirectorVAppInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CloudDirectorVmInfo": {
+        "type": "object",
+        "properties": {
+          "vmId": {
+            "type": "integer",
+            "description": "ID assigned to a VM.",
+            "format": "int64"
+          },
+          "moRef": {
+            "type": "string",
+            "description": "MoRef ID assigned to a VM in VMware vSphere.",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of a VM.",
+            "nullable": true
+          },
+          "powerState": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/VSphereVmPowerState"
+              }
+            ],
+            "description": "Power status of a VM."
+          },
+          "cpuCount": {
+            "type": "integer",
+            "description": "Number of virtual CPUs on a VM.",
+            "format": "int32",
+            "nullable": true
+          },
+          "guestDnsName": {
+            "type": "string",
+            "description": "DNS name of a VM.",
+            "nullable": true
+          },
+          "memorySizeMb": {
+            "type": "integer",
+            "description": "Amount of memory available on a VM.",
+            "format": "int64",
+            "nullable": true
+          },
+          "guestDisks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VmGuestDisk"
+            },
+            "description": "Array of guest disks configured in a VM.",
+            "nullable": true
+          },
+          "guestIpAddresses": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Array of VM IP addresses.",
+            "nullable": true
+          },
+          "guestOs": {
+            "type": "string",
+            "description": "Guest OS installed on a VM.",
+            "nullable": true
+          },
+          "isReplica": {
+            "type": "boolean",
+            "description": "Indicates whether a VM is a replica.",
+            "nullable": true
+          },
+          "virtualDiskCount": {
+            "type": "integer",
+            "description": "Number of virtual disks configured for a VM.",
+            "format": "int32",
+            "nullable": true
+          },
+          "virtualDisks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VmVirtualDisk"
+            },
+            "description": "Array of virtual disks configured for a VM.",
+            "nullable": true
+          },
+          "connectionState": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/VSphereVmConnectionState"
+              }
+            ],
+            "description": "Connection state of a VM."
+          },
+          "notes": {
+            "type": "string",
+            "description": "Additional information on a VM.",
+            "nullable": true
+          },
+          "totalDiskCapacityBytes": {
+            "type": "integer",
+            "description": "Total disk capacity, in bytes.",
+            "format": "int64",
+            "nullable": true
+          },
+          "datastoreUsage": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VmDatastoreUsage"
+            },
+            "description": "Usage of datastore resources allocated to a VM.",
+            "nullable": true
+          },
+          "isCdpReplica": {
+            "type": "boolean",
+            "description": "Indicates whether a VM is a CDP replica.",
+            "nullable": true
+          },
+          "virtualHardwareVersion": {
+            "type": "string",
+            "description": "Version of VM virtual hardware.",
+            "nullable": true
+          },
+          "lastProtectedDate": {
+            "type": "string",
+            "description": "Date and time of the latest successful VM job.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "vmProtectionJobUids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid",
+              "nullable": true
+            },
+            "description": "Array of UIDs assigned to jobs that protect a VM.",
+            "nullable": true
+          },
+          "businessViewGroupIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "description": "Array of IDs assigned to the Business View groups.",
+            "nullable": true
+          },
+          "cloudDirectorId": {
+            "type": "integer",
+            "description": "ID assigned to a VMware Cloud Director server.",
+            "format": "int64",
+            "nullable": true
+          },
+          "vAppId": {
+            "type": "integer",
+            "description": "ID assigned to a vApp.",
+            "format": "int64",
+            "nullable": true
+          },
+          "organizationId": {
+            "type": "integer",
+            "description": "ID assigned to an organization.",
+            "format": "int64",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CloudDirectorVmInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CloudDirectorVmInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CloudFileShareBackupType": {
+        "enum": [
+          "Unknown",
+          "CloudSnapshot",
+          "CloudBackup",
+          "CloudBackupCopy"
+        ],
+        "type": "string"
+      },
+      "CloudFileShareInfo": {
+        "type": "object",
+        "properties": {
+          "resourceId": {
+            "type": "string",
+            "description": "ID assigned to a file share on cloud platform.",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of a cloud file share.",
+            "nullable": true
+          },
+          "platform": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CloudFileSharesPlatform"
+              }
+            ],
+            "description": "Cloud platform on which a file share resides."
+          },
+          "instanceType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CloudFileShareInstanceType"
+              }
+            ],
+            "description": "Type of a cloud file share."
+          },
+          "backupServerId": {
+            "type": "integer",
+            "description": "ID assigned to a Veeam Backup & Replication server.",
+            "format": "int64"
+          },
+          "backupServerName": {
+            "type": "string",
+            "description": "Name of a Veeam Backup & Replication server.",
+            "nullable": true
+          },
+          "region": {
+            "type": "string",
+            "description": "Region where a cloud file share is located.",
+            "nullable": true
+          },
+          "sizeBytes": {
+            "type": "integer",
+            "description": "Cloud file share storage capacity, in bytes.",
+            "format": "int64",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CloudFileShareInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CloudFileShareInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CloudFileShareInstanceType": {
+        "enum": [
+          "Unknown",
+          "EFS",
+          "Files",
+          "FSx"
+        ],
+        "type": "string"
+      },
+      "CloudFileSharePolicyInfo": {
+        "type": "object",
+        "properties": {
+          "policyUid": {
+            "type": "string",
+            "description": "UID assigned to a policy.",
+            "format": "uuid"
+          },
+          "policyName": {
+            "type": "string",
+            "description": "Name of a policy.",
+            "nullable": true
+          },
+          "state": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PolicyState"
+              }
+            ],
+            "description": "Status of a policy."
+          },
+          "instances": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CloudInstance"
+            },
+            "description": "Array of file shares included in a policy.",
+            "nullable": true
+          },
+          "instancesCount": {
+            "type": "integer",
+            "description": "Number of file shares included in a policy.",
+            "format": "int32"
+          },
+          "platform": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CloudFileSharesPlatform"
+              }
+            ],
+            "description": "Cloud platform."
+          },
+          "instanceType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CloudFileShareInstanceType"
+              }
+            ],
+            "description": "Type of a file share."
+          },
+          "backupServerId": {
+            "type": "integer",
+            "description": "ID assigned to a Veeam Backup & Replication server.",
+            "format": "int64"
+          },
+          "backupServerName": {
+            "type": "string",
+            "description": "Name of a Veeam Backup & Replication server.",
+            "nullable": true
+          },
+          "lastSnapshotDate": {
+            "type": "string",
+            "description": "Date and time when the latest snapshot was created.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastSnapshotStatus": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BackupJobStatus"
+              }
+            ],
+            "description": "Status of the latest snapshot."
+          },
+          "lastReplicationDate": {
+            "type": "string",
+            "description": "Date and time when the latest replication restore point was created.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastReplicationStatus": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BackupJobStatus"
+              }
+            ],
+            "description": "Status of the latest replication restore point."
+          }
+        },
+        "additionalProperties": false
+      },
+      "CloudFileSharePolicyInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CloudFileSharePolicyInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CloudFileSharesPlatform": {
+        "enum": [
+          "Unknown",
+          "AWS",
+          "MicrosoftAzure"
+        ],
+        "type": "string"
+      },
+      "CloudGatewayInfo": {
+        "type": "object",
+        "properties": {
+          "cloudGatewayId": {
+            "type": "integer",
+            "description": "ID assigned to a cloud gateway.",
+            "format": "int64"
+          },
+          "cloudGatewayUidInVbr": {
+            "type": "string",
+            "description": "UID assigned to a cloud gateway in Veeam Cloud Connect.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of a cloud gateway.",
+            "nullable": true
+          },
+          "backupServerId": {
+            "type": "integer",
+            "description": "ID assigned to a Veeam Cloud Connect server.",
+            "format": "int64",
+            "nullable": true
+          },
+          "gatewayPoolId": {
+            "type": "integer",
+            "description": "ID assigned to a cloud gateway pool.",
+            "format": "int64",
+            "nullable": true
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "Indicates whether a cloud gateway is enabled.",
+            "nullable": true
+          },
+          "port": {
+            "type": "integer",
+            "description": "TCP/UDP port for external connections.",
+            "format": "int32",
+            "nullable": true
+          },
+          "ip": {
+            "type": "string",
+            "description": "IP address of a cloud gateway.",
+            "nullable": true
+          },
+          "state": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CloudGatewayState"
+              }
+            ],
+            "description": "Status of a cloud gateway."
+          },
+          "upgradeRequired": {
+            "type": "boolean",
+            "description": "Indicates whether a cloud gateway must be updated.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CloudGatewayInfoPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CloudGatewayInfo"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CloudGatewayPoolInfo": {
+        "type": "object",
+        "properties": {
+          "cloudGatewayPoolId": {
+            "type": "integer",
+            "description": "ID assigned to a cloud gateway pool.",
+            "format": "int64"
+          },
+          "cloudGatewayPoolUidInVbr": {
+            "type": "string",
+            "description": "UID assigned to a cloud gateway pool in Veeam Cloud Connect.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of a cloud gateway pool.",
+            "nullable": true
+          },
+          "backupServerId": {
+            "type": "integer",
+            "description": "ID assigned to a Veeam Cloud Connect server.",
+            "format": "int64",
