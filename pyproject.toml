@@ -25,8 +25,8 @@ dev = [
     "pytest-asyncio>=0.23.0",
     "pytest-cov",
     "black",
-    "ruff",
-    "openapi-python-client",
+    "ruff>=0.13,<0.14",
+    "openapi-python-client>=0.26,<0.27",
 ]
 
 [project.urls]
