@@ -1,0 +1,42 @@
+from enum import Enum
+
+
+class AlarmTemplateType(str, Enum):
+    CLOUDDIRECTORORGANIZATION = "CloudDirectorOrganization"
+    CLOUDDIRECTORORGANIZATIONVDC = "CloudDirectorOrganizationVdc"
+    CLOUDDIRECTORPROVIDERVDC = "CloudDirectorProviderVdc"
+    CLOUDDIRECTORVAPP = "CloudDirectorVApp"
+    HYPERVANYOBJECT = "HyperVAnyObject"
+    HYPERVCLUSTER = "HyperVCluster"
+    HYPERVCSV = "HyperVCsv"
+    HYPERVHOST = "HyperVHost"
+    HYPERVLOCALSTORAGE = "HyperVLocalStorage"
+    HYPERVVIRTUALMACHINE = "HyperVVirtualMachine"
+    INTERNAL = "Internal"
+    UNKNOWN = "Unknown"
+    VB365PROXY = "Vb365Proxy"
+    VB365REPOSITORY = "Vb365Repository"
+    VB365SERVER = "Vb365Server"
+    VBR = "Vbr"
+    VBRBACKUPSERVER = "VbrBackupServer"
+    VBRCLOUDGATEWAY = "VbrCloudGateway"
+    VBRCLOUDREPOSITORY = "VbrCloudRepository"
+    VBRCOMPUTER = "VbrComputer"
+    VBRENTERPRISEAPPLICATION = "VbrEnterpriseApplication"
+    VBRENTERPRISEMANAGER = "VbrEnterpriseManager"
+    VBRINTELLIGENTDIAGNOSTICS = "VbrIntelligentDiagnostics"
+    VBRPROXY = "VbrProxy"
+    VBRREPOSITORY = "VbrRepository"
+    VBRTAPESERVER = "VbrTapeServer"
+    VBRTENANTREPOSITORY = "VbrTenantRepository"
+    VBRWANACCELERATOR = "VbrWanAccelerator"
+    VSPHEREANYOBJECT = "VSphereAnyObject"
+    VSPHERECLUSTER = "VSphereCluster"
+    VSPHEREDATASTORE = "VSphereDatastore"
+    VSPHEREHOST = "VSphereHost"
+    VSPHERERESOURCEPOOL = "VSphereResourcePool"
+    VSPHEREVCENTERSERVER = "VSphereVCenterServer"
+    VSPHEREVIRTUALMACHINE = "VSphereVirtualMachine"
+
+    def __str__(self) -> str:
+        return str(self.value)
