@@ -1,0 +1,1000 @@
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BackupProxyInfo"
+                },
+                "example": {
+                  "backupProxyId": 11704,
+                  "proxyUidInVbr": "18b661c1-d9dc-4233-90a0-7e7b10dc2d09",
+                  "backupServerId": 11702,
+                  "name": "VMware Backup Proxy",
+                  "enabled": true,
+                  "version": "13.0.0.4913",
+                  "type": "Vmware",
+                  "state": "Ok",
+                  "runningTasks": 0,
+                  "maxConcurrentTasks": 2,
+                  "upgradeRequired": false,
+                  "transportMode": "NetworkProxy",
+                  "throttlingEnabled": false
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vbr/wanAccelerators": {
+      "get": {
+        "tags": [
+          "Veeam Backup & Replication Infrastructure"
+        ],
+        "summary": "Get All WAN Accelerators",
+        "description": "Returns a collection resource representation of all connected WAN accelerators.",
+        "operationId": "Vbr_GetBackupWanAccelerators",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WanAcceleratorInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "wanAcceleratorId": 11821,
+                      "wanAcceleratorUidInVbr": "ec92a2f6-41ce-4b7d-a0d0-214a7c2121e5",
+                      "backupServerId": 11781,
+                      "name": "ES-WIN19-CC",
+                      "version": "13.0.0.4913",
+                      "capacityBytes": 10737418240,
+                      "upgradeRequired": false,
+                      "state": "Ok",
+                      "freeSpaceBytes": 10737418240,
+                      "usedSpaceBytes": 0,
+                      "cachePath": "F:\\VeeamWAN",
+                      "streams": 5,
+                      "trafficPort": 6165,
+                      "highBandwidthMode": false
+                    },
+                    {
+                      "wanAcceleratorId": 11870,
+                      "wanAcceleratorUidInVbr": "73fa9a48-bf73-4f03-b4dc-05b8191928bb",
+                      "backupServerId": 11782,
+                      "name": "ms-22-wan-01.tech.local",
+                      "version": "13.0.0.4913",
+                      "capacityBytes": 10737418240,
+                      "upgradeRequired": false,
+                      "state": "Ok",
+                      "freeSpaceBytes": 10737418240,
+                      "usedSpaceBytes": 0,
+                      "cachePath": "C:\\VeeamWAN",
+                      "streams": 5,
+                      "trafficPort": 6165,
+                      "highBandwidthMode": false
+                    },
+                    {
+                      "wanAcceleratorId": 11871,
+                      "wanAcceleratorUidInVbr": "b9fc88d2-a3ad-4435-870c-43aff381e4da",
+                      "backupServerId": 11782,
+                      "name": "ms-22-wan-02.tech.local",
+                      "version": "13.0.0.4913",
+                      "capacityBytes": 10737418240,
+                      "upgradeRequired": false,
+                      "state": "Ok",
+                      "freeSpaceBytes": 10737418240,
+                      "usedSpaceBytes": 0,
+                      "cachePath": "C:\\VeeamWAN",
+                      "streams": 5,
+                      "trafficPort": 6165,
+                      "highBandwidthMode": false
+                    }
+                  ],
+                  "totalCount": 3
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vbr/wanAccelerators/{wanAcceleratorId}": {
+      "get": {
+        "tags": [
+          "Veeam Backup & Replication Infrastructure"
+        ],
+        "summary": "Get WAN Accelerator",
+        "description": "Returns a resource representation of a connected WAN accelerator with the specified ID.",
+        "operationId": "Vbr_GetBackupWanAccelerator",
+        "parameters": [
+          {
+            "name": "wanAcceleratorId",
+            "in": "path",
+            "description": "WAN accelerator ID.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WanAcceleratorInfo"
+                },
+                "example": {
+                  "wanAcceleratorId": 11871,
+                  "wanAcceleratorUidInVbr": "b9fc88d2-a3ad-4435-870c-43aff381e4da",
+                  "backupServerId": 11782,
+                  "name": "ms-22-wan-02.tech.local",
+                  "version": "13.0.0.4913",
+                  "capacityBytes": 10737418240,
+                  "upgradeRequired": false,
+                  "state": "Ok",
+                  "freeSpaceBytes": 10737418240,
+                  "usedSpaceBytes": 0,
+                  "cachePath": "C:\\VeeamWAN",
+                  "streams": 5,
+                  "trafficPort": 6165,
+                  "highBandwidthMode": false
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vbr/tapeServers": {
+      "get": {
+        "tags": [
+          "Veeam Backup & Replication Infrastructure"
+        ],
+        "summary": "Get All Tape Servers",
+        "description": "Returns a collection resource representation of all tape servers.",
+        "operationId": "Vbr_GetBackupTapeServers",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TapeServerInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "tapeServerId": 11760,
+                      "tapeServerUidInVbr": "44d256be-12ba-4a91-b223-695802b95c06",
+                      "backupServerId": 11724,
+                      "name": "MMF-WIN19VBR",
+                      "version": "13.0.0.4913",
+                      "upgradeRequired": false
+                    },
+                    {
+                      "tapeServerId": 11869,
+                      "tapeServerUidInVbr": "fd7ecd07-0dd6-4b17-8325-4c36087c866b",
+                      "backupServerId": 11782,
+                      "name": "MS-WIN22-VBR11A",
+                      "version": "13.0.0.4913",
+                      "upgradeRequired": false
+                    },
+                    {
+                      "tapeServerId": 11872,
+                      "tapeServerUidInVbr": "7eb26394-2425-4f2f-9714-0e87844437e2",
+                      "backupServerId": 11781,
+                      "name": "ES-WIN19-CC",
+                      "version": "13.0.0.4913",
+                      "upgradeRequired": false
+                    }
+                  ],
+                  "totalCount": 3
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vbr/tapeServers/{tapeServerId}": {
+      "get": {
+        "tags": [
+          "Veeam Backup & Replication Infrastructure"
+        ],
+        "summary": "Get Tape Server",
+        "description": "Returns a resource representation of a tape server with the specified ID.",
+        "operationId": "Vbr_GetBackupTapeServer",
+        "parameters": [
+          {
+            "name": "tapeServerId",
+            "in": "path",
+            "description": "Tape server ID.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TapeServerInfo"
+                },
+                "example": {
+                  "tapeServerId": 11872,
+                  "tapeServerUidInVbr": "7eb26394-2425-4f2f-9714-0e87844437e2",
+                  "backupServerId": 11781,
+                  "name": "ES-WIN19-CC",
+                  "version": "13.0.0.4913",
+                  "upgradeRequired": false
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vbr/enterpriseManagerServers": {
+      "get": {
+        "tags": [
+          "Veeam Backup & Replication Infrastructure"
+        ],
+        "summary": "Get All Veeam Backup Enterprise Manager Servers",
+        "description": "Returns a collection resource representation of all Veeam Backup Enterprise Manager servers.",
+        "operationId": "Vbr_GetBackupEnterpriseManagers",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EnterpriseManagerServerInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "enterpriseManagerServerId": 1430,
+                      "backupServerIds": [
+                        1437,
+                        1363,
+                        5
+                      ],
+                      "name": "es-win19-vbr.tech.local",
+                      "version": "13.0.0.4913",
+                      "connectionError": null,
+                      "connectionState": "Connected",
+                      "platform": "Windows"
+                    },
+                    {
+                      "enterpriseManagerServerId": 1445,
+                      "backupServerIds": [
+                        1523,
+                        1612,
+                        1578
+                      ],
+                      "name": "em-vbr.tech.local",
+                      "version": "13.0.0.4913",
+                      "connectionError": null,
+                      "connectionState": "Connected",
+                      "platform": "Windows"
+                    }
+                  ],
+                  "totalCount": 2
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vbr/enterpriseManagerServers/{enterpriseManagerServerId}": {
+      "get": {
+        "tags": [
+          "Veeam Backup & Replication Infrastructure"
+        ],
+        "summary": "Get Veeam Backup Enterprise Manager Server",
+        "description": "Returns a resource representation of a Veeam Backup Enterprise Manager server with the specified ID.",
+        "operationId": "Vbr_GetBackupEnterpriseManager",
+        "parameters": [
+          {
+            "name": "enterpriseManagerServerId",
+            "in": "path",
+            "description": "Veeam Backup Enterprise Manager server ID.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EnterpriseManagerServerInfo"
+                },
+                "example": {
+                  "enterpriseManagerServerId": 1430,
+                  "backupServerIds": [
+                    1437,
+                    1363,
+                    5
+                  ],
+                  "name": "es-win19-vbr.tech.local",
+                  "version": "13.0.0.4913",
+                  "connectionError": null,
+                  "connectionState": "Connected",
+                  "platform": "Windows"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vbr/repositories": {
+      "get": {
+        "tags": [
+          "Veeam Backup & Replication Infrastructure"
+        ],
+        "summary": "Get All Backup Repositories",
+        "description": "Returns a collection resource representation of all backup repositories. Object storage repositories are not included.",
+        "operationId": "Vbr_GetRegularRepositories",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BackupRepositoryInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "repositoryId": 14,
+                      "repositoryUidInVbr": "88788f9e-d8f5-4eb4-bc4f-9b3f5403bcec",
+                      "backupServerId": 5,
+                      "name": "Default Backup Repository",
+                      "type": "MicrosoftWindows",
+                      "capacityBytes": 85372956672,
+                      "freeSpaceBytes": 18513584128,
+                      "runningTasks": 0,
+                      "maxConcurrentTasks": 4,
+                      "upgradeRequired": false,
+                      "outOfSpaceInDays": 0,
+                      "state": "Ok",
+                      "path": "C:\\Backup",
+                      "oneBackupFilePerVm": true,
+                      "isReFs": true,
+                      "isImmutable": false,
+                      "immutabilityIntervalDays": null
+                    },
+                    {
+                      "repositoryId": 42,
+                      "repositoryUidInVbr": "5de1e82c-70e1-47a3-b343-08c94203d485",
+                      "backupServerId": 5,
+                      "name": "Rep_34dd5700-e174-4558-8efa-18f0c810c2e7",
+                      "type": "MicrosoftWindows",
+                      "capacityBytes": 85372956672,
+                      "freeSpaceBytes": 18513514496,
+                      "runningTasks": 0,
+                      "maxConcurrentTasks": 4,
+                      "upgradeRequired": false,
+                      "outOfSpaceInDays": 3652,
+                      "state": "Ok",
+                      "path": "c:\\Backup Repository\\Rep_34dd5700-e174-4558-8efa-18f0c810c2e7",
+                      "oneBackupFilePerVm": true,
+                      "isReFs": true,
+                      "isImmutable": false,
+                      "immutabilityIntervalDays": null
+                    },
+                    {
+                      "repositoryId": 43,
+                      "repositoryUidInVbr": "dab3bafb-e92d-4b39-afc0-e680cd0a77f1",
+                      "backupServerId": 5,
+                      "name": "Rep_5a6b83dd-c399-404a-ad43-4b6a237d8c7e",
+                      "type": "MicrosoftWindows",
+                      "capacityBytes": 85372956672,
+                      "freeSpaceBytes": 18513518592,
+                      "runningTasks": 0,
+                      "maxConcurrentTasks": 4,
+                      "upgradeRequired": false,
+                      "outOfSpaceInDays": 3652,
+                      "state": "Ok",
+                      "path": "c:\\Backup Repository\\Rep_5a6b83dd-c399-404a-ad43-4b6a237d8c7e",
+                      "oneBackupFilePerVm": true,
+                      "isReFs": true,
+                      "isImmutable": false,
+                      "immutabilityIntervalDays": null
+                    },
+                    {
+                      "repositoryId": 44,
+                      "repositoryUidInVbr": "c9b0f51d-d8d0-4ed0-b4b7-a47894571f31",
+                      "backupServerId": 5,
+                      "name": "Rep_e4bf8671-abaa-41fa-b793-0e708ef6cdf8",
+                      "type": "MicrosoftWindows",
+                      "capacityBytes": 85372956672,
+                      "freeSpaceBytes": 18513514496,
+                      "runningTasks": 0,
+                      "maxConcurrentTasks": 4,
+                      "upgradeRequired": false,
+                      "outOfSpaceInDays": 3652,
+                      "state": "Ok",
+                      "path": "c:\\Backup Repository\\Rep_e4bf8671-abaa-41fa-b793-0e708ef6cdf8",
+                      "oneBackupFilePerVm": true,
+                      "isReFs": true,
+                      "isImmutable": false,
+                      "immutabilityIntervalDays": null
+                    }
+                  ],
+                  "totalCount": 4
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vbr/repositories/{repositoryId}": {
+      "get": {
+        "tags": [
+          "Veeam Backup & Replication Infrastructure"
+        ],
+        "summary": "Get Backup Repository",
+        "description": "Returns a resource representation of a backup repository with the specified ID. Does not return object storage repositories.",
+        "operationId": "Vbr_GetRegularRepository",
+        "parameters": [
+          {
+            "name": "repositoryId",
+            "in": "path",
+            "description": "Backup repository ID.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BackupRepositoryInfo"
+                },
+                "example": {
+                  "repositoryId": 14,
+                  "repositoryUidInVbr": "88788f9e-d8f5-4eb4-bc4f-9b3f5403bcec",
+                  "backupServerId": 5,
+                  "name": "Default Backup Repository",
+                  "type": "MicrosoftWindows",
+                  "capacityBytes": 85372956672,
+                  "freeSpaceBytes": 18513584128,
+                  "runningTasks": 0,
+                  "maxConcurrentTasks": 4,
+                  "upgradeRequired": false,
+                  "outOfSpaceInDays": 0,
+                  "state": "Ok",
+                  "path": "C:\\Backup",
+                  "oneBackupFilePerVm": true,
+                  "isReFs": true,
+                  "isImmutable": false,
+                  "immutabilityIntervalDays": null
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vbr/repositories/external": {
+      "get": {
+        "tags": [
+          "Veeam Backup & Replication Infrastructure"
+        ],
+        "summary": "Get All External Backup Repositories",
+        "description": "Returns a collection resource representation of all external backup repositories.",
+        "operationId": "Vbr_GetBackupExternalRepositories",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExternalRepositoryInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "externalRepositoryId": 11753,
+                      "externalRepositoryUidInVbr": "3acb14ab-02df-439e-8879-cb1ed8259f72",
+                      "backupServerId": 11724,
+                      "name": "repoarch11a",
+                      "isDecryptionEnabled": false,
+                      "region": "Azure Global (Standard)",
+                      "bucket": "pa",
+                      "type": "MicrosoftAzureArchiveStorage",
+                      "description": "Created by mmfwin19vbraz 10/25/2022 2:53 PM"
+                    },
+                    {
+                      "externalRepositoryId": 11754,
+                      "externalRepositoryUidInVbr": "57fe17de-be1d-4c16-a157-e44816a0dcba",
+                      "backupServerId": 11724,
+                      "name": "azrepo11",
+                      "isDecryptionEnabled": false,
+                      "region": "Azure Global (Standard)",
+                      "bucket": "pa",
+                      "type": "MicrosoftAzureBlobStorage",
+                      "description": "Created by mmfwin19vbraz 10/25/2022 2:52 PM"
+                    },
+                    {
+                      "externalRepositoryId": 11755,
+                      "externalRepositoryUidInVbr": "6bd43801-109f-423d-b2d8-38d322d50c54",
+                      "backupServerId": 11724,
+                      "name": "repogcpwin16",
+                      "isDecryptionEnabled": false,
+                      "region": "Data centers in the European Union",
+                      "bucket": "mmfbucket",
+                      "type": "GoogleCloudStorage",
+                      "description": ""
+                    }
+                  ],
+                  "totalCount": 3
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vbr/repositories/external/{externalRepositoryId}": {
+      "get": {
+        "tags": [
+          "Veeam Backup & Replication Infrastructure"
+        ],
+        "summary": "Get External Backup Repository",
+        "description": "Returns a resource representation of an external backup repository with the specified ID.",
+        "operationId": "Vbr_GetBackupExternalRepository",
+        "parameters": [
+          {
+            "name": "externalRepositoryId",
+            "in": "path",
+            "description": "External backup repository ID.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExternalRepositoryInfo"
+                },
+                "example": {
+                  "externalRepositoryId": 11755,
+                  "externalRepositoryUidInVbr": "6bd43801-109f-423d-b2d8-38d322d50c54",
+                  "backupServerId": 11724,
+                  "name": "repogcpwin16",
+                  "isDecryptionEnabled": false,
+                  "region": "Data centers in the European Union",
+                  "bucket": "mmfbucket",
+                  "type": "GoogleCloudStorage",
+                  "description": ""
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2.3/vbr/repositories/objectStorages": {
+      "get": {
+        "tags": [
+          "Veeam Backup & Replication Infrastructure"
+        ],
+        "summary": "Get All Object Storage Repositories",
+        "description": "Returns a collection resource representation of all object storage repositories.",
+        "operationId": "Vbr_GetObjectStorages",
+        "parameters": [
+          {
+            "name": "Offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Select",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectStorageInfoPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "objectStorageId": 11750,
+                      "objectStorageUidInVbr": "44ed8b80-0d9f-49c6-86c3-226874f745d1",
+                      "backupServerId": 11724,
+                      "name": "Object storage repository gcp",
+                      "type": "GoogleCloudStorage",
+                      "runningTasks": 0,
+                      "description": "Created by administrator at 10/24/2023 6:43 AM.",
+                      "region": "EU",
+                      "bucket": "mmfbucket",
+                      "capacityBytes": 1099511627776,
+                      "usedSpaceBytes": 22683535180,
+                      "consumptionLimitGb": null,
+                      "isImmutable": false,
+                      "immutabilityIntervalDays": null,
+                      "concurrentJobsMax": -1,
+                      "concurrentJobsNow": 0,
+                      "infrequentAccessStorage": "Disabled"
+                    },
+                    {
+                      "objectStorageId": 11751,
+                      "objectStorageUidInVbr": "56b906bd-699d-466e-a2a5-93e1fbe73d09",
