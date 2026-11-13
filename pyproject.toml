@@ -44,7 +44,7 @@ dev = [
     "pytest-cov",
     "black",
     "pre-commit",
-    "openapi-python-client>=0.29,<0.30"
+    "openapi-python-client>=0.30,<0.31"
 ]
 
 [project.urls]
